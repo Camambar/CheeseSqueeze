@@ -16,6 +16,9 @@ public class CSGame extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 	}
 
+	/**
+	 * testcomment
+	 */
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
