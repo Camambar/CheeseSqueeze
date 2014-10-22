@@ -2,4 +2,11 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit trunk//EN" "http://google-web-toolkit.googlecode.com/svn/trunk/distro-source/core/src/gwt-module.dtd">
 <module>
 	<source path="cheese/squeeze/game" />
+	<source path="cheese/squeeze/gameLogic" />
+	<source path="cheese/squeeze/gameObjects" />
+	<source path="cheese/squeeze/gameworld" />
+	<source path="cheese/squeeze/helpers" />
+	<source path="cheese/squeeze/screens" />
+	<source path="cheese/squeeze/tweenAccessors" />
+	<source path="cheese/squeeze/tweenAccessors" />
 </module>

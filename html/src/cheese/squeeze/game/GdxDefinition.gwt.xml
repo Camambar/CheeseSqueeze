@@ -4,6 +4,7 @@
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 
 	<inherits name='CSGame' />
+	<inherits name='aurelienribon.tweenengine'/>
 	<entry-point class='cheese.squeeze.game.client.HtmlLauncher' />
 	
 	<set-configuration-property name="gdx.assetpath" value="../android/assets" />

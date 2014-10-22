@@ -1,0 +1,26 @@
+
+onderdelenpack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+goal
+  rotate: false
+  xy: 1, 186
+  size: 224, 269
+  orig: 224, 269
+  offset: 0, 0
+  index: -1
+trap
+  rotate: false
+  xy: 227, 161
+  size: 180, 294
+  orig: 180, 294
+  offset: 0, 0
+  index: -1
+mouse
+  rotate: false
+  xy: 51, 1
+  size: 102, 183
+  orig: 102, 183
+  offset: 0, 0
+  index: -1
