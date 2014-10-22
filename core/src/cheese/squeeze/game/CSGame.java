@@ -7,8 +7,16 @@ import cheese.squeeze.screens.SplashScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+
+/**
+ * This class ini the game.
+ * @author maxdekoninck
+ *
+ */
 public class CSGame extends Game {
 
+	
+	
 	@Override
 	public void create() {
 		Gdx.app.log("CSGame", "created");
