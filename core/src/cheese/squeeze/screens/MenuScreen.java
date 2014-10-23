@@ -36,6 +36,8 @@ public class MenuScreen implements Screen{
         menuButtons.add(soundButton);
         menuButtons.add(musicButton);
 		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
+		
+		AssetLoader.menuSound.play();
 	}
 
 	@Override
