@@ -80,7 +80,7 @@ sound_on
   orig: 272, 141
   offset: 0, 0
   index: -1
-home shadow
+home_shadow
   rotate: false
   xy: 1785, 11
   size: 178, 137
