@@ -1,9 +1,12 @@
 package cheese.squeeze.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -11,7 +14,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class AssetLoader {
 	
-
+	public static AssetManager manager = new AssetManager();
     
     public static Sprite bg,menuBg;
     
@@ -23,23 +26,64 @@ public class AssetLoader {
     public static Sprite goal,trap,mouse,home;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
-    private static TextureAtlas atlas = new TextureAtlas("graph/onderdelen.pack");
+    private static TextureAtlas atlas;
     
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
 
 	public static TextureRegion logo;
 	
-	public static Sound menuSound,gameSound,chalk,buttonSound;
+	public static Texture texture;
+	
+	public static Sound chalk,buttonSound;
+	
+	public static Music menuSound,gameSound;
+
+	public static Texture emptyT,fullT;
+
+	public static NinePatch empty,full;
+	
+	private static boolean dataLoaded,soundLoaded = false;
 
 
+
+
+	public static void queueLoading(){
+		manager.load("graph/onderdelen.pack", TextureAtlas.class);
+		manager.load("data/Game Music.mp3",Music.class);
+		manager.load("data/Menu Music.mp3",Music.class);
+		manager.load("data/button.mp3",Sound.class);
+		manager.load("data/chalk.mp3",Sound.class);
+	}
+	
+	public static void lastLoadingStep() {
+		if(manager.update()) {
+			setAtlas();
+			AssetLoader.setSounds();
+			AssetLoader.load();
+		}
+	}
     
+	public static void setAtlas() {
+		atlas = manager.get("graph/onderdelen.pack",TextureAtlas.class);
+	}
+	
+	public static void setSounds() {
+		gameSound = manager.get("data/Game Music.mp3");
+    	menuSound = manager.get("data/Menu Music.mp3");
+    	buttonSound = manager.get("data/button.mp3");
+    	chalk = manager.get("data/chalk.mp3");
+    	AssetLoader.soundLoaded = true;
+	}
  
 	public static void loadSplashScreen() {
 		
-		Texture texture = new Texture(Gdx.files.internal("data/game.png"));
+		texture = new Texture(Gdx.files.internal("data/game.png"));
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        
         logo = new TextureRegion(texture, 0, 0, 1000, 1000);
+        emptyT=new Texture(Gdx.files.internal("data/empty.png"));
+        fullT=new Texture(Gdx.files.internal("data/full.png"));
+        empty=new NinePatch(new TextureRegion(AssetLoader.emptyT,24,24),8,8,8,8);
+        full=new NinePatch(new TextureRegion(AssetLoader.fullT,24,24),8,8,8,8);
 	}
 	
 	public static void loadMenu() {
@@ -48,11 +92,6 @@ public class AssetLoader {
 	
     public static void load() {
     	
-    	gameSound = Gdx.audio.newSound(Gdx.files.internal("data/Game Music.mp3"));
-    	menuSound = Gdx.audio.newSound(Gdx.files.internal("data/Menu Music.mp3"));
-    	buttonSound = Gdx.audio.newSound(Gdx.files.internal("data/button.mp3"));
-    	
-    	chalk = Gdx.audio.newSound(Gdx.files.internal("data/chalk.mp3"));
     	
     	goal = new Sprite(new TextureRegion(atlas.findRegion("cheese_pile")));
         //goal.flip(false,true);
@@ -118,9 +157,9 @@ public class AssetLoader {
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
         sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-20-sound_off.getHeight());
     	
-        Texture texture = new Texture(Gdx.files.internal("data/homeShadow.png"));
+       
         
-        home = new Sprite(new TextureRegion(texture, 0, 0, 178, 137));
+        home = new Sprite(new TextureRegion(atlas.findRegion("home_shadow")));
         home.setSize(13,10);
         home.flip(false, true);
         home.setPosition(1, 1);
@@ -164,6 +203,8 @@ public class AssetLoader {
         playButtonUp = new TextureRegion(texture, 0, 0, 803, 264);
         playButtonDown = new TextureRegion(texture, 0, 0, 803, 264);
         */
+        
+        dataLoaded = true;
     }
     
     public static void soundSwitch() {
@@ -181,10 +222,24 @@ public class AssetLoader {
     	}
     	return music_on;
     }
+    
+    public static boolean update() {
+        return (manager.update() && AssetLoader.dataLoaded);
+    }
 
     public static void dispose() {
         // We must dispose of the texture when we are finished.
         atlas.dispose();
     }
+    
+    public static float getProcess() {
+    	return manager.getProgress();
+    	
+    }
+
+
+	public static void disposeSplash() {
+		texture.dispose();
+	}
 
 }

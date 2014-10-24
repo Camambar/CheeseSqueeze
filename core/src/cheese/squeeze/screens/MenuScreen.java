@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
+import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.ui.PlayButton;
 import cheese.squeeze.ui.SimpleButton;
 import cheese.squeeze.ui.SwitchButton;
@@ -38,9 +39,11 @@ public class MenuScreen implements Screen{
 		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
 		
 		//TODO make a dedicated class to manange the audio
-		AssetLoader.gameSound.stop();
-		long id = AssetLoader.menuSound.play();
-		System.out.println(id);
+		
+		MusicAccessor.play(AssetLoader.menuSound);
+		//AssetLoader.gameSound.stop();
+		//long id = AssetLoader.menuSound.play();
+		//System.out.println(id);
 	}
 
 	@Override

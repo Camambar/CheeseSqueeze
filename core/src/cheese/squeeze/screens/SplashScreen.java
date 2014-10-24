@@ -46,13 +46,16 @@ public class SplashScreen implements Screen{
         font.drawMultiLine(batch,(int)(AssetLoader.getProcess()*100)+"% loaded",400,247,0, BitmapFont.HAlignment.CENTER);
         
         batch.end();
+        
+        AssetLoader.lastLoadingStep();
+        
         System.out.println(AssetLoader.getProcess());
         if(AssetLoader.update()){ // check if all files are loaded
             
             if(animationDone){ // when the animation is finished, go to MainMenu()
-                AssetLoader.setAtlas(); // uses files to create menuSkin
-                AssetLoader.setSounds();
-                AssetLoader.load();
+                //AssetLoader.setAtlas(); // uses files to create menuSkin
+                
+                //AssetLoader.load();
                 game.setScreen(new MenuScreen(game));
             }
             

@@ -5,6 +5,7 @@ import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelper;
+import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.ui.SimpleButton;
 
 import com.badlogic.gdx.Gdx;
@@ -36,13 +37,7 @@ public class GameScreen implements Screen {
     	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
     	
     	//TODO make a class to handle the audio.
-    	AssetLoader.menuSound.stop(0);
-    	
-    	AssetLoader.menuSound.stop(1);
-    	AssetLoader.menuSound.stop(2);
-    	AssetLoader.menuSound.stop(3);
-    	AssetLoader.menuSound.stop(4);
-    	AssetLoader.gameSound.play();
+    	MusicAccessor.play(AssetLoader.gameSound);
     	
     	Gdx.input.setInputProcessor(new InputHelper(board,game));
     }
