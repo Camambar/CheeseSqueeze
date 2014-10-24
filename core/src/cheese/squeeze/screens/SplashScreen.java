@@ -1,44 +1,63 @@
 package cheese.squeeze.screens;
 
-import aurelienribon.tweenengine.BaseTween;
-import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenCallback;
-import aurelienribon.tweenengine.TweenEquations;
-import aurelienribon.tweenengine.TweenManager;
 import cheese.squeeze.game.*;
 import cheese.squeeze.helpers.AssetLoader;
-import cheese.squeeze.tweenAccessors.SpriteAccessor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class SplashScreen implements Screen{
 	
-	private TweenManager manager;
-    private SpriteBatch batcher;
-    private Sprite sprite;
     private CSGame game;
+    public boolean animationDone = false;
+	private Stage stage;
+	private Image splashImage;
+	private BitmapFont font;
+	private SpriteBatch batch;
 	
 	public SplashScreen(CSGame game) {
+		splashImage = new Image(AssetLoader.logo);
+		splashImage.setSize((Gdx.graphics.getWidth()/1.5f), (Gdx.graphics.getHeight()/1.5f));
+		splashImage.setPosition((Gdx.graphics.getWidth()/2)-splashImage.getWidth()/2, (Gdx.graphics.getHeight()/2)-splashImage.getHeight()/2);
+		
         this.game = game;
+        stage = new Stage();
+        font=new BitmapFont();
+        batch=new SpriteBatch();
+
     }
 
 	@Override
 	public void render(float delta) {
-	      manager.update(delta);
-	        Gdx.gl.glClearColor(1, 1, 1, 1);
-	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-	        batcher.begin();
-	        sprite.draw(batcher);
-	        batcher.end();
-	        manager.pause();
-	        //Load the graphics during the splash screen
-	        Gdx.app.log("Splash", "Loading");
-	        AssetLoader.load();
-	        manager.resume();
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act();
+        stage.draw();
+        batch.begin();
+        
+        AssetLoader.empty.draw(batch, 40, 225, 720, 30);
+        AssetLoader.full.draw(batch, 40, 225, AssetLoader.getProcess()*720, 30);
+        font.drawMultiLine(batch,(int)(AssetLoader.getProcess()*100)+"% loaded",400,247,0, BitmapFont.HAlignment.CENTER);
+        
+        batch.end();
+        System.out.println(AssetLoader.getProcess());
+        if(AssetLoader.update()){ // check if all files are loaded
+            
+            if(animationDone){ // when the animation is finished, go to MainMenu()
+                AssetLoader.setAtlas(); // uses files to create menuSkin
+                AssetLoader.setSounds();
+                AssetLoader.load();
+                game.setScreen(new MenuScreen(game));
+            }
+            
+            
+        }
 	}
 
 	@Override
@@ -49,37 +68,20 @@ public class SplashScreen implements Screen{
 
 	@Override
 	public void show() {
-        sprite = new Sprite(AssetLoader.logo);
-        sprite.setColor(1, 1, 1, 0);
-
-        float width = Gdx.graphics.getWidth();
-        float height = Gdx.graphics.getHeight();
-        float desiredWidth = width * .7f;
-        float scale = desiredWidth / sprite.getWidth();
-
-        sprite.setSize(sprite.getWidth() * scale, sprite.getHeight() * scale);
-        sprite.setPosition((width / 2) - (sprite.getWidth() / 2), (height / 2)
-                - (sprite.getHeight() / 2));
-        setupTween();
-        batcher = new SpriteBatch();
 		
-	}
-	
-	private void setupTween() {
-        Tween.registerAccessor(Sprite.class, new SpriteAccessor());
-        manager = new TweenManager();
-
-        TweenCallback cb = new TweenCallback() {
+        stage.addActor(splashImage);
+        
+        splashImage.addAction(Actions.sequence(Actions.alpha(0)
+                ,Actions.fadeIn(0.75f),Actions.delay(1.5f),Actions.run(new Runnable() {
             @Override
-            public void onEvent(int type, BaseTween<?> source) {
-                game.setScreen(new MenuScreen(game));
+            public void run() {
+                animationDone = true;
             }
-        };
-
-        Tween.to(sprite, SpriteAccessor.ALPHA, .8f).target(1)
-                .ease(TweenEquations.easeInOutQuad).repeatYoyo(1, .4f)
-                .setCallback(cb).setCallbackTriggers(TweenCallback.COMPLETE)
-                .start(manager);
+        })));
+        
+		AssetLoader.queueLoading();
+	
+		
 	}
 	
 	@Override
@@ -102,8 +104,8 @@ public class SplashScreen implements Screen{
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		AssetLoader.disposeSplash();
+        stage.dispose();
 	}
 
 }
