@@ -1,5 +1,5 @@
 package cheese.squeeze.tweenAccessors;
 
-public class SoundAccessor {
+public class SoundAccessor extends Accessor{
 
 }

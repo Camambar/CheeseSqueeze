@@ -5,7 +5,7 @@ package cheese.squeeze.tweenAccessors;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.utils.Disposable;
 
-public class MusicAccessor implements Disposable {
+public class MusicAccessor extends Accessor{
 
 
 	/**
