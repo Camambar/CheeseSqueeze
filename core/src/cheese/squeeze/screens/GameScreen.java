@@ -1,5 +1,6 @@
 package cheese.squeeze.screens;
 
+import cheese.squeeze.game.CSGame;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
@@ -14,7 +15,7 @@ public class GameScreen implements Screen {
 	private GameRenderer renderer;
 	private GameBoard board;
 	
-    public GameScreen() {
+    public GameScreen(CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
@@ -34,7 +35,16 @@ public class GameScreen implements Screen {
     	
     	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
     	
-    	Gdx.input.setInputProcessor(new InputHelper(board));
+    	//TODO make a class to handle the audio.
+    	AssetLoader.menuSound.stop(0);
+    	
+    	AssetLoader.menuSound.stop(1);
+    	AssetLoader.menuSound.stop(2);
+    	AssetLoader.menuSound.stop(3);
+    	AssetLoader.menuSound.stop(4);
+    	AssetLoader.gameSound.play();
+    	
+    	Gdx.input.setInputProcessor(new InputHelper(board,game));
     }
 
     @Override

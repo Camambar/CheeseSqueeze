@@ -2,9 +2,12 @@ package cheese.squeeze.helpers;
 
 import java.util.ArrayList;
 
+import cheese.squeeze.game.CSGame;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.VerticalLine;
+import cheese.squeeze.screens.GameScreen;
+import cheese.squeeze.screens.MenuScreen;
 import cheese.squeeze.ui.SimpleButton;
 
 import com.badlogic.gdx.Gdx;
@@ -17,11 +20,13 @@ public class InputHelper implements InputProcessor{
 	private HorizontalLine l;
 	private HorizontalLine gl;
 	boolean touchedDown = false;
+	private CSGame game;
 	
-	public InputHelper(GameBoard board){
+	public InputHelper(GameBoard board, CSGame game){
 		l = new HorizontalLine();
 		gl = new HorizontalLine();
 		this.board = board;
+		this.game = game;
 		
 	}
 
@@ -48,6 +53,13 @@ public class InputHelper implements InputProcessor{
 		//TODO prevent multitouch crash with Gdx.input.isTouched(pointer)
 		// no it works with pointer == 0 the first touch 
 		if (pointer == 0) {
+			
+			//back is touched!
+			if(board.isHome(screenX,screenY)) {
+				game.setScreen(new MenuScreen(game));
+			}
+			
+			else {
 			if (!touchedDown) {
 				board.setClickedPosition(new Vector2(screenX,screenY));
 				touchedDown = true;
@@ -58,6 +70,7 @@ public class InputHelper implements InputProcessor{
 			if(!gl.isdrawable()) {
 				gl.onClick(screenX+1, screenY);
 				board.setGesturedLine(gl);
+			}
 			}
 				//l.onClick(screenX,screenY);
 				//l.onClick(screenX,screenY);

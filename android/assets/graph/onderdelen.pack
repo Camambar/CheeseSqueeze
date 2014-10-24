@@ -1,102 +1,124 @@
+
 onderdelen.png
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
-cheese
-  rotate: false
-  xy: 2, 2
-  size: 76, 74
-  orig: 76, 74
-  offset: 0, 0
-  index: -1
-cheese_pile
-  rotate: false
-  xy: 2489, 2
-  size: 223, 267
-  orig: 223, 267
-  offset: 0, 0
-  index: -1
 floor
   rotate: false
-  xy: 2034, 271
-  size: 675, 1500
-  orig: 675, 1500
-  offset: 0, 0
-  index: -1
-logo_shadow
-  rotate: false
-  xy: 360, 271
-  size: 815, 341
-  orig: 815, 341
+  xy: 1, 1
+  size: 800, 1280
+  orig: 800, 1280
   offset: 0, 0
   index: -1
 menu_leeg
   rotate: false
-  xy: 1357, 271
-  size: 675, 1500
-  orig: 675, 1500
+  xy: 803, 1
+  size: 800, 1280
+  orig: 800, 1280
   offset: 0, 0
   index: -1
-mouse
+logo_shadow
   rotate: false
-  xy: 80, 2
-  size: 106, 170
-  orig: 106, 170
-  offset: 0, 0
-  index: -1
-music_off
-  rotate: false
-  xy: 1379, 2
-  size: 368, 211
-  orig: 368, 211
-  offset: 0, 0
-  index: -1
-music_on
-  rotate: false
-  xy: 2119, 2
-  size: 368, 211
-  orig: 368, 211
+  xy: 1605, 983
+  size: 712, 298
+  orig: 712, 298
   offset: 0, 0
   index: -1
 play
   rotate: false
-  xy: 188, 2
-  size: 819, 199
-  orig: 819, 199
+  xy: 1605, 848
+  size: 606, 133
+  orig: 606, 133
   offset: 0, 0
   index: -1
-sound_off
+hand
   rotate: false
-  xy: 1749, 2
-  size: 368, 211
-  orig: 368, 211
+  xy: 1605, 423
+  size: 192, 423
+  orig: 192, 423
   offset: 0, 0
-  index: -1
-sound_on
-  rotate: false
-  xy: 1009, 2
-  size: 368, 211
-  orig: 368, 211
-  offset: 0, 0
-  index: -1
-trap_closed
-  rotate: false
-  xy: 2, 271
-  size: 176, 292
-  orig: 176, 292
-  offset: 4, -4
   index: -1
 trap_closed_mouse
   rotate: false
-  xy: 1177, 271
+  xy: 1605, 37
   size: 178, 384
   orig: 178, 384
   offset: 0, 0
   index: -1
+cheese_pile
+  rotate: false
+  xy: 1799, 579
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+music_off
+  rotate: false
+  xy: 1799, 436
+  size: 273, 141
+  orig: 273, 141
+  offset: 0, 0
+  index: -1
+music_on
+  rotate: false
+  xy: 2024, 705
+  size: 273, 141
+  orig: 273, 141
+  offset: 0, 0
+  index: -1
+sound_off
+  rotate: false
+  xy: 1799, 293
+  size: 272, 141
+  orig: 272, 141
+  offset: 0, 0
+  index: -1
+sound_on
+  rotate: false
+  xy: 1785, 150
+  size: 272, 141
+  orig: 272, 141
+  offset: 0, 0
+  index: -1
+home shadow
+  rotate: false
+  xy: 1785, 11
+  size: 178, 137
+  orig: 178, 137
+  offset: 0, 0
+  index: -1
+home
+  rotate: false
+  xy: 1965, 11
+  size: 178, 137
+  orig: 178, 137
+  offset: 0, 0
+  index: -1
+mouse
+  rotate: false
+  xy: 2024, 584
+  size: 109, 119
+  orig: 109, 119
+  offset: 0, 0
+  index: -1
+trap_closed
+  rotate: false
+  xy: 2135, 508
+  size: 128, 195
+  orig: 128, 195
+  offset: 0, 0
+  index: -1
+cheese
+  rotate: false
+  xy: 2213, 907
+  size: 76, 74
+  orig: 76, 74
+  offset: 0, 0
+  index: -1
 trap_open
   rotate: false
-  xy: 180, 271
-  size: 178, 293
-  orig: 178, 293
-  offset: 3, -3
+  xy: 2073, 239
+  size: 128, 195
+  orig: 128, 195
+  offset: 0, 0
   index: -1

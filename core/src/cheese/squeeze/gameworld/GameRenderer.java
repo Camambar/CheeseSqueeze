@@ -52,6 +52,8 @@ public class GameRenderer {
 	}
 
 	public void render() {
+		
+		
 
 
 		// Fill the entire screen with black, to prevent potential flickering.
@@ -84,6 +86,10 @@ public class GameRenderer {
 		
 		drawMice();
 		
+		//draw back button
+		batcher.begin();
+		AssetLoader.home.draw(batcher);
+		batcher.end();
 
 
 
@@ -171,7 +177,7 @@ public class GameRenderer {
 	private void drawVerticalLines() {
 		//set line w
 		//TODO scale with zoom
-		Gdx.gl.glLineWidth(50);
+		Gdx.gl.glLineWidth((Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10);
 
 		// begin line draw
 		shapeRenderer.begin(ShapeType.Line);

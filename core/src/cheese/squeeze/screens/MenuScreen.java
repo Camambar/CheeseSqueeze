@@ -37,7 +37,10 @@ public class MenuScreen implements Screen{
         menuButtons.add(musicButton);
 		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
 		
-		AssetLoader.menuSound.play();
+		//TODO make a dedicated class to manange the audio
+		AssetLoader.gameSound.stop();
+		long id = AssetLoader.menuSound.play();
+		System.out.println(id);
 	}
 
 	@Override

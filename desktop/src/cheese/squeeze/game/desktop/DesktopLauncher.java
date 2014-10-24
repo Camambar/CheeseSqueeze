@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 	    config.title = "Cheese Squeeze";
-	    config.width = 768;
+	    config.width = 800;
 	    config.height = 1280;
 		new LwjglApplication(new CSGame(), config);
 	}

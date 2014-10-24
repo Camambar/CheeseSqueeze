@@ -14,6 +14,7 @@ import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
+import cheese.squeeze.helpers.AssetLoader;
 
 public class GameBoard {
 
@@ -90,7 +91,7 @@ public class GameBoard {
 		vlines = new ArrayList<VerticalLine>();
 		float totw = (width-20)/(amountVLines-1);
 		for(int i=0;i<amountVLines;i++) {
-			vlines.add(new VerticalLine(10,height-20,10+(totw*i)));
+			vlines.add(new VerticalLine(15,height-20,10+(totw*i)));
 		}
 		this.step = (vlines.get(0).getY2() - vlines.get(0).getY1())/this.MAX_HLINES;
 		this.start = vlines.get(0).getY1();
@@ -104,7 +105,10 @@ public class GameBoard {
 	
 	public void addHLine(HorizontalLine line) {
 		//modifyLocation(line);
+		long id = AssetLoader.chalk.play();
+		AssetLoader.chalk.setLooping(id, false);
 		hlines.add(line);
+		
 	}
 
 	public List<HorizontalLine> getHLines() {
@@ -262,6 +266,7 @@ public class GameBoard {
 	 * @param beginPosition
 	 */
 	public void setClickedPosition(Vector2 beginPosition) {
+		/*
 		if (beginPosition!=null) {
 			Vector3 point1 = cam.unproject(new Vector3(beginPosition.x,beginPosition.y,0));
 			this.beginPosition = new Vector2(point1.x,point1.y);
@@ -269,6 +274,7 @@ public class GameBoard {
 		else {
 			this.beginPosition = null;
 		}
+		*/
 	}
 
 	/**
@@ -279,6 +285,7 @@ public class GameBoard {
 	 * 				otherwise false.
 	 */
 	public boolean isClearable(int screenX, int screenY) {
+		/*
 		Vector3 point1 = cam.unproject(new Vector3(screenX,screenY,0));
 		if(getBeginPosition() == null) {
 			return true;
@@ -289,6 +296,7 @@ public class GameBoard {
 			return true;
 		}
 		setClickedPosition(null);
+		*/
 		return false;
 	}
 
@@ -328,6 +336,14 @@ public class GameBoard {
 
 	public List<Goal> getGoals() {
 		return goals;
+	}
+
+	public boolean isHome(int screenX, int screenY) {
+		Vector3 vec = cam.unproject(new Vector3(screenX,screenY,0));
+		if(AssetLoader.home.getBoundingRectangle().contains(vec.x, vec.y)){
+			return true;
+		}
+		return false;
 	}
 	
 	

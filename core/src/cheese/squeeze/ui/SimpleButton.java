@@ -1,5 +1,7 @@
 package cheese.squeeze.ui;
 
+import cheese.squeeze.helpers.AssetLoader;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -41,7 +43,7 @@ public class SimpleButton {
     }
 
     public boolean isTouchDown(int screenX, int screenY) {
-
+    	AssetLoader.buttonSound.play(0.2f);
         if (contains(screenX, screenY)) {
             isPressed = true;
             return true;

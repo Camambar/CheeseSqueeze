@@ -19,7 +19,7 @@ public class PlayButton extends SimpleButton{
 	@Override
 	public boolean isTouchUp(int screenX,int screenY) {
 		if(super.isTouchUp(screenX, screenY)){ 
-			game.setScreen(new GameScreen());
+			game.setScreen(new GameScreen(game));
 			return true;
 		}
 		return false;

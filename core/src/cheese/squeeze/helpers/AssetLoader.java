@@ -1,6 +1,7 @@
 package cheese.squeeze.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,8 +17,10 @@ public class AssetLoader {
     
     public static Vector2 mouseCenter,goalCenter,trapCenter;
     public static Vector2 mouseNose;
+    
+    public static boolean musicOn = true;
 
-    public static Sprite goal,trap,mouse;
+    public static Sprite goal,trap,mouse,home;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
     private static TextureAtlas atlas = new TextureAtlas("graph/onderdelen.pack");
@@ -25,6 +28,9 @@ public class AssetLoader {
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
 
 	public static TextureRegion logo;
+	
+	public static Sound menuSound,gameSound,chalk,buttonSound;
+
 
     
  
@@ -41,6 +47,12 @@ public class AssetLoader {
 	}
 	
     public static void load() {
+    	
+    	gameSound = Gdx.audio.newSound(Gdx.files.internal("data/Game Music.mp3"));
+    	menuSound = Gdx.audio.newSound(Gdx.files.internal("data/Menu Music.mp3"));
+    	buttonSound = Gdx.audio.newSound(Gdx.files.internal("data/button.mp3"));
+    	
+    	chalk = Gdx.audio.newSound(Gdx.files.internal("data/chalk.mp3"));
     	
     	goal = new Sprite(new TextureRegion(atlas.findRegion("cheese_pile")));
         //goal.flip(false,true);
@@ -81,28 +93,37 @@ public class AssetLoader {
         play.setSize(play.getWidth() * scale, play.getHeight() * scale);
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
-        play.setPosition(width-(1.5f*play.getWidth()),(height/2)+20);
+        play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+20);
         
         
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
         //set position to the top middle 10 pixle from top
-        logo_shadow.setPosition(width-(1.5f*logo_shadow.getWidth()), height-20f-logo_shadow.getHeight());
+        logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-20f-logo_shadow.getHeight());
         
         
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlas.findRegion("music_on")));
-        music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale);
-        music_on.setPosition(width-(1.5f*play.getWidth()),(height/2)-20-music_on.getHeight());
+        music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
+        music_on.setPosition(play.getX(),(height/2)-20-music_on.getHeight());
+        
         music_off = new Sprite(new TextureRegion(atlas.findRegion("music_off")));
         music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
-        music_off.setPosition(width-(1.5f*play.getWidth()),(height/2)-20-music_off.getHeight());
+        music_off.setPosition(play.getX(),(height/2)-20-music_off.getHeight());
+        
+        
         sound_on = new Sprite(new TextureRegion(atlas.findRegion("sound_on")));
         sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
-        sound_on.setPosition(width-(.5f*play.getWidth())-sound_on.getWidth(),(height/2)-20-sound_on.getHeight());
+        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/2)-20-sound_on.getHeight());
         sound_off = new Sprite(new TextureRegion(atlas.findRegion("sound_off")));
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
-        sound_off.setPosition(width-(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-20-sound_off.getHeight());
+        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-20-sound_off.getHeight());
     	
+        Texture texture = new Texture(Gdx.files.internal("data/homeShadow.png"));
+        
+        home = new Sprite(new TextureRegion(texture, 0, 0, 178, 137));
+        home.setSize(13,10);
+        home.flip(false, true);
+        home.setPosition(1, 1);
         
         /*
     	 * OLD STUFF
@@ -145,6 +166,21 @@ public class AssetLoader {
         */
     }
     
+    public static void soundSwitch() {
+    	
+    }
+    
+    
+    
+    public static Sprite musicSwithc() {
+    	if(musicOn == true) {
+    		musicOn = false;
+    		gameSound.dispose();
+    		menuSound.dispose();
+    		return music_off;
+    	}
+    	return music_on;
+    }
 
     public static void dispose() {
         // We must dispose of the texture when we are finished.
