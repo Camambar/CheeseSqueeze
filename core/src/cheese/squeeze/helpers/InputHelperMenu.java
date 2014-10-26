@@ -8,7 +8,13 @@ import java.util.ArrayList;
 
 
 
+
+
+
+import cheese.squeeze.tweenAccessors.MusicAccessor;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 import cheese.squeeze.ui.SimpleButton;
+import cheese.squeeze.ui.SwitchButton;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -59,7 +65,7 @@ public class InputHelperMenu implements InputProcessor {
 			Vector3 unp = cam.unproject(new Vector3(screenX,screenY,0));
 			for(SimpleButton b : menuButtons) {
 				if(b.isTouchDown((int) unp.x,(int) unp.y)){
-					System.out.println("d");
+					
 				}
 				
 				//TODO check if button is play
@@ -75,7 +81,7 @@ public class InputHelperMenu implements InputProcessor {
 			Vector3 unp = cam.unproject(new Vector3(screenX,screenY,0));
 			for(SimpleButton b : menuButtons) {
 				if(b.isTouchUp((int) unp.x,(int) unp.y)) {
-					System.out.println("u");
+					
 				}
 					
 				//TODO check if button is play

@@ -6,12 +6,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class SwitchButton extends SimpleButton{
 
     
-    private boolean val = true; // true is up false is down
+    private boolean val; // true is up false is down
+    private String name;
 
 	public SwitchButton(float x, float y, float width, float height,
-			TextureRegion buttonUp, TextureRegion buttonDown) {
+			TextureRegion buttonUp, TextureRegion buttonDown, boolean on, String string) {
 		super(x, y, width, height, buttonUp, buttonDown);
-
+		val = on;
+		this.name = string;
 	}
 	
 	@Override
@@ -39,4 +41,12 @@ public class SwitchButton extends SimpleButton{
         return false;
     }
 
+	
+	public String getName() {
+		return name;
+	}
+	
+	public boolean getVal() {
+		return val;
+	}
 }

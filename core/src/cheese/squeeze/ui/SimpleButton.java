@@ -17,6 +17,8 @@ public class SimpleButton {
 
     private boolean isPressed = false;
 
+	private String name;
+
     public SimpleButton(float x, float y, float width, float height,
             TextureRegion buttonUp, TextureRegion buttonDown) {
         this.x = x;
@@ -88,6 +90,10 @@ public class SimpleButton {
     
     public Rectangle getBounds(){
     	return bounds;
+    }
+    
+    public String getName() {
+    	return name;
     }
 
 }

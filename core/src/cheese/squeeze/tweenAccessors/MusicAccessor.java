@@ -77,7 +77,10 @@ public class MusicAccessor extends Accessor{
 	 */
 	public static void setEnabled(boolean enabled) {
 		MusicAccessor.enabled = enabled;
-
+		if(enabled) {
+			play(musicBeingPlayed);
+		}
+		
 		// if the music is being deactivated, stop any music being played
 		if (!enabled) {
 			stop();
@@ -89,6 +92,10 @@ public class MusicAccessor extends Accessor{
 	 */
 	public void dispose() {
 		stop();
+	}
+
+	public static boolean isOn() {
+		return enabled;
 	}
 
 }
