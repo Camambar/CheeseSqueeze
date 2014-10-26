@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameRenderer {
 
@@ -28,6 +29,7 @@ public class GameRenderer {
 	private GameBoard board;
 	private boolean updateStaticElements;
 	private TextureRegion bg,goal,trap,mouse;
+	private Vector2 mouseSize= new Vector2(10,10);
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
@@ -121,7 +123,9 @@ public class GameRenderer {
 			batcher.enableBlending();
 			System.out.println(m.getX());
 			System.out.println(m.getY());
-			batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
+			
+			batcher.draw(mouse,m.getX()-(mouseSize.x/2),m.getY()-mouseSize.y,mouseSize.x,mouseSize.y);
+			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
 			//AssetLoader.mouseS.draw(batcher);
 			// End SpriteBatch
 			batcher.end();

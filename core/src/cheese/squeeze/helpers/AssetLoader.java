@@ -23,7 +23,9 @@ public class AssetLoader {
     
     public static boolean musicOn = true;
 
-    public static Sprite goal,trap,mouse,home;
+    public static Sprite goal,trap,home;
+
+	public static TextureRegion mouse;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
     private static TextureAtlas atlas;
@@ -104,9 +106,11 @@ public class AssetLoader {
         bg = new Sprite(new TextureRegion(atlas.findRegion("floor")));
     	
         
-        mouse = new Sprite(new TextureRegion(atlas.findRegion("mouse")));
-        mouseCenter = new Vector2(mouse.getWidth()/(2*mouse.getScaleX()),mouse.getHeight()/(2*mouse.getScaleY()));
-        mouseNose = new Vector2(mouse.getWidth()/(2*mouse.getScaleX()),mouse.getHeight()/(2*mouse.getScaleY()));
+        mouse = new TextureRegion(atlas.findRegion("mouse"));
+        mouse.flip(false, true);
+        //mouse.setSize(10, 10);
+        //mouseCenter = new Vector2(mouse.getWidth()/(2*mouse.getScaleX()),mouse.getHeight()/(2*mouse.getScaleY()));
+        //mouseNose = new Vector2((mouse.getWidth()/2)*mouse.getScaleX(),mouse.getHeight()/(mouse.getScaleY()));
         
         
         menuBg = new Sprite(new TextureRegion(atlas.findRegion("menu_leeg")));

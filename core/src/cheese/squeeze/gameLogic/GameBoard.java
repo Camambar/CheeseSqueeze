@@ -83,8 +83,11 @@ public class GameBoard {
 
 	private void makeMice() {
 		mice = new ArrayList<Mouse>();
-		//Mouse mouse = new Mouse(startPositions.get(0).x,startPositions.get(0).y,pathcalc);
-		//mice.add(mouse);	
+		ArrayList<Vector2> path= new ArrayList<Vector2>();
+		//path.add(new Vector2(68,15));
+		//path.add(new Vector2(68,128));
+		Mouse mouse = new Mouse(startPositions.get(0).x,startPositions.get(0).y,path,10);
+		mice.add(mouse);	
 	}
 
 	private void makeVerticalLines(int amountVLines) {
