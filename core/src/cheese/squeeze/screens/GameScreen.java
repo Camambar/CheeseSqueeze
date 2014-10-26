@@ -1,5 +1,7 @@
 package cheese.squeeze.screens;
 
+import java.util.ArrayList;
+
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
@@ -15,6 +17,7 @@ public class GameScreen implements Screen {
 	
 	private GameRenderer renderer;
 	private GameBoard board;
+	private SimpleButton home;
 	
     public GameScreen(CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
@@ -34,18 +37,22 @@ public class GameScreen implements Screen {
 			e.printStackTrace();
 		}
     	
+    	home = new SimpleButton(AssetLoader.home.getX(),AssetLoader.home.getY(),AssetLoader.home.getWidth(),AssetLoader.home.getHeight(),AssetLoader.home,AssetLoader.home);
+    	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();
+    	buttons.add(home);
     	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
     	
     	//TODO make a class to handle the audio.
     	MusicAccessor.play(AssetLoader.gameSound);
     	
-    	Gdx.input.setInputProcessor(new InputHelper(board,game));
+    	Gdx.input.setInputProcessor(new InputHelper(board,game,buttons));
     }
 
     @Override
     public void render(float delta) {
     	board.update(delta);
     	renderer.render();
+    	
     	//Print the fps
     	Gdx.app.log("GameScreen FPS", (1/delta) + "");
     }

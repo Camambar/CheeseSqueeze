@@ -341,12 +341,9 @@ public class GameBoard {
 		return goals;
 	}
 
-	public boolean isHome(int screenX, int screenY) {
+	public Vector2 unProject(int screenX, int screenY) {
 		Vector3 vec = cam.unproject(new Vector3(screenX,screenY,0));
-		if(AssetLoader.home.getBoundingRectangle().contains(vec.x, vec.y)){
-			return true;
-		}
-		return false;
+		return new Vector2(vec.x,vec.y);
 	}
 	
 	

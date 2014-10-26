@@ -21,12 +21,14 @@ public class InputHelper implements InputProcessor{
 	private HorizontalLine gl;
 	boolean touchedDown = false;
 	private CSGame game;
+	private ArrayList<SimpleButton> buttons;
 	
-	public InputHelper(GameBoard board, CSGame game){
+	public InputHelper(GameBoard board, CSGame game, ArrayList<SimpleButton> buttons){
 		l = new HorizontalLine();
 		gl = new HorizontalLine();
 		this.board = board;
 		this.game = game;
+		this.buttons = buttons;
 		
 	}
 
@@ -55,7 +57,10 @@ public class InputHelper implements InputProcessor{
 		if (pointer == 0) {
 			
 			//back is touched!
-			if(board.isHome(screenX,screenY)) {
+			//FOR NOW THERE IS ONE BUTTON
+			//TODO make this check if this button in the list of buttons is thehome buttone
+			Vector2 vec2 = board.unProject(screenX, screenY);
+			if(buttons.get(0).isClicked((int)vec2.x, (int)vec2.y)) {
 				game.setScreen(new MenuScreen(game));
 			}
 			
