@@ -2,7 +2,7 @@ package cheese.squeeze.tweenAccessors;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-
+import com.badlogic.gdx.utils.Disposable;
 
 public class SoundAccessor extends Accessor{
 
@@ -28,10 +28,12 @@ public class SoundAccessor extends Accessor{
 		// check if the sound is enabled
 		if (!enabled)
 			// start streaming the new sound
-			soundEffect = sound;
-			soundEffect.setVolume(0, volume);
-			soundEffect.play();
 			return;
+			
+		soundEffect = sound;
+		soundEffect.setVolume(0, volume);
+		soundEffect.play();
+		soundEffect.dispose;
 
 	}
 
