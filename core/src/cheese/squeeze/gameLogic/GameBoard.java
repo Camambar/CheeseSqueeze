@@ -67,15 +67,23 @@ public class GameBoard {
 	private void makeTrapsGoals(int amountTraps, int amountGoals) {
 		this.goals = new ArrayList<Goal>();
 		this.traps = new ArrayList<Trap>();
+		boolean set = false;
 		for(VerticalLine vl : vlines) {
 			double rand = Math.random();
 			
 			if(goals.size() < amountGoals && rand <= 0.5){
 				goals.add(new Goal(vl.getPoint2()));
+				set = true;
 			}
-			else {
+			else if(traps.size() < amountTraps){
 				traps.add(new Trap(vl.getPoint2()));
+				set = true;
 			}
+			else if(!set && goals.size() < amountGoals){
+				goals.add(new Goal(vl.getPoint2()));
+				set = true;
+			}
+			set = false;
 			
 		}
 		
