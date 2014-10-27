@@ -15,6 +15,7 @@ import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 public class GameBoard {
 
@@ -116,6 +117,7 @@ public class GameBoard {
 	
 	public void addHLine(HorizontalLine line) {
 		//modifyLocation(line);
+		SoundAccessor.play(AssetLoader.chalk);
 		long id = AssetLoader.chalk.play();
 		AssetLoader.chalk.setLooping(id, false);
 		hlines.add(line);

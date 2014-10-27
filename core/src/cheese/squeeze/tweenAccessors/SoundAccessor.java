@@ -1,11 +1,12 @@
 package cheese.squeeze.tweenAccessors;
 
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.audio.Sound;
+
 
 public class SoundAccessor extends Accessor{
 
-	private static Music soundEffect;
+	private static Sound soundEffect;
 
 	/**
 	 * The volume to be set on the sound.
@@ -23,18 +24,15 @@ public class SoundAccessor extends Accessor{
 	 * <p>
 	 * If there is already a sound being played it is stopped automatically.
 	 */
-	public static void play(Music sound) {
+	public static void play(Sound sound) {
 		// check if the sound is enabled
 		if (!enabled)
+			// start streaming the new sound
+			soundEffect = sound;
+			soundEffect.setVolume(0, volume);
+			soundEffect.play();
 			return;
 
-		// stop any sound being played
-		stop();
-
-		// start streaming the new sound
-		soundEffect = sound;
-		soundEffect.setVolume(volume);
-		soundEffect.play();
 	}
 
 
@@ -57,21 +55,11 @@ public class SoundAccessor extends Accessor{
 	public static void setEnabled(boolean enabled) {
 		SoundAccessor.enabled = enabled;
 		if(enabled) {
-			play(sound);
+			play(soundEffect);
 		}
 		
-		// if the sound is being deactivated, stop any sound being played
-		if (!enabled) {
-			stop();
-		}
 	}
 
-	/**
-	 * Disposes the sound manager.
-	 */
-	public void dispose() {
-		stop();
-	}
 
 	public static boolean isOn() {
 		return enabled;

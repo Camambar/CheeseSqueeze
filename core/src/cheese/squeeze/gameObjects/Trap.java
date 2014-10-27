@@ -21,5 +21,9 @@ public class Trap {
 	public void setPosition(Vector2 position) {
 		this.position = position;
 	}
+	
+	public void activateTrap() {
+		
+	}
 
 }
