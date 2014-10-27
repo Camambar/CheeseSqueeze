@@ -1,0 +1,9 @@
+- bug met het tekenen van horizontale lijnen (afrondngsfout?)
+  soms kan er geen lijn getekend worden ook al is er redelijk veel plaats
+  
+- horizontale lijnen mogen enkel in het geldige gebied getekend worden,
+  bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
+  
+- gamestates uitwerken
+
+- ...
