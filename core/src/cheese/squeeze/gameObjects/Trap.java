@@ -1,5 +1,8 @@
 package cheese.squeeze.gameObjects;
 
+import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
@@ -24,7 +27,7 @@ public class Trap implements Goal{
 	}
 	
 	public void activate() {
-
+		CSGame.currentState = GameState.GAMEOVER;
 	}
 
 }

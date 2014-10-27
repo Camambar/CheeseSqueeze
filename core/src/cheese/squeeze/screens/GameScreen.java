@@ -3,6 +3,7 @@ package cheese.squeeze.screens;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
@@ -21,6 +22,7 @@ public class GameScreen implements Screen {
 	
     public GameScreen(CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
+        CSGame.currentState = GameState.PLAYING;
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();

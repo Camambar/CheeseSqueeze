@@ -3,6 +3,7 @@ package cheese.squeeze.screens;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
@@ -26,6 +27,8 @@ public class MenuScreen implements Screen{
 	private boolean soundOn = true;
 
 	public MenuScreen(CSGame game) {
+		
+		CSGame.currentState = GameState.MENU;
 		
 		batcher = new SpriteBatch();
 		menuButtons = new ArrayList<SimpleButton>();

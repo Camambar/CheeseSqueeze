@@ -16,7 +16,11 @@ import com.badlogic.gdx.Gdx;
  */
 public class CSGame extends Game {
 
+	public static GameState currentState;
 	
+	public static enum GameState {
+		MENU,GAMEOVER,PLAYING,WON,PAUSE;
+	}
 	
 	@Override
 	public void create() {
