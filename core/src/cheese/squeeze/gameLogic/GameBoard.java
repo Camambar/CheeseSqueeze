@@ -118,12 +118,11 @@ public class GameBoard {
 	}
 	
 	public void addHLine(HorizontalLine line) {
-		//modifyLocation(line);
-		SoundAccessor.play(AssetLoader.chalk);
-		//long id = AssetLoader.chalk.play();
-		//AssetLoader.chalk.setLooping(id, false);
-		hlines.add(line);
-		
+		if(!hlines.contains(line)) {
+			//TODO overwrite equals in line
+			SoundAccessor.play(AssetLoader.chalk);
+			hlines.add(line);
+		}
 	}
 
 	public List<HorizontalLine> getHLines() {
@@ -198,7 +197,7 @@ public class GameBoard {
 		
 		float multiple = multipleOfPosition(l.getY1());
 		if(hasElementWithSamenYCoordinate(multiple)) {
-			//TODO make this a bit nicer
+			//TODO hack
 			//If there is a point with an other y coord on the other side 
 			//l is set to y coord 0,0 in the same row
 			l.setPoint1(new Vector2(vlLeft.getX1(),-10));
@@ -223,13 +222,6 @@ public class GameBoard {
 
 	private float multipleOfPosition(float y1) {
 		//TODO make sure the resutl is not larger then the longest y position.
-		
-		// 25
-		// begin bij 10
-		// stappen van 2
-		// 10 12 14 16 19 20 22 24 26
-		// neem dichtste 24 of 26.
-		
 		int amntSteps = (int) ((y1-start)/step);
 		float result = start + (amntSteps*step);
 		if(result >= end){
@@ -338,6 +330,7 @@ public class GameBoard {
 		for(Mouse m: mice) {
 			m.update(delta);
 		}
+		System.out.println(hlines.size());
 		Gdx.app.log("GameBoard", "update");
 	}
 

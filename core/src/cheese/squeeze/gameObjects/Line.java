@@ -63,5 +63,12 @@ public abstract class Line {
 		setPoint1(null);
 		setPoint2(null);	
 	}
+	
+	@Override
+	public boolean equals(Object e) {
+		Line l = (Line) e;
+		return l.getPoint1().equals(getPoint1())&& l.getPoint2().equals(getPoint2());
+		
+	}
 
 }
