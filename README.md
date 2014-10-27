@@ -12,6 +12,11 @@
 	*	git fetch
 	*	git checkout -t -f origin/master
 	*	git pull
+	*	
+	* 	extra commando's om origin/git te verwijderen:
+	* 	
+	*	git remote rm origin
+	* 	rm -rf .git
 4.	Fire up your copy of eclipse (https://www.eclipse.org/downloads/)
 	*	Make sure it has the egit plugin (standard included in the latest eclipse versions)
 	*	open eclipse:
