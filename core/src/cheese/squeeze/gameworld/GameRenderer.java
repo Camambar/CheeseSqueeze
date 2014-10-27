@@ -1,7 +1,7 @@
 package cheese.squeeze.gameworld;
 
 import cheese.squeeze.gameLogic.GameBoard;
-import cheese.squeeze.gameObjects.Goal;
+import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Line;
 import cheese.squeeze.gameObjects.Mouse;
@@ -158,7 +158,7 @@ public class GameRenderer {
 
 	private void drawGoals() {
 		// TODO Auto-generated method stub
-		for(Goal g: board.getGoals()) {
+		for(Cheese g: board.getGoals()) {
 			batcher.begin();
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10

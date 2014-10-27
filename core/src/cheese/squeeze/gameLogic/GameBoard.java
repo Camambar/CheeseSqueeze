@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import cheese.squeeze.gameObjects.Goal;
+import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
@@ -22,7 +22,7 @@ public class GameBoard {
 	
 	private List<VerticalLine> vlines;
 	private List<HorizontalLine> hlines;
-	private List<Goal> goals;
+	private List<Cheese> goals;
 	private List<Trap> traps;
 	private OrthographicCamera cam;
 	private HorizontalLine gesturedLine;
@@ -66,14 +66,14 @@ public class GameBoard {
 	}
 	
 	private void makeTrapsGoals(int amountTraps, int amountGoals) {
-		this.goals = new ArrayList<Goal>();
+		this.goals = new ArrayList<Cheese>();
 		this.traps = new ArrayList<Trap>();
 		boolean set = false;
 		for(VerticalLine vl : vlines) {
 			double rand = Math.random();
 			
 			if(goals.size() < amountGoals && rand <= 0.5){
-				goals.add(new Goal(vl.getPoint2()));
+				goals.add(new Cheese(vl.getPoint2()));
 				set = true;
 			}
 			else if(traps.size() < amountTraps){
@@ -81,7 +81,7 @@ public class GameBoard {
 				set = true;
 			}
 			else if(!set && goals.size() < amountGoals){
-				goals.add(new Goal(vl.getPoint2()));
+				goals.add(new Cheese(vl.getPoint2()));
 				set = true;
 			}
 			set = false;
@@ -347,7 +347,7 @@ public class GameBoard {
 		return traps;
 	}
 
-	public List<Goal> getGoals() {
+	public List<Cheese> getGoals() {
 		return goals;
 	}
 

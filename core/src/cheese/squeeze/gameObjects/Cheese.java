@@ -1,18 +1,20 @@
 package cheese.squeeze.gameObjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-public class Trap implements Goal{
-
+public class Cheese implements Goal{
+	
 	private Vector2 position;
+	private int tickets;
+	private Line l;
 	
 	/**
-	 * The vector is the position of the end of the line were the trap must come
+	 * 
 	 * @param point2
 	 */
-	public Trap(Line l,Vector2 point2) {
+	public Cheese(Line l,Vector2 point2,int tickets) {
 		this.setPosition(point2);
+		this.l = l;
 	}
 
 	public Vector2 getPosition() {
@@ -24,7 +26,12 @@ public class Trap implements Goal{
 	}
 	
 	public void activate() {
-
+		if(tickets>0) {
+			tickets--;
+		}
+		else {
+			//TODO replace goal with trap
+		}
 	}
 
 }
