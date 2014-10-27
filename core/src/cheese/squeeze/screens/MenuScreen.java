@@ -7,6 +7,7 @@ import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 import cheese.squeeze.ui.PlayButton;
 import cheese.squeeze.ui.SimpleButton;
 import cheese.squeeze.ui.SwitchButton;
@@ -24,7 +25,7 @@ public class MenuScreen implements Screen{
 	SwitchButton soundButton;
 	SwitchButton musicButton;
 	private boolean musicOn = MusicAccessor.isOn();
-	private boolean soundOn = true;
+	private boolean soundOn = SoundAccessor.isOn();
 
 	public MenuScreen(CSGame game) {
 		
@@ -54,7 +55,9 @@ public class MenuScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
-		soundButton.getVal();
+		if(SoundAccessor.isOn() != soundButton.getVal()) {
+			SoundAccessor.setEnabled(soundButton.getVal());
+		}
 		if(MusicAccessor.isOn() != musicButton.getVal()) {
 			MusicAccessor.setEnabled(musicButton.getVal());
 		}

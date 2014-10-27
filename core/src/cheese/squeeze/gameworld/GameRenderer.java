@@ -121,8 +121,6 @@ public class GameRenderer {
 			batcher.begin();
 			// enable transparency
 			batcher.enableBlending();
-			System.out.println(m.getX());
-			System.out.println(m.getY());
 			
 			batcher.draw(mouse,m.getX()-(mouseSize.x/2),m.getY()-mouseSize.y,mouseSize.x,mouseSize.y);
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);

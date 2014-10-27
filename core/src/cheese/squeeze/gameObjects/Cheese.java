@@ -12,8 +12,8 @@ public class Cheese implements Goal{
 	 * 
 	 * @param point2
 	 */
-	public Cheese(Line l,Vector2 point2,int tickets) {
-		this.setPosition(point2);
+	public Cheese(Line l,int tickets) {
+		this.setPosition(l.getPoint2());
 		this.l = l;
 	}
 

@@ -9,13 +9,15 @@ import com.badlogic.gdx.math.Vector2;
 public class Trap implements Goal{
 
 	private Vector2 position;
+	private Line l;
 	
 	/**
 	 * The vector is the position of the end of the line were the trap must come
 	 * @param point2
 	 */
-	public Trap(Line l,Vector2 point2) {
-		this.setPosition(point2);
+	public Trap(Line l) {
+		this.setPosition(l.getPoint2());
+		this.l = l;
 	}
 
 	public Vector2 getPosition() {

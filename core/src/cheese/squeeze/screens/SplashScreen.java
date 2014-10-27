@@ -49,7 +49,6 @@ public class SplashScreen implements Screen{
         
         AssetLoader.lastLoadingStep();
         
-        System.out.println(AssetLoader.getProcess());
         if(AssetLoader.update()){ // check if all files are loaded
             
             if(animationDone){ // when the animation is finished, go to MainMenu()

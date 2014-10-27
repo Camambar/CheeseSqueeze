@@ -26,14 +26,17 @@ public class SoundAccessor extends Accessor{
 	 */
 	public static void play(Sound sound) {
 		// check if the sound is enabled
-		if (!enabled)
+		if (enabled) {
 			// start streaming the new sound
-			return;
+			soundEffect = sound;
+			long id = soundEffect.play();
+			soundEffect.setLooping(id, false);
+			//soundEffect.setVolume(0, volume);
+			//soundEffect.play();
+			//soundEffect.dispose();
 			
-		soundEffect = sound;
-		soundEffect.setVolume(0, volume);
-		soundEffect.play();
-		soundEffect.dispose;
+		}
+		
 
 	}
 
@@ -56,10 +59,6 @@ public class SoundAccessor extends Accessor{
 	 */
 	public static void setEnabled(boolean enabled) {
 		SoundAccessor.enabled = enabled;
-		if(enabled) {
-			play(soundEffect);
-		}
-		
 	}
 
 

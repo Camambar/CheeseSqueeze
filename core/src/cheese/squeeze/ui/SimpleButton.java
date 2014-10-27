@@ -1,6 +1,7 @@
 package cheese.squeeze.ui;
 
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -45,7 +46,7 @@ public class SimpleButton {
     }
 
     public boolean isTouchDown(int screenX, int screenY) {
-    	AssetLoader.buttonSound.play(0.2f);
+    	SoundAccessor.play(AssetLoader.buttonSound);
         if (contains(screenX, screenY)) {
             isPressed = true;
             return true;

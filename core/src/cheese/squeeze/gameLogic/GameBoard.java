@@ -73,15 +73,17 @@ public class GameBoard {
 			double rand = Math.random();
 			
 			if(goals.size() < amountGoals && rand <= 0.5){
-				goals.add(new Cheese(vl.getPoint2()));
+				//TODO cheese will be 4 always 1!!
+				goals.add(new Cheese(vl,4));
 				set = true;
 			}
 			else if(traps.size() < amountTraps){
-				traps.add(new Trap(vl.getPoint2()));
+				traps.add(new Trap(vl));
 				set = true;
 			}
 			else if(!set && goals.size() < amountGoals){
-				goals.add(new Cheese(vl.getPoint2()));
+				//TODO cheese will be 4 always 1!!
+				goals.add(new Cheese(vl,4));
 				set = true;
 			}
 			set = false;
@@ -118,8 +120,8 @@ public class GameBoard {
 	public void addHLine(HorizontalLine line) {
 		//modifyLocation(line);
 		SoundAccessor.play(AssetLoader.chalk);
-		long id = AssetLoader.chalk.play();
-		AssetLoader.chalk.setLooping(id, false);
+		//long id = AssetLoader.chalk.play();
+		//AssetLoader.chalk.setLooping(id, false);
 		hlines.add(line);
 		
 	}
