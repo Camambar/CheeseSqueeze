@@ -39,10 +39,8 @@ public class GameBoard {
 	
 	
 
-	public GameBoard(int amountVLines,int amountGoals,int amountTraps,float width, float height) throws Exception {
-		if(amountGoals+amountTraps != amountVLines) {
-			throw new Exception("The amount of lines must be equal to the amount of traps and goals");
-		}
+	public GameBoard(int amountVLines,int amountGoals,int amountTraps,float width, float height) {
+
 		this.width = width;
 		this.height = height;
 		
@@ -222,7 +220,10 @@ public class GameBoard {
 		int amntSteps = (int) ((y1-start)/step);
 		float result = start + (amntSteps*step);
 		if(result >= end){
-			return end;
+			return end-step;
+		}
+		if(result <= start) {
+			return start+step;
 		}
 		
 		return result;
@@ -327,7 +328,6 @@ public class GameBoard {
 		for(Mouse m: mice) {
 			m.update(delta);
 		}
-		System.out.println(hlines.size());
 		Gdx.app.log("GameBoard", "update");
 	}
 

@@ -22,8 +22,10 @@ public class AssetLoader {
     public static Vector2 mouseNose;
     
     public static boolean musicOn = true;
+    
+    public static GoalSprites goals;
 
-    public static Sprite goal,trap,home;
+    public static Sprite trap,home;
 
 	public static TextureRegion mouse;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
@@ -50,7 +52,7 @@ public class AssetLoader {
 
 	public static Sprite completed;
 
-
+	private final static int NBCHEESE = 5;
 
 
 	public static void queueLoading(){
@@ -98,11 +100,15 @@ public class AssetLoader {
 	
     public static void load() {
     	
+    	goals = new GoalSprites();
     	
-    	goal = new Sprite(new TextureRegion(atlas.findRegion("cheese_pile5")));
-        //goal.flip(false,true);
-    	goalCenter = new Vector2(goal.getWidth()/(2*goal.getScaleX()),goal.getHeight()/(2*goal.getScaleY()));
-    	
+    	for(int i = 1; i<=NBCHEESE;i++) {
+        	Sprite goal = new Sprite(new TextureRegion(atlas.findRegion("cheese_pile"+i)));
+            //goal.flip(false,true);
+        	goalCenter = new Vector2(goal.getWidth()/(2*goal.getScaleX()),goal.getHeight()/(2*goal.getScaleY()));
+        	goals.addSprite(i, goal);
+    	}
+
         trap = new Sprite(new TextureRegion(atlas.findRegion("trap_open")));
         //trap.flip(false,true);
         trapCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));

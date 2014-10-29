@@ -51,7 +51,7 @@ public class SimpleButton {
     }
 
     public boolean isClicked(int screenX, int screenY) {
-        return bounds.contains(screenX, screenY);
+        return isPressed;
     }
 
     public void draw(SpriteBatch batcher) {
@@ -64,7 +64,7 @@ public class SimpleButton {
 
     public boolean isTouchDown(int screenX, int screenY) {
         if (contains(screenX, screenY)) {
-        	SoundAccessor.play(AssetLoader.buttonSound);
+        	playButtonSound();
             isPressed = true;
             listen.pushButtonListener(this);
             return true;
@@ -87,7 +87,6 @@ public class SimpleButton {
     }
     
     public boolean contains(int screenX, int screenY) {
-    	//TODO WTF FIX THIS SHIT!!
     	return bounds.contains(screenX, screenY);
 	}
 
@@ -115,6 +114,9 @@ public class SimpleButton {
     	return name;
     }
     
+    protected void playButtonSound() {
+    	SoundAccessor.play(AssetLoader.buttonSound);
+    }
     
 
 }

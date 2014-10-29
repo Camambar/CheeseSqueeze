@@ -1,5 +1,6 @@
 package cheese.squeeze.ui;
 
+import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.CSGame.GameState;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,6 +18,21 @@ public class PopUpButton extends SimpleButton{
 	
 	public GameState state() {
 		return this.state;
+	}
+	
+	@Override
+	public boolean isTouchDown(int screenX, int screenY) {
+		if(CSGame.currentState.equals(state)) {
+			return super.isTouchDown(screenX, screenY);
+		}
+		return false;
+	}
+	
+	@Override
+	public void playButtonSound(){
+		if(CSGame.currentState.equals(state)) {
+			super.playButtonSound();
+		}
 	}
 	
 

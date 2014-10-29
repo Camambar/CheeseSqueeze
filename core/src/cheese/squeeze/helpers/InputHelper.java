@@ -3,11 +3,13 @@ package cheese.squeeze.helpers;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.screens.GameScreen;
 import cheese.squeeze.screens.MenuScreen;
+import cheese.squeeze.ui.PopUpButton;
 import cheese.squeeze.ui.SimpleButton;
 
 import com.badlogic.gdx.Gdx;
@@ -20,15 +22,14 @@ public class InputHelper implements InputProcessor {
 	private HorizontalLine l;
 	private HorizontalLine gl;
 	boolean touchedDown = false;
-	private CSGame game;
 	private ArrayList<SimpleButton> buttons;
+	private boolean buttonPressed = true;
 
-	public InputHelper(GameBoard board, CSGame game,
+	public InputHelper(GameBoard board,
 			ArrayList<SimpleButton> buttons) {
 		l = new HorizontalLine();
 		gl = new HorizontalLine();
 		this.board = board;
-		this.game = game;
 		this.buttons = buttons;
 
 	}
@@ -53,18 +54,19 @@ public class InputHelper implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		touchButton(screenX, screenY);
-		switch (CSGame.currentState) {
-		case GAMEOVER:
-
-			break;
-		case PLAYING:
-			touchDownPlaying(screenX, screenY, pointer, button);
-			break;
-		case PAUSE:
-
-			break;
-
+		if(!touchButton(screenX, screenY)){	
+			switch (CSGame.currentState) {
+			case GAMEOVER:
+	
+				break;
+			case PLAYING:
+				touchDownPlaying(screenX, screenY, pointer, button);
+				break;
+			case PAUSE:
+	
+				break;
+	
+			}
 		}
 		return true;
 
@@ -86,26 +88,24 @@ public class InputHelper implements InputProcessor {
 				board.setGesturedLine(gl);
 			}
 		}
-		// l.onClick(screenX,screenY);
-		// l.onClick(screenX,screenY);
-
 		return true;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-
-		switch (CSGame.currentState) {
-		case GAMEOVER:
-
-			break;
-		case PLAYING:
-			touchUpPlaying(screenX, screenY, pointer, button);
-			break;
-		case PAUSE:
-
-			break;
-
+		if(!buttonPressed) {	
+			switch (CSGame.currentState) {
+			case GAMEOVER:
+	
+				break;
+			case PLAYING:
+				touchUpPlaying(screenX, screenY, pointer, button);
+				break;
+			case PAUSE:
+	
+				break;
+	
+			}
 		}
 		return true;
 	}
@@ -153,10 +153,13 @@ public class InputHelper implements InputProcessor {
 
 	private boolean touchButton(int x, int y) {
 		Vector2 vec2 = board.unProject(x, y);
-		if (buttons.get(0).isClicked((int) vec2.x, (int) vec2.y)) {
-			game.setScreen(new MenuScreen(game));
-			return true;
+		for(SimpleButton btn: buttons) {
+			if(btn.isTouchDown((int) vec2.x, (int) vec2.y)) {
+				buttonPressed = true;
+				return true;
+			}
 		}
+		buttonPressed = false;
 		return false;
 	}
 
