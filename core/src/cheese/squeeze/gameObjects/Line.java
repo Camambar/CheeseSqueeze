@@ -90,6 +90,12 @@ public abstract class Line {
 		if (nextLine == null)
 			return null;
 		return nextLine.getValue().getAbsolutePosition(nextLine.getKey());
+
+	@Override
+	public boolean equals(Object e) {
+		Line l = (Line) e;
+		return l.getPoint1().equals(getPoint1())&& l.getPoint2().equals(getPoint2());
+		
 	}
 
 	private Entry<Float, Line> getNeighbourEntry(Vector2 from, Vector2 direction) {

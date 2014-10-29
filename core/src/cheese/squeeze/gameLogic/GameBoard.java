@@ -9,19 +9,20 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import cheese.squeeze.gameObjects.Goal;
+import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 public class GameBoard {
 
 	
 	private List<VerticalLine> vlines;
 	private List<HorizontalLine> hlines;
-	private List<Goal> goals;
+	private List<Cheese> goals;
 	private List<Trap> traps;
 	private OrthographicCamera cam;
 	private HorizontalLine gesturedLine;
@@ -65,17 +66,27 @@ public class GameBoard {
 	}
 	
 	private void makeTrapsGoals(int amountTraps, int amountGoals) {
-		this.goals = new ArrayList<Goal>();
+		this.goals = new ArrayList<Cheese>();
 		this.traps = new ArrayList<Trap>();
+		boolean set = false;
 		for(VerticalLine vl : vlines) {
 			double rand = Math.random();
 			
 			if(goals.size() < amountGoals && rand <= 0.5){
-				goals.add(new Goal(vl.getPoint2()));
+				//TODO cheese will be 4 always 1!!
+				goals.add(new Cheese(vl,4));
+				set = true;
 			}
-			else {
-				traps.add(new Trap(vl.getPoint2()));
+			else if(traps.size() < amountTraps){
+				traps.add(new Trap(vl));
+				set = true;
 			}
+			else if(!set && goals.size() < amountGoals){
+				//TODO cheese will be 4 always 1!!
+				goals.add(new Cheese(vl,4));
+				set = true;
+			}
+			set = false;
 			
 		}
 		
@@ -104,12 +115,11 @@ public class GameBoard {
 	}
 	
 	public void addHLine(HorizontalLine line) {
-		//modifyLocation(line);
-		long id = AssetLoader.chalk.play();
-		AssetLoader.chalk.setLooping(id, false);
-		hlines.add(line);
-		for (Mouse m: mice)
-			m.updatePath();
+		if(!hlines.contains(line)) {
+			//TODO overwrite equals in line
+			SoundAccessor.play(AssetLoader.chalk);
+			hlines.add(line);
+		}
 	}
 
 	public List<HorizontalLine> getHLines() {
@@ -184,7 +194,7 @@ public class GameBoard {
 		
 		float multiple = multipleOfPosition(l.getY1());
 		if(hasElementWithSamenYCoordinate(multiple)) {
-			//TODO make this a bit nicer
+			//TODO hack
 			//If there is a point with an other y coord on the other side 
 			//l is set to y coord 0,0 in the same row
 			l.setPoint1(new Vector2(vlLeft.getX1(),-10));
@@ -209,13 +219,6 @@ public class GameBoard {
 
 	private float multipleOfPosition(float y1) {
 		//TODO make sure the resutl is not larger then the longest y position.
-		
-		// 25
-		// begin bij 10
-		// stappen van 2
-		// 10 12 14 16 19 20 22 24 26
-		// neem dichtste 24 of 26.
-		
 		int amntSteps = (int) ((y1-start)/step);
 		float result = start + (amntSteps*step);
 		if(result >= end){
@@ -324,6 +327,7 @@ public class GameBoard {
 		for(Mouse m: mice) {
 			m.update(delta);
 		}
+		System.out.println(hlines.size());
 		Gdx.app.log("GameBoard", "update");
 	}
 
@@ -335,7 +339,7 @@ public class GameBoard {
 		return traps;
 	}
 
-	public List<Goal> getGoals() {
+	public List<Cheese> getGoals() {
 		return goals;
 	}
 

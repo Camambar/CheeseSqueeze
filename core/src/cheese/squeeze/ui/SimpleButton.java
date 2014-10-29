@@ -1,6 +1,7 @@
 package cheese.squeeze.ui;
 
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -19,6 +20,9 @@ public class SimpleButton {
 
 	private String name;
 
+	private SimpleButtonListener listen;
+
+	/*
     public SimpleButton(float x, float y, float width, float height,
             TextureRegion buttonUp, TextureRegion buttonDown) {
         this.x = x;
@@ -28,6 +32,20 @@ public class SimpleButton {
         this.buttonUp = buttonUp;
         this.buttonDown = buttonDown;
 
+        bounds = new Rectangle(x, y, width, height);
+
+    }
+    */
+    
+    public SimpleButton(SimpleButtonListener listen, float x, float y, float width, float height,
+            TextureRegion buttonUp, TextureRegion buttonDown) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.buttonUp = buttonUp;
+        this.buttonDown = buttonDown;
+        this.listen = listen;
         bounds = new Rectangle(x, y, width, height);
 
     }
@@ -45,9 +63,10 @@ public class SimpleButton {
     }
 
     public boolean isTouchDown(int screenX, int screenY) {
-    	AssetLoader.buttonSound.play(0.2f);
         if (contains(screenX, screenY)) {
+        	SoundAccessor.play(AssetLoader.buttonSound);
             isPressed = true;
+            listen.pushButtonListener(this);
             return true;
         }
 
@@ -95,5 +114,7 @@ public class SimpleButton {
     public String getName() {
     	return name;
     }
+    
+    
 
 }

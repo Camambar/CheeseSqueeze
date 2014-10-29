@@ -1,0 +1,37 @@
+IMPORTANT:
+
+- muis moet pad volgen
+
+- hoop kaas moet telkens verminderd worden met een blokje (cheese_pile5 -> cheese_pile4 -> cheese_pile3 -> ...)
+
+- level completed/failed knoppen implementeren
+
+- tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
+
+- bug met het tekenen van horizontale lijnen (afrondngsfout?)
+  soms kan er geen lijn getekend worden ook al is er redelijk veel plaats
+  
+- horizontale lijnen mogen enkel in het geldige gebied getekend worden,
+  bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
+  
+- horizontale lijnen in TreeMap ipv List
+
+- functionaliteit rode bol verwijderen
+
+- gamestates (enmus) uitwerken
+
+- testen op verschillende aspect ratios (grootte afbeeldingen enz)
+
+- muziekjes level complete/failed
+
+
+OPTIONAL:
+
+- mouse wiggle
+
+- desktop window aspect ratio resize (http://badlogicgames.com/forum/viewtopic.php?f=11&t=7489)
+
+- onderweg extra kazen verzamelen (bv. 3), deze kunnen ook tussen verticale lijnen geplaatst zijn
+  samen implementeren met level selector
+
+- ...

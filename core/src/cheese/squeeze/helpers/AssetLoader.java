@@ -46,11 +46,15 @@ public class AssetLoader {
 	
 	private static boolean dataLoaded,soundLoaded = false;
 
+	public static Sprite failed;
+
+	public static Sprite completed;
+
 
 
 
 	public static void queueLoading(){
-		manager.load("graph/onderdelen.pack", TextureAtlas.class);
+		manager.load("graph/newparts.pack", TextureAtlas.class);
 		manager.load("data/Game Music.mp3",Music.class);
 		manager.load("data/Menu Music.mp3",Music.class);
 		manager.load("data/button.mp3",Sound.class);
@@ -66,7 +70,7 @@ public class AssetLoader {
 	}
     
 	public static void setAtlas() {
-		atlas = manager.get("graph/onderdelen.pack",TextureAtlas.class);
+		atlas = manager.get("graph/newparts.pack",TextureAtlas.class);
 	}
 	
 	public static void setSounds() {
@@ -95,7 +99,7 @@ public class AssetLoader {
     public static void load() {
     	
     	
-    	goal = new Sprite(new TextureRegion(atlas.findRegion("cheese_pile")));
+    	goal = new Sprite(new TextureRegion(atlas.findRegion("cheese_pile5")));
         //goal.flip(false,true);
     	goalCenter = new Vector2(goal.getWidth()/(2*goal.getScaleX()),goal.getHeight()/(2*goal.getScaleY()));
     	
@@ -127,7 +131,14 @@ public class AssetLoader {
         //menuBg.setSize(675,1500);
         //menuBg.setScale(1f);
         
-        logo_shadow = new Sprite(new TextureRegion(atlas.findRegion("logo_shadow")));
+        failed = new Sprite(new TextureRegion(atlas.findRegion("failed")));
+        failed.flip(false, true);
+
+        
+        completed = new Sprite(new TextureRegion(atlas.findRegion("completed")));
+        completed.flip(false, true);
+        
+        logo_shadow = new Sprite(new TextureRegion(atlas.findRegion("logo")));
         
         play =new Sprite(new TextureRegion(atlas.findRegion("play")));
         
@@ -163,7 +174,7 @@ public class AssetLoader {
     	
        
         
-        home = new Sprite(new TextureRegion(atlas.findRegion("home_shadow")));
+        home = new Sprite(new TextureRegion(atlas.findRegion("home")));
         home.setSize(13,10);
         home.flip(false, true);
         home.setPosition(1, 1);

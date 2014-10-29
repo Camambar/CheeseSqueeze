@@ -14,22 +14,23 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 
-public class InputHelper implements InputProcessor{
-	
+public class InputHelper implements InputProcessor {
+
 	private GameBoard board;
 	private HorizontalLine l;
 	private HorizontalLine gl;
 	boolean touchedDown = false;
 	private CSGame game;
 	private ArrayList<SimpleButton> buttons;
-	
-	public InputHelper(GameBoard board, CSGame game, ArrayList<SimpleButton> buttons){
+
+	public InputHelper(GameBoard board, CSGame game,
+			ArrayList<SimpleButton> buttons) {
 		l = new HorizontalLine();
 		gl = new HorizontalLine();
 		this.board = board;
 		this.game = game;
 		this.buttons = buttons;
-		
+
 	}
 
 	@Override
@@ -52,45 +53,71 @@ public class InputHelper implements InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		//TODO prevent multitouch crash with Gdx.input.isTouched(pointer)
-		// no it works with pointer == 0 the first touch 
+		touchButton(screenX, screenY);
+		switch (CSGame.currentState) {
+		case GAMEOVER:
+
+			break;
+		case PLAYING:
+			touchDownPlaying(screenX, screenY, pointer, button);
+			break;
+		case PAUSE:
+
+			break;
+
+		}
+		return true;
+
+	}
+
+	public boolean touchDownPlaying(int screenX, int screenY, int pointer,
+			int button) {
+
 		if (pointer == 0) {
-			
-			//back is touched!
-			//FOR NOW THERE IS ONE BUTTON
-			//TODO make this check if this button in the list of buttons is thehome buttone
-			Vector2 vec2 = board.unProject(screenX, screenY);
-			if(buttons.get(0).isClicked((int)vec2.x, (int)vec2.y)) {
-				game.setScreen(new MenuScreen(game));
-			}
-			
-			else {
 			if (!touchedDown) {
-				board.setClickedPosition(new Vector2(screenX,screenY));
+				board.setClickedPosition(new Vector2(screenX, screenY));
 				touchedDown = true;
 				gl.onClick(screenX, screenY);
 			}
-			
-			//gl.onClick(screenX, screenY);
-			if(!gl.isdrawable()) {
-				gl.onClick(screenX+1, screenY);
+
+			// gl.onClick(screenX, screenY);
+			if (!gl.isdrawable()) {
+				gl.onClick(screenX + 1, screenY);
 				board.setGesturedLine(gl);
 			}
-			}
-				//l.onClick(screenX,screenY);
-				//l.onClick(screenX,screenY);
 		}
+		// l.onClick(screenX,screenY);
+		// l.onClick(screenX,screenY);
+
 		return true;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+
+		switch (CSGame.currentState) {
+		case GAMEOVER:
+
+			break;
+		case PLAYING:
+			touchUpPlaying(screenX, screenY, pointer, button);
+			break;
+		case PAUSE:
+
+			break;
+
+		}
+		return true;
+	}
+
+	public boolean touchUpPlaying(int screenX, int screenY, int pointer,
+			int button) {
 		if (pointer == 0) {
-			if(!board.isClearable(screenX,screenY)) {
+			if (!board.isClearable(screenX, screenY)) {
 				board.addHLine(gl.clone());
-				//l.clear();
+				// l.clear();
 			}
-			if(!Gdx.input.isTouched()) {
+			if (!Gdx.input.isTouched()) {
 				gl.clear();
 				touchedDown = false;
 			}
@@ -100,11 +127,37 @@ public class InputHelper implements InputProcessor{
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		if(pointer == 0) {
+		if (pointer == 0) {
+			switch (CSGame.currentState) {
+			case GAMEOVER:
+
+				break;
+			case PLAYING:
+				touchDraggedPlaying(screenX, screenY, pointer);
+				break;
+			case PAUSE:
+
+				break;
+			}
+		}
+		return true;
+	}
+
+	public boolean touchDraggedPlaying(int screenX, int screenY, int pointer) {
+		if (pointer == 0) {
 			gl.onDrag(screenX, screenY);
 			board.setGesturedLineDragged(gl);
 		}
 		return true;
+	}
+
+	private boolean touchButton(int x, int y) {
+		Vector2 vec2 = board.unProject(x, y);
+		if (buttons.get(0).isClicked((int) vec2.x, (int) vec2.y)) {
+			game.setScreen(new MenuScreen(game));
+			return true;
+		}
+		return false;
 	}
 
 	@Override

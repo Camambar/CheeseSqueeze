@@ -1,22 +1,28 @@
 package cheese.squeeze.gameworld;
 
+import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.gameLogic.GameBoard;
-import cheese.squeeze.gameObjects.Goal;
+import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Line;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.ui.SimpleButton;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+
+import cheese.squeeze.game.CSGame.GameState;
 
 public class GameRenderer {
 
@@ -28,8 +34,9 @@ public class GameRenderer {
 	private int width;
 	private GameBoard board;
 	private boolean updateStaticElements;
-	private TextureRegion bg,goal,trap,mouse;
+	private TextureRegion bg,goal,trap,mouse,failed;
 	private Vector2 mouseSize= new Vector2(10,10);
+	private Sprite completed;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
@@ -56,7 +63,6 @@ public class GameRenderer {
 	public void render() {
 		
 		
-
 
 		// Fill the entire screen with black, to prevent potential flickering.
 		//Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -121,8 +127,6 @@ public class GameRenderer {
 			batcher.begin();
 			// enable transparency
 			batcher.enableBlending();
-			System.out.println(m.getX());
-			System.out.println(m.getY());
 			
 			batcher.draw(mouse,m.getX()-(mouseSize.x/2),m.getY()-mouseSize.y,mouseSize.x,mouseSize.y);
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
@@ -158,7 +162,7 @@ public class GameRenderer {
 
 	private void drawGoals() {
 		// TODO Auto-generated method stub
-		for(Goal g: board.getGoals()) {
+		for(Cheese g: board.getGoals()) {
 			batcher.begin();
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
@@ -218,4 +222,10 @@ public class GameRenderer {
 		mouse = AssetLoader.mouse;
 	}
 
+	public void renderPopUp(SimpleButton btn) {
+    	batcher.begin();
+    	btn.draw(batcher);
+    	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
+    	batcher.end();
+	}
 }
