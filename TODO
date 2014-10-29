@@ -2,10 +2,6 @@ IMPORTANT:
 
 - muis moet pad volgen
 
-- hoop kaas moet telkens verminderd worden met een blokje (cheese_pile5 -> cheese_pile4 -> cheese_pile3 -> ...)
-
-- level completed/failed knoppen implementeren
-
 - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
 - bug met het tekenen van horizontale lijnen (afrondngsfout?)
@@ -17,8 +13,6 @@ IMPORTANT:
 - horizontale lijnen in TreeMap ipv List
 
 - functionaliteit rode bol verwijderen
-
-- gamestates (enmus) uitwerken
 
 - testen op verschillende aspect ratios (grootte afbeeldingen enz)
 
