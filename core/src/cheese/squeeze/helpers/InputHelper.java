@@ -127,17 +127,19 @@ public class InputHelper implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		if (pointer == 0) {
-			switch (CSGame.currentState) {
-			case GAMEOVER:
-
-				break;
-			case PLAYING:
-				touchDraggedPlaying(screenX, screenY, pointer);
-				break;
-			case PAUSE:
-
-				break;
+		if(!buttonPressed) {	
+			if (pointer == 0) {
+				switch (CSGame.currentState) {
+				case GAMEOVER:
+	
+					break;
+				case PLAYING:
+					touchDraggedPlaying(screenX, screenY, pointer);
+					break;
+				case PAUSE:
+	
+					break;
+				}
 			}
 		}
 		return true;

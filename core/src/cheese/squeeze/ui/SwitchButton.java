@@ -25,21 +25,14 @@ public class SwitchButton extends SimpleButton{
         }
     }
 
-	
 	@Override
-    public boolean isTouchUp(int screenX, int screenY) {
-        
-        // It only counts as a touchUp if the button is in a pressed state.
-        if (contains(screenX, screenY) && isPressed()) {
-        	val = !val;
-        	setPressed(false);
-            return true;
-        }
-        
-        // Whenever a finger is released, we will cancel any presses.
-        setPressed(false);
-        return false;
-    }
+	public boolean isTouchDown(int screenX, int screenY) {
+		if(super.isTouchDown(screenX, screenY)) {
+			val = !val;
+			return true;
+		}
+		return false;
+	}
 
 	
 	public String getName() {
