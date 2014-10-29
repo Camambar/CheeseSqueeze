@@ -1,5 +1,7 @@
 package cheese.squeeze.gameObjects;
 
+import javax.naming.OperationNotSupportedException;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class HorizontalLine extends Line implements Cloneable{
@@ -39,5 +41,19 @@ public class HorizontalLine extends Line implements Cloneable{
 	public HorizontalLine clone() {
 		return new HorizontalLine(getY1(),getX1(),getX2());
 	}
+	
+	@Override
+	public float getRelativePosition(Vector2 point) {
+		return Math.abs(point.x - this.getX1());
+	}
 
+	@Override
+	public void setNeighbour(Line line) {
+		if (!(line instanceof VerticalLine)) {
+			super.setNeighbour(line);
+		} else {
+			float intersection = getRelativePosition(line.getPoint1());
+			neighbours.put(intersection, line);
+		}
+	}
 }

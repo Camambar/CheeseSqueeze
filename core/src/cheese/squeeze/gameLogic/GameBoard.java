@@ -83,10 +83,7 @@ public class GameBoard {
 
 	private void makeMice() {
 		mice = new ArrayList<Mouse>();
-		ArrayList<Vector2> path= new ArrayList<Vector2>();
-		//path.add(new Vector2(68,15));
-		//path.add(new Vector2(68,128));
-		Mouse mouse = new Mouse(startPositions.get(0).x,startPositions.get(0).y,path,10);
+		Mouse mouse = new Mouse(10,vlines.get(0));
 		mice.add(mouse);	
 	}
 
@@ -111,7 +108,8 @@ public class GameBoard {
 		long id = AssetLoader.chalk.play();
 		AssetLoader.chalk.setLooping(id, false);
 		hlines.add(line);
-		
+		for (Mouse m: mice)
+			m.updatePath();
 	}
 
 	public List<HorizontalLine> getHLines() {
