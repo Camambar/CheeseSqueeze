@@ -46,6 +46,10 @@ public class AssetLoader {
 	
 	private static boolean dataLoaded,soundLoaded = false;
 
+	public static Sprite failed;
+
+	public static Sprite completed;
+
 
 
 
@@ -126,6 +130,13 @@ public class AssetLoader {
         
         //menuBg.setSize(675,1500);
         //menuBg.setScale(1f);
+        
+        failed = new Sprite(new TextureRegion(atlas.findRegion("failed")));
+        failed.flip(false, true);
+
+        
+        completed = new Sprite(new TextureRegion(atlas.findRegion("completed")));
+        completed.flip(false, true);
         
         logo_shadow = new Sprite(new TextureRegion(atlas.findRegion("logo")));
         

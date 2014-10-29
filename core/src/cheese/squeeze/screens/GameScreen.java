@@ -9,16 +9,23 @@ import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelper;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
+import cheese.squeeze.ui.PopUpButton;
 import cheese.squeeze.ui.SimpleButton;
+import cheese.squeeze.ui.SimpleButtonListener;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScreen implements Screen {
 	
 	private GameRenderer renderer;
 	private GameBoard board;
-	private SimpleButton home;
+	//private SimpleButton homeBtn;
+	//private SimpleButton gameOverPopUp;
+	//private SimpleButton completedPopUp;
+	private SimpleButton gameOverPopUp;
+	private SimpleButton completedPopUp;
 	
     public GameScreen(CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
@@ -38,10 +45,36 @@ public class GameScreen implements Screen {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();   
     	
-    	home = new SimpleButton(AssetLoader.home.getX(),AssetLoader.home.getY(),AssetLoader.home.getWidth(),AssetLoader.home.getHeight(),AssetLoader.home,AssetLoader.home);
-    	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();
-    	buttons.add(home);
+    	SimpleButton homeBtn = new SimpleButton(new SimpleButtonListener() {
+    		
+			@Override
+			public void pushButtonListener(SimpleButton btn) {
+				
+			}
+		},AssetLoader.home.getX(),AssetLoader.home.getY(),AssetLoader.home.getWidth(),AssetLoader.home.getHeight(),AssetLoader.home,AssetLoader.home);
+    	
+    	gameOverPopUp = new PopUpButton(new SimpleButtonListener() {
+			@Override
+			public void pushButtonListener(SimpleButton btn) {
+				System.out.println("game over ok");
+			}
+		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,gameHeight/2,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
+    	
+    	completedPopUp = new PopUpButton(new SimpleButtonListener() {
+			@Override
+			public void pushButtonListener(SimpleButton btn) {
+				System.out.println("game Won oke");
+			}
+		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,gameHeight/2,AssetLoader.completed,AssetLoader.completed,GameState.WON);
+    	
+
+    	
+    	buttons.add(homeBtn);
+    	buttons.add(gameOverPopUp);
+    	buttons.add(completedPopUp);
+    	
     	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
     	
     	//TODO make a class to handle the audio.
@@ -52,14 +85,32 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-    	board.update(delta);
-    	renderer.render();
+    	System.out.println(CSGame.currentState);
+		switch (CSGame.currentState) {
+			case GAMEOVER:
+				renderer.render();
+				renderer.renderPopUp(gameOverPopUp);
+				pause();
+				break;
+			case PLAYING:
+		    	board.update(delta);
+		    	renderer.render();
+		    	break;
+			case WON:
+				renderer.render();
+				renderer.renderPopUp(completedPopUp);
+				pause();
+				break;
+			case PAUSE:
+		
+		}
     	
     	//Print the fps
     	Gdx.app.log("GameScreen FPS", (1/delta) + "");
     }
 
-    @Override
+
+	@Override
     public void resize(int width, int height) {
         Gdx.app.log("GameScreen", "resizing");
     }

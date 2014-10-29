@@ -57,18 +57,10 @@ public class InputHelperMenu implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		//if(playButton.isTouchDown(screenX, screenY)) {
-		//	game.setScreen(new GameScreen());
-		//}
-		
 		if(pointer == 0){
 			Vector3 unp = cam.unproject(new Vector3(screenX,screenY,0));
 			for(SimpleButton b : menuButtons) {
-				if(b.isTouchDown((int) unp.x,(int) unp.y)){
-					
-				}
-				
-				//TODO check if button is play
+				b.isTouchDown((int) unp.x,(int) unp.y);
 			}
 		}
 		return true;
@@ -80,11 +72,7 @@ public class InputHelperMenu implements InputProcessor {
 		if(pointer == 0) {
 			Vector3 unp = cam.unproject(new Vector3(screenX,screenY,0));
 			for(SimpleButton b : menuButtons) {
-				if(b.isTouchUp((int) unp.x,(int) unp.y)) {
-					
-				}
-					
-				//TODO check if button is play
+				b.isTouchUp((int) unp.x,(int) unp.y);
 			}
 		}
 		return false;

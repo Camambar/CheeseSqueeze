@@ -9,9 +9,9 @@ public class SwitchButton extends SimpleButton{
     private boolean val; // true is up false is down
     private String name;
 
-	public SwitchButton(float x, float y, float width, float height,
+	public SwitchButton(SimpleButtonListener listen, float x, float y, float width, float height,
 			TextureRegion buttonUp, TextureRegion buttonDown, boolean on, String string) {
-		super(x, y, width, height, buttonUp, buttonDown);
+		super(listen, x, y, width, height, buttonUp, buttonDown);
 		val = on;
 		this.name = string;
 	}
