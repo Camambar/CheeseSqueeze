@@ -6,6 +6,12 @@
   
 - gamestates uitwerken
 
+- level completed/failed knoppen implementeren
+
 - horizontale lijnen in TreeMap ipv List
+
+- hoop kaas moet telkens verminderd worden met een blokje (cheese_pile5 -> cheese_pile4 -> cheese_pile3 -> ...)
+
+- muis moet pad volgen
 
 - ...
