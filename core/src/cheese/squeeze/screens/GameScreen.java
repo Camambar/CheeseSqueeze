@@ -27,7 +27,7 @@ public class GameScreen implements Screen {
 	private SimpleButton gameOverPopUp;
 	private SimpleButton completedPopUp;
 	
-    public GameScreen(CSGame game) {
+    public GameScreen(final CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
         CSGame.currentState = GameState.PLAYING;
         //Calculate the starting positions
@@ -39,33 +39,33 @@ public class GameScreen implements Screen {
 
         int midPointY = (int) (gameHeight / 2);
         
-    	try {
-			board = new GameBoard(3, 2, 1, (int) gameWidth,(int) gameHeight);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		board = new GameBoard(3, 2, 1, (int) gameWidth,(int) gameHeight);
+			
     	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();   
     	
     	SimpleButton homeBtn = new SimpleButton(new SimpleButtonListener() {
     		
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
-				
+				game.setScreen(new MenuScreen(game));
 			}
 		},AssetLoader.home.getX(),AssetLoader.home.getY(),AssetLoader.home.getWidth(),AssetLoader.home.getHeight(),AssetLoader.home,AssetLoader.home);
     	
     	gameOverPopUp = new PopUpButton(new SimpleButtonListener() {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
-				System.out.println("game over ok");
+				//TODO Current level select 
+				dispose();
+				game.setScreen(new GameScreen(game));
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,gameHeight/2,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
     	
     	completedPopUp = new PopUpButton(new SimpleButtonListener() {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
-				System.out.println("game Won oke");
+				//TODO next level select
+				dispose();
+				game.setScreen(new GameScreen(game));
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,gameHeight/2,AssetLoader.completed,AssetLoader.completed,GameState.WON);
     	
@@ -80,7 +80,7 @@ public class GameScreen implements Screen {
     	//TODO make a class to handle the audio.
     	MusicAccessor.play(AssetLoader.gameSound);
     	
-    	Gdx.input.setInputProcessor(new InputHelper(board,game,buttons));
+    	Gdx.input.setInputProcessor(new InputHelper(board,buttons));
     }
 
     @Override

@@ -14,6 +14,7 @@ public class Cheese implements Goal{
 	 */
 	public Cheese(Line l,int tickets) {
 		this.setPosition(l.getPoint2());
+		this.tickets = tickets;
 		this.l = l;
 	}
 
@@ -23,6 +24,10 @@ public class Cheese implements Goal{
 
 	public void setPosition(Vector2 position) {
 		this.position = position;
+	}
+	
+	public int getTickets() {
+		return tickets;
 	}
 	
 	public void activate() {

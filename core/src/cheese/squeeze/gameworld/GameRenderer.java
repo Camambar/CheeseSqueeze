@@ -9,6 +9,7 @@ import cheese.squeeze.gameObjects.Line;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.helpers.GoalSprites;
 import cheese.squeeze.ui.SimpleButton;
 
 import com.badlogic.gdx.Gdx;
@@ -34,7 +35,8 @@ public class GameRenderer {
 	private int width;
 	private GameBoard board;
 	private boolean updateStaticElements;
-	private TextureRegion bg,goal,trap,mouse,failed;
+	private TextureRegion bg,trap,mouse,failed;
+	private GoalSprites goals;
 	private Vector2 mouseSize= new Vector2(10,10);
 	private Sprite completed;
 
@@ -166,7 +168,9 @@ public class GameRenderer {
 			batcher.begin();
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
-			batcher.draw(goal,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/10);
+			
+			TextureRegion kak = (TextureRegion) goals.getGoal(g.getTickets());
+			batcher.draw(kak,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/10);
 			batcher.end();
 		}
 	}
@@ -217,7 +221,7 @@ public class GameRenderer {
 
 	private void initAssets() {
 		bg = AssetLoader.bg;
-		goal = AssetLoader.goal;
+		goals = AssetLoader.goals;
 		trap = AssetLoader.trap;
 		mouse = AssetLoader.mouse;
 	}
