@@ -90,6 +90,7 @@ public abstract class Line {
 		if (nextLine == null)
 			return null;
 		return nextLine.getValue().getAbsolutePosition(nextLine.getKey());
+	}
 
 	@Override
 	public boolean equals(Object e) {
