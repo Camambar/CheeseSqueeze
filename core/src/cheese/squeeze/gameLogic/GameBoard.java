@@ -92,7 +92,7 @@ public class GameBoard {
 
 	private void makeMice() {
 		mice = new ArrayList<Mouse>();
-		Mouse mouse = new Mouse(10,vlines.get(0));
+		Mouse mouse = new Mouse(0.5f,vlines.get(0));
 		mice.add(mouse);	
 	}
 
@@ -117,6 +117,19 @@ public class GameBoard {
 			//TODO overwrite equals in line
 			SoundAccessor.play(AssetLoader.chalk);
 			hlines.add(line);
+			for (VerticalLine l : vlines) {
+				if (l.getX1() == line.getX1()) {
+					l.setNeighbour(line);
+					line.setNeighbour(l);
+				}
+				if (l.getX1() == line.getX2()) {
+					l.setNeighbour(line);
+					line.setNeighbour(l);
+				}
+			}
+			for(Mouse m : mice) {
+				m.updatePath();
+			}
 		}
 	}
 

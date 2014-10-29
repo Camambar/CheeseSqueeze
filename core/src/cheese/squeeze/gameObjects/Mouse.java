@@ -15,7 +15,7 @@ public class Mouse {
 	private Vector2 velocity;
 	
 	private float speed;
-	private float tolerance = 3;
+	private float tolerance = 1;
 	
 	private Vector2 absolutePosition;
 
@@ -46,27 +46,33 @@ public class Mouse {
 				setPosition(nextGoToPoint.x, nextGoToPoint.y);
 				//nextGoToPoint is yet to be determined
 				nextGoToPoint = null;
-				//pick a new destination
-				updatePath();
 				//calculate the next line the mouse would be on.
 				Line nextLine = currentLine.getNeighbour(getPosition(), velocity);
 				//This mouse is now on the new line. 
 				//If there is no next line, the mouse stays on this line.
 				currentLine = (nextLine != null) ? nextLine : currentLine;
-				//set the mouses new speed.
+				updateVelocityDirection();
+				//pick a new destination
+				updatePath();
 			}
+			//set the mouses new speed.
 			if (atIntersection()) {
 				//The mouse ran into something with a dead end.
 				velocity.set(Vector2.Zero);
 			} else {
-				float angle = (float) Math.atan2(nextGoToPoint.y - getY(), nextGoToPoint.x - getX());
-				velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
-				//set the mouses angle.
-				setRotation(angle * MathUtils.radiansToDegrees);
+				updateVelocityDirection();
 			}
 			//move the mouse.
-			setPosition(getX() + velocity.x * delta, getY() + velocity.y * delta);
+//			setPosition(getX() + velocity.x * delta, getY() + velocity.y * delta);
+			setPosition(getX() + velocity.x * 1, getY() + velocity.y * 1);
 		}		
+	}
+
+	private void updateVelocityDirection() {
+		float angle = (float) Math.atan2(nextGoToPoint.y - getY(), nextGoToPoint.x - getX());
+		velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+		//set the mouses angle.
+		setRotation(angle * MathUtils.radiansToDegrees);
 	}
 	
 	public void updatePath() {

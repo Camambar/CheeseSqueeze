@@ -75,10 +75,10 @@ public abstract class Line {
 	}
 	
 	public Vector2 getAbsolutePosition(float relativePosition) {
-		Vector2 direction = getPoint2().sub(getPoint1());
+		Vector2 direction = getPoint2().cpy().sub(getPoint1());
 		// normalize this vector
-		Vector2 difference = direction.scl(relativePosition/(direction.len()));
-		return this.getPoint1().add(difference);
+		Vector2 difference = direction.cpy().scl(relativePosition/(direction.len()));
+		return this.getPoint1().cpy().add(difference);
 	}
 	
 	public void setNeighbour(Line line) throws UnsupportedOperationException {
@@ -89,7 +89,7 @@ public abstract class Line {
 		Entry<Float, Line> nextLine = getNeighbourEntry(from, direction);
 		if (nextLine == null)
 			return null;
-		return nextLine.getValue().getAbsolutePosition(nextLine.getKey());
+		return this.getAbsolutePosition(nextLine.getKey());
 	}
 
 	@Override
@@ -101,9 +101,9 @@ public abstract class Line {
 
 	private Entry<Float, Line> getNeighbourEntry(Vector2 from, Vector2 direction) {
 		float relPos1 = getRelativePosition(from);
-		float relPos2 = getRelativePosition(from.add(direction));
-		Entry<Float, Line> nextLine = ((relPos2 - relPos1) > 0) ? 
-				neighbours.higherEntry(relPos1) : neighbours.lowerEntry(relPos1);
+		float relPos2 = getRelativePosition(from.cpy().add(direction));
+		Entry<Float, Line> nextLine = ((relPos2 - relPos1) >= 0) ? 
+				neighbours.ceilingEntry(relPos1) : neighbours.floorEntry(relPos1);
 		return nextLine;
 	}
 	
@@ -116,7 +116,7 @@ public abstract class Line {
 
 	public Vector2 getEndPoint(Vector2 from, Vector2 direction) {
 		float relPos1 = getRelativePosition(from);
-		float relPos2 = getRelativePosition(from.add(direction));
+		float relPos2 = getRelativePosition(from.cpy().add(direction));
 		return ((relPos2 - relPos1) >= 0) ? 
 				getPoint2() : getPoint1();
 	}
