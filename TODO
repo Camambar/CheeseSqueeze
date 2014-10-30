@@ -1,7 +1,5 @@
 IMPORTANT:
 
-- muis moet pad volgen
-
 - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
 - bug met het tekenen van horizontale lijnen (afrondngsfout?)
@@ -12,11 +10,7 @@ IMPORTANT:
   
 - horizontale lijnen in TreeMap ipv List
 
-- functionaliteit rode bol verwijderen
-
 - testen op verschillende aspect ratios (grootte afbeeldingen enz)
-
-- muziekjes level complete/failed
 
 
 OPTIONAL:
