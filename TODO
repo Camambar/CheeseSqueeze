@@ -1,23 +1,58 @@
-IMPORTANT:
+*********************************************************
+H = High Priority, M = Medium Priority, L = Low Priority
+*********************************************************
 
-- tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
+General:
 
-- bug met het tekenen van horizontale lijnen (afrondngsfout?)
-  soms kan er geen lijn getekend worden ook al is er redelijk veel plaats
+H  - bug met het tekenen van horizontale lijnen (afrondngsfout?)
+     soms kan er geen lijn getekend worden ook al is er redelijk veel plaats
   
-- horizontale lijnen mogen enkel in het geldige gebied getekend worden,
-  bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
+H  - horizontale lijnen mogen enkel in het geldige gebied getekend worden,
+     bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
+     
+M  - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
-- testen op verschillende aspect ratios (grootte afbeeldingen enz)
+M  - 6 eerste levels instellen (zie facebook voor files)
+
+Music & Visual Bugs:
+
+H  - muziek off -> on speelt niet
+
+M  - cheese pop + trap sound effects invoegen
+
+M  - afbeeldigen resizen (muis, trap, trap closed, win/fail screen)
+
+M  - closed trap juist plaatsen
+
+L  - sound off -> on zou wel geluidje mogen maken
+
+
+Mouse & Path Bugs:
+
+H  - muis doet spastisch in intersection
+
+H  - muis keert soms terug van kaashoop (zet precies de waypoint bovenaan de verticale lijn wanneer hij aankomt bij de kaas)
+
+H  - toevoegen goal veroorzaakt muis die diagonaal beweegt tot net boven het scherm)
+     misschien geralateerd aan hack waar lijn bovenaan komt
+
+H  - plaatsen van lijnen buiten het pad van de muis beïnvloeden zijn richting plots
+
+M  - muis versnelt opeens
+
+M  - marge voor het plaatsen van horizontale lijnen beneden verkleinen
+
 
 
 OPTIONAL:
 
-- mouse wiggle
+M  - testen op verschillende aspect ratios (grootte afbeeldingen enz)
 
-- desktop window aspect ratio resize (http://badlogicgames.com/forum/viewtopic.php?f=11&t=7489)
+L  - desktop window aspect ratio resize (http://badlogicgames.com/forum/viewtopic.php?f=11&t=7489)
 
-- onderweg extra kazen verzamelen (bv. 3), deze kunnen ook tussen verticale lijnen geplaatst zijn
-  samen implementeren met level selector
+L  - mouse wiggle
 
-- ...
+L  - onderweg extra kazen verzamelen (bv. 3), deze kunnen ook tussen verticale lijnen geplaatst zijn
+     samen implementeren met level selector
+
+   - ...
