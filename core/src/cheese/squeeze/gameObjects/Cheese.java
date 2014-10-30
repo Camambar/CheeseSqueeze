@@ -1,5 +1,8 @@
 package cheese.squeeze.gameObjects;
 
+import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Cheese implements Goal{
@@ -30,12 +33,14 @@ public class Cheese implements Goal{
 		return tickets;
 	}
 	
+	@Override
 	public void activate() {
-		if(tickets>0) {
+		if(tickets>1) {
 			tickets--;
 		}
 		else {
 			//TODO replace goal with trap
+			CSGame.currentState=GameState.WON;
 		}
 	}
 

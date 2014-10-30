@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import cheese.squeeze.game.Level;
 import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Mouse;
@@ -32,6 +33,7 @@ public class GameBoard {
 	private float height;
 	private List<Vector2> startPositions;
 	private List<Mouse> mice;
+	private List<Mouse> miceBackup;
 	private static int MAX_HLINES = 20;
 	private float step;
 	private float start;
@@ -39,7 +41,7 @@ public class GameBoard {
 	
 	
 
-	public GameBoard(int amountVLines,int amountGoals,int amountTraps,float width, float height) {
+	public GameBoard(int amountVLines,int amountGoals,int amountTraps,float width, float height,Level l) {
 
 		this.width = width;
 		this.height = height;
@@ -49,7 +51,7 @@ public class GameBoard {
 		cam.setToOrtho(true,width, height);
 		
 		//all the lines
-		makeVerticalLines(amountVLines);
+		makeVerticalLines(amountVLines,amountTraps,amountGoals);
 		gesturedLine = new HorizontalLine();
 		hlines = new ArrayList<HorizontalLine>();
 		
@@ -57,7 +59,7 @@ public class GameBoard {
 		makeMice();
 		
 		//trap stuff goal stuff
-		makeTrapsGoals(amountTraps,amountGoals);
+		//makeTrapsGoals(amountTraps,amountGoals);
 
 		
 
@@ -96,11 +98,39 @@ public class GameBoard {
 		mice.add(mouse);	
 	}
 
-	private void makeVerticalLines(int amountVLines) {
+	private void makeVerticalLines(int amountVLines,int amountTraps, int amountGoals) {
+		this.goals = new ArrayList<Cheese>();
+		this.traps = new ArrayList<Trap>();
 		vlines = new ArrayList<VerticalLine>();
 		float totw = (width-20)/(amountVLines-1);
+		boolean set = false;
 		for(int i=0;i<amountVLines;i++) {
-			vlines.add(new VerticalLine(15,height-20,10+(totw*i)));
+			VerticalLine vl = new VerticalLine(15,height-20,10+(totw*i));
+			
+			double rand = Math.random();
+			
+			if(goals.size() < amountGoals && rand <= 0.5){
+				//TODO cheese will be 4 always 1!!
+				Cheese c = new Cheese(vl,1);
+				vl.setGoal(c);
+				goals.add(c);
+				set = true;
+			}
+			else if(traps.size() < amountTraps){
+				Trap t = new Trap(vl);
+				vl.setGoal(t);
+				traps.add(t);
+				set = true;
+			}
+			else if(!set && goals.size() < amountGoals){
+				//TODO cheese will be 4 always 1!!
+				Cheese c = new Cheese(vl,4);
+				vl.setGoal(c);
+				goals.add(c);
+				set = true;
+			}
+			vlines.add(vl);
+			set = false;
 		}
 		this.step = (vlines.get(0).getY2() - vlines.get(0).getY1())/this.MAX_HLINES;
 		this.start = vlines.get(0).getY1();
@@ -338,8 +368,15 @@ public class GameBoard {
 	 * @param delta
 	 */
 	public void update(float delta) {
-		for(Mouse m: mice) {
-			m.update(delta);
+		Iterator<Mouse> itr = mice.iterator();
+		while(itr.hasNext()) {
+			Mouse m = itr.next();
+			if(!m.isEnded()) {
+				m.update(delta);
+			}
+			else {
+				itr.remove();
+			}
 		}
 		Gdx.app.log("GameBoard", "update");
 	}
@@ -359,6 +396,16 @@ public class GameBoard {
 	public Vector2 unProject(int screenX, int screenY) {
 		Vector3 vec = cam.unproject(new Vector3(screenX,screenY,0));
 		return new Vector2(vec.x,vec.y);
+	}
+
+	public void pause() {
+		miceBackup = new ArrayList<Mouse>(mice);
+		mice = new ArrayList<Mouse>();
+		
+	}
+	
+	public void resume() {
+		mice = new ArrayList<Mouse>(miceBackup);
 	}
 	
 	

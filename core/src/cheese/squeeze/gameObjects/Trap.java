@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Trap implements Goal{
 
 	private Vector2 position;
+	private boolean snapped = false;
 	private Line l;
 	
 	/**
@@ -27,8 +28,14 @@ public class Trap implements Goal{
 		this.position = position;
 	}
 	
+	@Override
 	public void activate() {
+		snapped = true;
 		CSGame.currentState = GameState.GAMEOVER;
+	}
+
+	public boolean isSnapped() {
+		return snapped;
 	}
 
 }

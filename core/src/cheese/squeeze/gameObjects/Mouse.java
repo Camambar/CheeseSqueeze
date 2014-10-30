@@ -27,6 +27,7 @@ public class Mouse {
 	private Line nextLine;
 	private Vector2 goToOrientation;
 	private Vector2 nextGoToPoint;
+	private boolean ended = false;
 	
 	public Mouse(float speed, Line line){
 		float x = line.getX1();
@@ -70,7 +71,9 @@ public class Mouse {
 			//set the mouses new speed.
 			if (atIntersection()) {
 				//The mouse ran into something with a dead end.
+				((VerticalLine) currentLine).getGoal().activate();
 				velocity.set(Vector2.Zero);
+				ended = true;
 			} else {
 				updateVelocityDirection();
 			}
@@ -136,6 +139,10 @@ public class Mouse {
 
 	public Vector2 getPosition() {
 		return position;
+	}
+
+	public boolean isEnded() {
+		return ended ;
 	}
 	
 	//public void changeNextWayPoints(ArrayList<Vector2> newWaypoints) {

@@ -6,18 +6,31 @@ import com.badlogic.gdx.math.Vector2;
 
 public class VerticalLine extends Line {
 	
-   
+    private Goal goal;
     
     public VerticalLine(){
     	super();
     }
     
     
-    public VerticalLine(float y1,float y2, float x){
+    public VerticalLine(float y1,float y2, float x, Goal goal){
     	super(new Vector2(x,y1),new Vector2(x,y2));
+    	this.goal=goal;
     }
 	
-    @Override
+    public VerticalLine(int y1, float y2, float x) {
+    	super(new Vector2(x,y1),new Vector2(x,y2));
+	}
+    
+    public void setGoal(Goal g) {
+    	this.goal = g;
+    }
+
+    public Goal getGoal() {
+    	return this.goal;
+    }
+
+	@Override
 	public float getRelativePosition(Vector2 point) {
 		return Math.abs(point.y - this.getY1());
 	}

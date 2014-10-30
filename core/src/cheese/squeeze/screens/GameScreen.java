@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.Level;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
@@ -39,7 +40,7 @@ public class GameScreen implements Screen {
 
         int midPointY = (int) (gameHeight / 2);
         
-		board = new GameBoard(3, 2, 1, (int) gameWidth,(int) gameHeight);
+		board = new GameBoard(3, 2, 1, (int) gameWidth,(int) gameHeight,Level.LEVEL1);
 			
     	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();   
     	
@@ -89,6 +90,7 @@ public class GameScreen implements Screen {
 		switch (CSGame.currentState) {
 			case GAMEOVER:
 				MusicAccessor.play(AssetLoader.defeatSound);
+				board.pause();
 				renderer.render();
 				renderer.renderPopUp(gameOverPopUp);
 				pause();

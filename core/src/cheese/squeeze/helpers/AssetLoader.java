@@ -25,7 +25,7 @@ public class AssetLoader {
     
     public static GoalSprites goals;
 
-    public static Sprite trap,home;
+    public static Sprite trap,home,trapClosed;
 
 	public static TextureRegion mouse;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
@@ -120,6 +120,9 @@ public class AssetLoader {
         trap = new Sprite(new TextureRegion(atlas.findRegion("trap_open")));
         //trap.flip(false,true);
         trapCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));
+        
+        trapClosed = new Sprite(new TextureRegion(atlas.findRegion("trap_closed")));
+        trapClosed.flip(false, true);
         
         bg = new Sprite(new TextureRegion(atlas.findRegion("floor")));
     	
