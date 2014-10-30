@@ -52,6 +52,10 @@ public class AssetLoader {
 
 	public static Sprite completed;
 
+	public static Music defeatSound;
+
+	public static Music victorySound;
+
 	private final static int NBCHEESE = 5;
 
 
@@ -59,6 +63,8 @@ public class AssetLoader {
 		manager.load("graph/newparts.pack", TextureAtlas.class);
 		manager.load("data/Game Music.mp3",Music.class);
 		manager.load("data/Menu Music.mp3",Music.class);
+		manager.load("data/Defeat.mp3",Music.class);
+		manager.load("data/Victory.mp3",Music.class);
 		manager.load("data/button.mp3",Sound.class);
 		manager.load("data/chalk.mp3",Sound.class);
 	}
@@ -79,6 +85,8 @@ public class AssetLoader {
 		gameSound = manager.get("data/Game Music.mp3");
     	menuSound = manager.get("data/Menu Music.mp3");
     	buttonSound = manager.get("data/button.mp3");
+    	defeatSound = manager.get("data/Defeat.mp3");
+    	victorySound = manager.get("data/Victory.mp3");
     	chalk = manager.get("data/chalk.mp3");
     	AssetLoader.soundLoaded = true;
 	}

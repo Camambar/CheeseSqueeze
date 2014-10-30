@@ -88,15 +88,18 @@ public class GameScreen implements Screen {
     	System.out.println(CSGame.currentState);
 		switch (CSGame.currentState) {
 			case GAMEOVER:
+				MusicAccessor.play(AssetLoader.defeatSound);
 				renderer.render();
 				renderer.renderPopUp(gameOverPopUp);
 				pause();
 				break;
 			case PLAYING:
+				MusicAccessor.play(AssetLoader.gameSound);
 		    	board.update(delta);
 		    	renderer.render();
 		    	break;
 			case WON:
+				MusicAccessor.play(AssetLoader.victorySound);
 				renderer.render();
 				renderer.renderPopUp(completedPopUp);
 				pause();

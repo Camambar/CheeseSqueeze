@@ -11,7 +11,7 @@ public class MusicAccessor extends Accessor{
 	/**
 	 * Holds the music currently being played, if any.
 	 */
-	private static Music musicBeingPlayed;
+	private static Music musicBeingPlayed = null;
 
 	/**
 	 * The volume to be set on the music.
@@ -34,14 +34,16 @@ public class MusicAccessor extends Accessor{
 		if (!enabled)
 			return;
 
-		// stop any music being played
-		stop();
+		if(musicBeingPlayed == null || !musicBeingPlayed.equals(music)) {
+			// stop any music being played if it is other music
+			stop();
 
-		// start streaming the new music
-		musicBeingPlayed = music;
-		musicBeingPlayed.setVolume(volume);
-		musicBeingPlayed.setLooping(true);
-		musicBeingPlayed.play();
+			// start streaming the new music
+			musicBeingPlayed = music;
+			musicBeingPlayed.setVolume(volume);
+			musicBeingPlayed.setLooping(true);
+			musicBeingPlayed.play();
+		}
 	}
 
 	/**
