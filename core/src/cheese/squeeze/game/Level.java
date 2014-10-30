@@ -6,7 +6,7 @@ import cheese.squeeze.gameObjects.HorizontalLine;
 
 public enum Level {
 	
-	LEVEL1(2,1,3,0.1f,new HorizontalLine[]{}),LEVEL2(2,2,4,0.3f,new HorizontalLine[]{});
+	LEVEL1(2,1,3,0.4f,new HorizontalLine[]{}),LEVEL2(2,2,4,0.3f,new HorizontalLine[]{});
 	
 	private int amountTraps;
 	private int amountGoals;
@@ -21,5 +21,25 @@ public enum Level {
         this.hlines = hlines;
         this.speed = speed;
     }
+
+	public int getAmountTraps() {
+		return amountTraps;
+	}
+
+	public int getAmountGoals() {
+		return amountGoals;
+	}
+
+	public HorizontalLine[] getHlines() {
+		return hlines;
+	}
+
+	public int getAmountVlines() {
+		return amountVlines;
+	}
+
+	public float getSpeed() {
+		return speed;
+	}
 
 }

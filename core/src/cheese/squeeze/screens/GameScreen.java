@@ -40,7 +40,7 @@ public class GameScreen implements Screen {
 
         int midPointY = (int) (gameHeight / 2);
         
-		board = new GameBoard(3, 2, 1, (int) gameWidth,(int) gameHeight,Level.LEVEL1);
+		board = new GameBoard((int) gameWidth,(int) gameHeight,Level.LEVEL1);
 			
     	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();   
     	

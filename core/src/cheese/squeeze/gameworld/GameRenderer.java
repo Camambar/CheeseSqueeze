@@ -130,8 +130,7 @@ public class GameRenderer {
 			batcher.begin();
 			// enable transparency
 			batcher.enableBlending();
-			
-			batcher.draw(mouse,m.getX()-(mouseSize.x/2),m.getY()-(mouseSize.y/2),mouseSize.x,mouseSize.y);
+			batcher.draw(mouse, m.getX()-(mouseSize.x/2),m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation(), true);
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
 			//AssetLoader.mouseS.draw(batcher);
 			// End SpriteBatch

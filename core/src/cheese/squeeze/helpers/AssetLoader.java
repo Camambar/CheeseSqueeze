@@ -56,6 +56,8 @@ public class AssetLoader {
 
 	public static Music victorySound;
 
+	public static Vector2 trapClosedCenter;
+
 	private final static int NBCHEESE = 5;
 
 
@@ -122,6 +124,7 @@ public class AssetLoader {
         trapCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));
         
         trapClosed = new Sprite(new TextureRegion(atlas.findRegion("trap_closed")));
+        trapClosedCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));
         trapClosed.flip(false, true);
         
         bg = new Sprite(new TextureRegion(atlas.findRegion("floor")));

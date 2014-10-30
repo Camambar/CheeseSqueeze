@@ -24,7 +24,7 @@ public class SplashScreen implements Screen{
 	public SplashScreen(CSGame game) {
 		splashImage = new Image(AssetLoader.logo);
 		splashImage.setSize((Gdx.graphics.getWidth()/1.5f), (Gdx.graphics.getHeight()/1.5f));
-		splashImage.setPosition((Gdx.graphics.getWidth()/2)-splashImage.getWidth()/2, (Gdx.graphics.getHeight()/2)-splashImage.getHeight()/2);
+		splashImage.setPosition((Gdx.graphics.getWidth()/2)-splashImage.getWidth()/2, (Gdx.graphics.getHeight()/3));
 		
         this.game = game;
         stage = new Stage();
@@ -41,9 +41,9 @@ public class SplashScreen implements Screen{
         stage.draw();
         batch.begin();
         
-        AssetLoader.empty.draw(batch, 40, 225, 720, 30);
-        AssetLoader.full.draw(batch, 40, 225, AssetLoader.getProcess()*720, 30);
-        font.drawMultiLine(batch,(int)(AssetLoader.getProcess()*100)+"% loaded",400,247,0, BitmapFont.HAlignment.CENTER);
+        AssetLoader.empty.draw(batch, 20, Gdx.graphics.getHeight()/3,Gdx.graphics.getWidth()-40 , 30);
+        AssetLoader.full.draw(batch, 20, Gdx.graphics.getHeight()/3, AssetLoader.getProcess()*(Gdx.graphics.getWidth()-40), 30);
+        font.drawMultiLine(batch,(int)(AssetLoader.getProcess()*100)+"% loaded",Gdx.graphics.getWidth()/2,(Gdx.graphics.getHeight()/3)+22,0, BitmapFont.HAlignment.CENTER);
         
         batch.end();
         

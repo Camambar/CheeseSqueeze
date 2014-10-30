@@ -78,8 +78,10 @@ public class Mouse {
 				updateVelocityDirection();
 			}
 			//move the mouse.
-//			setPosition(getX() + velocity.x * delta, getY() + velocity.y * delta);
+			updateVelocityDirection();
+		//	setPosition(getX() + velocity.x * delta, getY() + velocity.y * delta);
 			setPosition(getX() + velocity.x * 1, getY() + velocity.y * 1);
+		System.out.println(this.rotation);
 		}		
 	}
 

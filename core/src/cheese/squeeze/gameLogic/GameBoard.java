@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector3;
 import cheese.squeeze.game.Level;
 import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
+import cheese.squeeze.gameObjects.Line;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
@@ -34,24 +35,25 @@ public class GameBoard {
 	private List<Vector2> startPositions;
 	private List<Mouse> mice;
 	private List<Mouse> miceBackup;
-	private static int MAX_HLINES = 20;
+	private static int MAX_HLINES = 15;
 	private float step;
 	private float start;
 	private float end;
+	private Level level;
+	private float multip;
 	
 	
 
-	public GameBoard(int amountVLines,int amountGoals,int amountTraps,float width, float height,Level l) {
-
+	public GameBoard(float width, float height,Level l) {
+		this.level = l;
 		this.width = width;
 		this.height = height;
-		
-		
+		this.multip = 1;
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true,width, height);
 		
 		//all the lines
-		makeVerticalLines(amountVLines,amountTraps,amountGoals);
+		makeVerticalLinesRandom();
 		gesturedLine = new HorizontalLine();
 		hlines = new ArrayList<HorizontalLine>();
 		
@@ -65,64 +67,38 @@ public class GameBoard {
 
 	}
 	
-	private void makeTrapsGoals(int amountTraps, int amountGoals) {
-		this.goals = new ArrayList<Cheese>();
-		this.traps = new ArrayList<Trap>();
-		boolean set = false;
-		for(VerticalLine vl : vlines) {
-			double rand = Math.random();
-			
-			if(goals.size() < amountGoals && rand <= 0.5){
-				//TODO cheese will be 4 always 1!!
-				goals.add(new Cheese(vl,4));
-				set = true;
-			}
-			else if(traps.size() < amountTraps){
-				traps.add(new Trap(vl));
-				set = true;
-			}
-			else if(!set && goals.size() < amountGoals){
-				//TODO cheese will be 4 always 1!!
-				goals.add(new Cheese(vl,4));
-				set = true;
-			}
-			set = false;
-			
-		}
-		
-	}
 
 	private void makeMice() {
 		mice = new ArrayList<Mouse>();
-		Mouse mouse = new Mouse(0.5f,vlines.get(0));
+		Mouse mouse = new Mouse(level.getSpeed()*multip,vlines.get(0));
 		mice.add(mouse);	
 	}
 
-	private void makeVerticalLines(int amountVLines,int amountTraps, int amountGoals) {
+	private void makeVerticalLinesRandom() {
 		this.goals = new ArrayList<Cheese>();
 		this.traps = new ArrayList<Trap>();
 		vlines = new ArrayList<VerticalLine>();
-		float totw = (width-20)/(amountVLines-1);
+		float totw = (width-20)/(level.getAmountVlines()-1);
 		boolean set = false;
-		for(int i=0;i<amountVLines;i++) {
+		for(int i=0;i<level.getAmountVlines();i++) {
 			VerticalLine vl = new VerticalLine(15,height-20,10+(totw*i));
 			
 			double rand = Math.random();
 			
-			if(goals.size() < amountGoals && rand <= 0.5){
+			if(goals.size() < level.getAmountGoals() && rand <= 0.5){
 				//TODO cheese will be 4 always 1!!
-				Cheese c = new Cheese(vl,1);
+				Cheese c = new Cheese(vl,4);
 				vl.setGoal(c);
 				goals.add(c);
 				set = true;
 			}
-			else if(traps.size() < amountTraps){
+			else if(traps.size() < level.getAmountTraps()){
 				Trap t = new Trap(vl);
 				vl.setGoal(t);
 				traps.add(t);
 				set = true;
 			}
-			else if(!set && goals.size() < amountGoals){
+			else if(!set && goals.size() < level.getAmountGoals()){
 				//TODO cheese will be 4 always 1!!
 				Cheese c = new Cheese(vl,4);
 				vl.setGoal(c);
@@ -368,6 +344,7 @@ public class GameBoard {
 	 * @param delta
 	 */
 	public void update(float delta) {
+		int counter = 0;
 		Iterator<Mouse> itr = mice.iterator();
 		while(itr.hasNext()) {
 			Mouse m = itr.next();
@@ -376,9 +353,19 @@ public class GameBoard {
 			}
 			else {
 				itr.remove();
+				counter++;
 			}
 		}
+		for(int i = 0; i< counter;i++) {
+			this.multip+= 0.3f;
+			mice.add(new Mouse(level.getSpeed()*this.multip,getRandomLine()));
+		}
 		Gdx.app.log("GameBoard", "update");
+	}
+	
+	private Line getRandomLine(){
+		double nb = Math.random() * vlines.size();
+		return vlines.get((int) nb);
 	}
 
 	public List<Mouse> getMice() {
