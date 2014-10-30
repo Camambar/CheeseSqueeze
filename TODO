@@ -7,8 +7,6 @@ IMPORTANT:
   
 - horizontale lijnen mogen enkel in het geldige gebied getekend worden,
   bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
-  
-- horizontale lijnen in TreeMap ipv List
 
 - testen op verschillende aspect ratios (grootte afbeeldingen enz)
 
