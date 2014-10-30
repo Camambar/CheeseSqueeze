@@ -85,33 +85,33 @@ public abstract class Line {
 		throw new UnsupportedOperationException();
 	}
 	
-	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {
-		Entry<Float, Line> nextLine = getNeighbourEntry(from, direction);
-		if (nextLine == null)
-			return null;
-		return this.getAbsolutePosition(nextLine.getKey());
-	}
-
 	@Override
 	public boolean equals(Object e) {
 		Line l = (Line) e;
 		return l.getPoint1().equals(getPoint1())&& l.getPoint2().equals(getPoint2());
 		
 	}
-
+	
+	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {
+		Entry<Float, Line> nextNeighbour = getNeighbourEntry(from, direction);
+		if (nextNeighbour == null)
+			return null;
+		return getAbsolutePosition(nextNeighbour.getKey());
+	}
+	
 	private Entry<Float, Line> getNeighbourEntry(Vector2 from, Vector2 direction) {
 		float relPos1 = getRelativePosition(from);
 		float relPos2 = getRelativePosition(from.cpy().add(direction));
 		Entry<Float, Line> nextLine = ((relPos2 - relPos1) >= 0) ? 
-				neighbours.ceilingEntry(relPos1) : neighbours.floorEntry(relPos1);
+				neighbours.higherEntry(relPos1) : neighbours.lowerEntry(relPos1);
 		return nextLine;
 	}
 	
 	public Line getNeighbour(Vector2 from, Vector2 direction) {
-		Entry<Float, Line> neighbourEntry = getNeighbourEntry(from, direction);
-		if (neighbourEntry == null)
+		Entry<Float, Line> nextNeighbour = getNeighbourEntry(from, direction);
+		if (nextNeighbour == null)
 			return null;
-		return neighbourEntry.getValue();
+		return nextNeighbour.getValue();
 	}
 
 	public Vector2 getEndPoint(Vector2 from, Vector2 direction) {

@@ -1,5 +1,7 @@
 package cheese.squeeze.gameObjects;
 
+import java.util.Map.Entry;
+
 import javax.naming.OperationNotSupportedException;
 
 import com.badlogic.gdx.math.Vector2;
@@ -56,4 +58,16 @@ public class HorizontalLine extends Line implements Cloneable{
 			neighbours.put(intersection, line);
 		}
 	}
+	
+//	@Override
+//	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {
+//		if (from.equals(getPoint2()))
+//			return getPoint1();
+//		return getPoint2();
+//	}
+//	
+//	@Override
+//	public Line getNeighbour(Vector2 from, Vector2 direction) {
+//		return neighbours.get(getRelativePosition(getNextIntersection(from, null)));
+//	}
 }

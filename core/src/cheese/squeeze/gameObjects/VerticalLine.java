@@ -1,5 +1,7 @@
 package cheese.squeeze.gameObjects;
 
+import java.util.Map.Entry;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class VerticalLine extends Line {
@@ -30,5 +32,28 @@ public class VerticalLine extends Line {
 		}
 	}
 
+//	@Override
+//	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {
+//		Entry<Float, Line> neighbourEntry = getNeighbourEntry(from);
+//		if (neighbourEntry == null)
+//			return null;
+//		return getAbsolutePosition(neighbourEntry.getKey());
+//	}
+//	
+//	private Entry<Float, Line> getNeighbourEntry(Vector2 from) {
+//		float relPos1 = getRelativePosition(from);
+//		float relPos2 = getRelativePosition(from.cpy().add(new Vector2(0,1)));
+//		Entry<Float, Line> nextLine = ((relPos2 - relPos1) >= 0) ? 
+//				neighbours.ceilingEntry(relPos1) : neighbours.floorEntry(relPos1);
+//		return nextLine;
+//	}
+//	
+//	@Override
+//	public Line getNeighbour(Vector2 from, Vector2 direction) {
+//		Entry<Float, Line> neighbourEntry = getNeighbourEntry(from);
+//		if (neighbourEntry == null)
+//			return null;
+//		return neighbourEntry.getValue();
+//	}
 
 }

@@ -9,13 +9,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
+//TODO: direction bijhouden, en veranderen als we aan een gotopoint belanden.
 public class Mouse {
 
 	private Vector2 position;
 	private Vector2 velocity;
 	
 	private float speed;
-	private float tolerance = 1;
+	private float tolerance = 0.05f;
 	
 	private Vector2 absolutePosition;
 
@@ -23,6 +24,8 @@ public class Mouse {
 	private Vector2 mouseNose = AssetLoader.mouseNose;
 	
 	private Line currentLine;
+	private Line nextLine;
+	private Vector2 goToOrientation;
 	private Vector2 nextGoToPoint;
 	
 	public Mouse(float speed, Line line){
@@ -34,6 +37,7 @@ public class Mouse {
 		//position = new Vector2(x-(mouseNose.x), y- (mouseNose.y));
 		
 		velocity = new Vector2(0, 0);
+		goToOrientation = new Vector2(0, 1);
 		updatePath();
 	}
 
@@ -46,12 +50,20 @@ public class Mouse {
 				setPosition(nextGoToPoint.x, nextGoToPoint.y);
 				//nextGoToPoint is yet to be determined
 				nextGoToPoint = null;
-				//calculate the next line the mouse would be on.
-				Line nextLine = currentLine.getNeighbour(getPosition(), velocity);
 				//This mouse is now on the new line. 
 				//If there is no next line, the mouse stays on this line.
 				currentLine = (nextLine != null) ? nextLine : currentLine;
-				updateVelocityDirection();
+				//nextLine is yet to be determined.
+				nextLine = null;
+				if (currentLine instanceof VerticalLine){
+					goToOrientation = new Vector2(0, 1);
+				} else if (currentLine instanceof HorizontalLine) {
+					if (getPosition().equals(currentLine.getPoint1()))
+						goToOrientation = currentLine.getPoint2().cpy().sub(currentLine.getPoint1());
+					else
+						goToOrientation = currentLine.getPoint1().cpy().sub(currentLine.getPoint2());
+				}
+				//updateVelocityDirection();
 				//pick a new destination
 				updatePath();
 			}
@@ -76,7 +88,8 @@ public class Mouse {
 	}
 	
 	public void updatePath() {
-		Vector2 nextIntersection = currentLine.getNextIntersection(getPosition(), velocity);
+		Vector2 nextIntersection = currentLine.getNextIntersection(getPosition(), goToOrientation);
+		nextLine = currentLine.getNeighbour(getPosition(), goToOrientation);
 		if (nextIntersection == null) {
 			nextGoToPoint = currentLine.getEndPoint(getPosition(), velocity);
 		} else {
@@ -85,7 +98,10 @@ public class Mouse {
 	}
 
 	private boolean atIntersection() {
-		return nextGoToPoint.x - getX() <= speed / tolerance * Gdx.graphics.getDeltaTime() && nextGoToPoint.y - getY() <= speed / tolerance * Gdx.graphics.getDeltaTime();
+		float dynTolerance = speed / tolerance * Gdx.graphics.getDeltaTime();
+		System.out.println("dyn tol: " + dynTolerance);
+		return Math.abs(nextGoToPoint.x - getX()) <= dynTolerance 
+				&& Math.abs(nextGoToPoint.y - getY()) <= dynTolerance;
 	}
 
 	private void setRotation(float f) {
