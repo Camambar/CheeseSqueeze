@@ -183,7 +183,7 @@ public class GameRenderer {
 			if(t.isSnapped()) {
 				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y-3,width/11,height/8);
 			}else {
-				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y+2,width/11,height/8);
+				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y-3,width/11,height/8);
 			}
 			
 			batcher.end();
