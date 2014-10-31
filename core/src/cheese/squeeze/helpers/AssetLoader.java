@@ -124,7 +124,7 @@ public class AssetLoader {
     	}
 
         trap = new Sprite(new TextureRegion(atlas.findRegion("trap_open")));
-        //trap.flip(false,true);
+        trap.flip(false,true);
         trapCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));
         
         trapClosed = new Sprite(new TextureRegion(atlas.findRegion("trap_closed")));
