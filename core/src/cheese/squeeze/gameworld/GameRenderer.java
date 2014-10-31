@@ -1,5 +1,7 @@
 package cheese.squeeze.gameworld;
 
+import java.util.ArrayList;
+
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.gameLogic.GameBoard;
@@ -89,6 +91,8 @@ public class GameRenderer {
 		
 		//Dynamic elements
 		
+		drawGuide();
+		
 		drawHorizontalLines();
 
 		drawGestureLine();
@@ -108,6 +112,8 @@ public class GameRenderer {
 
 		Gdx.app.log("GameRenderer", "rendered");
 	}
+
+
 
 	private void drawRedDot() {
 		if(board.getBeginPosition() != null) {
@@ -140,7 +146,7 @@ public class GameRenderer {
 
 	private void drawGestureLine() {
 		HorizontalLine line = board.getGesturedLine();
-		if(line.isdrawable()) {
+		if(line != null && line.isdrawable()) {
 
 			Gdx.gl.glEnable(GL20.GL_BLEND);
 			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -151,6 +157,22 @@ public class GameRenderer {
 			shapeRenderer.end();
 
 			Gdx.gl.glDisable(GL20.GL_BLEND);
+		}
+	}
+	
+	private void drawGuide() {
+
+		for(Float f: board.getYPositions()) {
+			
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+		shapeRenderer.begin(ShapeType.Line);
+		shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 0.1f));
+		shapeRenderer.line(board.getVLines().get(0).getX1(), f,board.getVLines().get(board.getVLines().size()-1).getX1(), f);
+		shapeRenderer.end();
+
+		Gdx.gl.glDisable(GL20.GL_BLEND);
 		}
 	}
 
