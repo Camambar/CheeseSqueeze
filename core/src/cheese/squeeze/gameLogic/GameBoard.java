@@ -1,8 +1,11 @@
 package cheese.squeeze.gameLogic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,7 +26,7 @@ public class GameBoard {
 
 	
 	private List<VerticalLine> vlines;
-	private List<HorizontalLine> hlines;
+	private TreeMap<Float,HorizontalLine> hlines;
 	private List<Cheese> goals;
 	private List<Trap> traps;
 	private OrthographicCamera cam;
@@ -55,7 +58,7 @@ public class GameBoard {
 		//all the lines
 		makeVerticalLinesRandom();
 		gesturedLine = new HorizontalLine();
-		hlines = new ArrayList<HorizontalLine>();
+		hlines = makeHlineMap();
 		
 		//mouse stuff
 		makeMice();
@@ -65,6 +68,15 @@ public class GameBoard {
 
 		
 
+	}
+	
+	private TreeMap<Float,HorizontalLine>makeHlineMap() {
+		TreeMap<Float,HorizontalLine> map = new TreeMap<Float,HorizontalLine>();
+		int amntSteps = (int) ((end-start)/step);
+		for(int i = 1; i < amntSteps;i++){
+			map.put(start + (i*step), null);
+		}
+		return map;
 	}
 	
 
@@ -108,7 +120,7 @@ public class GameBoard {
 			vlines.add(vl);
 			set = false;
 		}
-		this.step = (vlines.get(0).getY2() - vlines.get(0).getY1())/this.MAX_HLINES;
+		this.step = (vlines.get(0).getY2() - vlines.get(0).getY1())/(this.MAX_HLINES+1);
 		this.start = vlines.get(0).getY1();
 		this.end = vlines.get(0).getY2();
 		startPositions();
@@ -119,10 +131,9 @@ public class GameBoard {
 	}
 	
 	public void addHLine(HorizontalLine line) {
-		if(!hlines.contains(line)) {
-			//TODO overwrite equals in line
+		if(!isOcupiedPosition(line.getY1())) {
 			SoundAccessor.play(AssetLoader.chalk);
-			hlines.add(line);
+			hlines.put(line.getY1(), line);
 			for (VerticalLine l : vlines) {
 				if (l.getX1() == line.getX1()) {
 					l.setNeighbour(line);
@@ -139,8 +150,19 @@ public class GameBoard {
 		}
 	}
 
-	public List<HorizontalLine> getHLines() {
+	public TreeMap<Float,HorizontalLine> getHLinesMap() {
 		return hlines;
+	}
+	
+	public ArrayList<HorizontalLine> getHLines() {
+		ArrayList<HorizontalLine> list = new ArrayList<HorizontalLine>();
+		for (Entry<Float,HorizontalLine> e : hlines.entrySet()) {
+			HorizontalLine l = e.getValue();
+			if(l != null) {
+				list.add(l);
+			}
+		}
+		return list;
 	}
 	
 	/**
@@ -210,29 +232,12 @@ public class GameBoard {
 		}
 		
 		float multiple = multipleOfPosition(l.getY1());
-		if(hasElementWithSamenYCoordinate(multiple)) {
-			//TODO hack
-			//If there is a point with an other y coord on the other side 
-			//l is set to y coord 0,0 in the same row
-			l.setPoint1(new Vector2(vlLeft.getX1(),-10));
-			l.setPoint2(new Vector2(vlRight.getX2(),-10));
-			//l.setPoint1(null);
-			//l.setPoint2(null);
-		}
-		else {
-			l.setPoint1(new Vector2(vlLeft.getX1(),multiple));
-			l.setPoint2(new Vector2(vlRight.getX2(),multiple));
-		}
+		//l.setPoint1(new Vector2(vlLeft.getX1(),l.getY1()));
+		//l.setPoint1(new Vector2(vlLeft.getX1(),l.getY1()));
+		l.setPoint1(new Vector2(vlLeft.getX1(),multiple));
+		l.setPoint2(new Vector2(vlRight.getX2(),multiple));
 	}
 	
-	private boolean hasElementWithSamenYCoordinate(float ycoord) {
-		for(HorizontalLine l : hlines) {
-			if(ycoord < l.getY1()+step && ycoord > l.getY1()-step){
-				return true;
-			}
-		}
-		return false;
-	}
 
 	private float multipleOfPosition(float y1) {
 		//TODO make sure the resutl is not larger then the longest y position.
@@ -265,21 +270,43 @@ public class GameBoard {
 	public void setGesturedLine(HorizontalLine gesturedLine) {
 		Vector3 point1 = cam.unproject(new Vector3(gesturedLine.getX1(),gesturedLine.getY1(),0));
 		Vector3 point2 = cam.unproject(new Vector3(gesturedLine.getX2(),gesturedLine.getY2(),0));
-		gesturedLine.setPoint1(new Vector2(point1.x,point1.y));
-		gesturedLine.setPoint2(new Vector2(point2.x,point2.y));
+		gesturedLine.setPoint1(new Vector2(point1.x,(point1.y)));
+		gesturedLine.setPoint2(new Vector2(point2.x,(point2.y)));
 		fitHorizontalLineBetweenVertivalLines(gesturedLine);
-		this.gesturedLine = gesturedLine;
+		if(!isOcupiedPosition(gesturedLine.getY1())) {
+			this.gesturedLine = gesturedLine;
+		}
+		else {
+			this.gesturedLine = null;
+		}
+	}
+	
+	public ArrayList<Float> getYPositions() {
+		return new ArrayList<Float>(hlines.keySet());
 	}
 	
 	 public void setGesturedLineDragged(HorizontalLine gesturedLine) {
 	        Vector3 point1 = cam.unproject(new Vector3(gesturedLine.getX1(),gesturedLine.getY1(),0));
 	        Vector3 point2 = cam.unproject(new Vector3(gesturedLine.getX2(),gesturedLine.getY2(),0));
-	        gesturedLine.setPoint1(new Vector2(gesturedLine.getX1(),point1.y));
-	        gesturedLine.setPoint2(new Vector2(gesturedLine.getX2(),point2.y));
+	        gesturedLine.setPoint1(new Vector2(gesturedLine.getX1(),(point1.y)));
+	        gesturedLine.setPoint2(new Vector2(gesturedLine.getX2(),(point2.y)));
 	        fitHorizontalLineBetweenVertivalLines(gesturedLine);
-	        this.gesturedLine = gesturedLine;
+			if(!isOcupiedPosition(gesturedLine.getY1())) {
+				this.gesturedLine = gesturedLine;
+			}
+			else {
+				this.gesturedLine = null;
+			}
 	    }
 	
+	private boolean isOcupiedPosition(float y) {
+		if(hlines.get(y) == null) {
+			System.out.println("false");
+			return false;
+		}
+		System.out.println("true");
+		return true;
+	}
 
 	public Vector2 getBeginPosition() {
 		return beginPosition;
