@@ -65,8 +65,8 @@ public class AssetLoader {
 		manager.load("graph/newparts.pack", TextureAtlas.class);
 		manager.load("data/Game Music.mp3",Music.class);
 		manager.load("data/Menu Music.mp3",Music.class);
-		manager.load("data/Defeat.mp3",Music.class);
-		manager.load("data/Victory.mp3",Music.class);
+		manager.load("data/Defeat.wav",Music.class);
+		manager.load("data/Victory.wav",Music.class);
 		manager.load("data/button.mp3",Sound.class);
 		manager.load("data/chalk.mp3",Sound.class);
 		manager.load("data/death.mp3",Sound.class);

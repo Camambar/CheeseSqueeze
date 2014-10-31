@@ -32,16 +32,12 @@ public class MusicAccessor extends Accessor{
 	 * If there is already a music being played it is stopped automatically.
 	 */
 	public static void play(Music music) {
-		System.out.println("WTF");
 		// check if the music is enabled
 		if (!enabled){
-			System.out.println("NO");
 			return;
 		}
 
-		else if(musicBeingPlayed == null || !musicBeingPlayed.equals(music) || !musicBeingPlayed.isPlaying()) {
-			System.out.println("YES");
-			
+		else if(musicBeingPlayed == null || !musicBeingPlayed.equals(music) || !musicBeingPlayed.isPlaying()) {		
 			// stop any music being played if it is other music
 			stop();
 
@@ -89,7 +85,6 @@ public class MusicAccessor extends Accessor{
 		MusicAccessor.enabled = enabled;
 		if(enabled) {
 			play(musicBeingPlayed);
-			System.out.println("PLAY");
 		}
 		
 		// if the music is being deactivated, stop any music being played

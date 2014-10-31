@@ -38,7 +38,7 @@ public class GameRenderer {
 	private boolean updateStaticElements;
 	private TextureRegion bg,trap,mouse,failed,trapClosed;
 	private GoalSprites goals;
-	private Vector2 mouseSize= new Vector2(10,10);
+	private Vector2 mouseSize= new Vector2(9,7);
 	private Sprite completed;
 
 
@@ -181,9 +181,9 @@ public class GameRenderer {
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
 			if(t.isSnapped()) {
-				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y+2,width/10,height/10);
+				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y-3,width/11,height/8);
 			}else {
-				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y+2,width/10,height/10);
+				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y+2,width/11,height/8);
 			}
 			
 			batcher.end();
