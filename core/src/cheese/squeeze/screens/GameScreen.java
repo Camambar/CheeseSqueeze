@@ -59,7 +59,7 @@ public class GameScreen implements Screen {
 				dispose();
 				game.setScreen(new GameScreen(game));
 			}
-		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,gameHeight/2,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
+		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
     	
     	completedPopUp = new PopUpButton(new SimpleButtonListener() {
 			@Override
@@ -68,7 +68,7 @@ public class GameScreen implements Screen {
 				dispose();
 				game.setScreen(new GameScreen(game));
 			}
-		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,gameHeight/2,AssetLoader.completed,AssetLoader.completed,GameState.WON);
+		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.completed,AssetLoader.completed,GameState.WON);
     	
 
     	

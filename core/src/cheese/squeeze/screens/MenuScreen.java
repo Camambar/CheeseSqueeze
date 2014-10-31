@@ -56,6 +56,7 @@ public class MenuScreen implements Screen{
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				SoundAccessor.setEnabled(!((SwitchButton)btn).getVal());
+				SoundAccessor.play(AssetLoader.buttonSound);
 			}
 		},AssetLoader.sound_on.getX(),AssetLoader.sound_on.getY(),
         		AssetLoader.sound_on.getWidth()*AssetLoader.sound_on.getScaleX(),AssetLoader.sound_on.getHeight()*AssetLoader.sound_on.getScaleY(),AssetLoader.sound_on,AssetLoader.sound_off,soundOn,"sound");
