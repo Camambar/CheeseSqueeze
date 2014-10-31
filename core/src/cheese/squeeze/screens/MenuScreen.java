@@ -41,14 +41,16 @@ public class MenuScreen implements Screen{
 
 	private void addButtons(final CSGame game) {
 		menuButtons = new ArrayList<SimpleButton>();
+		
 		SimpleButton playButton = new SimpleButton(new SimpleButtonListener() {
-    		
+			
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				game.setScreen(new GameScreen(game));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
+		
 		SwitchButton soundButton = new SwitchButton(new SimpleButtonListener() {
     		
 			@Override
@@ -57,11 +59,13 @@ public class MenuScreen implements Screen{
 			}
 		},AssetLoader.sound_on.getX(),AssetLoader.sound_on.getY(),
         		AssetLoader.sound_on.getWidth()*AssetLoader.sound_on.getScaleX(),AssetLoader.sound_on.getHeight()*AssetLoader.sound_on.getScaleY(),AssetLoader.sound_on,AssetLoader.sound_off,soundOn,"sound");
+		
 		SwitchButton musicButton = new SwitchButton(new SimpleButtonListener() {
-    		
+			
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				MusicAccessor.setEnabled(!((SwitchButton)btn).getVal());
+				MusicAccessor.play(AssetLoader.menuSound);
 			}
 		},AssetLoader.music_on.getX(),AssetLoader.music_on.getY(),
         		AssetLoader.music_on.getWidth()*AssetLoader.music_on.getScaleX(),AssetLoader.music_on.getHeight()*AssetLoader.music_on.getScaleY(),AssetLoader.music_on,AssetLoader.music_off,musicOn,"music");

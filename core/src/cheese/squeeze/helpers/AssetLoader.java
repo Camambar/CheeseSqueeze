@@ -38,7 +38,7 @@ public class AssetLoader {
 	
 	public static Texture texture;
 	
-	public static Sound chalk,buttonSound;
+	public static Sound chalk,buttonSound,death,pop;
 	
 	public static Music menuSound,gameSound;
 
@@ -69,6 +69,8 @@ public class AssetLoader {
 		manager.load("data/Victory.mp3",Music.class);
 		manager.load("data/button.mp3",Sound.class);
 		manager.load("data/chalk.mp3",Sound.class);
+		manager.load("data/death.mp3",Sound.class);
+		manager.load("data/pop.mp3",Sound.class);
 	}
 	
 	public static void lastLoadingStep() {
@@ -90,6 +92,8 @@ public class AssetLoader {
     	defeatSound = manager.get("data/Defeat.mp3");
     	victorySound = manager.get("data/Victory.mp3");
     	chalk = manager.get("data/chalk.mp3");
+    	pop = manager.get("data/pop.mp3");
+    	death = manager.get("data/death.mp3");
     	AssetLoader.soundLoaded = true;
 	}
  
@@ -248,7 +252,7 @@ public class AssetLoader {
     
     
     
-    public static Sprite musicSwithc() {
+    public static Sprite musicSwitch() {
     	if(musicOn == true) {
     		musicOn = false;
     		gameSound.dispose();
