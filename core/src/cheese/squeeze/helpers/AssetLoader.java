@@ -89,8 +89,8 @@ public class AssetLoader {
 		gameSound = manager.get("data/Game Music.mp3");
     	menuSound = manager.get("data/Menu Music.mp3");
     	buttonSound = manager.get("data/button.mp3");
-    	defeatSound = manager.get("data/Defeat.mp3");
-    	victorySound = manager.get("data/Victory.mp3");
+    	defeatSound = manager.get("data/Defeat.wav");
+    	victorySound = manager.get("data/Victory.wav");
     	chalk = manager.get("data/chalk.mp3");
     	pop = manager.get("data/pop.mp3");
     	death = manager.get("data/death.mp3");

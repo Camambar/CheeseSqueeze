@@ -2,6 +2,9 @@ package cheese.squeeze.gameObjects;
 
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.tweenAccessors.MusicAccessor;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -35,6 +38,7 @@ public class Cheese implements Goal{
 	
 	@Override
 	public void activate() {
+		SoundAccessor.play(AssetLoader.pop);
 		if(tickets>1) {
 			tickets--;
 		}

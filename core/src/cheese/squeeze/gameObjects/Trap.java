@@ -2,6 +2,9 @@ package cheese.squeeze.gameObjects;
 
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.tweenAccessors.MusicAccessor;
+import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -31,6 +34,7 @@ public class Trap implements Goal{
 	@Override
 	public void activate() {
 		snapped = true;
+		SoundAccessor.play(AssetLoader.death);
 		CSGame.currentState = GameState.GAMEOVER;
 	}
 
