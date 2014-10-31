@@ -16,7 +16,7 @@ public class Mouse {
 	private Vector2 velocity;
 	
 	private float speed;
-	private float tolerance = 0.05f;
+	private float tolerance = 0.02f;
 	
 	private Vector2 absolutePosition;
 
