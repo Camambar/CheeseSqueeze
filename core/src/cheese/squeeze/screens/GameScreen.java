@@ -27,20 +27,21 @@ public class GameScreen implements Screen {
 	//private SimpleButton completedPopUp;
 	private SimpleButton gameOverPopUp;
 	private SimpleButton completedPopUp;
+	private Level currentLevel;
 	
-    public GameScreen(final CSGame game) {
+    public GameScreen(final CSGame game,Level l) {
         Gdx.app.log("GameScreen", "Attached");
         CSGame.currentState = GameState.PLAYING;
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-        
+        currentLevel = l;
         float gameWidth = 136;
         float gameHeight = screenHeight / (screenWidth / gameWidth);
 
         int midPointY = (int) (gameHeight / 2);
         
-		board = new GameBoard((int) gameWidth,(int) gameHeight,Level.LEVEL1);
+		board = new GameBoard((int) gameWidth,(int) gameHeight,currentLevel);
 			
     	ArrayList<SimpleButton> buttons = new ArrayList<SimpleButton>();   
     	
@@ -57,7 +58,7 @@ public class GameScreen implements Screen {
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO Current level select 
 				dispose();
-				game.setScreen(new GameScreen(game));
+				game.setScreen(new GameScreen(game,currentLevel));
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
     	
@@ -66,7 +67,10 @@ public class GameScreen implements Screen {
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO next level select
 				dispose();
-				game.setScreen(new GameScreen(game));
+				if(currentLevel.getNextLevel()!=null) {
+					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
+				}
+			
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.completed,AssetLoader.completed,GameState.WON);
     	

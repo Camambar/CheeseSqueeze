@@ -41,6 +41,13 @@ public class Mouse {
 		goToOrientation = new Vector2(0, 1);
 		updatePath();
 	}
+	
+	public boolean isOnHorizontalLine() {
+		if(currentLine instanceof HorizontalLine) {
+			return true;
+		}
+		return false;
+	}
 
 	public void update(float delta) {
 		System.out.println("nextGoToPoint is (" + nextGoToPoint.x + ", " + nextGoToPoint.y + ").");

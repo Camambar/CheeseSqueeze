@@ -145,7 +145,10 @@ public class GameBoard {
 				}
 			}
 			for(Mouse m : mice) {
-				m.updatePath();
+				if(!m.isOnHorizontalLine()) {
+					m.updatePath();
+				}
+				
 			}
 		}
 	}
