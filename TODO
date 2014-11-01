@@ -10,9 +10,16 @@ H  - bug met het tekenen van horizontale lijnen (afrondngsfout?)
 H  - horizontale lijnen mogen enkel in het geldige gebied getekend worden,
      bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
      
+H  - bij meer als 3 verticale lijnen is het niet mogelijk om horizontale lijnen op dezelfde hoogte te zetten, 
+     ook als zijn ze niet naburig.  
+
 M  - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
 M  - 6 eerste levels instellen (zie facebook voor files)
+
+M  - eerste muis mag niet beginnen waar de kaas is, en muizen mogen niet 2x na elkaar bij dezelfde verticale lijn starten
+
+
 
 Music & Visual Bugs:
 
