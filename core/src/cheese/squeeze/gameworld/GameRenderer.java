@@ -203,9 +203,9 @@ public class GameRenderer {
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
 			if(t.isSnapped()) {
-				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y-3,width/11,height/8);
+				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/8);
 			}else {
-				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), t.getPosition().y-3,width/11,height/8);
+				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/8);
 			}
 			
 			batcher.end();
