@@ -40,7 +40,7 @@ public class GameRenderer {
 	private boolean updateStaticElements;
 	private TextureRegion bg,trap,mouse,failed,trapClosed;
 	private GoalSprites goals;
-	private Vector2 mouseSize= new Vector2(9,7);
+	private Vector2 mouseSize= new Vector2(9,8);
 	private Sprite completed;
 
 
