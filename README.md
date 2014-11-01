@@ -8,14 +8,10 @@
 3.	Make sure you have a working copy of git and issue these commands:
 	*	cd /path/to/your/CheeseSqueeze/folder
 	*	git init
-	*	git remote add origin https://github.com/BartOutOfTheBox/CheeseSqueeze.git
+	*	git remote add origin https://github.com/Camambar/CheeseSqueeze.git
 	*	git fetch
 	*	git checkout -t -f origin/master
 	*	git pull
-	*	
-	Extra commando's om origin/git te verwijderen:
-	*	git remote rm origin
-	* 	rm -rf .git
 4.	Fire up your copy of eclipse (https://www.eclipse.org/downloads/)
 	*	Make sure it has the egit plugin (standard included in the latest eclipse versions)
 	*	open eclipse:
