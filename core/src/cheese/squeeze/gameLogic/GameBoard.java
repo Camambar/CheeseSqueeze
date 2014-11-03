@@ -434,7 +434,7 @@ public class GameBoard {
 		}
 		
 		for(int i = 0; i< counter;i++) {
-			this.multip= currentMouse * multip;
+			//this.multip= currentMouse * multip;
 			if(currentMouse + i > level.getMouseLine().length){
 				if(mice.size() == 0) {
 					CSGame.currentState = GameState.GAMEOVER;
