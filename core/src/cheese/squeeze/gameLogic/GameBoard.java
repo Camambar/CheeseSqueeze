@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import cheese.squeeze.game.CSGame;
+import cheese.squeeze.game.CSGame.GameState;
 import cheese.squeeze.game.Level;
 import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
@@ -44,6 +46,7 @@ public class GameBoard {
 	private float end;
 	private Level level;
 	private float multip;
+	private int currentMouse;
 	
 	
 
@@ -51,10 +54,10 @@ public class GameBoard {
 		this.level = l;
 		this.width = width;
 		this.height = height;
-		this.multip = 1;
 		cam = new OrthographicCamera();
 		cam.setToOrtho(true,width, height);
-		
+		this.multip = l.getMultip();
+		currentMouse = 0;
 		//all the lines
 		if(l.isRandomLines()){
 			makeVerticalLinesRandom();
@@ -68,6 +71,8 @@ public class GameBoard {
 		
 		//mouse stuff
 		makeMice();
+		
+		multip = l.getMultip();
 		
 		//trap stuff goal stuff
 		//makeTrapsGoals(amountTraps,amountGoals);
@@ -90,8 +95,11 @@ public class GameBoard {
 
 	private void makeMice() {
 		mice = new ArrayList<Mouse>();
-		Mouse mouse = new Mouse(level.getSpeed()*multip,vlines.get(0));
-		mice.add(mouse);	
+		for (currentMouse=0 ;currentMouse < level.getNbMouse();currentMouse++) {
+			Mouse mouse = new Mouse(level.getSpeed()*multip,vlines.get(level.getMouseLine()[currentMouse]-1));
+			mice.add(mouse);
+		}
+
 	}
 	
 	private void makeVerticalLines() {
@@ -104,14 +112,17 @@ public class GameBoard {
 		for(VerticalLine vl : level.getVlines()) {
 			vl.setPoint1(new Vector2(10+(totw*i),15));
 			vl.setPoint2(new Vector2(10+(totw*i),height-20));
+			VerticalLine nline = vl.clone();
 			
 			if(vl.getGoal() instanceof Trap) {
-				traps.add((Trap) vl.getGoal());
+				nline.setGoal(vl.getGoal().clone());
+				traps.add((Trap) nline.getGoal());
 			}
 			else {
-				goals.add((Cheese) vl.getGoal());
+				nline.setGoal(vl.getGoal().clone());
+				goals.add((Cheese) nline.getGoal());
 			}
-			vlines.add(vl);
+			vlines.add(nline);
 			i++;
 		}
 		this.step = (vlines.get(0).getY2() - vlines.get(0).getY1())/(this.MAX_HLINES+1);
@@ -417,12 +428,25 @@ public class GameBoard {
 			}
 			else {
 				itr.remove();
+				this.currentMouse+=1;
 				counter++;
 			}
 		}
+		
 		for(int i = 0; i< counter;i++) {
 			this.multip+= 0.3f;
-			mice.add(new Mouse(level.getSpeed()*this.multip,getRandomLine()));
+			if(currentMouse + i > level.getMouseLine().length){
+				if(mice.size() == 0) {
+					CSGame.currentState = GameState.GAMEOVER;
+				}
+				//else if() {
+					// maar 1 muis toevoegen ipv counter aantal
+				//}
+			}
+			else {
+				mice.add(new Mouse(level.getSpeed()*this.multip,vlines.get(level.getMouseLine()[currentMouse-1]-1)));
+			}
+			
 		}
 		Gdx.app.log("GameBoard", "update");
 	}
@@ -465,6 +489,11 @@ public class GameBoard {
 	
 	public void resume() {
 		mice = new ArrayList<Mouse>(miceBackup);
+	}
+	
+	public void dispose() {
+		this.currentMouse = 0;
+		this.hlines = null;
 	}
 	
 	

@@ -60,6 +60,10 @@ public class Cheese implements Goal{
 		this.setPosition(l.getPoint2());
 		this.l = l;
 	}
+	
+	public Cheese clone() {
+		return new Cheese(this.l,this.tickets);
+	}
 
 
 

@@ -14,5 +14,7 @@ public interface Goal {
 	public Line getLine();
 
 	public void setLine(Line l);
+
+	public Goal clone();
 	
 }

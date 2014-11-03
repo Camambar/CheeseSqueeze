@@ -56,6 +56,12 @@ public class VerticalLine extends Line {
 		this.goal.setPosition(p2);
 		super.setPoint2(p2);
 	}
+	
+	@Override
+	
+	public VerticalLine clone() {
+		return new VerticalLine(this.getY1(),this.getY2(),this.getX1(),this.goal.clone());
+	}
 
 //	@Override
 //	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {

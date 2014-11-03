@@ -53,5 +53,9 @@ public class Trap implements Goal{
 		this.setPosition(l.getPoint2());
 		this.l = l;
 	}
+	
+	public Trap clone() {
+		return new Trap(l);
+	}
 
 }

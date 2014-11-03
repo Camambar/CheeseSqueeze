@@ -8,11 +8,13 @@ import cheese.squeeze.gameObjects.VerticalLine;
 
 public enum Level {
 	
-	LEVEL2(4,1,5,0.5f,new HorizontalLine[]{},2), 
+	LEVEL2(0.4f,new HorizontalLine[]{}
+	,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(2)),new VerticalLine(new Trap())}
+	,new int[]{2,1,2},2), 
 	
 	LEVEL1(0.4f,new HorizontalLine[]{}
-			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(1)),new VerticalLine(new Trap())}
-			,1,LEVEL2);
+			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(2)),new VerticalLine(new Trap())}
+			,new int[]{2,1,2},1,LEVEL2);
 	
 	private int amountTraps;
 	private int amountGoals;
@@ -23,9 +25,11 @@ public enum Level {
 	private int nbMouse;
 	private boolean randomLines = true;
 	private VerticalLine[] vlines;
+	private int[] mouseOnLine;
+	private float multipl = 1; //TODO can change
 	
 	
-	Level(float speed, HorizontalLine[] hlines,VerticalLine[] vlines, int nbMouse) {
+	Level(float speed, HorizontalLine[] hlines,VerticalLine[] vlines, int[] mouseOnLine,int nbMouse) {
         this.amountVlines = vlines.length;
         this.hlines = hlines;
         this.speed = speed;
@@ -33,11 +37,11 @@ public enum Level {
         this.nbMouse = nbMouse;
         this.randomLines = false;
         this.vlines = vlines;
-   
+        this.mouseOnLine = mouseOnLine;
 	}
 	
 
-	Level(float speed, HorizontalLine[] hlines,VerticalLine[] vlines, int nbMouse,Level nextLevel) {
+	Level(float speed, HorizontalLine[] hlines,VerticalLine[] vlines,int[] mouseOnLine, int nbMouse,Level nextLevel) {
         this.amountVlines = vlines.length;
         this.hlines = hlines;
         this.speed = speed;
@@ -46,6 +50,7 @@ public enum Level {
         this.randomLines = false;
         this.vlines = vlines;
         this.nextLevel = nextLevel;
+        this.mouseOnLine = mouseOnLine;
 	}
 	
 	Level(int nbTraps,int nbGoals,int nbVlines,float speed, HorizontalLine[] hlines, int nbMouse) {
@@ -102,6 +107,16 @@ public enum Level {
 
 	public Level getNextLevel() {
 		return nextLevel;
+	}
+
+
+	public int[] getMouseLine() {
+		return mouseOnLine;
+	}
+
+
+	public float getMultip() {
+		return multipl;
 	}
 	
 }
