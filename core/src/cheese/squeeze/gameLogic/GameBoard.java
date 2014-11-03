@@ -56,7 +56,13 @@ public class GameBoard {
 		cam.setToOrtho(true,width, height);
 		
 		//all the lines
-		makeVerticalLinesRandom();
+		if(l.isRandomLines()){
+			makeVerticalLinesRandom();
+		}
+		else {
+			makeVerticalLines();
+		}
+		
 		gesturedLine = new HorizontalLine();
 		hlines = makeHlineMap();
 		
@@ -70,6 +76,8 @@ public class GameBoard {
 
 	}
 	
+
+
 	private TreeMap<Float,HorizontalLine>makeHlineMap() {
 		TreeMap<Float,HorizontalLine> map = new TreeMap<Float,HorizontalLine>();
 		int amntSteps = (int) ((end-start)/step);
@@ -84,6 +92,32 @@ public class GameBoard {
 		mice = new ArrayList<Mouse>();
 		Mouse mouse = new Mouse(level.getSpeed()*multip,vlines.get(0));
 		mice.add(mouse);	
+	}
+	
+	private void makeVerticalLines() {
+		this.goals = new ArrayList<Cheese>();
+		this.traps = new ArrayList<Trap>();
+		vlines = new ArrayList<VerticalLine>();
+		
+		float totw = (width-20)/(level.getAmountVlines()-1);
+		int i = 0;
+		for(VerticalLine vl : level.getVlines()) {
+			vl.setPoint1(new Vector2(10+(totw*i),15));
+			vl.setPoint2(new Vector2(10+(totw*i),height-20));
+			
+			if(vl.getGoal() instanceof Trap) {
+				traps.add((Trap) vl.getGoal());
+			}
+			else {
+				goals.add((Cheese) vl.getGoal());
+			}
+			vlines.add(vl);
+			i++;
+		}
+		this.step = (vlines.get(0).getY2() - vlines.get(0).getY1())/(this.MAX_HLINES+1);
+		this.start = vlines.get(0).getY1();
+		this.end = vlines.get(0).getY2();
+		startPositions();
 	}
 
 	private void makeVerticalLinesRandom() {

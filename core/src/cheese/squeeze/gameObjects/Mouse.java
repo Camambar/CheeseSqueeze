@@ -93,10 +93,15 @@ public class Mouse {
 	}
 
 	private void updateVelocityDirection() {
-		float angle = (float) Math.atan2(nextGoToPoint.y - getY(), nextGoToPoint.x - getX());
-		velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
-		//set the mouses angle.
-		setRotation(angle * MathUtils.radiansToDegrees);
+		if(!ended) {
+			float angle = (float) Math.atan2(nextGoToPoint.y - getY(), nextGoToPoint.x - getX());
+			velocity.set((float) Math.cos(angle) * speed, (float) Math.sin(angle) * speed);
+			//set the mouses angle.
+			setRotation(angle * MathUtils.radiansToDegrees);
+		}
+		else {
+			setRotation(90);
+		}
 	}
 	
 	public void updatePath() {

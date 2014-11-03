@@ -187,17 +187,20 @@ public class GameRenderer {
 	private void drawGoals() {
 		// TODO Auto-generated method stub
 		for(Cheese g: board.getGoals()) {
-			batcher.begin();
-			batcher.enableBlending();
-			// 2* 10 rekening houdend met die schaal : width/10
-			
-			TextureRegion kak = (TextureRegion) goals.getGoal(g.getTickets());
-			batcher.draw(kak,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/10);
-			batcher.end();
+			if(g.getTickets() > 0) {
+				batcher.begin();
+				batcher.enableBlending();
+				// 2* 10 rekening houdend met die schaal : width/10
+				
+	 			TextureRegion kak = (TextureRegion) goals.getGoal(g.getTickets());
+				batcher.draw(kak,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/10);
+				batcher.end();
+			}
 		}
 	}
 	
 	private void drawTraps() {
+		ArrayList<Trap> ta = (ArrayList<Trap>) board.getTraps();
 		for(Trap t: board.getTraps()) {
 			batcher.begin();
 			batcher.enableBlending();

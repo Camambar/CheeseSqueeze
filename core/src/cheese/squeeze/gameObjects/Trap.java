@@ -23,6 +23,9 @@ public class Trap implements Goal{
 		this.l = l;
 	}
 
+	public Trap() {
+	}
+
 	public Vector2 getPosition() {
 		return position;
 	}
@@ -40,6 +43,15 @@ public class Trap implements Goal{
 
 	public boolean isSnapped() {
 		return snapped;
+	}
+	
+	public Line getLine() {
+		return l;
+	}
+
+	public void setLine(Line l) {
+		this.setPosition(l.getPoint2());
+		this.l = l;
 	}
 
 }

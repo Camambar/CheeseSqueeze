@@ -22,7 +22,13 @@ public class VerticalLine extends Line {
     	super(new Vector2(x,y1),new Vector2(x,y2));
 	}
     
-    public void setGoal(Goal g) {
+    public VerticalLine(Goal goal) {
+		this.goal = goal;
+		goal.setLine(this);
+	}
+
+
+	public void setGoal(Goal g) {
     	this.goal = g;
     }
 
@@ -43,6 +49,12 @@ public class VerticalLine extends Line {
 			float intersection = getRelativePosition(line.getPoint1());
 			neighbours.put(intersection, line);
 		}
+	}
+	
+	@Override
+	public void setPoint2(Vector2 p2) {
+		this.goal.setPosition(p2);
+		super.setPoint2(p2);
 	}
 
 //	@Override

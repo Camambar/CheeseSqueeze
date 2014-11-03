@@ -8,5 +8,5 @@
 	<source path="cheese/squeeze/helpers" />
 	<source path="cheese/squeeze/screens" />
 	<source path="cheese/squeeze/tweenAccessors" />
-	<source path="cheese/squeeze/tweenAccessors" />
+	<source path="cheese/squeeze/ui" />
 </module>

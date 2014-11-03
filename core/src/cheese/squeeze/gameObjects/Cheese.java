@@ -21,7 +21,11 @@ public class Cheese implements Goal{
 	public Cheese(Line l,int tickets) {
 		this.setPosition(l.getPoint2());
 		this.tickets = tickets;
-		this.l = l;
+		this.setLine(l);
+	}
+	
+	public Cheese(int tickets) {
+		this.tickets = tickets;
 	}
 
 	public Vector2 getPosition() {
@@ -43,9 +47,20 @@ public class Cheese implements Goal{
 			tickets--;
 		}
 		else {
-			//TODO replace goal with trap
+			tickets = 0;
 			CSGame.currentState=GameState.WON;
 		}
 	}
+
+	public Line getLine() {
+		return l;
+	}
+
+	public void setLine(Line l) {
+		this.setPosition(l.getPoint2());
+		this.l = l;
+	}
+
+
 
 }
