@@ -8,13 +8,12 @@ import cheese.squeeze.gameObjects.VerticalLine;
 
 public enum Level {
 	
-	LEVEL2(0.4f,new HorizontalLine[]{}
-	,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(2)),new VerticalLine(new Trap())}
-	,new int[]{2,1,2},2), 
 	
 	LEVEL1(0.4f,new HorizontalLine[]{}
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(2)),new VerticalLine(new Trap())}
-			,new int[]{2,1,2},1,LEVEL2);
+			,new int[]{2,1,2},1);
+
+
 	
 	private int amountTraps;
 	private int amountGoals;
