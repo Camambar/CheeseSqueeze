@@ -4,11 +4,9 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 General:
 
-H  - bug met het tekenen van horizontale lijnen (afrondngsfout?)
-     soms kan er geen lijn getekend worden ook al is er redelijk veel plaats
-  
-H  - horizontale lijnen mogen enkel in het geldige gebied getekend worden,
-     bijgevolg mogen er geen soundeffects zijn wanneer er geen nieuwe lijn toegevoegd worden.
+H - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
+
+H - Horizontale lijnen op voorhand er in steken. (functionaliteit)
      
 H  - bij meer als 3 verticale lijnen is het niet mogelijk om horizontale lijnen op dezelfde hoogte te zetten, 
      ook als zijn ze niet naburig.  
@@ -17,28 +15,12 @@ M  - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis 
 
 M  - 6 eerste levels instellen (zie facebook voor files)
 
-M  - eerste muis mag niet beginnen waar de kaas is, en muizen mogen niet 2x na elkaar bij dezelfde verticale lijn starten
-
-M  - na het tweede level op continue drukken doet niets 
 
 Music & Visual Bugs:
 
-L  - muis aan het einde van verticale lijn staat even horizontaal (bij doodgaan zijn er eventjes 2 muizen tegelijk)
 
 Mouse & Path Bugs:
 
-H  - muis doet spastisch in intersection
-
-H  - muis keert soms terug van kaashoop (zet precies de waypoint bovenaan de verticale lijn wanneer hij aankomt bij de kaas)
-
-H  - toevoegen goal veroorzaakt muis die diagonaal beweegt tot net boven het scherm)
-     misschien geralateerd aan hack waar lijn bovenaan komt
-
-H  - plaatsen van lijnen buiten het pad van de muis beïnvloeden zijn richting plots
-
-M  - muis versnelt opeens
-
-M  - marge voor het plaatsen van horizontale lijnen beneden verkleinen
 
 
 
@@ -53,7 +35,6 @@ L  - mouse wiggle
 L  - onderweg extra kazen verzamelen (bv. 3), deze kunnen ook tussen verticale lijnen geplaatst zijn
      samen implementeren met level selector
      
-L -  menu achtergrond wijzigen
 
 L -  level waar twee muizen tegelijk op een lane naast elkaar vertrekken (moeilijk level)
 
