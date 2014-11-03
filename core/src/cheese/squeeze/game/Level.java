@@ -6,6 +6,7 @@ import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 
+
 public enum Level {
 	
         LEVEL4(1f,new HorizontalLine[]{}
