@@ -394,8 +394,16 @@ public class GameBoard {
 	}
 	
 	private Line getRandomLine(){
-		double nb = Math.random() * vlines.size();
-		return vlines.get((int) nb);
+		int size = 0;
+		ArrayList<VerticalLine> lines = new ArrayList<VerticalLine>();
+		for(VerticalLine l: vlines){
+			if(l.getGoal() instanceof Trap) {
+				size ++;
+				lines.add(l);
+			}
+		}
+		double nb = Math.random() * size;
+		return lines.get((int) nb);
 	}
 
 	public List<Mouse> getMice() {
