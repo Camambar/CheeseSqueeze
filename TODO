@@ -4,6 +4,12 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 General:
 
+VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese/squeeze/gameObjects/Line.java'
+      [ERROR] Line 106: The method higherEntry(float) is undefined for the type TreeMap<Float,Line>
+      [ERROR] Line 106: The method lowerEntry(float) is undefined for the type TreeMap<Float,Line>
+     
+     Bij compile van gwt dus zelf treemap maken.!
+
 H - beter gevoel (groot acceptatie gebied om een lijn te zetten).
 
 H - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
