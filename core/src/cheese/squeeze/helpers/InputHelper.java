@@ -167,8 +167,8 @@ public class InputHelper implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
-		return false;
+		this.touchDownPlaying(screenX, screenY, 0, 0);
+		return this.touchDraggedPlaying(screenX, screenY, 0);
 	}
 
 	@Override

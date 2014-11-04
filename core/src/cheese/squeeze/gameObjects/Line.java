@@ -104,6 +104,7 @@ public abstract class Line {
 		float relPos2 = getRelativePosition(from.cpy().add(direction));
 		Entry<Float, Line> nextLine = ((relPos2 - relPos1) >= 0) ? 
 				neighbours.higherEntry(relPos1) : neighbours.lowerEntry(relPos1);
+		//		Entry<Float, Line> 	nextLine = null;
 		return nextLine;
 	}
 	
@@ -120,4 +121,8 @@ public abstract class Line {
 		return ((relPos2 - relPos1) >= 0) ? 
 				getPoint2() : getPoint1();
 	}
+	
+	
+	public abstract Line clone();
+	
 }

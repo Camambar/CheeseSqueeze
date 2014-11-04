@@ -29,8 +29,8 @@ public class HorizontalLine extends Line implements Cloneable{
     }
     
     public void onDrag(int screenX, int screenY) {
-    	setPoint1(new Vector2(getX1(),screenY));
-    	setPoint2(new Vector2(getX2(),screenY));
+    	setPoint1(new Vector2(screenX,screenY));
+    	setPoint2(new Vector2(screenX,screenY));
     }
 
 

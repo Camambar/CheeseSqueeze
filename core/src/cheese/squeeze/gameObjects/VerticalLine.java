@@ -58,7 +58,6 @@ public class VerticalLine extends Line {
 	}
 	
 	@Override
-	
 	public VerticalLine clone() {
 		return new VerticalLine(this.getY1(),this.getY2(),this.getX1(),this.goal.clone());
 	}

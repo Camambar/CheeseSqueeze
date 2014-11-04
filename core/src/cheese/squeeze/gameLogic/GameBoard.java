@@ -289,6 +289,24 @@ public class GameBoard {
 
 	private float multipleOfPosition(float y1) {
 		//TODO make sure the resutl is not larger then the longest y position.
+		Float floor = hlines.floorKey(y1);
+		Float ceil = hlines.ceilingKey(y1);
+		
+		if(ceil != null && floor != null) {
+			if(Math.abs(ceil - y1) < Math.abs(floor - y1)) {
+				return ceil;
+			}
+			return floor;
+		}
+		else if (ceil == null) {
+			return floor;
+		}
+		else {
+			return ceil;
+		}
+		
+		
+		/*OlD STUFF
 		int amntSteps = (int) ((y1-start)/step);
 		float result = start + (amntSteps*step);
 		if(result >= end){
@@ -297,8 +315,9 @@ public class GameBoard {
 		if(result <= start) {
 			return start+step;
 		}
-		
 		return result;
+		*/
+		
 	}
 
 	public OrthographicCamera getCamera() {
@@ -332,12 +351,13 @@ public class GameBoard {
 	public ArrayList<Float> getYPositions() {
 		return new ArrayList<Float>(hlines.keySet());
 	}
+	 
 	
 	 public void setGesturedLineDragged(HorizontalLine gesturedLine) {
 	        Vector3 point1 = cam.unproject(new Vector3(gesturedLine.getX1(),gesturedLine.getY1(),0));
 	        Vector3 point2 = cam.unproject(new Vector3(gesturedLine.getX2(),gesturedLine.getY2(),0));
-	        gesturedLine.setPoint1(new Vector2(gesturedLine.getX1(),(point1.y)));
-	        gesturedLine.setPoint2(new Vector2(gesturedLine.getX2(),(point2.y)));
+	        gesturedLine.setPoint1(new Vector2(point1.x,(point1.y)));
+	        gesturedLine.setPoint2(new Vector2(point1.x,(point2.y)));
 	        fitHorizontalLineBetweenVertivalLines(gesturedLine);
 			if(!isOcupiedPosition(gesturedLine.getY1())) {
 				this.gesturedLine = gesturedLine;

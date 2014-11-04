@@ -68,7 +68,7 @@ public class GameRenderer {
 	public void render() {
 		
 		
-
+		Gdx.gl.glLineWidth((Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10);
 		// Fill the entire screen with black, to prevent potential flickering.
 		//Gdx.gl.glClearColor(0, 0, 0, 1);
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -168,7 +168,7 @@ public class GameRenderer {
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		shapeRenderer.begin(ShapeType.Line);
-		shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 0.1f));
+		shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 0.07f));
 		shapeRenderer.line(board.getVLines().get(0).getX1(), f,board.getVLines().get(board.getVLines().size()-1).getX1(), f);
 		shapeRenderer.end();
 
@@ -219,7 +219,7 @@ public class GameRenderer {
 	private void drawVerticalLines() {
 		//set line w
 		//TODO scale with zoom
-		Gdx.gl.glLineWidth((Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10);
+		
 
 		// begin line draw
 		shapeRenderer.begin(ShapeType.Line);

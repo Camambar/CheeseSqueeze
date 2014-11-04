@@ -22,10 +22,14 @@ public enum Level {
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4))}
 			,new int[]{1,2,1,3},1,LEVEL3),
 	
-		LEVEL1(.6f,new HorizontalLine[]{}
-			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(3)),new VerticalLine(new Trap())}
-			,new int[]{1,2,3},1,LEVEL2);
-
+		LEVEL1(.1f,new HorizontalLine[]{}
+			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4)),new VerticalLine(new Trap())}
+			,new int[]{1,2,3,4},2,LEVEL2);
+        /*
+        LEVEL1(.6f,new HorizontalLine[]{}
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(3)),new VerticalLine(new Trap())}
+		,new int[]{1,2,3},1,LEVEL2);
+         */
 
 	
 	private int amountTraps;
