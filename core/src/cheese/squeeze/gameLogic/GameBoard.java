@@ -22,13 +22,14 @@ import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.structures.LinkedList;
 import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 public class GameBoard {
 
 	
 	private List<VerticalLine> vlines;
-	private TreeMap<Float,HorizontalLine> hlines;
+	private TreeMap<Float,LinkedList<HorizontalLine>> hlines;
 	private List<Cheese> goals;
 	private List<Trap> traps;
 	private OrthographicCamera cam;
@@ -83,11 +84,11 @@ public class GameBoard {
 	
 
 
-	private TreeMap<Float,HorizontalLine>makeHlineMap() {
-		TreeMap<Float,HorizontalLine> map = new TreeMap<Float,HorizontalLine>();
+	private TreeMap<Float, LinkedList<HorizontalLine>> makeHlineMap() {
+		TreeMap<Float,LinkedList<HorizontalLine>> map = new TreeMap<Float,LinkedList<HorizontalLine>>();
 		int amntSteps = (int) ((end-start)/step);
 		for(int i = 1; i < amntSteps;i++){
-			map.put(start + (i*step), null);
+			map.put(start + (i*step), new LinkedList<HorizontalLine>(level.getVlines().length-1));
 		}
 		return map;
 	}
@@ -176,9 +177,10 @@ public class GameBoard {
 	}
 	
 	public void addHLine(HorizontalLine line) {
-		if(!isOcupiedPosition(line.getY1())) {
+		int row = betweenLines(line.getX1());
+		if(!isOcupiedPosition(line.getY1(),row)) {
 			SoundAccessor.play(AssetLoader.chalk);
-			hlines.put(line.getY1(), line);
+			hlines.get(line.getY1()).addElement(line, row);
 			for (VerticalLine l : vlines) {
 				if (l.getX1() == line.getX1()) {
 					l.setNeighbour(line);
@@ -198,17 +200,15 @@ public class GameBoard {
 		}
 	}
 
-	public TreeMap<Float,HorizontalLine> getHLinesMap() {
+	public TreeMap<Float,LinkedList<HorizontalLine>> getHLinesMap() {
 		return hlines;
 	}
 	
 	public ArrayList<HorizontalLine> getHLines() {
 		ArrayList<HorizontalLine> list = new ArrayList<HorizontalLine>();
-		for (Entry<Float,HorizontalLine> e : hlines.entrySet()) {
-			HorizontalLine l = e.getValue();
-			if(l != null) {
-				list.add(l);
-			}
+		for (Entry<Float,LinkedList<HorizontalLine>> e : hlines.entrySet()) {
+			List<HorizontalLine> l = e.getValue().getElements();
+			list.addAll(l);
 		}
 		return list;
 	}
@@ -340,7 +340,7 @@ public class GameBoard {
 		gesturedLine.setPoint1(new Vector2(point1.x,(point1.y)));
 		gesturedLine.setPoint2(new Vector2(point2.x,(point2.y)));
 		fitHorizontalLineBetweenVertivalLines(gesturedLine);
-		if(!isOcupiedPosition(gesturedLine.getY1())) {
+		if(!isOcupiedPosition(gesturedLine.getY1(),betweenLines(gesturedLine.getX1()))) {
 			this.gesturedLine = gesturedLine;
 		}
 		else {
@@ -351,6 +351,18 @@ public class GameBoard {
 	public ArrayList<Float> getYPositions() {
 		return new ArrayList<Float>(hlines.keySet());
 	}
+	
+	private int betweenLines(float x) {
+		int i = 0;
+		for(VerticalLine vl : vlines) {
+			if(x < vl.getX1()) {
+				return i;
+			}
+			
+			i++;
+		}
+		return 0;
+	}
 	 
 	
 	 public void setGesturedLineDragged(HorizontalLine gesturedLine) {
@@ -359,7 +371,7 @@ public class GameBoard {
 	        gesturedLine.setPoint1(new Vector2(point1.x,(point1.y)));
 	        gesturedLine.setPoint2(new Vector2(point1.x,(point2.y)));
 	        fitHorizontalLineBetweenVertivalLines(gesturedLine);
-			if(!isOcupiedPosition(gesturedLine.getY1())) {
+			if(!isOcupiedPosition(gesturedLine.getY1(),betweenLines(gesturedLine.getX1()))) {
 				this.gesturedLine = gesturedLine;
 			}
 			else {
@@ -367,13 +379,13 @@ public class GameBoard {
 			}
 	    }
 	
-	private boolean isOcupiedPosition(float y) {
-		if(hlines.get(y) == null) {
-			System.out.println("false");
-			return false;
+	private boolean isOcupiedPosition(float y,int betweenlines) {
+		LinkedList<HorizontalLine> ll = hlines.get(y);
+		System.out.println(ll.toString());
+		if(!ll.isValidPosition(betweenlines)) {
+			return true;
 		}
-		System.out.println("true");
-		return true;
+		return false;
 	}
 
 	public Vector2 getBeginPosition() {
