@@ -4,9 +4,17 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 General:
 
+VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese/squeeze/gameObjects/Line.java'
+      [ERROR] Line 106: The method higherEntry(float) is undefined for the type TreeMap<Float,Line>
+      [ERROR] Line 106: The method lowerEntry(float) is undefined for the type TreeMap<Float,Line>
+     
+     Bij compile van gwt dus zelf treemap maken.!
+
+H - beter gevoel (groot acceptatie gebied om een lijn te zetten). OK
+
 H - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
 
-H - Horizontale lijnen op voorhand er in steken. (functionaliteit)
+H - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
      
 H  - bij meer als 3 verticale lijnen is het niet mogelijk om horizontale lijnen op dezelfde hoogte te zetten, 
      ook als zijn ze niet naburig.  
@@ -18,15 +26,26 @@ M  - 6 eerste levels instellen (zie facebook voor files)
 
 Music & Visual Bugs:
 
+M  - size image packs verkleinen voor mobile devices met shitty gpu
+
+M  - muziek van victory/defeat speelt niet bij jar files
+
+L  - filesize muziek verkleinen
+
+
 
 Mouse & Path Bugs:
 
-
+M - Muis in het begin wa trager
 
 
 OPTIONAL:
 
 M  - testen op verschillende aspect ratios (grootte afbeeldingen enz)
+
+L - portals of gaten als de kaas weg is 
+
+L - Logo voor android app toevoegen.
 
 L  - desktop window aspect ratio resize (http://badlogicgames.com/forum/viewtopic.php?f=11&t=7489)
 
