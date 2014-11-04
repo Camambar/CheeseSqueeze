@@ -10,11 +10,11 @@ VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese
      
      Bij compile van gwt dus zelf treemap maken.!
 
-H - beter gevoel (groot acceptatie gebied om een lijn te zetten).
+H - beter gevoel (groot acceptatie gebied om een lijn te zetten). OK
 
 H - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
 
-H - Horizontale lijnen op voorhand er in steken. (functionaliteit)
+H - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
      
 H  - bij meer als 3 verticale lijnen is het niet mogelijk om horizontale lijnen op dezelfde hoogte te zetten, 
      ook als zijn ze niet naburig.  
