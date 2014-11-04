@@ -59,6 +59,7 @@ public class LinkedList<T> {
 			}
 		}
 		else if (row == 1) {
+			//TODO bugg
 			if(elements[row] == null && elements[row+1] == null){
 				return true;
 			}
