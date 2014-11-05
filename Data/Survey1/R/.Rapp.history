@@ -1,0 +1,45 @@
+data = read.csv("enquettedata.csv")
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")
+data = read.csv("enquettedata.csv")
+data = read.table("enquettedata.csv",sep=",", na.string="#", header = TRUE)
+data = read.table("enquettedata.csv",sep=",", na.string="#", header = FALSE)
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = FALSE)
+getwd()
+data = read.csv("enquettedata.csv",header= FALSE,sep=",")
+data = read.csv("enquettedata.csv",header= FALSE,sep=",")
+data$Sex
+data
+"enquettedata.csv"
+data
+data$age
+data$Age
+Age
+data = read.table("enquettedata.csv",sep=",", na.string="#", header = FALSE)
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = FALSE)
+data$Age
+data$Sex
+data$V1
+boxplot(data$V1)
+boxplot(data$V1$Age)
+data$V1
+data$V1$Age
+data$V1[1]
+data$V1[0]
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = FALSE)
+data$Age
+data
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)
+data$Age
+boxplot(data$Age)
+boxplot(data$Age)
+data = read.table("enquettedata.xlsx", na.string="#", header = TRUE)
+data = read.xls("enquettedata.xlsx",sheet =1, na.string="#", header = TRUE)
+data = read.xls("enquettedata.xlsx",sheet =1, na.string="#", header = TRUE)
+require(XLConnect)
+boxplot(data$Age)
+boxplot(data$Age)
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)
+data$AGe
+data$Age
+boxplot(data$Age)
