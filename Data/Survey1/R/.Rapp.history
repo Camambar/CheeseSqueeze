@@ -1,339 +1,3 @@
-boxplot(data$Level1CompleteTime)
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-boxplot(data$Age)#
-boxplot(data$Level1CompleteTime)
-)
-boxplot(data$Age)
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-boxplot(data$Age)#
-#
-boxplot(data$Level1CompleteTime)
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-pdf("dataAge.pdf")#
-boxplot(data$Age)#
-dev.off()#
-#
-pdf("LevelComplete.pdf")#
-boxplot(data$Level1CompleteTime)#
-dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-pdf("graphs/dataAge.pdf")#
-boxplot(data$Age)#
-dev.off()#
-#
-pdf("graphs/LevelComplete.pdf")#
-boxplot(data$Level1CompleteTime)#
-dev.off()
-data
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-pdf("graphs/dataAge.pdf")#
-boxplot(data$Age)#
-boxplot(data$Level1CompleteTime)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-par(mfrow=c(2,1))
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-par(mfrow=c(2,1))#
-pdf("graphs/dataAge.pdf")#
-boxplot(data$Age)#
-boxplot(data$Level1CompleteTime)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-par(mfrow=c(2,1))
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(2,1))#
-boxplot(data$Age)#
-boxplot(data$Level1CompleteTime)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,2))#
-boxplot(data$Age)#
-boxplot(data$Level1CompleteTime)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-data
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-boxplot(data$Clarity)#
-boxplot(data$Flow)#
-boxplot(data$Balance)#
-boxplot(data$Length)#
-boxplot(data$Integration)#
-boxplot(data$Fun)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-boxplot()
-boxplot().help()
-boxplot.help()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-boxplot(data$Clarity,xlim=c(1,7))#
-boxplot(data$Flow)#
-boxplot(data$Balance)#
-boxplot(data$Length)#
-boxplot(data$Integration)#
-boxplot(data$Fun)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-boxplot(data$Clarity,ylim=c(1,7))#
-boxplot(data$Flow)#
-boxplot(data$Balance)#
-boxplot(data$Length)#
-boxplot(data$Integration)#
-boxplot(data$Fun)#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-boxplot(data$Clarity,ylim=c(1,7))#
-boxplot(data$Flow,ylim=c(1,7))#
-boxplot(data$Balance,ylim=c(1,7))#
-boxplot(data$Length,ylim=c(1,7))#
-boxplot(data$Integration,ylim=c(1,7))#
-boxplot(data$Fun,ylim=c(1,7))#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-title(main="main title", sub="sub-title",     xlab="x-axis label", ylab="y-axis label")#
-boxplot(data$Clarity,ylim=c(1,7))#
-boxplot(data$Flow,ylim=c(1,7))#
-boxplot(data$Balance,ylim=c(1,7))#
-boxplot(data$Length,ylim=c(1,7))#
-boxplot(data$Integration,ylim=c(1,7))#
-boxplot(data$Fun,ylim=c(1,7))#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-title(main="main title", sub="sub-title",     xlab="x-axis label", ylab="y-axis label")#
-boxplot(data$Clarity,ylim=c(1,7))#
-boxplot(data$Flow,ylim=c(1,7))#
-boxplot(data$Balance,ylim=c(1,7))#
-boxplot(data$Length,ylim=c(1,7))#
-boxplot(data$Integration,ylim=c(1,7))#
-boxplot(data$Fun,ylim=c(1,7))#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-axis(2, at=x,labels=x, col.axis="red", las=2)#
-boxplot(data$Clarity,ylim=c(1,7))#
-boxplot(data$Flow,ylim=c(1,7))#
-boxplot(data$Balance,ylim=c(1,7))#
-boxplot(data$Length,ylim=c(1,7))#
-boxplot(data$Integration,ylim=c(1,7))#
-boxplot(data$Fun,ylim=c(1,7))#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-###########################################################
-            # Data inlezen ###
-###########################################################
-#
-setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
-#
-#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
-#
-data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
-#
-pdf("graphs/dataAge.pdf")#
-par(mfrow=c(1,6))#
-#
-boxplot(data$Clarity,ylim=c(1,7),main="Milage by Car Weight")#
-boxplot(data$Flow,ylim=c(1,7))#
-boxplot(data$Balance,ylim=c(1,7))#
-boxplot(data$Length,ylim=c(1,7))#
-boxplot(data$Integration,ylim=c(1,7))#
-boxplot(data$Fun,ylim=c(1,7))#
-dev.off()#
-#
-#pdf("graphs/LevelComplete.pdf")#
-#boxplot(data$Level1CompleteTime)#
-#dev.off()
-data[,1:5]
-data
-data[,4:10]
-data[,4:9]
 ###########################################################
             # Data inlezen ###
 ###########################################################
@@ -374,7 +38,7 @@ data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
 #
 require(ggplot2)#
 pdf("graphs/ggplot.pdf")#
-ggplot(data[,4:9], aes(x=variable, y=value)) + geom_boxplot(aes(fill=Label))#
+ggplot(data[,4:9], aes(x=variable, y=value)) + geom_boxplot(aes(fill=Clarity))#
 #
 pdf("graphs/dataAge.pdf")#
 par(mfrow=c(1,6))#
@@ -385,6 +49,165 @@ boxplot(data$Balance,ylim=c(1,7))#
 boxplot(data$Length,ylim=c(1,7))#
 boxplot(data$Integration,ylim=c(1,7))#
 boxplot(data$Fun,ylim=c(1,7))#
+dev.off()#
+#
+#pdf("graphs/LevelComplete.pdf")#
+#boxplot(data$Level1CompleteTime)#
+#dev.off()
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
+#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
+#
+require(ggplot2)#
+pdf("graphs/ggplot.pdf")#
+ggplot(data[,4:9], aes(x=1, y=7)) + geom_boxplot(aes(fill=Clarity))#
+#
+pdf("graphs/dataAge.pdf")#
+par(mfrow=c(1,6))#
+#
+boxplot(data$Clarity,ylim=c(1,7),main="Milage by Car Weight")#
+boxplot(data$Flow,ylim=c(1,7))#
+boxplot(data$Balance,ylim=c(1,7))#
+boxplot(data$Length,ylim=c(1,7))#
+boxplot(data$Integration,ylim=c(1,7))#
+boxplot(data$Fun,ylim=c(1,7))#
+dev.off()#
+#
+#pdf("graphs/LevelComplete.pdf")#
+#boxplot(data$Level1CompleteTime)#
+#dev.off()
+data.m <- melt(data,id.var = "Clarity")
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
+#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
+#
+require(ggplot2)#
+pdf("graphs/ggplot.pdf")#
+ggplot(data[,4:9])#
+#
+pdf("graphs/dataAge.pdf")#
+par(mfrow=c(1,6))#
+#
+boxplot(data$Clarity,ylim=c(1,7),main="Milage by Car Weight")#
+boxplot(data$Flow,ylim=c(1,7))#
+boxplot(data$Balance,ylim=c(1,7))#
+boxplot(data$Length,ylim=c(1,7))#
+boxplot(data$Integration,ylim=c(1,7))#
+boxplot(data$Fun,ylim=c(1,7))#
+dev.off()#
+#
+#pdf("graphs/LevelComplete.pdf")#
+#boxplot(data$Level1CompleteTime)#
+#dev.off()
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
+#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
+#
+plots = boxplot(data$Clarity,ylim=c(1,7),main="Milage by Car Weight") +#
+boxplot(data$Flow,ylim=c(1,7)) +#
+boxplot(data$Balance,ylim=c(1,7)) +#
+boxplot(data$Length,ylim=c(1,7)) +#
+boxplot(data$Integration,ylim=c(1,7)) +#
+boxplot(data$Fun,ylim=c(1,7))#
+#
+require(ggplot2)#
+pdf("graphs/ggplot.pdf")#
+#
+ggplot(data[,4:9],plots)#
+#
+pdf("graphs/dataAge.pdf")#
+par(mfrow=c(1,6))#
+dev.off()#
+#
+#pdf("graphs/LevelComplete.pdf")#
+#boxplot(data$Level1CompleteTime)#
+#dev.off()
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
+#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
+#
+plots <- boxplot(data$Clarity,ylim=c(1,7),main="Milage by Car Weight")#
+plots <- boxplot(data$Flow,ylim=c(1,7))#
+plots <- boxplot(data$Balance,ylim=c(1,7))#
+plots <- boxplot(data$Length,ylim=c(1,7))#
+plots <- boxplot(data$Integration,ylim=c(1,7))#
+plots <- boxplot(data$Fun,ylim=c(1,7))#
+#
+require(ggplot2)#
+pdf("graphs/ggplot.pdf")#
+#
+ggplot(data[,4:9],plots)#
+#
+pdf("graphs/dataAge.pdf")#
+par(mfrow=c(1,6))#
+dev.off()#
+#
+#pdf("graphs/LevelComplete.pdf")#
+#boxplot(data$Level1CompleteTime)#
+#dev.off()
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
+#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
+pdf("graphs/first.pdf")#
+par(mfrow=c(1,6))#
+boxplot(data$Clarity,ylim=c(1,7),main="Milage by Car Weight")#
+boxplot(data$Flow,ylim=c(1,7))#
+boxplot(data$Balance,ylim=c(1,7))#
+boxplot(data$Length,ylim=c(1,7))#
+boxplot(data$Integration,ylim=c(1,7))#
+boxplot(data$Fun,ylim=c(1,7))#
+dev.off()#
+#
+#pdf("graphs/LevelComplete.pdf")#
+#boxplot(data$Level1CompleteTime)#
+#dev.off()
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")#
+#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)#
+pdf("graphs/first.pdf")#
+par(mfrow=c(1,6))#
+boxplot(data$Clarity,ylim=c(1,7),main="Clarity")#
+boxplot(data$Flow,ylim=c(1,7),main="Flow")#
+boxplot(data$Balance,ylim=c(1,7),main="Balance")#
+boxplot(data$Length,ylim=c(1,7),main="Length")#
+boxplot(data$Integration,ylim=c(1,7),main="Integration")#
+boxplot(data$Fun,ylim=c(1,7),main="Fun")#
 dev.off()#
 #
 #pdf("graphs/LevelComplete.pdf")#
