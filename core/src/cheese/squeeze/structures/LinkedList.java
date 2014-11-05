@@ -22,14 +22,14 @@ public class LinkedList<T> {
 				return true;
 			}
 		}
-		else if (row == 1) {
-			if(elements[row] == null && elements[row+1] == null){
+		else if (row == size) {
+			if(elements[row-1] == null && elements[row-2] == null){
 				elements[row-1] = element;
 				return true;
 			}
 		}
-		else if (row == size) {
-			if(elements[row-1] == null && elements[row-2] == null){
+		else if (row == 1 ) {
+			if(elements[row] == null && elements[row-1] == null){
 				elements[row-1] = element;
 				return true;
 			}
@@ -58,14 +58,14 @@ public class LinkedList<T> {
 				return true;
 			}
 		}
-		else if (row == 1) {
-			//TODO bugg
-			if(elements[row] == null && elements[row+1] == null){
+		else if (row == size) {
+			if(elements[row-1] == null && elements[row-2] == null){
 				return true;
 			}
 		}
-		else if (row == size) {
-			if(elements[row-1] == null && elements[row-2] == null){
+		else if (row == 1) {
+			//TODO bugg
+			if(elements[row] == null && elements[row-1] == null){
 				return true;
 			}
 		}
