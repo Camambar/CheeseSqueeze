@@ -282,8 +282,11 @@ public class GameBoard {
 		float multiple = multipleOfPosition(l.getY1());
 		//l.setPoint1(new Vector2(vlLeft.getX1(),l.getY1()));
 		//l.setPoint1(new Vector2(vlLeft.getX1(),l.getY1()));
-		l.setPoint1(new Vector2(vlLeft.getX1(),multiple));
-		l.setPoint2(new Vector2(vlRight.getX2(),multiple));
+		if(vlRight != null && vlLeft != null) {
+			l.setPoint1(new Vector2(vlLeft.getX1(),multiple));
+			l.setPoint2(new Vector2(vlRight.getX2(),multiple));
+		}
+		
 	}
 	
 
@@ -381,8 +384,7 @@ public class GameBoard {
 	
 	private boolean isOcupiedPosition(float y,int betweenlines) {
 		LinkedList<HorizontalLine> ll = hlines.get(y);
-		System.out.println(ll.toString());
-		if(!ll.isValidPosition(betweenlines)) {
+		if(ll != null && !ll.isValidPosition(betweenlines)) {
 			return true;
 		}
 		return false;

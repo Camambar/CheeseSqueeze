@@ -8,4 +8,17 @@ setwd("/Users/maxdekoninck/Dropbox/CSGame3/Data/Survey1/R")
 
 data = read.csv("enquettedata.csv",sep=",", na.string="#", header = TRUE)
 
-boxplot(data$Age)
+
+pdf("graphs/first.pdf")
+par(mfrow=c(1,6))
+boxplot(data$Clarity,ylim=c(1,7),main="Clarity")
+boxplot(data$Flow,ylim=c(1,7),main="Flow")
+boxplot(data$Balance,ylim=c(1,7),main="Balance")
+boxplot(data$Length,ylim=c(1,7),main="Length")
+boxplot(data$Integration,ylim=c(1,7),main="Integration")
+boxplot(data$Fun,ylim=c(1,7),main="Fun")
+dev.off()
+
+#pdf("graphs/LevelComplete.pdf")
+#boxplot(data$Level1CompleteTime)
+#dev.off()
