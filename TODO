@@ -25,7 +25,7 @@ M  - 6 eerste levels instellen (zie facebook voor files)
 
 Music & Visual Bugs:
 
-M  - geluid button niet afspelen bij drukken op sound -> sound_off
+M  - geluid button niet afspelen bij drukken op sound_on -> sound_off
 
 M  - size image packs verkleinen voor mobile devices met shitty gpu
 
