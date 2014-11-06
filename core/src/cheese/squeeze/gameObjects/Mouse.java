@@ -32,6 +32,7 @@ public class Mouse {
 	public Mouse(float speed, Line line){
 		float x = line.getX1();
 		float y = line.getY1();
+		//float y = 0;
 		position = new Vector2(x,y);
 		this.currentLine = line;
 		this.speed = speed;
