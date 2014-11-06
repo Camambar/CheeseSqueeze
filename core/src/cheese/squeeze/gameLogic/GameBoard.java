@@ -213,6 +213,20 @@ public class GameBoard {
 		return list;
 	}
 	
+	public ArrayList<HorizontalLine> getHGuideLines() {
+		ArrayList<HorizontalLine> list = new ArrayList<HorizontalLine>();
+		for(Entry<Float,LinkedList<HorizontalLine>> e : hlines.entrySet()) {
+			LinkedList<HorizontalLine> l = e.getValue();
+			for (int i =1; i < l.getSize()+1; i++ ) {
+				if(!isOcupiedPosition(e.getKey(),i)){
+					list.add(new HorizontalLine(e.getKey(),vlines.get(i-1).getX1(),vlines.get(i).getX1()));
+				}
+			}
+
+		}
+		return list;
+	}
+	
 	/**
 	 * A horizontal line consists of two points, given the two points, the
 	 * closest vertical lines are searched and the location of the points is modified to

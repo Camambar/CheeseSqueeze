@@ -162,14 +162,14 @@ public class GameRenderer {
 	
 	private void drawGuide() {
 
-		for(Float f: board.getYPositions()) {
+		for(HorizontalLine l: board.getHGuideLines()) {
 			
 		Gdx.gl.glEnable(GL20.GL_BLEND);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		shapeRenderer.begin(ShapeType.Line);
 		shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 0.07f));
-		shapeRenderer.line(board.getVLines().get(0).getX1(), f,board.getVLines().get(board.getVLines().size()-1).getX1(), f);
+		shapeRenderer.line(l.getX1(),l.getY1(),l.getX2(),l.getY2());
 		shapeRenderer.end();
 
 		Gdx.gl.glDisable(GL20.GL_BLEND);
