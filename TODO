@@ -11,10 +11,12 @@ VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese
      Bij compile van gwt dus zelf treemap maken.!
      
 VH - Brower Versie maken (geen jar)
-     
-H - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
 
-H - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
+H  - Huidige level bewaren bij terugkeren naar menu.
+     
+H  - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
+
+H  - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
 
 M  - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
@@ -42,9 +44,9 @@ OPTIONAL:
 
 M  - testen op verschillende aspect ratios (grootte afbeeldingen enz)
 
-L - portals of gaten als de kaas weg is 
+L  - portals of gaten als de kaas weg is 
 
-L - Logo voor android app toevoegen.
+L  - Logo voor android app toevoegen.
 
 L  - desktop window aspect ratio resize (http://badlogicgames.com/forum/viewtopic.php?f=11&t=7489)
 
@@ -53,7 +55,6 @@ L  - mouse wiggle
 L  - onderweg extra kazen verzamelen (bv. 3), deze kunnen ook tussen verticale lijnen geplaatst zijn
      samen implementeren met level selector
      
-
 L -  level waar twee muizen tegelijk op een lane naast elkaar vertrekken (moeilijk level)
 
-   - ...
+  - ...
