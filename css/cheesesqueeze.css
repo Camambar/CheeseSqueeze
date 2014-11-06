@@ -1,0 +1,131 @@
+/*!
+ * Start Bootstrap - Flatly Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+ 
+html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+#wrapper {
+	min-height: 100%;
+	position: relative;
+}
+
+p {
+    font-size: 20px;
+    text-align: justify;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+    color: #FEB103;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+a.navbar {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 1.5em;
+    float:right;
+    padding:20px;
+    color: #fff;
+}
+
+header {
+    text-align: center;
+    color: #fff;
+    background: #FEB103;
+}
+
+header .container {
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+header img {
+    display: block;
+    margin: 0 auto 0;
+}
+
+section {
+    padding: 100px 0;
+}
+
+section h2 {
+    margin: 0;
+    font-size: 3em;
+}
+
+section.success {
+    color: #fff;
+    background: #FEB103;
+}
+
+.btn-outline {
+    margin-top: 15px;
+    border: solid 2px #f4efef;
+    font-size: 30px;
+    padding: 10px;
+    margin: 20px;
+    color: #f4efef;
+    background: 0 0;
+    transition: all .3s ease-in-out;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+    border: solid 2px #f4efef;
+    color: #FEB103;
+    background: #f4efef;
+}
+
+footer {
+    color: #fff;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+footer .footer {
+    padding: 25px 0;
+    background-color: #FEB103;
+}
+
+.btn:focus,
+.btn:active,
+.btn.active {
+    outline: 0;
+}
+
+#content {
+	padding-bottom: 80px;
+}
