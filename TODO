@@ -10,16 +10,13 @@ VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese
      
      Bij compile van gwt dus zelf treemap maken.!
      
-VH - Nieuwe knop voor geluid / muziek dit was in iteratie 1 niet duidelijk voor gebruikers en moet aangepast worden
-
-H - beter gevoel (groot acceptatie gebied om een lijn te zetten). OK
+H - Brower Versie maken (geen jar)
+     
+H - Nieuwe knop voor geluid / muziek dit was in iteratie 1 niet duidelijk voor gebruikers en moet aangepast worden
 
 H - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
 
 H - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
-     
-H  - bij meer als 3 verticale lijnen is het niet mogelijk om horizontale lijnen op dezelfde hoogte te zetten, 
-     ook als zijn ze niet naburig.   OK
 
 M  - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
