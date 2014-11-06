@@ -29,13 +29,22 @@ public class GameScreen implements Screen {
 	private SimpleButton completedPopUp;
 	private Level currentLevel;
 	
-    public GameScreen(final CSGame game,Level l) {
+	public GameScreen(final CSGame game) {
+		currentLevel = CSGame.currentLevel;
+		init(game);
+	}
+
+	public GameScreen(final CSGame game,Level l) {
+		currentLevel = l;
+		init(game);
+    }
+	
+	private void init(final CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
         CSGame.currentState = GameState.PLAYING;
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-        currentLevel = l;
         float gameWidth = 136;
         float gameHeight = screenHeight / (screenWidth / gameWidth);
 
@@ -68,6 +77,7 @@ public class GameScreen implements Screen {
 				//TODO next level select
 				dispose();
 				if(currentLevel.getNextLevel()!=null) {
+					CSGame.currentLevel = currentLevel.getNextLevel();
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
 				}
 			
@@ -86,7 +96,8 @@ public class GameScreen implements Screen {
     	MusicAccessor.play(AssetLoader.gameSound);
     	
     	Gdx.input.setInputProcessor(new InputHelper(board,buttons));
-    }
+	}
+
 
     @Override
     public void render(float delta) {

@@ -17,6 +17,7 @@ import com.badlogic.gdx.Gdx;
 public class CSGame extends Game {
 
 	public static GameState currentState;
+	public static Level currentLevel = Level.LEVEL1;
 	
 	public static enum GameState {
 		MENU,GAMEOVER,PLAYING,WON,PAUSE;
