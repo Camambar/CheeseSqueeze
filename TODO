@@ -12,9 +12,9 @@ VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese
      
 VH - Brower Versie maken (geen jar)
 
-H  - Huidige level bewaren bij terugkeren naar menu.
+H  - Huidige level bewaren bij terugkeren naar menu. ok
      
-H  - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan
+H  - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan ok
 
 H  - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
 
@@ -33,6 +33,7 @@ M  - muziek van victory/defeat speelt niet bij jar files
 
 L  - filesize muziek verkleinen
 
+M - gore images
 
 
 Mouse & Path Bugs:
