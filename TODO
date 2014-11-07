@@ -42,6 +42,8 @@ todo in orde maken (Luca)
 
 art juist scalen
 
+bloed (Luca)
+
 VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese/squeeze/gameObjects/Line.java'
       [ERROR] Line 106: The method higherEntry(float) is undefined for the type TreeMap<Float,Line>
       [ERROR] Line 106: The method lowerEntry(float) is undefined for the type TreeMap<Float,Line>
