@@ -4,6 +4,42 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 General:
 
+* google analytics (Max)
+
+knop geluid is niet duidelijk (maakt geluid als je die induwt)
+
+* verschillende graphic packs en kleinere afbeeldingen (Luca)
+
+ingame rating systeem voor de levels (eventueel met timer om aan te moedigen)
+      --> afbeelding (Luca)
+      --> implementatie
+
+* tekst tutorialhandje bepalen ("Lead the mouse to the cheese. Tap the screen to draw a line.)
+
+* afbeeldingen tutorial maken (Luca)
+
+* nieuwe versie pop-up
+      --> design/artwork (Luca)
+      --> serverside code (Bart)
+
+makkelijker systeem invoeren nieuwe versie
+
+muis wiggle verbeteren (gamerenderer)
+
+* site mooier maken (bart)
+
+* questionnaire online zetten (google + R) (Bart)
+
+* ordening levels finetunen (Luca)
+
+volgende muis laan aanduiden
+
+verschillende achtergronden/level locaties
+
+todo in orde maken (Luca)
+
+* treemap (Max)
+
 VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese/squeeze/gameObjects/Line.java'
       [ERROR] Line 106: The method higherEntry(float) is undefined for the type TreeMap<Float,Line>
       [ERROR] Line 106: The method lowerEntry(float) is undefined for the type TreeMap<Float,Line>
