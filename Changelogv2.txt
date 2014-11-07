@@ -3,3 +3,5 @@ ChangeLog v2
 	- more forgiving input
 	- in desktop app gesture line when moved over the field
 	- level is saved if you go to menu
+	- mouse wiggle
+	- analetics
