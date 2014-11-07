@@ -3,6 +3,7 @@ package cheese.squeeze.game;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.screens.GameScreen;
 import cheese.squeeze.screens.SplashScreen;
+import cheese.squeeze.tweenAccessors.ActionResolver;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 
 import com.badlogic.gdx.Game;
@@ -23,6 +24,14 @@ public class CSGame extends Game {
 		MENU,GAMEOVER,PLAYING,WON,PAUSE;
 	}
 	
+	public CSGame(ActionResolver action) {
+		action.setTrackerScreenName("Test");
+	}
+
+	public CSGame() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void create() {
 		Gdx.app.log("CSGame", "created");

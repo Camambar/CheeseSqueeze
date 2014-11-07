@@ -159,6 +159,11 @@ public class Mouse {
 	public boolean isEnded() {
 		return ended ;
 	}
+
+	public float getSpeed() {
+		// TODO Auto-generated method stub
+		return velocity.x + velocity.y;
+	}
 	
 	//public void changeNextWayPoints(ArrayList<Vector2> newWaypoints) {
 	//	this.setPath(nPath);

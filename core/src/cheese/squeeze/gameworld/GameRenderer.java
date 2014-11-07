@@ -24,6 +24,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import cheese.squeeze.game.CSGame.GameState;
@@ -42,6 +43,7 @@ public class GameRenderer {
 	private GoalSprites goals;
 	private Vector2 mouseSize= new Vector2(9,8);
 	private Sprite completed;
+	private float iterator = 0;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
@@ -134,9 +136,19 @@ public class GameRenderer {
 	private void drawMice() {
 		for(Mouse m : board.getMice()) {
 			batcher.begin();
+			//TODO nog wa prutsen me de wiggle :P
+			
 			// enable transparency
 			batcher.enableBlending();
-			batcher.draw(mouse, m.getX()-(mouseSize.x/2),m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation(), true);
+			iterator += 200;
+	        float offset = MathUtils.sinDeg( (float) (iterator*(0.1f*m.getSpeed() )))*0.6f;
+	        if(m.getRotation() == 90) {
+	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        }
+	        else {
+	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2),m.getY()-(mouseSize.y/2)+offset,mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+ MathUtils.radiansToDegrees*offset*0.5f, true);
+	        }
+			
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
 			//AssetLoader.mouseS.draw(batcher);
 			// End SpriteBatch
