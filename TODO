@@ -4,97 +4,58 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 General:
 
-* google analytics (Max)
+H  - Treemap maken (Max)
+     
+H  - Brower Versie maken
 
-knop geluid is niet duidelijk (maakt geluid als je die induwt)
+M  - Tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
-* verschillende graphic packs en kleinere afbeeldingen (Luca)
+M  - Levels Finetunen (Luca)
 
-ingame rating systeem voor de levels (eventueel met timer om aan te moedigen)
-      --> afbeelding (Luca)
-      --> implementatie
+M  - Questionnaire Online Zetten (Bart) 
 
-* tekst tutorialhandje bepalen ("Lead the mouse to the cheese. Tap the screen to draw a line.)
+M  - Site Mooier Maken (Bart)
 
-* afbeeldingen tutorial maken (Luca)
+M  - Makkelijker systeem invoeren nieuwe versie
 
-* nieuwe versie pop-up
+
+Music & Visual:
+
+H  - verschillende graphic packs en kleinere afbeeldingen (Luca)
+
+M  - nieuwe versie pop-up
       --> design/artwork (Luca)
       --> serverside code (Bart)
 
-makkelijker systeem invoeren nieuwe versie
-
-muis wiggle verbeteren (gamerenderer)
-
-* site mooier maken (bart)
-
-* questionnaire online zetten (google + R) (Bart)
-
-* ordening levels finetunen (Luca)
-
-volgende muis laan aanduiden
-
-verschillende achtergronden/level locaties
-
-todo in orde maken (Luca)
-
-* treemap (Max)
-
-art juist scalen
-
-bloed (Luca)
-
-VH - [ERROR] Errors in 'file:/Users/maxdekoninck/Dropbox/CSGame3/core/src/cheese/squeeze/gameObjects/Line.java'
-      [ERROR] Line 106: The method higherEntry(float) is undefined for the type TreeMap<Float,Line>
-      [ERROR] Line 106: The method lowerEntry(float) is undefined for the type TreeMap<Float,Line>
-     
-     Bij compile van gwt dus zelf treemap maken.!
-     
-VH - Brower Versie maken (geen jar)
-
-H  - Huidige level bewaren bij terugkeren naar menu. ok
-     
-H  - Visual aid lines (doorzichtig) weg doen als er geen lijn meer kan staan ok
-
-H  - Horizontale lijnen op voorhand er in steken. (functionaliteit) OK
-
-H - analetics OK
-
-M  - tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
-
-
-M  - 6 eerste levels instellen (zie facebook voor files)
-
-
-Music & Visual Bugs:
-
 M  - geluid button niet afspelen bij drukken op sound_on -> sound_off
 
-M  - size image packs verkleinen voor mobile devices met shitty gpu
+M  - art juist doen scalen voor mobile (width en height gebruiken)
 
-M  - muziek van victory/defeat speelt niet bij jar files
+M  - filesize muziek verkleinen (Luca)
 
-L  - filesize muziek verkleinen
+M  - gore images 
 
-M - gore images
+M  - afbeeldingen tutorial maken ("Lead the mouse to the cheese. Tap the screen to draw a line." + bolletje)
+
+L  - verschillende achtergronden/level locaties
+
+L  - volgende muis lane aanduiden
+
+L  - rating system ster
 
 
 Mouse & Path Bugs:
 
 M  - Muis 1/3 trager
 
+M  - muis wiggle verbeteren (gamerenderer)
+
 
 OPTIONAL:
 
-M  - testen op verschillende aspect ratios (grootte afbeeldingen enz)
-
 L  - portals of gaten als de kaas weg is 
 
-L  - Logo voor android app toevoegen. OK
-
 L  - desktop window aspect ratio resize (http://badlogicgames.com/forum/viewtopic.php?f=11&t=7489)
-
-L  - mouse wiggle OK
 
 L  - onderweg extra kazen verzamelen (bv. 3), deze kunnen ook tussen verticale lijnen geplaatst zijn
      samen implementeren met level selector
