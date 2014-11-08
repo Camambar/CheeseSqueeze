@@ -1,0 +1,145 @@
+
+newparts.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+floor
+  rotate: false
+  xy: 1, 1
+  size: 800, 1280
+  orig: 800, 1280
+  offset: 0, 0
+  index: -1
+menu_leeg
+  rotate: false
+  xy: 803, 1
+  size: 800, 1280
+  orig: 800, 1280
+  offset: 0, 0
+  index: -1
+completed
+  rotate: false
+  xy: 1605, 865
+  size: 626, 416
+  orig: 626, 416
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 2233, 858
+  size: 192, 423
+  orig: 192, 423
+  offset: 0, 0
+  index: -1
+failed
+  rotate: false
+  xy: 1605, 447
+  size: 626, 416
+  orig: 626, 416
+  offset: 0, 0
+  index: -1
+logo
+  rotate: false
+  xy: 1605, 147
+  size: 712, 298
+  orig: 712, 298
+  offset: 0, 0
+  index: -1
+play
+  rotate: false
+  xy: 1605, 12
+  size: 606, 133
+  orig: 606, 133
+  offset: 0, 0
+  index: -1
+music_off
+  rotate: false
+  xy: 2213, 4
+  size: 264, 141
+  orig: 264, 141
+  offset: 0, 0
+  index: -1
+cheese_pile1
+  rotate: false
+  xy: 2233, 589
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+home
+  rotate: false
+  xy: 2233, 450
+  size: 178, 137
+  orig: 178, 137
+  offset: 0, 0
+  index: -1
+cheese_pile2
+  rotate: false
+  xy: 2319, 181
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+music_on
+  rotate: false
+  xy: 2479, 38
+  size: 264, 141
+  orig: 264, 141
+  offset: 0, 0
+  index: -1
+mouse
+  rotate: false
+  xy: 2413, 473
+  size: 79, 114
+  orig: 79, 114
+  offset: 0, 0
+  index: -1
+cheese_pile3
+  rotate: false
+  xy: 2427, 1014
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+sound_off
+  rotate: false
+  xy: 2427, 871
+  size: 264, 141
+  orig: 264, 141
+  offset: 0, 0
+  index: -1
+trap_closed
+  rotate: false
+  xy: 2652, 1021
+  size: 131, 260
+  orig: 131, 260
+  offset: 0, 0
+  index: -1
+cheese_pile4
+  rotate: false
+  xy: 2458, 602
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+sound_on
+  rotate: false
+  xy: 2494, 459
+  size: 264, 141
+  orig: 264, 141
+  offset: 0, 0
+  index: -1
+trap_open
+  rotate: false
+  xy: 2683, 609
+  size: 131, 260
+  orig: 131, 260
+  offset: 0, 0
+  index: -1
+cheese_pile5
+  rotate: false
+  xy: 2544, 190
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1

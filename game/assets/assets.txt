@@ -1,0 +1,36 @@
+d:war/:0:application/unknown
+i:badlogic.jpg:68465:image/jpeg
+d:data:0:application/unknown
+a:data/button.mp3:3660:application/unknown
+a:data/chalk.mp3:5952:application/unknown
+a:data/death.mp3:3439:application/unknown
+a:data/Defeat.mp3:508128:application/unknown
+a:data/Defeat.wav:3481668:audio/x-wav
+i:data/empty.png:732:image/png
+i:data/full.png:3523:image/png
+a:data/Game Music.mp3:2509104:application/unknown
+i:data/game.png:289712:image/png
+i:data/level1.png:7084:image/png
+i:data/level2.png:12748:image/png
+i:data/level3.png:10569:image/png
+i:data/level4.png:8089:image/png
+i:data/level5.png:8503:image/png
+i:data/level6.png:9454:image/png
+a:data/Menu Music.mp3:3189600:application/unknown
+a:data/pop.mp3:4564:application/unknown
+a:data/Victory.mp3:809088:application/unknown
+a:data/Victory.wav:5343664:audio/x-wav
+d:graph:0:application/unknown
+t:graph/loading.pack:443:application/unknown
+i:graph/loading.png:340500:image/png
+i:graph/loading2.png:2238:image/png
+t:graph/newparts.pack:2249:application/unknown
+i:graph/newparts.png:3344132:image/png
+t:com/badlogic/gdx/graphics/g3d/particles/particles.fragment.glsl:770:application/unknown
+t:com/badlogic/gdx/graphics/g3d/particles/particles.vertex.glsl:2730:application/unknown
+t:com/badlogic/gdx/graphics/g3d/shaders/default.fragment.glsl:5163:application/unknown
+t:com/badlogic/gdx/graphics/g3d/shaders/default.vertex.glsl:8948:application/unknown
+t:com/badlogic/gdx/graphics/g3d/shaders/depth.fragment.glsl:870:application/unknown
+t:com/badlogic/gdx/graphics/g3d/shaders/depth.vertex.glsl:2923:application/unknown
+t:com/badlogic/gdx/utils/arial-15.fnt:21743:application/unknown
+i:com/badlogic/gdx/utils/arial-15.png:21814:image/png
