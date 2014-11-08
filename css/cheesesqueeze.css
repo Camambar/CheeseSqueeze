@@ -33,7 +33,7 @@ a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: #FEB103;
+    color: #FFD97E;
 }
 
 h1,
@@ -54,18 +54,23 @@ a.navbar {
     font-size: 1.5em;
     float:right;
     padding:20px;
-    color: #fff;
+    color: #000000;
 }
 
 header {
     text-align: center;
-    color: #fff;
-    background: #FEB103;
+    color: #000000;
+    background: #FFD97E;
 }
 
 header .container {
     padding-top: 0px;
     padding-bottom: 50px;
+}
+
+header .container #main-part-header {
+	width: auto;
+	margin: 0 auto 0 auto;
 }
 
 header img {
@@ -84,27 +89,26 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #FEB103;
+    background: #FFD97E;
 }
 
-.btn-outline {
+.download-btn {
     margin-top: 15px;
-    border: solid 2px #f4efef;
+    border: solid 2px #000000;
     font-size: 30px;
     padding: 10px;
     margin: 20px;
-    color: #f4efef;
+    color: #000000;
     background: 0 0;
     transition: all .3s ease-in-out;
 }
 
-.btn-outline:hover,
-.btn-outline:focus,
-.btn-outline:active,
-.btn-outline.active {
-    border: solid 2px #f4efef;
-    color: #FEB103;
-    background: #f4efef;
+.download-btn:hover,
+.download-btn:focus,
+.download-btn:active,
+.download-btn.active {
+    border: solid 2px #5F5D58;
+    color: #5F5D58;
 }
 
 footer {
@@ -117,7 +121,7 @@ footer {
 
 footer .footer {
     padding: 25px 0;
-    background-color: #FEB103;
+    background-color: #FFD97E;
 }
 
 .btn:focus,
