@@ -1,4 +1,4 @@
-ChangeLog v2
+ChangeLog v1_3
 	- white guidlines dissapear
 	- more forgiving input
 	- in desktop app gesture line when moved over the field

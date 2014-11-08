@@ -9,4 +9,5 @@
 	<source path="cheese/squeeze/screens" />
 	<source path="cheese/squeeze/tweenAccessors" />
 	<source path="cheese/squeeze/ui" />
+	<source path="cheese/squeeze/structures" />
 </module>

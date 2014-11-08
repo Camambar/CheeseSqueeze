@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.flurry.android.FlurryAgent;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
@@ -71,7 +72,21 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	@Override
 	public void setTrackerScreenName(String path) {
 		
-		/*
+		FlurryAgent.logEvent("Article_Read");
+
+		
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+		// Send the custom dimension value with a screen view.
+		// Note that the value only needs to be sent once, so it is set on the Map,
+		// not the tracker.
+		easyTracker.send(MapBuilder.createAppView().set("1", "test").build());
+		
+		globalTracker.set(Fields.SCREEN_NAME, path);
+
+		globalTracker.send(MapBuilder.createAppView().build());
+		
+		
 		
 
 		HashMap<String, String> hitParameters = new HashMap<String, String>();
@@ -86,6 +101,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		globalTracker.send(MapBuilder.createAppView().build());
 		
 		t.set(Fields.SCREEN_NAME, path);
+		
 
 		t.send(MapBuilder.createAppView().build());
 		
@@ -107,6 +123,8 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	  @Override
 	  public void onStart() {
 	    super.onStart();
+	    FlurryAgent.onStartSession(this, "4BXDF27WR46BHTGG778S");
+	    FlurryAgent.setLogEnabled(true);
 	    // The rest of your onStart() code.
 	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
 	  }
@@ -114,6 +132,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	  @Override
 	  public void onStop() {
 	    super.onStop();
+	    FlurryAgent.onEndSession(this);
 	    // The rest of your onStop() code.
 	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	  }
