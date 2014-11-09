@@ -6,40 +6,27 @@ General:
 
 H  - Google analytics werkende krijgen
 
-M  - Tutorial hand implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
+M  - Tutorial hand, bol en instructies implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
 
 M  - Levels Finetunen (Luca)
-
-M  - Questionnaire Online Zetten (Bart) 
 
 M  - Site Mooier Maken (Bart)
 
 M  - Makkelijker systeem invoeren nieuwe versie
 
+M  - M  - nieuwe versie pop-up (afbeelding: Menu/download.png OF version.png)
+      --> serverside code (Bart)
+
+L  - Volgende muis aangeven (afbeelding: Game/next.png)
+
 
 Music & Visual:
-
-H  - verschillende graphic packs en kleinere afbeeldingen (Luca)
-
-M  - nieuwe versie pop-up
-      --> design/artwork (Luca)
-      --> serverside code (Bart)
 
 M  - geluid button niet afspelen bij drukken op sound_on -> sound_off
 
 M  - art juist doen scalen voor mobile (width en height gebruiken)
 
-M  - filesize muziek verkleinen (Luca)
-
 M  - gore images 
-
-M  - afbeeldingen tutorial maken ("Lead the mouse to the cheese. Tap the screen to draw a line." + bolletje)
-
-L  - verschillende achtergronden/level locaties
-
-L  - volgende muis lane aanduiden
-
-L  - rating system ster
 
 
 Mouse & Path Bugs:
