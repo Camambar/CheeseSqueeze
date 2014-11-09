@@ -1,7 +1,7 @@
 package cheese.squeeze.ui;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

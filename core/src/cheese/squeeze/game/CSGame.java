@@ -21,10 +21,6 @@ public class CSGame extends Game {
 	public static Level currentLevel = Level.LEVEL1;
 	private ActionResolver action;
 	
-	public static enum GameState {
-		MENU,GAMEOVER,PLAYING,WON,PAUSE;
-	}
-	
 	public CSGame(ActionResolver action) {
 		this.action = action;
 	}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.Level;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
 import cheese.squeeze.tweenAccessors.MusicAccessor;

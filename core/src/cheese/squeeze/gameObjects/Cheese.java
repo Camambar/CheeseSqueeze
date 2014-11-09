@@ -1,7 +1,7 @@
 package cheese.squeeze.gameObjects;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.tweenAccessors.SoundAccessor;

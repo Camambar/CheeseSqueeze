@@ -3,7 +3,7 @@ package cheese.squeeze.screens;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;

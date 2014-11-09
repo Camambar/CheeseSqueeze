@@ -3,7 +3,7 @@ package cheese.squeeze.gameworld;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
@@ -27,7 +27,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 
 public class GameRenderer {
 

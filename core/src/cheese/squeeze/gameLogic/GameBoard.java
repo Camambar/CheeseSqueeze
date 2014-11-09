@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
 import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;

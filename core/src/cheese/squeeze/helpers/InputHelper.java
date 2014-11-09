@@ -3,7 +3,7 @@ package cheese.squeeze.helpers;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.CSGame.GameState;
+import cheese.squeeze.game.GameState;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.VerticalLine;
