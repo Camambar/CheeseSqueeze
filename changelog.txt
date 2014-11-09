@@ -1,0 +1,5 @@
+- more forgiving input
+- in desktop app gesture line when moving mouse over the field
+- level is saved if you go to menu
+- mouse	wiggle
+- analytics
