@@ -51,7 +51,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 			
 			Tracker t = (trackerId == TrackerName.APP_TRACKER) ? analytics.getTracker(PROPERTY_ID)
 					: (trackerId == TrackerName.GLOBAL_TRACKER) ? analytics
-							.getTracker(String.valueOf(R.xml.global_tracker)) : analytics
+							.getTracker("UA-56519107-1") : analytics
 							.getTracker(String.valueOf(R.xml.ecommerce_tracker));
 							mTrackers.put(trackerId, t);
 		}
@@ -62,9 +62,9 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		t = GoogleAnalytics.getInstance(this).getTracker(PROPERTY_ID);
-		tracker = this.getTracker(TrackerName.APP_TRACKER);
-		globalTracker = this.getTracker(TrackerName.GLOBAL_TRACKER);
+		//t = GoogleAnalytics.getInstance(this).getTracker(PROPERTY_ID);
+		//tracker = this.getTracker(TrackerName.APP_TRACKER);
+		//globalTracker = this.getTracker(TrackerName.GLOBAL_TRACKER);
 		GoogleAnalytics.getInstance(this).getLogger().setLogLevel(LogLevel.VERBOSE);
 		initialize(new CSGame(this), config);
 	}
@@ -75,13 +75,16 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		FlurryAgent.logEvent("Article_Read");
 
 		
-		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		EasyTracker easyTracker = EasyTracker.getInstance(AndroidLauncher.this);
 
 		// Send the custom dimension value with a screen view.
 		// Note that the value only needs to be sent once, so it is set on the Map,
 		// not the tracker.
-		easyTracker.send(MapBuilder.createAppView().set("1", "test").build());
+		//easyTracker.send(MapBuilder.createAppView().set("1", "test").build());
 		
+		easyTracker.send(MapBuilder.createEvent("Status", "startup", "this is a test", 1L).build());
+		
+		/*
 		globalTracker.set(Fields.SCREEN_NAME, path);
 
 		globalTracker.send(MapBuilder.createAppView().build());
@@ -111,12 +114,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 			      .build()
 			    );
 		
-		/*
-		globalTracker.send(MapBuilder
-		  .createAppView()
-		  .build());
 		*/
-		
 		
 	}
 	
