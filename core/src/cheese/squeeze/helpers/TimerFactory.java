@@ -10,7 +10,7 @@ public class TimerFactory {
 	
 	private static ArrayList<Timer> timers = new ArrayList<Timer>();
 
-	public static Timer getNewTimer(GameState state) {
+	public static Timer getNewTimer(ReportStatus state) {
 		Timer t = new Timer(state);
 		timers.add(t);
 		return t;
@@ -27,5 +27,23 @@ public class TimerFactory {
 			}
 		}
 		return null;
+	}
+
+	public static void stopAll() {
+		for(Timer t : timers) {
+			t.stop();
+		}
+	}
+
+	public static void pauseAll() {
+		for(Timer t : timers) {
+			t.pause();
+		}
+	}
+	
+	public static void resumeAll() {
+		for(Timer t : timers) {
+			t.resume();
+		}
 	}
 }

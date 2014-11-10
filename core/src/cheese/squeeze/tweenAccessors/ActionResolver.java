@@ -2,7 +2,7 @@ package cheese.squeeze.tweenAccessors;
 
 public interface ActionResolver {
 	
-	public void setTrackerScreenName(String path);
+	public void reportAnalytics(String action,String cat,long value);
 	 
 
 }

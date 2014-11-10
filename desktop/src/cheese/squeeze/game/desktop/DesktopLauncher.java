@@ -18,8 +18,9 @@ public class DesktopLauncher implements ActionResolver{
 		new LwjglApplication(new CSGame(), config);
 	}
 
+
 	@Override
-	public void setTrackerScreenName(String path) {
+	public void reportAnalytics(String action, String cat, long value) {
 		// TODO Auto-generated method stub
 		
 	}

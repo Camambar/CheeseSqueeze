@@ -6,10 +6,12 @@ import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
 import cheese.squeeze.game.Report;
+import cheese.squeeze.game.ReportStatus;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelper;
+import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.ui.PopUpButton;
@@ -44,7 +46,7 @@ public class GameScreen implements Screen {
 	private void init(final CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
         CSGame.currentState = GameState.PLAYING;
-        TimerFactory.getNewTimer(GameState.PLAYING).start();
+        TimerFactory.getNewTimer(new ReportStatus(GameState.PLAYING,currentLevel)).start();
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
@@ -69,8 +71,8 @@ public class GameScreen implements Screen {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO Current level select 
-				dispose();
 				Report.report(currentLevel, GameState.GAMEOVER);
+				dispose();
 				game.setScreen(new GameScreen(game,currentLevel));
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
@@ -79,8 +81,9 @@ public class GameScreen implements Screen {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO next level select
-				dispose();
+				
 				Report.report(currentLevel, GameState.WON);
+				dispose();
 				if(currentLevel.getNextLevel()!=null) {
 					CSGame.currentLevel = currentLevel.getNextLevel();
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
@@ -152,18 +155,21 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
+    	TimerFactory.pauseAll();
         Gdx.app.log("GameScreen", "pause called");        
     }
 
     @Override
     public void resume() {
+    	TimerFactory.resumeAll();
         Gdx.app.log("GameScreen", "resume called");       
     }
 
     @Override
     public void dispose() {
-    	TimerFactory.getRunningTimer(GameState.PLAYING).stop();
-        // Leave blank
+    	Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.PLAYING,currentLevel));
+    	t.getState().setState(CSGame.currentState);
+    	t.stop();
     }
 
 }

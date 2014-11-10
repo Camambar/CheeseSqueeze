@@ -26,20 +26,21 @@ public class Timer {
 		startTime = System.nanoTime();
 	}
 	
-	public void pauze() {
-		//TODO
-		
+	public void pause() {
+		stopTime = System.nanoTime();
+		totalTime = stopTime - startTime;
 	}
 	
 	public void resume() {
-		//TODO
+		startTime = System.nanoTime();
+		stopTime = 0;
 	}
 	
 	public void stop() {
 		if(!isStopped) {
 			isStopped = true;
 			stopTime = System.nanoTime();
-			totalTime = stopTime - startTime;
+			totalTime = totalTime + (stopTime - startTime);
 		}
 
 	}
@@ -70,4 +71,7 @@ public class Timer {
 		return this.state;
 	}
 
+	public long getMiliSeconds() {
+		return TimeUnit.NANOSECONDS.toMillis(this.totalTime);
+	}
 }

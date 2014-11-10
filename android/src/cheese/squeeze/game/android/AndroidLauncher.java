@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import android.app.Application;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -23,6 +24,8 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	private Tracker tracker;
 	private Tracker globalTracker;
 	private static Tracker t;
+	private String android_id = Secure.getString(getContext().getContentResolver(),
+            Secure.ANDROID_ID); 
 	
 
 	private static final String PROPERTY_ID = "UA-56519107-1";
@@ -70,9 +73,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	}
 
 	@Override
-	public void setTrackerScreenName(String path) {
-		
-		FlurryAgent.logEvent("Article_Read");
+	public void reportAnalytics(String action,String cat,long value) {
 
 		
 		EasyTracker easyTracker = EasyTracker.getInstance(AndroidLauncher.this);
@@ -82,7 +83,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		// not the tracker.
 		//easyTracker.send(MapBuilder.createAppView().set("1", "test").build());
 		
-		easyTracker.send(MapBuilder.createEvent("Status", "startup", "this is a test", 1L).build());
+		easyTracker.send(MapBuilder.createEvent(cat, action, android_id, value).build());
 		
 		/*
 		globalTracker.set(Fields.SCREEN_NAME, path);

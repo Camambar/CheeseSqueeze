@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.Level;
 import cheese.squeeze.game.GameState;
+import cheese.squeeze.game.ReportStatus;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
 import cheese.squeeze.helpers.TimerFactory;
@@ -29,7 +30,7 @@ public class MenuScreen implements Screen{
 
 	public MenuScreen(final CSGame game) {
 		
-		TimerFactory.getNewTimer(GameState.MENU).start();
+		TimerFactory.getNewTimer(new ReportStatus(GameState.MENU)).start();
 		CSGame.currentState = GameState.MENU;
 		addButtons(game);
 		batcher = new SpriteBatch();
@@ -115,13 +116,14 @@ public class MenuScreen implements Screen{
 
 	@Override
 	public void pause() {
-		System.out.println("pauze");
+		TimerFactory.pauseAll();
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void resume() {
+		TimerFactory.resumeAll();
 		// TODO Auto-generated method stub
 		
 	}
@@ -129,7 +131,7 @@ public class MenuScreen implements Screen{
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		TimerFactory.getRunningTimer(GameState.MENU).stop();
+		TimerFactory.getRunningTimer(new ReportStatus(GameState.MENU)).stop();
 	}
 
 }

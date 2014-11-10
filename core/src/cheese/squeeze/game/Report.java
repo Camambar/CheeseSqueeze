@@ -28,10 +28,10 @@ public class Report {
 	public static String str() {
 		String res = "";
 		for(Entry<Level,HashMap<GameState,Integer>> e : map.entrySet()) {
-			res += "------------------------------";
+			res += "------------------------------ \n";
 			res += e.getKey().toString() + " \n";
 			for(Entry<GameState,Integer> e2 : e.getValue().entrySet()) {
-				res += e2.getKey().toString() + ": " + e2.getValue().toString() + " times";
+				res += e2.getKey().toString() + ": " + e2.getValue().toString() + " times \n";
 			}
 		}
 		return res;

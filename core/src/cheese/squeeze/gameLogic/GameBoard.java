@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
+import cheese.squeeze.game.ReportStatus;
 import cheese.squeeze.gameObjects.Cheese;
 import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Line;
@@ -22,6 +23,8 @@ import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.helpers.Timer;
+import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.structures.LinkedList;
 import cheese.squeeze.tweenAccessors.SoundAccessor;
 
@@ -52,6 +55,7 @@ public class GameBoard {
 	
 
 	public GameBoard(float width, float height,Level l) {
+		TimerFactory.getNewTimer(new ReportStatus(GameState.FIRSTLINE,l)).start();
 		this.level = l;
 		this.width = width;
 		this.height = height;
@@ -177,6 +181,10 @@ public class GameBoard {
 	}
 	
 	public void addHLine(HorizontalLine line) {
+		Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.FIRSTLINE,level));
+		if( t != null ) {
+			t.stop();
+		}
 		int row = betweenLines(line.getX1());
 		if(!isOcupiedPosition(line.getY1(),row)) {
 			SoundAccessor.play(AssetLoader.chalk);

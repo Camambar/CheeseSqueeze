@@ -2,6 +2,7 @@ package cheese.squeeze.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.Timer;
@@ -37,14 +38,12 @@ public class CSGame extends Game {
 	@Override
 	public void create() {
 		Gdx.app.log("CSGame", "created");
-		TimerFactory.getNewTimer(GameState.GAMESTART).start();
+		TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
 		MusicAccessor musicA = new MusicAccessor();
 		AssetLoader.loadSplashScreen();
 		// set to setScreen(new GameScreen()); to start the game immediatly!
 		//setScreen(new GameScreen());
-		if(action!=null) {
-			action.setTrackerScreenName("Test");
-		}
+
 		
 		setScreen(new SplashScreen(this));
 	}
@@ -56,13 +55,31 @@ public class CSGame extends Game {
     @Override
     public void dispose() {
         super.dispose();
-        TimerFactory.getRunningTimer(GameState.GAMESTART).stop();
-        ArrayList<Timer> t = TimerFactory.getTimers();
-        for(Timer ti : t) {
-        	System.out.println(ti.toString());
-        }
+        TimerFactory.stopAll();
         
+        ArrayList<Timer> t = TimerFactory.getTimers();
         HashMap<Level,HashMap<GameState,Integer>> m = Report.map;
+        System.out.println(Report.str());
+        
+		for(Timer timer : t) {
+			System.out.println(timer.getState().getLevel().toString());
+			System.out.println(timer.getState().getGameState().toString());
+		}
+        
+        
+		if(action!=null) {
+			for(Timer timer : t) {
+				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getMiliSeconds());
+			}
+			for(Entry<Level, HashMap<GameState, Integer>> e: Report.map.entrySet()) {
+				for (Entry<GameState, Integer> e2 : e.getValue().entrySet()) {
+					action.reportAnalytics(e.getKey().toString(),e2.getKey().toString(),e2.getValue());
+				}
+			}
+			
+			
+		}
+        
         
         AssetLoader.dispose();
     }

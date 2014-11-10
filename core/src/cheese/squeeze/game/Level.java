@@ -7,9 +7,10 @@ import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 
 
-public enum Level implements ReportStatus{
+public enum Level {
 	
-	
+		NOTHING(),
+		
         LEVEL6(1f,new HorizontalLine[]{}
 			,new VerticalLine[]{new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
 			,new int[]{4,2,3,2,1},1),
@@ -27,12 +28,12 @@ public enum Level implements ReportStatus{
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4)),new VerticalLine(new Trap())}
 			,new int[]{1,2,3,4},2,LEVEL4),
 			
-		LEVEL2(.1f,new HorizontalLine[]{}
-			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4)),new VerticalLine(new Trap())}
-			,new int[]{5,2,3,4,5},3,LEVEL3),
+		LEVEL2(.8f,new HorizontalLine[]{}
+			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(1)),new VerticalLine(new Trap())}
+			,new int[]{5,2,3,4,5},1,LEVEL3),
         
         LEVEL1(.8f,new HorizontalLine[]{}
-		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4))}
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(1))}
 		,new int[]{1,2,1,3},1,LEVEL2);
         
         /*
@@ -54,6 +55,10 @@ public enum Level implements ReportStatus{
 	private int[] mouseOnLine;
 	private float multipl = 1; //TODO can change
 	
+	
+	Level() {
+		
+	}
 	
 	Level(float speed, HorizontalLine[] hlines,VerticalLine[] vlines, int[] mouseOnLine,int nbMouse) {
         this.amountVlines = vlines.length;
@@ -98,6 +103,7 @@ public enum Level implements ReportStatus{
         this.nextLevel = nextLevel;
         this.nbMouse = nbMouse;
     }
+
 
 	public int getAmountTraps() {
 		return amountTraps;
