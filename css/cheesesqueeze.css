@@ -68,11 +68,6 @@ header .container {
     padding-bottom: 50px;
 }
 
-header .container #main-part-header {
-	width: auto;
-	margin: 0 auto 0 auto;
-}
-
 header img {
     display: block;
     margin: 0 auto 0;
@@ -94,12 +89,12 @@ section.success {
 
 .download-btn {
     margin-top: 15px;
-    border: solid 2px #000000;
+    border: solid 2px #45423C;
     font-size: 30px;
     padding: 10px;
     margin: 20px;
-    color: #000000;
-    background: 0 0;
+    color: #45423C;
+    background: #FFBB33;
     transition: all .3s ease-in-out;
 }
 
@@ -107,16 +102,22 @@ section.success {
 .download-btn:focus,
 .download-btn:active,
 .download-btn.active {
-    border: solid 2px #5F5D58;
-    color: #5F5D58;
+	background: #FFAC00;
+	color: #000;
+	border: solid 2px #000;
 }
 
-footer {
-    color: #fff;
+footer,
+footer a,
+footer a:hover,
+footer a:focus,
+footer a:active,
+footer a.active {
+    color: #45423C;
 	width: 100%;
-	position: absolute;
 	bottom: 0;
 	left: 0;
+	display: inline;
 }
 
 footer .footer {
