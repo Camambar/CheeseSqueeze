@@ -1,0 +1,12 @@
+
+menu_leeg.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+menu_leeg
+  rotate: false
+  xy: 1, 1
+  size: 800, 1280
+  orig: 800, 1280
+  offset: 0, 0
+  index: -1
