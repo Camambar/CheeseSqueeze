@@ -115,6 +115,7 @@ public class MenuScreen implements Screen{
 
 	@Override
 	public void pause() {
+		System.out.println("pauze");
 		// TODO Auto-generated method stub
 		
 	}

@@ -8,7 +8,8 @@ import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
 import cheese.squeeze.game.CSGame;
 
 public class IOSLauncher extends IOSApplication.Delegate {
-    @Override
+	
+  
     protected IOSApplication createApplication() {
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
         return new IOSApplication(new CSGame(), config);
