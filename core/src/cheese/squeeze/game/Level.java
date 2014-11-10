@@ -11,16 +11,16 @@ public enum Level {
 	
 		NOTHING(),
 		
-        LEVEL6(1f,new HorizontalLine[]{}
+        LEVEL6(0.5f,new HorizontalLine[]{}
 			,new VerticalLine[]{new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
 			,new int[]{4,2,3,2,1},1),
 			
-        LEVEL5(1f,new HorizontalLine[]{}
+        LEVEL5(0.5f,new HorizontalLine[]{}
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4)),new VerticalLine(new Trap())}
 			,new int[]{1,2,3,4},1,LEVEL6),
 	
 	
-        LEVEL4(.8f,new HorizontalLine[]{}
+        LEVEL4(.5f,new HorizontalLine[]{}
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4))}
 			,new int[]{1,2,1,3},1,LEVEL5),
 	
@@ -28,11 +28,11 @@ public enum Level {
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(4)),new VerticalLine(new Trap())}
 			,new int[]{1,2,3,4},2,LEVEL4),
 			
-		LEVEL2(.8f,new HorizontalLine[]{}
+		LEVEL2(.5f,new HorizontalLine[]{}
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(1)),new VerticalLine(new Trap())}
 			,new int[]{5,2,3,4,5},1,LEVEL3),
         
-        LEVEL1(.8f,new HorizontalLine[]{}
+        LEVEL1(.5f,new HorizontalLine[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(1))}
 		,new int[]{1,2,1,3},1,LEVEL2);
         
