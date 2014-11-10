@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
+import cheese.squeeze.game.Report;
 import cheese.squeeze.gameLogic.GameBoard;
 import cheese.squeeze.gameworld.GameRenderer;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelper;
+import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.ui.PopUpButton;
 import cheese.squeeze.ui.SimpleButton;
@@ -42,6 +44,7 @@ public class GameScreen implements Screen {
 	private void init(final CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
         CSGame.currentState = GameState.PLAYING;
+        TimerFactory.getNewTimer(GameState.PLAYING).start();
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
@@ -67,6 +70,7 @@ public class GameScreen implements Screen {
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO Current level select 
 				dispose();
+				Report.report(currentLevel, GameState.GAMEOVER);
 				game.setScreen(new GameScreen(game,currentLevel));
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
@@ -76,6 +80,7 @@ public class GameScreen implements Screen {
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO next level select
 				dispose();
+				Report.report(currentLevel, GameState.WON);
 				if(currentLevel.getNextLevel()!=null) {
 					CSGame.currentLevel = currentLevel.getNextLevel();
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
@@ -157,6 +162,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+    	TimerFactory.getRunningTimer(GameState.PLAYING).stop();
         // Leave blank
     }
 

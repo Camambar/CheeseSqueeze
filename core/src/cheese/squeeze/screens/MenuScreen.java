@@ -7,6 +7,7 @@ import cheese.squeeze.game.Level;
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
+import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.tweenAccessors.SoundAccessor;
 import cheese.squeeze.ui.SimpleButton;
@@ -28,16 +29,12 @@ public class MenuScreen implements Screen{
 
 	public MenuScreen(final CSGame game) {
 		
+		TimerFactory.getNewTimer(GameState.MENU).start();
 		CSGame.currentState = GameState.MENU;
-		
 		addButtons(game);
-		
 		batcher = new SpriteBatch();
-		
 		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
-		
 		MusicAccessor.play(AssetLoader.menuSound);
-		
 	}
 
 	private void addButtons(final CSGame game) {
@@ -47,6 +44,7 @@ public class MenuScreen implements Screen{
 			
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
+				dispose();
 				game.setScreen(new GameScreen(game));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
@@ -130,7 +128,7 @@ public class MenuScreen implements Screen{
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+		TimerFactory.getRunningTimer(GameState.MENU).stop();
 	}
 
 }

@@ -7,7 +7,7 @@ import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 
 
-public enum Level {
+public enum Level implements ReportStatus{
 	
 	
         LEVEL6(1f,new HorizontalLine[]{}
