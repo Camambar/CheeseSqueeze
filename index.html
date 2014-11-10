@@ -1,24 +1,91 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>Cheese Squeeze!</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Cheese Squeeze</title>
+		<link rel="shortcut icon" href="res/logo.png?v=1" />
+
+		<!-- Bootstrap -->
+		<link href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Custom CSS -->
+		<link href="css/cheesesqueeze.css" rel="stylesheet">
+
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
 	</head>
 	<body>
-		<h1>Welcome to the project page of Cheese Squeeze!</h1>
-
-		<p>You can play our game <a href="http://camambar.github.io/CheeseSqueeze/game/web/">online</a>!
-		
-		<p>You can also download the latest version of our game for <a href="http://camambar.github.io/CheeseSqueeze/game/desktop/">destop</a> and <a href="http://camambar.github.io/CheeseSqueeze/game/android/">android</a>.</p>
-		<p><em>ENJOY!</em></p>
-		
-		<p>ChangeLog v1_3</p>
-		<p>- removed white guidelines </br>
-		- more forgiving input</br>
-		- in desktop app gesture line when moving mouse over the field</br>
-		- level is saved if you go to menu</br>
-		- mouse wiggle</br>
-		- analytics </br>
+		<div id="wrapper">
+			<!-- Header -->
+			<header>
+				<div class="container">
+					<div class="row">
+					   <a class="navbar" href="http://camambar.wordpress.com" target="_blank">Blog</a>
+					   <a class="navbar" href="changelog.txt" target="_blank">Changelog</a>
+					</div>
+					<div class="row">
+						<img id="banner" src="res/cover.png">
+					</div>
+					<div class="row">
+						<a id="web" href="game/web/"><button class="download-btn" value="1">Play Online</button></a>
+						<a id="android" href="game/android/"><button class="download-btn" value="2">Download for android</button></a>
+						<a id="ios"><button class="download-btn" value="3">Download for iOS</button></a>
+					</div>
+				</div>
+			</header>
 			
-		</p>
-	</body>
+			<div id="content">
+				<!-- About Section -->
+				<section id="about">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 text-center">
+								<h1>Welcome!</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 text-center">
+								<p>You can play our game <a href="http://camambar.github.io/CheeseSqueeze/game/web/">online</a>!
+								
+								<p>You can also download the latest version of our game for <a href="http://camambar.github.io/CheeseSqueeze/game/desktop/">destop</a> and <a href="http://camambar.github.io/CheeseSqueeze/game/android/">android</a>.</p>
+								</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 text-center">
+								<p><em>ENJOY!</em></p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+				
+			<!-- Footer -->
+			<footer class="text-center">
+						<div class="footer">
+					<div class="container">
+						<div class="row">
+							Page layout based on <a href="http://probberechts.github.io/SheepHerder/" target="_blank">Team Sheepy's page</a>!
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="jquery.snow.min.1.0.js"></script>
+		<script>
+			$(document).ready( function(){
+					$.fn.snow();
+			});
+		</script>
+  </body>
 </html>
