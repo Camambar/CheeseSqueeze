@@ -62,14 +62,14 @@ public class CSGame extends Game {
         System.out.println(Report.str());
         
 		for(Timer timer : t) {
-			System.out.println(timer.getState().getLevel().toString());
-			System.out.println(timer.getState().getGameState().toString());
+			System.out.println(timer.getState().getLevel().toString() + timer.getState().getGameState().toString());
+			System.out.println();
 		}
         
         
 		if(action!=null) {
 			for(Timer timer : t) {
-				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getMiliSeconds());
+				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getSeconds());
 			}
 			for(Entry<Level, HashMap<GameState, Integer>> e: Report.map.entrySet()) {
 				for (Entry<GameState, Integer> e2 : e.getValue().entrySet()) {

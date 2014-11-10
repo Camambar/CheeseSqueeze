@@ -28,7 +28,7 @@ public class Timer {
 	
 	public void pause() {
 		stopTime = System.nanoTime();
-		totalTime = stopTime - startTime;
+		totalTime = totalTime + (stopTime - startTime);
 	}
 	
 	public void resume() {

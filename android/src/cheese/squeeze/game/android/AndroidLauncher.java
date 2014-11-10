@@ -24,8 +24,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	private Tracker tracker;
 	private Tracker globalTracker;
 	private static Tracker t;
-	private String android_id = Secure.getString(getContext().getContentResolver(),
-            Secure.ANDROID_ID); 
+	 
 	
 
 	private static final String PROPERTY_ID = "UA-56519107-1";
@@ -83,7 +82,11 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		// not the tracker.
 		//easyTracker.send(MapBuilder.createAppView().set("1", "test").build());
 		
-		easyTracker.send(MapBuilder.createEvent(cat, action, android_id, value).build());
+		String android_id = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID);
+		
+		easyTracker.send(MapBuilder.createEvent(cat, action, "4", value).build());
+		//System.out.println("cat: "+cat + "\t" + action+ "\t" + "4 \t" + value);
+		
 		
 		/*
 		globalTracker.set(Fields.SCREEN_NAME, path);
@@ -122,8 +125,6 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	  @Override
 	  public void onStart() {
 	    super.onStart();
-	    FlurryAgent.onStartSession(this, "4BXDF27WR46BHTGG778S");
-	    FlurryAgent.setLogEnabled(true);
 	    // The rest of your onStart() code.
 	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
 	  }
@@ -131,7 +132,6 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	  @Override
 	  public void onStop() {
 	    super.onStop();
-	    FlurryAgent.onEndSession(this);
 	    // The rest of your onStop() code.
 	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	  }
