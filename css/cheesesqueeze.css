@@ -24,7 +24,11 @@ body {
 
 p {
     font-size: 20px;
-    text-align: justify;
+	margin-bottom: 10px;
+}
+
+h1 {
+	margin-bottom: 40px;
 }
 
 a,
@@ -33,7 +37,7 @@ a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: #FFD97E;
+    color: #FFAC00;
 }
 
 h1,
