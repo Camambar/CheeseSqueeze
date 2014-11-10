@@ -111,6 +111,17 @@ section.success {
 	border: solid 2px #000;
 }
 
+a#ios .download-btn,
+a#ios .download-btn:hover,
+a#ios .download-btn:focus,
+a#ios .download-btn:active,
+a#ios .download-btn.active {
+	opacity: 0.2;
+	background: #FFBB33;
+	color: #45423C;
+	border: solid 2px #45423C;
+}
+
 footer,
 footer a,
 footer a:hover,
