@@ -105,15 +105,16 @@ public class MenuScreen implements Screen{
 				
 				@Override
 				public void pushButtonListener(SimpleButton btn) {
-					try {
-						Desktop.getDesktop().browse(new URI(game.updateURL));
-					} catch (IOException e) {
+					//try {
+						Gdx.net.openURI(game.updateURL);
+						//Desktop.getDesktop().browse(new URI(game.updateURL));
+					//} catch (IOException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (URISyntaxException e) {
+						//e.printStackTrace();
+					//} catch (URISyntaxException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+						//e.printStackTrace();
+					//.}
 				}
 			},AssetLoader.version.getX(),AssetLoader.version.getY(),
 	        		AssetLoader.version.getWidth()*AssetLoader.version.getScaleX(),AssetLoader.version.getHeight()*AssetLoader.version.getScaleY(),AssetLoader.version,AssetLoader.version);

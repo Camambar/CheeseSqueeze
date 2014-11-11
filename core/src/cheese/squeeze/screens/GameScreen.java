@@ -199,8 +199,11 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
     	Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.PLAYING,currentLevel));
-    	t.getState().setState(CSGame.currentState);
-    	t.stop();
+    	if(t!= null) {
+        	t.getState().setState(CSGame.currentState);
+        	t.stop();
+    	}
+
     }
 
 }
