@@ -82,8 +82,8 @@ mouse
   index: -1
 next
   rotate: false
-  xy: 1, 2
-  size: 63, 100
-  orig: 63, 100
+  xy: 1079, 872
+  size: 32, 66
+  orig: 32, 66
   offset: 0, 0
   index: -1

@@ -5,56 +5,56 @@ filter: Nearest,Nearest
 repeat: none
 logo
   rotate: false
-  xy: 1, 430
+  xy: 1, 277
   size: 712, 298
   orig: 712, 298
   offset: 0, 0
   index: -1
+download
+  rotate: false
+  xy: 715, 287
+  size: 562, 288
+  orig: 562, 288
+  offset: 0, 0
+  index: -1
 play
   rotate: false
-  xy: 1, 295
+  xy: 1, 142
   size: 606, 133
   orig: 606, 133
   offset: 0, 0
   index: -1
 version
   rotate: false
-  xy: 1, 161
+  xy: 1, 8
   size: 606, 132
   orig: 606, 132
   offset: 0, 0
   index: -1
-download
-  rotate: false
-  xy: 1, 18
-  size: 264, 141
-  orig: 264, 141
-  offset: 0, 0
-  index: -1
 music_off
   rotate: false
-  xy: 267, 18
+  xy: 715, 144
   size: 264, 141
   orig: 264, 141
   offset: 0, 0
   index: -1
 music_on
   rotate: false
-  xy: 609, 287
+  xy: 981, 144
   size: 264, 141
   orig: 264, 141
   offset: 0, 0
   index: -1
 sound_off
   rotate: false
-  xy: 609, 144
+  xy: 609, 1
   size: 264, 141
   orig: 264, 141
   offset: 0, 0
   index: -1
 sound_on
   rotate: false
-  xy: 533, 1
+  xy: 875, 1
   size: 264, 141
   orig: 264, 141
   offset: 0, 0

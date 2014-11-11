@@ -213,15 +213,15 @@ public class AssetLoader {
         //width-(1.5f*logo_shadow.getWidth())
         play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+20);
         
-        version = new Sprite(new TextureRegion(atlasMenu.findRegion("version")));
-        version.setSize(play.getWidth(), play.getHeight() );
+        version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
+        version.setSize(version.getWidth()*scale, version.getHeight()*scale );
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
-        version.setPosition((width/2)-(.5f*play.getWidth()),(height/5)+20);
+        version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
         
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
         //set position to the top middle 10 pixle from top
-        logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-20f-logo_shadow.getHeight());
+        logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
         
         
         scale = scale * 1f;

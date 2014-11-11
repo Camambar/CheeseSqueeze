@@ -597,7 +597,7 @@ public class GameBoard {
 	}
 	
 	public float getTutorialPositionY() {
-		return hlines.firstKey();
+		return hlines.higherKey(hlines.higherKey(hlines.firstKey()));
 	}
 	
 }

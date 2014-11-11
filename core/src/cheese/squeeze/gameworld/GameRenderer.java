@@ -157,7 +157,7 @@ public class GameRenderer {
 			float offset2 = MathUtils.sinDeg( (float) (iterator*(0.1f )))*(0.4f);
 			batcher.begin();
 			//batcher.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
-			batcher.draw(nextMouse, board.getNextMouseLine().getX1(),board.getNextMouseLine().getY1()-7+offset2,5,0,10,10,1,1,90,true);
+			batcher.draw(nextMouse, board.getNextMouseLine().getX1()-3.7f,board.getNextMouseLine().getY1()-2+offset2,5,0,10,10,0.3f,0.25f,90,true);
 	        //next.setSize(5, 5);
 	       // next.setOrigin(next.getRegionWidth()/2,0);
 			batcher.end();
@@ -213,8 +213,8 @@ public class GameRenderer {
 				batcher.enableBlending();
 				// 2* 10 rekening houdend met die schaal : width/10
 				
-	 			TextureRegion kak = (TextureRegion) goals.getGoal(g.getTickets());
-				batcher.draw(kak,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/10);
+	 			TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
+				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/12);
 				batcher.end();
 			}
 		}
@@ -293,8 +293,8 @@ public class GameRenderer {
     	Sprite dot = AssetLoader.dot;
     	Sprite tutorial = AssetLoader.tutorial;
     	Sprite hand = AssetLoader.hand;
-    	tutorial.setSize( width-20, (height/4));
-    	tutorial.setPosition((width/2)-((width-20)/2), height/2);
+    	tutorial.setSize( width/3+10, (height/8));
+    	tutorial.setPosition((width/2)+1, (height/2)-40);
     	
     	//hand.setOrigin(hand.getHeight()*hand.getScaleX(), hand.getScaleY()*hand.getWidth()/5);
     	hand.setSize(width/4, height/3);
@@ -307,8 +307,10 @@ public class GameRenderer {
     	//dot.setBounds(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
     	//dot.setCenter(dot.getWidth()/2, dot.getHeight()/2);
     	//dot.setScale(0.4f, 0.4f);
+    	dot.setOrigin(5f, 5f);
     	dot.scale(offset);
-    	hand.scale(offset*0.4f);
+    	hand.setOrigin(1f,1f);
+    	hand.scale(offset*0.5f);
     	//dot.setSize(dot.getWidth()*offset, dot.getHeight()*offset);
     	batcher.begin();
     	dot.draw(batcher);
