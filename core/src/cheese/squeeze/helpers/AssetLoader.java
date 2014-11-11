@@ -72,6 +72,8 @@ public class AssetLoader {
 
 	public static TextureAtlas atlasTutorial;
 
+	public static Sprite version;
+
 	private final static int NBCHEESE = 5;
 
 
@@ -211,6 +213,11 @@ public class AssetLoader {
         //width-(1.5f*logo_shadow.getWidth())
         play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+20);
         
+        version = new Sprite(new TextureRegion(atlasMenu.findRegion("version")));
+        version.setSize(play.getWidth(), play.getHeight() );
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        version.setPosition((width/2)-(.5f*play.getWidth()),(height/5)+20);
         
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
         //set position to the top middle 10 pixle from top

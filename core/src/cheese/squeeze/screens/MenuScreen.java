@@ -1,9 +1,17 @@
 package cheese.squeeze.screens;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import cheese.squeeze.game.CSGame;
-import cheese.squeeze.game.Level;
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.ReportStatus;
 import cheese.squeeze.helpers.AssetLoader;
@@ -27,8 +35,27 @@ public class MenuScreen implements Screen{
 	private ArrayList<SimpleButton> menuButtons;
 	private boolean musicOn = MusicAccessor.isOn();
 	private boolean soundOn = SoundAccessor.isOn();
+	private String latestVersion;
+	private CSGame game;
 
 	public MenuScreen(final CSGame game) {
+
+		this.game = game;
+		
+		try {
+			URL url = new URL(game.checkVersionURL);
+			Scanner s = new Scanner(url.openStream());
+			s.nextLine();
+			latestVersion = s.nextLine();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 		TimerFactory.getNewTimer(new ReportStatus(GameState.MENU)).start();
 		CSGame.currentState = GameState.MENU;
@@ -71,6 +98,28 @@ public class MenuScreen implements Screen{
 		},AssetLoader.music_on.getX(),AssetLoader.music_on.getY(),
         		AssetLoader.music_on.getWidth()*AssetLoader.music_on.getScaleX(),AssetLoader.music_on.getHeight()*AssetLoader.music_on.getScaleY(),AssetLoader.music_on,AssetLoader.music_off,musicOn,"music");
         
+		if(this.latestVersion != null && !this.latestVersion.equals(game.version)) {
+			
+		
+			SimpleButton versionButton = new SimpleButton(new SimpleButtonListener() {
+				
+				@Override
+				public void pushButtonListener(SimpleButton btn) {
+					try {
+						Desktop.getDesktop().browse(new URI(game.updateURL));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (URISyntaxException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			},AssetLoader.version.getX(),AssetLoader.version.getY(),
+	        		AssetLoader.version.getWidth()*AssetLoader.version.getScaleX(),AssetLoader.version.getHeight()*AssetLoader.version.getScaleY(),AssetLoader.version,AssetLoader.version);
+			
+			menuButtons.add(versionButton);
+		}
 		menuButtons.add(playButton);
         menuButtons.add(soundButton);
         menuButtons.add(musicButton);
@@ -91,6 +140,8 @@ public class MenuScreen implements Screen{
 		}
 		//batcher.draw(AssetLoader.menuBg, 0, 0);
 		batcher.end();
+		
+
 
 		// TODO render the game play buttend ed.
 		
