@@ -286,7 +286,8 @@ public class GameRenderer {
 	}
 
 	public void renderTutorial(SimpleButton btn, int i) {
-		
+		float betweenX1 = board.getVLines().get(i-1).getX1();
+		float betweenX2 = board.getVLines().get(i).getX1();
 		shapeRenderer.begin(ShapeType.Filled);
 		//shapeRenderer.rect(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
 		shapeRenderer.end();
