@@ -168,6 +168,7 @@ public class InputHelper implements InputProcessor {
 	
 	public void virtualTouchDown(int x,int y) {
 		buttonPressed = false;
+		this.touchDown(x,y,0,0);
 		this.touchUp(x,y,0,0);
 	}
 

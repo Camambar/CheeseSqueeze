@@ -29,6 +29,7 @@ public class CSGame extends Game {
 	
 	public CSGame(ActionResolver action) {
 		this.action = action;
+		//action.reportAnalytics("test", "cat", 3);
 	}
 
 	public CSGame() {

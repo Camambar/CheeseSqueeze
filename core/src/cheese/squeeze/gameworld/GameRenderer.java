@@ -153,13 +153,16 @@ public class GameRenderer {
 			// End SpriteBatch
 			batcher.end();
 		}
-		float offset2 = MathUtils.sinDeg( (float) (iterator*(0.1f )))*(0.4f);
-		batcher.begin();
-		//batcher.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
-		batcher.draw(nextMouse, board.getNextMouseLine().getX1(),board.getNextMouseLine().getY1()-7+offset2,5,0,10,10,1,1,90,true);
-        //next.setSize(5, 5);
-       // next.setOrigin(next.getRegionWidth()/2,0);
-		batcher.end();
+		if (board.getNextMouseLine() !=null) {
+			float offset2 = MathUtils.sinDeg( (float) (iterator*(0.1f )))*(0.4f);
+			batcher.begin();
+			//batcher.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
+			batcher.draw(nextMouse, board.getNextMouseLine().getX1(),board.getNextMouseLine().getY1()-7+offset2,5,0,10,10,1,1,90,true);
+	        //next.setSize(5, 5);
+	       // next.setOrigin(next.getRegionWidth()/2,0);
+			batcher.end();
+		}
+
 	}
 
 	private void drawGestureLine() {
@@ -286,8 +289,8 @@ public class GameRenderer {
 	}
 
 	public void renderTutorial(SimpleButton btn, int i) {
-		float betweenX1 = board.getVLines().get(i-1).getX1();
-		float betweenX2 = board.getVLines().get(i).getX1();
+		//float betweenX1 = board.getVLines().get(i-1).getX1();
+		//float betweenX2 = board.getVLines().get(i).getX1();
 		shapeRenderer.begin(ShapeType.Filled);
 		//shapeRenderer.rect(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
 		shapeRenderer.end();
