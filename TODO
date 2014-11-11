@@ -6,18 +6,12 @@ General:
 
 H  - Google analytics werkende krijgen
 
-M  - Tutorial hand, bol en instructies implementeren. verdwijnt na het zetten van eerste lijn, muis start dan.
-
-M  - Levels Finetunen (Luca)
-
 M  - Site Mooier Maken (Bart)
 
 M  - Makkelijker systeem invoeren nieuwe versie
 
 M  - M  - nieuwe versie pop-up (afbeelding: Menu/download.png OF version.png)
       --> serverside code (Bart)
-
-L  - Volgende muis aangeven (afbeelding: Game/next.png)
 
 
 Music & Visual:
@@ -31,7 +25,6 @@ M  - gore images
 
 Mouse & Path Bugs:
 
-H  - horizontale lijnen in begin van Level testen 
 
 OPTIONAL:
 
