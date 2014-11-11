@@ -26,7 +26,7 @@ public class CSGame extends Game {
 	public static GameState currentState;
 	public static Level currentLevel = Level.LEVEL1;
 	private ActionResolver action;
-	public  final static String version = "V1.2";
+	public  final static String version = "V1.4";
 	public static final String updateURL = "http://camambar.github.io/CheeseSqueeze/";
 	public static final String checkVersionURL = "http://camambar.github.io/CheeseSqueeze/changelog.txt";
 	
