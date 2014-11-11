@@ -1,4 +1,7 @@
-V1_3 (current) 
+CURRENT VERSION
+V1.3
+
+V1_3
 - more forgiving input
 - in desktop app gesture line when moving mouse over the field
 - level is saved if you go to menu
