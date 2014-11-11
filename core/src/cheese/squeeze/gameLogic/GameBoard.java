@@ -76,6 +76,7 @@ public class GameBoard {
 		
 		
 		
+		
 		multip = l.getMultip();
 		
 		//trap stuff goal stuff
@@ -83,15 +84,28 @@ public class GameBoard {
 		if(!isTutorial()) {
 			//mouse stuff
 			makeMice();
+			
 		}
 		else {
 			mice = new ArrayList<Mouse>();
 		}
 		
+		addHlines();
 		
-
 	}
 	
+
+
+	private void addHlines() {
+		if(level.getHlines().length > 0) {
+			for(HorizontalLine i : level.getHlines()) {
+				this.fitHorizontalLineBetweenVertivalLines(i);
+				this.addHLine(i);
+			}
+		}
+		
+	}
+
 
 
 	private TreeMap<Float, LinkedList<HorizontalLine>> makeHlineMap() {
