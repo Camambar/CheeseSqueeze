@@ -9,3 +9,4 @@ V1_4
 - IOS
 - analytics
 - support tegra3 (downsampled the graphics)
+- preset Hlines in some levels
