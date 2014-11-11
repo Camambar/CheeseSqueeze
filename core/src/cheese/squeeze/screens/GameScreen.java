@@ -112,8 +112,8 @@ public class GameScreen implements Screen {
     				board.tutorialEnded();
     	            input.virtualTouchDown((int)gameTutorial.getScreenX(), (int) gameTutorial.getScreenY());
     			}
-    		},20,20, (gameHeight/10),(gameHeight/10),AssetLoader.dot,AssetLoader.dot,GameState.TUTORIAL);
-    		
+    		},board.getTutorialPositionX()-10,board.getTutorialPositionY()-10, (gameHeight/10),(gameHeight/10),AssetLoader.dot,AssetLoader.dot,GameState.TUTORIAL);
+    		//,
     		buttons.add(gameTutorial);
     	}
     	else {
@@ -157,7 +157,7 @@ public class GameScreen implements Screen {
 				break;
 			case TUTORIAL:
 				renderer.render();
-				renderer.renderTutorial(gameTutorial,1);
+				renderer.renderTutorial(gameTutorial);
 				//board.tutorial();
 				break;
 			case PAUSE:

@@ -288,36 +288,36 @@ public class GameRenderer {
     	batcher.end();
 	}
 
-	public void renderTutorial(SimpleButton btn, int i) {
-		//float betweenX1 = board.getVLines().get(i-1).getX1();
-		//float betweenX2 = board.getVLines().get(i).getX1();
-		shapeRenderer.begin(ShapeType.Filled);
-		//shapeRenderer.rect(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
-		shapeRenderer.end();
-		//(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4
-    	batcher.begin();
+	public void renderTutorial(SimpleButton btn) {
+
     	Sprite dot = AssetLoader.dot;
     	Sprite tutorial = AssetLoader.tutorial;
     	Sprite hand = AssetLoader.hand;
     	tutorial.setSize( width-20, (height/4));
     	tutorial.setPosition((width/2)-((width-20)/2), height/2);
     	
-    	hand.setPosition(btn.getBounds().x, btn.getBounds().y);
+    	//hand.setOrigin(hand.getHeight()*hand.getScaleX(), hand.getScaleY()*hand.getWidth()/5);
     	hand.setSize(width/4, height/3);
+    	hand.setPosition(btn.getBounds().x-((width/4/4))+btn.getBounds().width/2, btn.getBounds().y+btn.getBounds().height/2);
     	//float offset = MathUtils.sinDeg( (float) (iterator*(0.02f )))*(0.09f);
     	float offset = MathUtils.sinDeg( (float) (iterator*(0.02f )))*(0.009f);
+    	//float offset = 1;
     	dot.setBounds(btn.getBounds().x, btn.getBounds().y,btn.getBounds().width, btn.getBounds().height);
     	//dot.setPosition(btn.getBounds().x, btn.getBounds().y);
     	//dot.setBounds(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
     	//dot.setCenter(dot.getWidth()/2, dot.getHeight()/2);
     	//dot.setScale(0.4f, 0.4f);
     	dot.scale(offset);
+    	hand.scale(offset*0.4f);
     	//dot.setSize(dot.getWidth()*offset, dot.getHeight()*offset);
-    	
-    	hand.draw(batcher);
+    	batcher.begin();
     	dot.draw(batcher);
+    	hand.draw(batcher);
+		//(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4
+    	
+
+    	
     	tutorial.draw(batcher);
-    	System.out.println(offset);
 
     	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
     	batcher.end();

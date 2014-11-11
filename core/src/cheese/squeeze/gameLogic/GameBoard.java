@@ -589,6 +589,15 @@ public class GameBoard {
 		//mouse stuff
 		makeMice();
 	}
+
+
+
+	public float getTutorialPositionX() {
+		return vlines.get(0).getX1()+(vlines.get(1).getX1()-vlines.get(0).getX1())/2;
+	}
 	
+	public float getTutorialPositionY() {
+		return hlines.firstKey();
+	}
 	
 }
