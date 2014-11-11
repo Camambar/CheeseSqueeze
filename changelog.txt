@@ -1,6 +1,6 @@
 CURRENT VERSION
 V1.3
-
+______________________________________
 V1_3
 - more forgiving input
 - in desktop app gesture line when moving mouse over the field
