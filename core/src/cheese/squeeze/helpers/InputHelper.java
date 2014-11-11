@@ -59,6 +59,7 @@ public class InputHelper implements InputProcessor {
 			case GAMEOVER:
 	
 				break;
+	
 			case PLAYING:
 				touchDownPlaying(screenX, screenY, pointer, button);
 				break;
@@ -163,6 +164,11 @@ public class InputHelper implements InputProcessor {
 		}
 		buttonPressed = false;
 		return false;
+	}
+	
+	public void virtualTouchDown(int x,int y) {
+		buttonPressed = false;
+		this.touchUp(x,y,0,0);
 	}
 
 	@Override

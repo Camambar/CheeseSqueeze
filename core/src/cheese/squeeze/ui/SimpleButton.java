@@ -13,6 +13,8 @@ public class SimpleButton {
 
     private TextureRegion buttonUp;
     private TextureRegion buttonDown;
+    
+    private float screenX,screenY;
 
 	private Rectangle bounds;
 
@@ -49,6 +51,11 @@ public class SimpleButton {
         bounds = new Rectangle(x, y, width, height);
 
     }
+    
+    public void scale(float sc) {
+    	this.width = width+sc;
+    	this.height = height+sc;
+    }
 
     public boolean isClicked(int screenX, int screenY) {
         return isPressed;
@@ -67,6 +74,8 @@ public class SimpleButton {
         	playButtonSound();
             isPressed = true;
             listen.pushButtonListener(this);
+            this.screenX =screenX;
+            this.screenY = screenY;
             return true;
         }
 
@@ -118,5 +127,12 @@ public class SimpleButton {
     	SoundAccessor.play(AssetLoader.buttonSound);
     }
     
+    public float getScreenX() {
+    	return this.screenX;
+    }
+    
+    public float getScreenY() {
+    	return this.screenY;
+    }
 
 }

@@ -56,17 +56,8 @@ public class CSGame extends Game {
     public void dispose() {
         super.dispose();
         TimerFactory.stopAll();
-        
         ArrayList<Timer> t = TimerFactory.getTimers();
         HashMap<Level,HashMap<GameState,Integer>> m = Report.map;
-        System.out.println(Report.str());
-        
-		for(Timer timer : t) {
-			System.out.println(timer.getState().getLevel().toString() + timer.getState().getGameState().toString());
-			System.out.println();
-		}
-        
-        
 		if(action!=null) {
 			for(Timer timer : t) {
 				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getSeconds());

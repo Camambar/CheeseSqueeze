@@ -55,6 +55,12 @@ public class AssetLoader {
 	private static boolean dataLoaded,soundLoaded = false;
 
 	public static Sprite failed;
+	
+	public static Sprite tutorial,hand;
+
+	public static Sprite dot;
+
+	public static TextureRegion next;
 
 	public static Sprite completed;
 
@@ -64,6 +70,8 @@ public class AssetLoader {
 
 	public static Vector2 trapClosedCenter;
 
+	public static TextureAtlas atlasTutorial;
+
 	private final static int NBCHEESE = 5;
 
 
@@ -71,6 +79,7 @@ public class AssetLoader {
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
+		manager.load("graph/Tutorial.pack", TextureAtlas.class);
 		manager.load("graph/menu_leeg.pack", TextureAtlas.class);
 		manager.load("data/Game Music.mp3",Music.class);
 		manager.load("data/Menu Music.mp3",Music.class);
@@ -95,6 +104,7 @@ public class AssetLoader {
 		atlasGame = manager.get("graph/Game.pack",TextureAtlas.class);
 		atlasFloor = manager.get("graph/floor.pack",TextureAtlas.class);
 		atlasMenuLeeg = manager.get("graph/menu_leeg.pack",TextureAtlas.class);
+		atlasTutorial = manager.get("graph/Tutorial.pack",TextureAtlas.class);
 	}
 	
 	public static void setSounds() {
@@ -148,6 +158,10 @@ public class AssetLoader {
         
         mouse = new TextureRegion(atlasGame.findRegion("mouse"));
         mouse.flip(false, true);
+        
+
+        
+
         //mouse.setSize(10, 10);
         //mouseCenter = new Vector2(mouse.getWidth()/(2*mouse.getScaleX()),mouse.getHeight()/(2*mouse.getScaleY()));
         //mouseNose = new Vector2((mouse.getWidth()/2)*mouse.getScaleX(),mouse.getHeight()/(mouse.getScaleY()));
@@ -163,6 +177,9 @@ public class AssetLoader {
         menuBg.setSize(menuBg.getWidth() * scale, menuBg.getHeight() * scale);
         //menuBg.setPosition((width / 2) - (menuBg.getWidth() / 2), (height / 2)- (menuBg.getHeight() / 2));
         
+        next = new TextureRegion(atlasGame.findRegion("next"));
+        next.flip(false, true);
+
         
         //menuBg.setSize(675,1500);
         //menuBg.setScale(1f);
@@ -170,6 +187,15 @@ public class AssetLoader {
         failed = new Sprite(new TextureRegion(atlasGame.findRegion("failed")));
         failed.flip(false, true);
 
+        tutorial = new Sprite(new TextureRegion(atlasTutorial.findRegion("tutorial")));
+        tutorial.flip(false, true);
+        
+        hand = new Sprite(new TextureRegion(atlasTutorial.findRegion("hand")));
+        hand.flip(false, true);
+        
+        dot = new Sprite(new TextureRegion(atlasTutorial.findRegion("dot")));
+        dot.flip(false, true);
+        
         
         completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
         completed.flip(false, true);

@@ -44,6 +44,8 @@ public class GameRenderer {
 	private Vector2 mouseSize= new Vector2(9,8);
 	private Sprite completed;
 	private float iterator = 0;
+	private TextureRegion nextMouse;
+	private float lineWidth = (Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
@@ -68,9 +70,9 @@ public class GameRenderer {
 	}
 
 	public void render() {
-		
-		
-		Gdx.gl.glLineWidth((Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10);
+		iterator += 200;
+
+		Gdx.gl.glLineWidth(lineWidth);
 		// Fill the entire screen with black, to prevent potential flickering.
 		//Gdx.gl.glClearColor(0, 0, 0, 1);
 		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -109,9 +111,6 @@ public class GameRenderer {
 		batcher.end();
 
 
-
-
-
 		Gdx.app.log("GameRenderer", "rendered");
 	}
 
@@ -140,7 +139,7 @@ public class GameRenderer {
 			
 			// enable transparency
 			batcher.enableBlending();
-			iterator += 200;
+			
 	        float offset = MathUtils.sinDeg( (float) (iterator*(0.1f*m.getSpeed() )))*(0.3f*m.getSpeed());
 	        if(m.getRotation() == 90) {
 	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
@@ -154,6 +153,13 @@ public class GameRenderer {
 			// End SpriteBatch
 			batcher.end();
 		}
+		float offset2 = MathUtils.sinDeg( (float) (iterator*(0.1f )))*(0.4f);
+		batcher.begin();
+		//batcher.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
+		batcher.draw(nextMouse, board.getNextMouseLine().getX1(),board.getNextMouseLine().getY1()-7+offset2,5,0,10,10,1,1,90,true);
+        //next.setSize(5, 5);
+       // next.setOrigin(next.getRegionWidth()/2,0);
+		batcher.end();
 	}
 
 	private void drawGestureLine() {
@@ -240,6 +246,7 @@ public class GameRenderer {
 		//shapeRenderer.setColor(126f, 71f, 255.0f, (float) 1);
 
 		for(Line l : board.getVLines()) {
+			
 			shapeRenderer.line(l.getPoint1(),l.getPoint2());
 		}
 
@@ -266,12 +273,48 @@ public class GameRenderer {
 		goals = AssetLoader.goals;
 		trap = AssetLoader.trap;
 		mouse = AssetLoader.mouse;
+		nextMouse = AssetLoader.next;
 		trapClosed = AssetLoader.trapClosed;
 	}
+	
 
 	public void renderPopUp(SimpleButton btn) {
     	batcher.begin();
     	btn.draw(batcher);
+    	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
+    	batcher.end();
+	}
+
+	public void renderTutorial(SimpleButton btn, int i) {
+		
+		shapeRenderer.begin(ShapeType.Filled);
+		//shapeRenderer.rect(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
+		shapeRenderer.end();
+		//(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4
+    	batcher.begin();
+    	Sprite dot = AssetLoader.dot;
+    	Sprite tutorial = AssetLoader.tutorial;
+    	Sprite hand = AssetLoader.hand;
+    	tutorial.setSize( width-20, (height/4));
+    	tutorial.setPosition((width/2)-((width-20)/2), height/2);
+    	
+    	hand.setPosition(btn.getBounds().x, btn.getBounds().y);
+    	hand.setSize(width/4, height/3);
+    	//float offset = MathUtils.sinDeg( (float) (iterator*(0.02f )))*(0.09f);
+    	float offset = MathUtils.sinDeg( (float) (iterator*(0.02f )))*(0.009f);
+    	dot.setBounds(btn.getBounds().x, btn.getBounds().y,btn.getBounds().width, btn.getBounds().height);
+    	//dot.setPosition(btn.getBounds().x, btn.getBounds().y);
+    	//dot.setBounds(btn.getBounds().x, btn.getBounds().y, btn.getBounds().width, btn.getBounds().height);
+    	//dot.setCenter(dot.getWidth()/2, dot.getHeight()/2);
+    	//dot.setScale(0.4f, 0.4f);
+    	dot.scale(offset);
+    	//dot.setSize(dot.getWidth()*offset, dot.getHeight()*offset);
+    	
+    	hand.draw(batcher);
+    	dot.draw(batcher);
+    	tutorial.draw(batcher);
+    	System.out.println(offset);
+
     	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
     	batcher.end();
 	}

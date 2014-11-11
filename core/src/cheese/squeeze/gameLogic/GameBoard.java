@@ -74,14 +74,20 @@ public class GameBoard {
 		gesturedLine = new HorizontalLine();
 		hlines = makeHlineMap();
 		
-		//mouse stuff
-		makeMice();
+		
 		
 		multip = l.getMultip();
 		
 		//trap stuff goal stuff
 		//makeTrapsGoals(amountTraps,amountGoals);
-
+		if(!isTutorial()) {
+			//mouse stuff
+			makeMice();
+		}
+		else {
+			mice = new ArrayList<Mouse>();
+		}
+		
 		
 
 	}
@@ -475,6 +481,7 @@ public class GameBoard {
 	 * @param delta
 	 */
 	public void update(float delta) {
+		System.out.println("UPDATE BOARD");
 		int counter = 0;
 		Iterator<Mouse> itr = mice.iterator();
 		while(itr.hasNext()) {
@@ -505,6 +512,13 @@ public class GameBoard {
 			
 		}
 		Gdx.app.log("GameBoard", "update");
+	}
+	
+	public VerticalLine getNextMouseLine() {
+		if(level.getMouseLine().length > currentMouse) {
+			return vlines.get(level.getMouseLine()[currentMouse]-1);
+		}
+		return null;
 	}
 	
 	private Line getRandomLine(){
@@ -540,7 +554,6 @@ public class GameBoard {
 	public void pause() {
 		miceBackup = new ArrayList<Mouse>(mice);
 		mice = new ArrayList<Mouse>();
-		
 	}
 	
 	public void resume() {
@@ -550,6 +563,17 @@ public class GameBoard {
 	public void dispose() {
 		this.currentMouse = 0;
 		this.hlines = null;
+	}
+
+
+
+	public boolean isTutorial() {
+		return level.isTutorial();
+	}
+
+	public void tutorialEnded() {
+		//mouse stuff
+		makeMice();
 	}
 	
 	

@@ -84,7 +84,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		
 		String android_id = Secure.getString(getContext().getContentResolver(),Secure.ANDROID_ID);
 		
-		easyTracker.send(MapBuilder.createEvent(cat, action, "4", value).build());
+		easyTracker.send(MapBuilder.createEvent(cat, action,android_id, value).build());
 		//System.out.println("cat: "+cat + "\t" + action+ "\t" + "4 \t" + value);
 		
 		

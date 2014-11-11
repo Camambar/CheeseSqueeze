@@ -32,6 +32,8 @@ public class GameScreen implements Screen {
 	private SimpleButton gameOverPopUp;
 	private SimpleButton completedPopUp;
 	private Level currentLevel;
+	private SimpleButton gameTutorial;
+	private InputHelper input;
 	
 	public GameScreen(final CSGame game) {
 		currentLevel = CSGame.currentLevel;
@@ -45,8 +47,6 @@ public class GameScreen implements Screen {
 	
 	private void init(final CSGame game) {
         Gdx.app.log("GameScreen", "Attached");
-        CSGame.currentState = GameState.PLAYING;
-        TimerFactory.getNewTimer(new ReportStatus(GameState.PLAYING,currentLevel)).start();
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
@@ -92,18 +92,44 @@ public class GameScreen implements Screen {
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.completed,AssetLoader.completed,GameState.WON);
     	
-
+    	
     	
     	buttons.add(homeBtn);
     	buttons.add(gameOverPopUp);
     	buttons.add(completedPopUp);
+    	if(currentLevel.isTutorial()) {
+    		CSGame.currentState = GameState.TUTORIAL;
+    		TimerFactory.getNewTimer(new ReportStatus(GameState.TUTORIAL,currentLevel)).start();
+    		gameTutorial = new PopUpButton(new SimpleButtonListener() {
+    			@Override
+    			public void pushButtonListener(SimpleButton btn) {
+    				//TODO Current level select 
+    				currentLevel.setTutorial(false);
+    		    	Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.TUTORIAL,currentLevel));
+    		    	t.stop();
+    		    	CSGame.currentState = GameState.PLAYING;
+    	            TimerFactory.getNewTimer(new ReportStatus(GameState.PLAYING,currentLevel)).start();
+    				board.tutorialEnded();
+    	            input.virtualTouchDown((int)gameTutorial.getScreenX(), (int) gameTutorial.getScreenY());
+    			}
+    		},20,20, (gameHeight/10),(gameHeight/10),AssetLoader.dot,AssetLoader.dot,GameState.TUTORIAL);
+    		
+    		buttons.add(gameTutorial);
+    	}
+    	else {
+    		CSGame.currentState = GameState.PLAYING;
+            TimerFactory.getNewTimer(new ReportStatus(GameState.PLAYING,currentLevel)).start();
+
+    	}
     	
     	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
     	
     	//TODO make a class to handle the audio.
     	MusicAccessor.play(AssetLoader.gameSound);
     	
-    	Gdx.input.setInputProcessor(new InputHelper(board,buttons));
+    	input = new InputHelper(board,buttons);
+    	Gdx.input.setInputProcessor(input);
+		
 	}
 
 
@@ -128,6 +154,11 @@ public class GameScreen implements Screen {
 				renderer.render();
 				renderer.renderPopUp(completedPopUp);
 				pause();
+				break;
+			case TUTORIAL:
+				renderer.render();
+				renderer.renderTutorial(gameTutorial,1);
+				//board.tutorial();
 				break;
 			case PAUSE:
 		
