@@ -11,7 +11,7 @@ function getVersion() {
 }
 
 function getAndroidAPK() {
-	return "http://camambar.github.io/CheeseSqueeze/releases/android-debug-v" + version + ".apk";
+	return "http://camambar.github.io/CheeseSqueeze/releases/android-debug-v" + getVersion()  + ".apk";
 }
 
 function getWeb() {
@@ -19,7 +19,7 @@ function getWeb() {
 }
 
 function getDesktopJAR() {
-	return "http://camambar.github.io/CheeseSqueeze/releases/CheeseSqueeze-v" + version + ".jar";
+	return "http://camambar.github.io/CheeseSqueeze/releases/CheeseSqueeze-v" + getVersion() + ".jar";
 }
 
 function getIOS() {
