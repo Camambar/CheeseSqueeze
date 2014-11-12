@@ -4,11 +4,19 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 General:
 
-H  - Google analytics werkende krijgen
+H - knop levels resetten (ergens op het main menu)
 
-M  - Site Mooier Maken (Bart)
+H - knop quit game (rechts boven op gameboard zoals de home knop) 
 
-M  - Makkelijker systeem invoeren nieuwe versie
+M - rating system -> server of analytics
+
+------------------------------------------------------------
+
+H  - Google analytics werkende krijgen OK
+
+M  - Site Mooier Maken (Bart) OK 
+
+M  - Makkelijker systeem invoeren nieuwe versie OK
 
 M  - M  - nieuwe versie pop-up (afbeelding: Menu/download.png OF version.png)
       --> serverside code (Bart)
