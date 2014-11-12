@@ -141,18 +141,23 @@ public class GameScreen implements Screen {
 				MusicAccessor.play(AssetLoader.defeatSound);
 				board.pause();
 				renderer.render();
+				
 				renderer.renderPopUp(gameOverPopUp);
+				renderer.renderScoreFinalLOSE(board.getScore());
 				pause();
 				break;
 			case PLAYING:
 				MusicAccessor.play(AssetLoader.gameSound);
 		    	board.update(delta);
 		    	renderer.render();
+		    	renderer.renderScore(board.getScore());
 		    	break;
 			case WON:
 				MusicAccessor.play(AssetLoader.victorySound);
 				renderer.render();
 				renderer.renderPopUp(completedPopUp);
+				//renderer.renderScore(board.getScore());
+				renderer.renderScoreFinalWIN(board.getScore());
 				pause();
 				break;
 			case TUTORIAL:

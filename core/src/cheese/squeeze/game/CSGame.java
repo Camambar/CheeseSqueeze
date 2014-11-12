@@ -14,6 +14,7 @@ import cheese.squeeze.tweenAccessors.MusicAccessor;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 
 
 /**
@@ -41,6 +42,15 @@ public class CSGame extends Game {
 
 	@Override
 	public void create() {
+		
+		//LOAD LEVEL
+		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
+		if (prefs.contains("level")) {
+			String l = prefs.getString("level");
+			currentLevel = Level.valueOf(l);
+		}
+	
+		
 		Gdx.app.log("CSGame", "created");
 		TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
 		MusicAccessor musicA = new MusicAccessor();
@@ -65,6 +75,7 @@ public class CSGame extends Game {
 		if(action!=null) {
 			for(Timer timer : t) {
 				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getSeconds());
+				System.out.println(timer.getSeconds());
 			}
 			for(Entry<Level, HashMap<GameState, Integer>> e: Report.map.entrySet()) {
 				for (Entry<GameState, Integer> e2 : e.getValue().entrySet()) {
@@ -75,6 +86,9 @@ public class CSGame extends Game {
 			
 		}
         
+		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
+		prefs.putString("level", currentLevel.toString());
+		prefs.flush();
         
         AssetLoader.dispose();
     }

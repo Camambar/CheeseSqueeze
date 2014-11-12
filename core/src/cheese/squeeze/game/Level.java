@@ -58,7 +58,7 @@ public enum Level {
 			,new int[]{3,2,3,1,2},1,LEVEL3,false),
         
         LEVEL1(.5f,new HorizontalLine[]{}
-		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap())}
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(1)),new VerticalLine(new Trap())}
 		,new int[]{1,2,3,1,2},1,LEVEL2,true);
         
 	

@@ -19,6 +19,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -44,6 +45,7 @@ public class GameRenderer {
 	private Vector2 mouseSize= new Vector2(9,8);
 	private Sprite completed;
 	private float iterator = 0;
+	private float move = 0;
 	private TextureRegion nextMouse;
 	private float lineWidth = (Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10;
 
@@ -323,5 +325,38 @@ public class GameRenderer {
 
     	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
     	batcher.end();
+	}
+
+
+	public void renderScore(int score) {
+		BitmapFont font=new BitmapFont(true);
+		font.setScale(0.5f);
+		batcher.begin();
+		font.drawMultiLine(batcher, "YOUR SCORE: "+score,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
+		batcher.end();
+	}
+	
+	public void renderScoreFinalWIN(int score) {
+		BitmapFont font=new BitmapFont(true);
+		font.setScale(0.5f+move*0.005f);
+		font.setColor(Color.YELLOW);
+		batcher.begin();
+		if(move != width/2-15) {
+			move += 0.5f;
+		}
+		font.drawMultiLine(batcher, "YOUR SCORE: "+score,width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
+		batcher.end();
+	}
+
+	public void renderScoreFinalLOSE(int score) {
+		BitmapFont font=new BitmapFont(true);
+		font.setScale(0.5f+move*0.005f);
+		font.setColor(Color.RED);
+		batcher.begin();
+		if(move != width/2-15) {
+			move += 0.5f;
+		}
+		font.drawMultiLine(batcher, "YOUR SCORE: "+score,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
+		batcher.end();
 	}
 }

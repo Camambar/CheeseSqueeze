@@ -14,8 +14,8 @@
       <skipPngCrush>true</skipPngCrush>
     </resource>
     <resource>
-      <directory>data</directory>
-    </resource>
+    <directory>resources</directory>
+	</resource>
   </resources>
   <forceLinkClasses>
     <pattern>com.badlogic.gdx.scenes.scene2d.ui.*</pattern>

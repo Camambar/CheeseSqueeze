@@ -50,8 +50,7 @@
         <dict>
             <key>CFBundleIconFiles</key>
             <array>
-                <string>Icon</string>
-                <string>Icon-72</string>
+                <string>ic_launcher</string>
             </array>
         </dict>
     </dict>

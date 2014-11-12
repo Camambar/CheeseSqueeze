@@ -599,5 +599,15 @@ public class GameBoard {
 	public float getTutorialPositionY() {
 		return hlines.higherKey(hlines.higherKey(hlines.firstKey()));
 	}
+
+
+
+	public int getScore() {
+		int amount = MAX_HLINES*10*(Math.round(vlines.size()/2-0.1f));
+		for (Entry<Float, LinkedList<HorizontalLine>> hl : hlines.entrySet()) {
+			amount -= hl.getValue().getElements().size()*10;
+		}
+		return amount;
+	}
 	
 }
