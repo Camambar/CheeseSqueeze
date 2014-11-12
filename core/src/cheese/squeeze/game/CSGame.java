@@ -29,7 +29,7 @@ public class CSGame extends Game {
 	private ActionResolver action;
 	public  final static String version = "V1.4";
 	public static final String updateURL = "http://camambar.github.io/CheeseSqueeze/";
-	public static final String checkVersionURL = "http://camambar.github.io/CheeseSqueeze/changelog.txt";
+	public static final String checkVersionURL = "http://camambar.github.io/CheeseSqueeze/version";
 	
 	public CSGame(ActionResolver action) {
 		this.action = action;
