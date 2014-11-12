@@ -3,7 +3,7 @@ function getVersion() {
 	var xmlHttp = null;
 
 	xmlHttp = new XMLHttpRequest();
-	xmlHttp.open( "GET", "http://camambar.github.io/CheeseSqueeze/version", false );
+	xmlHttp.open( "GET", "http://camambar.github.io/CheeseSqueeze/version?hash=" + Math.random(), false );
 	xmlHttp.send( null );
 	vString = xmlHttp.responseText.split("\n")[1];
 	vString = vString.split(".").join("_");
