@@ -4,8 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -67,12 +70,18 @@ public class AssetLoader {
 	public static Music defeatSound;
 
 	public static Music victorySound;
+	
+	public static BitmapFont font;
 
 	public static Vector2 trapClosedCenter;
 
 	public static TextureAtlas atlasTutorial;
 
 	public static Sprite version;
+	
+    private static float width = Gdx.graphics.getWidth();
+    private static float height = Gdx.graphics.getHeight();
+
 
 	private final static int NBCHEESE = 5;
 
@@ -137,7 +146,11 @@ public class AssetLoader {
 	}
 	
     public static void load() {
-    	
+    	font = new BitmapFont(true);
+    	//font = new BitmapFont(Gdx.files.internal("data/font.fnt"),Gdx.files.internal("data/font.png"),true);
+    	//font.setScale(0.1f);
+    	font.setScale(0.5f);
+    	font.setColor(Color.WHITE);
     	goals = new GoalSprites();
     	
     	for(int i = 1; i<=NBCHEESE;i++) {
@@ -171,8 +184,7 @@ public class AssetLoader {
         
         menuBg = new Sprite(new TextureRegion(atlasMenuLeeg.findRegion("menu_leeg")));
         
-        float width = Gdx.graphics.getWidth();
-        float height = Gdx.graphics.getHeight();
+
         float desiredWidth = width;
         float scale = desiredWidth / menuBg.getWidth();
         

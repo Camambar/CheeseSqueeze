@@ -2,11 +2,11 @@ package cheese.squeeze.game.desktop;
 
 import java.awt.Toolkit;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.tweenAccessors.ActionResolver;
+
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class DesktopLauncher implements ActionResolver{
 	public static void main (String[] arg) {

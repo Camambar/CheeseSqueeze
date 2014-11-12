@@ -140,8 +140,7 @@ public class GameScreen implements Screen {
 			case GAMEOVER:
 				MusicAccessor.play(AssetLoader.defeatSound);
 				board.pause();
-				renderer.render();
-				
+				renderer.render();	
 				renderer.renderPopUp(gameOverPopUp);
 				renderer.renderScoreFinalLOSE(board.getScore());
 				pause();
@@ -156,7 +155,7 @@ public class GameScreen implements Screen {
 				MusicAccessor.play(AssetLoader.victorySound);
 				renderer.render();
 				renderer.renderPopUp(completedPopUp);
-				//renderer.renderScore(board.getScore());
+				renderer.renderScore(board.getScore());
 				renderer.renderScoreFinalWIN(board.getScore());
 				pause();
 				break;

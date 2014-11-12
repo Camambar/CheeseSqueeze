@@ -10,7 +10,7 @@ public class GoalSprites extends Sprite{
 	HashMap<Integer,Sprite> goals;
 	
 	public GoalSprites(HashMap<Integer,Sprite> goals) {
-		goals = goals;
+		this.goals = goals;
 	}
 	
 	public GoalSprites() {

@@ -22,6 +22,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -39,15 +40,19 @@ public class GameRenderer {
 	private int height;
 	private int width;
 	private GameBoard board;
-	private boolean updateStaticElements;
-	private TextureRegion bg,trap,mouse,failed,trapClosed;
+	private TextureRegion bg,trap,mouse,trapClosed;
 	private GoalSprites goals;
 	private Vector2 mouseSize= new Vector2(9,8);
-	private Sprite completed;
 	private float iterator = 0;
 	private float move = 0;
 	private TextureRegion nextMouse;
 	private float lineWidth = (Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10;
+	private Color gestureColor = new Color(255.0f, 255.0f, 255.0f, 0.4f);
+	private Color guideColor = new Color(255.0f, 255.0f, 255.0f, 0.07f);
+	private Color verticalLineColor = new Color(255.0f, 255.0f, 255.0f, 1f);
+	private BitmapFont font;
+	private StringBuffer str;
+	private int lengthstr;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
@@ -55,8 +60,9 @@ public class GameRenderer {
 		this.width = width;
 		this.board = board;
 		cam = board.getCamera();
-		updateStaticElements = true;
 
+		//font = new BitmapFont(true);
+		font = AssetLoader.font;
 		batcher = new SpriteBatch();
 		// Attach batcher to camera
 		batcher.setProjectionMatrix(cam.combined);
@@ -64,12 +70,16 @@ public class GameRenderer {
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
 
-
-
+		str = new StringBuffer("YOUR SCORE: ");
+		lengthstr = str.length();
+		
+		
 		// Call helper methods to initialize instance variables
 		initGameObjects();
 		initAssets();
+
 	}
+
 
 	public void render() {
 		iterator += 200;
@@ -83,7 +93,7 @@ public class GameRenderer {
 
 		//TODO gives strange things if it is updated once
 		//Fixed Elements
-		if(updateStaticElements){
+			
 			drawBackground();
 
 			drawVerticalLines();
@@ -92,7 +102,6 @@ public class GameRenderer {
 			
 			drawGoals();
 			//updateStaticElements = false;
-		}
 
 		
 		//Dynamic elements
@@ -103,7 +112,7 @@ public class GameRenderer {
 
 		drawGestureLine();
 		
-		drawRedDot();
+		//drawRedDot();
 		
 		drawMice();
 		
@@ -175,7 +184,7 @@ public class GameRenderer {
 			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 			shapeRenderer.begin(ShapeType.Line);
-			shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 0.4f));
+			shapeRenderer.setColor(gestureColor);
 			shapeRenderer.line(line.getPoint1(),line.getPoint2());
 			shapeRenderer.end();
 
@@ -187,15 +196,15 @@ public class GameRenderer {
 
 		for(HorizontalLine l: board.getHGuideLines()) {
 			
-		Gdx.gl.glEnable(GL20.GL_BLEND);
-		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-
-		shapeRenderer.begin(ShapeType.Line);
-		shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 0.07f));
-		shapeRenderer.line(l.getX1(),l.getY1(),l.getX2(),l.getY2());
-		shapeRenderer.end();
-
-		Gdx.gl.glDisable(GL20.GL_BLEND);
+			Gdx.gl.glEnable(GL20.GL_BLEND);
+			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+	
+			shapeRenderer.begin(ShapeType.Line);
+			shapeRenderer.setColor(guideColor);
+			shapeRenderer.line(l.getX1(),l.getY1(),l.getX2(),l.getY2());
+			shapeRenderer.end();
+	
+			Gdx.gl.glDisable(GL20.GL_BLEND);
 		}
 	}
 
@@ -215,7 +224,8 @@ public class GameRenderer {
 				batcher.enableBlending();
 				// 2* 10 rekening houdend met die schaal : width/10
 				
-	 			TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
+	 			//TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
+				Sprite kaas = goals.getGoal(g.getTickets());
 				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/12);
 				batcher.end();
 			}
@@ -223,15 +233,14 @@ public class GameRenderer {
 	}
 	
 	private void drawTraps() {
-		ArrayList<Trap> ta = (ArrayList<Trap>) board.getTraps();
 		for(Trap t: board.getTraps()) {
 			batcher.begin();
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
 			if(t.isSnapped()) {
-				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/8);
+				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/9);
 			}else {
-				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/8);
+				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/9);
 			}
 			
 			batcher.end();
@@ -247,7 +256,7 @@ public class GameRenderer {
 		// begin line draw
 		shapeRenderer.begin(ShapeType.Line);
 		//Draw Static lines.
-		shapeRenderer.setColor(new Color(255.0f, 255.0f, 255.0f, 1f));
+		shapeRenderer.setColor(verticalLineColor);
 		//shapeRenderer.setColor(126f, 71f, 255.0f, (float) 1);
 
 		for(Line l : board.getVLines()) {
@@ -286,7 +295,6 @@ public class GameRenderer {
 	public void renderPopUp(SimpleButton btn) {
     	batcher.begin();
     	btn.draw(batcher);
-    	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
     	batcher.end();
 	}
 
@@ -329,34 +337,35 @@ public class GameRenderer {
 
 
 	public void renderScore(int score) {
-		BitmapFont font=new BitmapFont(true);
-		font.setScale(0.5f);
+		
 		batcher.begin();
-		font.drawMultiLine(batcher, "YOUR SCORE: "+score,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
+		str.delete(lengthstr, str.length());
+		str.append(score);
+		font.drawMultiLine(batcher,str,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
 		batcher.end();
 	}
 	
 	public void renderScoreFinalWIN(int score) {
-		BitmapFont font=new BitmapFont(true);
-		font.setScale(0.5f+move*0.005f);
+		font.setScale(font.getScaleX()+move*0.0000008f);
 		font.setColor(Color.YELLOW);
 		batcher.begin();
-		if(move != width/2-15) {
-			move += 0.5f;
+		if(move != width/4-15) {
+			move += 1f;
 		}
-		font.drawMultiLine(batcher, "YOUR SCORE: "+score,width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
+		str.delete(lengthstr, str.length());
+		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
 		batcher.end();
 	}
 
 	public void renderScoreFinalLOSE(int score) {
-		BitmapFont font=new BitmapFont(true);
-		font.setScale(0.5f+move*0.005f);
+		font.setScale(font.getScaleX()+ move*0.0000008f);
 		font.setColor(Color.RED);
 		batcher.begin();
-		if(move != width/2-15) {
-			move += 0.5f;
+		if(move != width/4-15) {
+			move += 1f;
 		}
-		font.drawMultiLine(batcher, "YOUR SCORE: "+score,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
+		str.delete(lengthstr, str.length());
+		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
 		batcher.end();
 	}
 }

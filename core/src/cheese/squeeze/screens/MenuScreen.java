@@ -106,7 +106,9 @@ public class MenuScreen implements Screen{
 				@Override
 				public void pushButtonListener(SimpleButton btn) {
 					//try {
+					
 						Gdx.net.openURI(game.updateURL);
+						
 						//Desktop.getDesktop().browse(new URI(game.updateURL));
 					//} catch (IOException e) {
 						// TODO Auto-generated catch block
