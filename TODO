@@ -6,20 +6,21 @@ General:
 
 H - knop levels resetten (ergens op het main menu)
 
-H - knop quit game (rechts boven op gameboard zoals de home knop) 
+H - knop quit game (rechts boven op gameboard zoals de home knop)
+
+H - beschrijving maken voor in de stores, screenshots en gama logo.
+
+M - Sevel Selector
 
 M - rating system -> server of analytics
 
+M - laadscherm html versie (https://github.com/libgdx/libgdx/wiki/Starter-classes-%26-configuration#html5gwt)
+
+M - icoontjes mooi maken met (http://makeappicon.com)
+
 ------------------------------------------------------------
 
-H  - Google analytics werkende krijgen OK
-
-M  - Site Mooier Maken (Bart) OK 
-
-M  - Makkelijker systeem invoeren nieuwe versie OK
-
-M  - M  - nieuwe versie pop-up (afbeelding: Menu/download.png OF version.png)
-      --> serverside code (Bart)
+M  - nieuwe versie pop-up --> serverside code (Bart)
 
 
 Music & Visual:
