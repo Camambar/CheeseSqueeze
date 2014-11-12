@@ -32,8 +32,11 @@ public class Timer {
 	}
 	
 	public void resume() {
-		startTime = System.nanoTime();
-		stopTime = 0;
+		if(!isStopped) {
+			startTime = System.nanoTime();
+			stopTime = 0;
+		}
+		
 	}
 	
 	public void stop() {

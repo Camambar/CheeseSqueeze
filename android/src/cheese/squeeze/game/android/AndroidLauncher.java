@@ -2,15 +2,12 @@ package cheese.squeeze.game.android;
 
 import java.util.HashMap;
 
-import android.app.Application;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.flurry.android.FlurryAgent;
 import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.Logger.LogLevel;
 import com.google.analytics.tracking.android.MapBuilder;
