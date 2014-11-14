@@ -1,5 +1,15 @@
+CURRENT VERSION
+V1.4
+______________________________________
+V1_3
 - more forgiving input
 - in desktop app gesture line when moving mouse over the field
 - level is saved if you go to menu
 - mouse	wiggle
+V1_4
+- tutorial
+- incomming mouse indicator
+- IOS
 - analytics
+- support tegra3 (downsampled the graphics)
+- preset Hlines in some levels
