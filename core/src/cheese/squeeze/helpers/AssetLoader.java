@@ -146,6 +146,9 @@ public class AssetLoader {
 	}
 	
     public static void load() {
+    	
+    	//FreeTypeFontGenerator generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
+    	
     	font = new BitmapFont(true);
     	//font = new BitmapFont(Gdx.files.internal("data/font.fnt"),Gdx.files.internal("data/font.png"),true);
     	//font.setScale(0.1f);

@@ -44,12 +44,13 @@ public class CSGame extends Game {
 	public void create() {
 		
 		//LOAD LEVEL
+		/*
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		if (prefs.contains("level")) {
 			String l = prefs.getString("level");
 			currentLevel = Level.valueOf(l);
 		}
-	
+		*/
 		
 		Gdx.app.log("CSGame", "created");
 		TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
