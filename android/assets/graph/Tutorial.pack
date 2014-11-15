@@ -10,6 +10,13 @@ tutorial
   orig: 484, 140
   offset: 0, 0
   index: -1
+tutorial2
+  rotate: false
+  xy: 1, 142
+  size: 484, 140
+  orig: 484, 140
+  offset: 0, 0
+  index: -1
 hand
   rotate: false
   xy: 487, 1
@@ -19,7 +26,7 @@ hand
   index: -1
 dot
   rotate: false
-  xy: 1, 210
+  xy: 681, 352
   size: 72, 72
   orig: 72, 72
   offset: 0, 0

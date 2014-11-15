@@ -302,9 +302,12 @@ public class GameRenderer {
 
     	Sprite dot = AssetLoader.dot;
     	Sprite tutorial = AssetLoader.tutorial;
+    	Sprite tutorial2 = AssetLoader.tutorial2;
     	Sprite hand = AssetLoader.hand;
     	tutorial.setSize( width/3+10, (height/8));
     	tutorial.setPosition((width/2)+1, (height/2)-40);
+    	tutorial2.setSize( width/3+10, (height/8));
+    	tutorial2.setPosition((width/2)-tutorial2.getWidth(), -2);
     	
     	//hand.setOrigin(hand.getHeight()*hand.getScaleX(), hand.getScaleY()*hand.getWidth()/5);
     	hand.setSize(width/4, height/3);
@@ -330,7 +333,8 @@ public class GameRenderer {
 
     	
     	tutorial.draw(batcher);
-
+    	tutorial2.draw(batcher);
+    	
     	//batcher.draw(failed, (width/2)-((width/2)/2), midPointY+(height/4), width/2, height/2);
     	batcher.end();
 	}

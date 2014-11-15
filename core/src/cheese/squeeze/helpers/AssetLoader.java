@@ -59,7 +59,7 @@ public class AssetLoader {
 
 	public static Sprite failed;
 	
-	public static Sprite tutorial,hand;
+	public static Sprite tutorial,tutorial2,hand;
 
 	public static Sprite dot;
 
@@ -206,6 +206,9 @@ public class AssetLoader {
 
         tutorial = new Sprite(new TextureRegion(atlasTutorial.findRegion("tutorial")));
         tutorial.flip(false, true);
+        
+        tutorial2 = new Sprite(new TextureRegion(atlasTutorial.findRegion("tutorial2")));
+        tutorial2.flip(false, true);
         
         hand = new Sprite(new TextureRegion(atlasTutorial.findRegion("hand")));
         hand.flip(false, true);
