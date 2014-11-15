@@ -24,6 +24,8 @@ public class SimpleButton {
 
 	private SimpleButtonListener listen;
 
+	private boolean special;
+
 	/*
     public SimpleButton(float x, float y, float width, float height,
             TextureRegion buttonUp, TextureRegion buttonDown) {
@@ -48,6 +50,7 @@ public class SimpleButton {
         this.buttonUp = buttonUp;
         this.buttonDown = buttonDown;
         this.listen = listen;
+        this.special = false;
         bounds = new Rectangle(x, y, width, height);
 
     }
@@ -71,7 +74,9 @@ public class SimpleButton {
 
     public boolean isTouchDown(int screenX, int screenY) {
         if (contains(screenX, screenY)) {
-        	playButtonSound();
+        	if(!isSpecial()){
+        		playButtonSound();   
+        	}
             isPressed = true;
             listen.pushButtonListener(this);
             this.screenX =screenX;
@@ -82,7 +87,15 @@ public class SimpleButton {
         return false;
     }
 
-    public boolean isTouchUp(int screenX, int screenY) {
+    public boolean isSpecial() {
+		return this.special;
+	}
+    
+    public void setSpecial(boolean special){
+    	this.special = special;
+    }
+
+	public boolean isTouchUp(int screenX, int screenY) {
         
         // It only counts as a touchUp if the button is in a pressed state.
         if (contains(screenX, screenY) && isPressed) {

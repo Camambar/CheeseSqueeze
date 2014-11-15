@@ -78,15 +78,17 @@ public class MenuScreen implements Screen{
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
 		
-		SwitchButton soundButton = new SwitchButton(new SimpleButtonListener() {
+		SwitchButton soundButton = new SwitchButton(new SimpleButtonListener(){
     		
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				SoundAccessor.setEnabled(!((SwitchButton)btn).getVal());
 				SoundAccessor.play(AssetLoader.buttonSound);
+								
 			}
 		},AssetLoader.sound_on.getX(),AssetLoader.sound_on.getY(),
         		AssetLoader.sound_on.getWidth()*AssetLoader.sound_on.getScaleX(),AssetLoader.sound_on.getHeight()*AssetLoader.sound_on.getScaleY(),AssetLoader.sound_on,AssetLoader.sound_off,soundOn,"sound");
+		soundButton.setSpecial(true);
 		
 		SwitchButton musicButton = new SwitchButton(new SimpleButtonListener() {
 			
