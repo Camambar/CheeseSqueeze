@@ -8,18 +8,20 @@ H - analitycs fixen
 
 H - knoppen groter
 
-H - effects sound off.
+H - effects sound off. (fixed?)
+
+H - twee muisknoppen tegelijk een lijn trekken = crash
 
 
 General:
 
 H - knop quit game (rechts boven op gameboard zoals de home knop)
 
-H - beschrijving maken voor in de stores, screenshots en gama logo.
+H - beschrijving maken voor in de stores, screenshots.
 
 M - loading fonts (https://github.com/libgdx/libgdx/wiki/Distance-field-fonts)
 
-M - Sevel Selector
+M - Level Selector
 
 M - rating system uitwerken -> server of analytics
 
@@ -33,8 +35,6 @@ M  - nieuwe versie pop-up --> serverside code (Bart)
 
 
 Music & Visual:
-
-M  - geluid button niet afspelen bij drukken op sound_on -> sound_off
 
 M  - art juist doen scalen voor mobile (width en height gebruiken)
 
