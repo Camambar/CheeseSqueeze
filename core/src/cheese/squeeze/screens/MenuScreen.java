@@ -16,6 +16,7 @@ import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.ReportStatus;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
+import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.tweenAccessors.SoundAccessor;
@@ -37,10 +38,15 @@ public class MenuScreen implements Screen{
 	private boolean soundOn = SoundAccessor.isOn();
 	private String latestVersion;
 	private CSGame game;
+	private ReportStatus status = new ReportStatus(GameState.MENU);
 
 	public MenuScreen(final CSGame game) {
 
+		CSGame.currentState = GameState.MENU;
+		TimerFactory.getNewTimer(status).start();
+		
 		this.game = game;
+		
 		
 		try {
 			URL url = new URL(game.checkVersionURL);
@@ -57,8 +63,6 @@ public class MenuScreen implements Screen{
 		
 		
 		
-		TimerFactory.getNewTimer(new ReportStatus(GameState.MENU)).start();
-		CSGame.currentState = GameState.MENU;
 		addButtons(game);
 		batcher = new SpriteBatch();
 		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
@@ -192,7 +196,9 @@ public class MenuScreen implements Screen{
 	public void dispose() {
 		Gdx.app.log("Menu screen", "dispose");
 		// TODO Auto-generated method stub
-		TimerFactory.getRunningTimer(new ReportStatus(GameState.MENU)).stop();
+		Timer t = TimerFactory.getRunningTimer(status);
+		t.stop();
+		System.out.println(t);
 	}
 
 }

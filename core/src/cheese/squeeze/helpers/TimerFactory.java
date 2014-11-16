@@ -31,7 +31,10 @@ public class TimerFactory {
 
 	public static void stopAll() {
 		for(Timer t : timers) {
-			t.stop();
+			if(t.isRunning()) {
+				t.stop();
+			}
+			
 		}
 	}
 

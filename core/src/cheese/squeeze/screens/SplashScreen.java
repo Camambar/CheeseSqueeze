@@ -2,6 +2,7 @@ package cheese.squeeze.screens;
 
 import cheese.squeeze.game.*;
 import cheese.squeeze.helpers.AssetLoader;
+import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
 
 import com.badlogic.gdx.Gdx;
@@ -21,9 +22,11 @@ public class SplashScreen implements Screen{
 	private Image splashImage;
 	private BitmapFont font;
 	private SpriteBatch batch;
+	private ReportStatus status = new ReportStatus(GameState.LOADING);
 	
 	public SplashScreen(CSGame game) {
-		TimerFactory.getNewTimer(new ReportStatus(GameState.LOADING)).start();
+		TimerFactory.getNewTimer(status).start();
+		TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
 		splashImage = new Image(AssetLoader.logo);
 		splashImage.setSize((Gdx.graphics.getWidth()/1.5f), (Gdx.graphics.getHeight()/1.5f));
 		splashImage.setPosition((Gdx.graphics.getWidth()/2)-splashImage.getWidth()/2, (Gdx.graphics.getHeight()/3));
@@ -57,8 +60,9 @@ public class SplashScreen implements Screen{
                 //AssetLoader.setAtlas(); // uses files to create menuSkin
                 
                 //AssetLoader.load();
+            	this.dispose();
                 game.setScreen(new MenuScreen(game));
-                this.dispose();
+                
             }
             
             
@@ -110,7 +114,9 @@ public class SplashScreen implements Screen{
 	@Override
 	public void dispose() {
 		AssetLoader.disposeSplash();
-		TimerFactory.getRunningTimer(new ReportStatus(GameState.LOADING)).stop();
+		Timer t = TimerFactory.getRunningTimer(status);
+		t.stop();
+		System.out.println(t);
         stage.dispose();
 	}
 

@@ -53,7 +53,6 @@ public class CSGame extends Game {
 		*/
 		
 		Gdx.app.log("CSGame", "created");
-		TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
 		MusicAccessor musicA = new MusicAccessor();
 		AssetLoader.loadSplashScreen();
 		// set to setScreen(new GameScreen()); to start the game immediatly!
@@ -69,10 +68,11 @@ public class CSGame extends Game {
 	
     @Override
     public void dispose() {
-        super.dispose();
+        
         TimerFactory.stopAll();
         ArrayList<Timer> t = TimerFactory.getTimers();
         HashMap<Level,HashMap<GameState,Integer>> m = Report.map;
+        System.out.println(t);
 		if(action!=null) {
 			for(Timer timer : t) {
 				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getSeconds());
@@ -92,6 +92,7 @@ public class CSGame extends Game {
 		prefs.flush();
         
         AssetLoader.dispose();
+        super.dispose();
     }
 
 }

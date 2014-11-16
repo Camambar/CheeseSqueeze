@@ -13,6 +13,7 @@ public class Timer {
 	private long stopTime;
 	private long totalTime;
 	private boolean isStopped = false;
+	private boolean isPause =false;
 	
 	
 	protected Timer(ReportStatus state) {
@@ -27,8 +28,12 @@ public class Timer {
 	}
 	
 	public void pause() {
-		stopTime = System.nanoTime();
-		totalTime = totalTime + (stopTime - startTime);
+		if (!isStopped && !isPause) {
+			stopTime = System.nanoTime();
+			totalTime = totalTime + (stopTime - startTime);
+			isPause = true;
+		}
+		
 	}
 	
 	public void resume() {
@@ -40,10 +45,13 @@ public class Timer {
 	}
 	
 	public void stop() {
-		if(!isStopped) {
+		if(!isStopped && !isPause) {
 			isStopped = true;
 			stopTime = System.nanoTime();
 			totalTime = totalTime + (stopTime - startTime);
+		}
+		else if (isPause) {
+			isStopped = true;
 		}
 
 	}
@@ -63,7 +71,8 @@ public class Timer {
 	}
 	
 	public long getSeconds() {
-		return TimeUnit.NANOSECONDS.toSeconds(this.totalTime);
+		return (long) (totalTime / 1000000000.0);
+		
 	}
 	
 	public long getMinutes() {
