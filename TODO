@@ -19,6 +19,8 @@ H - knop quit game (rechts boven op gameboard zoals de home knop)
 
 H - beschrijving maken voor in de stores, screenshots.
 
+H - horizontale lijnen van levels onafhankelijk maken van resolutie scherm
+
 M - loading fonts (https://github.com/libgdx/libgdx/wiki/Distance-field-fonts)
 
 M - Level Selector
