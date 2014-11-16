@@ -4,22 +4,19 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 DUE TO RELEASE:
 
-H - analitycs fixen
+VH - analitycs fixen
 
-H - knoppen groter
+VH - knoppen groter voor mobile
 
-H - effects sound off. (fixed?)
+VH - twee muisknoppen tegelijk een lijn trekken = crash
 
-H - twee muisknoppen tegelijk een lijn trekken = crash
-
+VH - horizontale lijnen van levels onafhankelijk maken van resolutie scherm
 
 General:
 
 H - knop quit game (rechts boven op gameboard zoals de home knop)
 
 H - beschrijving maken voor in de stores, screenshots.
-
-H - horizontale lijnen van levels onafhankelijk maken van resolutie scherm
 
 M - loading fonts (https://github.com/libgdx/libgdx/wiki/Distance-field-fonts)
 
