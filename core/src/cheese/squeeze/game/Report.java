@@ -36,5 +36,9 @@ public class Report {
 		}
 		return res;
 	}
+	
+	public static void clear() {
+		map = new HashMap<Level,HashMap<GameState,Integer>>();
+	}
 
 }

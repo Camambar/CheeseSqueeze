@@ -98,9 +98,17 @@ public class GameBoard {
 
 	private void addHlines() {
 		if(level.getHlines().length > 0) {
-			for(HorizontalLine i : level.getHlines()) {
-				this.fitHorizontalLineBetweenVertivalLines(i);
-				this.addHLine(i);
+			for(Vector2 vec : level.getHlines()) {
+				int i =1;
+				for(Entry<Float, LinkedList<HorizontalLine>> e : this.hlines.entrySet()) {
+					if(i == vec.y && e.getValue().isValidPosition((int)vec.x)) {
+						float x = vlines.get(((int)vec.x)-1).getX1();
+						HorizontalLine line = new HorizontalLine(e.getKey(),x,x+0.01f);
+						this.fitHorizontalLineBetweenVertivalLines(line);
+						this.addHLine(line);
+					}
+					i++;
+				}
 			}
 		}
 		

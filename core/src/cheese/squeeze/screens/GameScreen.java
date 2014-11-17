@@ -34,15 +34,18 @@ public class GameScreen implements Screen {
 	private Level currentLevel;
 	private SimpleButton gameTutorial;
 	private InputHelper input;
+	private CSGame game;
 	
 	public GameScreen(final CSGame game) {
 		currentLevel = CSGame.currentLevel;
 		init(game);
+		this.game = game;
 	}
 
 	public GameScreen(final CSGame game,Level l) {
 		currentLevel = l;
 		init(game);
+		this.game = game;
     }
 	
 	private void init(final CSGame game) {
@@ -190,6 +193,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
+    	//game.dispose();
     	TimerFactory.pauseAll();
         Gdx.app.log("GameScreen", "pause called");        
     }

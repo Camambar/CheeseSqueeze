@@ -33,13 +33,13 @@ public class AssetLoader {
 	public static TextureRegion mouse;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
-    private static TextureAtlas atlasMenu;
+    private  TextureAtlas atlasMenu;
     
-    private static TextureAtlas atlasGame;
+    private  TextureAtlas atlasGame;
     
-    private static TextureAtlas atlasFloor;
+    private  TextureAtlas atlasFloor;
     
-    private static TextureAtlas atlasMenuLeeg;
+    private  TextureAtlas atlasMenuLeeg;
     
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
 
@@ -85,8 +85,11 @@ public class AssetLoader {
 
 	private final static int NBCHEESE = 5;
 
+	public AssetLoader() {
+		
+	}
 
-	public static void queueLoading(){
+	public void queueLoading(){
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
@@ -102,15 +105,15 @@ public class AssetLoader {
 		manager.load("data/pop.mp3",Sound.class);
 	}
 	
-	public static void lastLoadingStep() {
+	public void lastLoadingStep() {
 		if(manager.update()) {
 			setAtlas();
-			AssetLoader.setSounds();
-			AssetLoader.load();
+			this.setSounds();
+			this.load();
 		}
 	}
     
-	public static void setAtlas() {
+	public void setAtlas() {
 		atlasMenu = manager.get("graph/Menu.pack",TextureAtlas.class);
 		atlasGame = manager.get("graph/Game.pack",TextureAtlas.class);
 		atlasFloor = manager.get("graph/floor.pack",TextureAtlas.class);
@@ -118,7 +121,7 @@ public class AssetLoader {
 		atlasTutorial = manager.get("graph/Tutorial.pack",TextureAtlas.class);
 	}
 	
-	public static void setSounds() {
+	public void setSounds() {
 		gameSound = manager.get("data/Game Music.mp3");
     	menuSound = manager.get("data/Menu Music.mp3");
     	buttonSound = manager.get("data/button.mp3");
@@ -130,7 +133,7 @@ public class AssetLoader {
     	AssetLoader.soundLoaded = true;
 	}
  
-	public static void loadSplashScreen() {
+	public void loadSplashScreen() {
 		
 		texture = new Texture(Gdx.files.internal("data/game.png"));
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -141,12 +144,12 @@ public class AssetLoader {
         full=new NinePatch(new TextureRegion(AssetLoader.fullT,24,24),8,8,8,8);
 	}
 	
-	public static void loadMenu() {
+	public void loadMenu() {
 		//TODO replace the menu parts in a diff png.
 	}
 	
-    public static void load() {
-    	
+	public void desktopLoad() {
+
     	//FreeTypeFontGenerator generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
     	
     	font = new BitmapFont(true);
@@ -266,47 +269,148 @@ public class AssetLoader {
         home.flip(false, true);
         home.setPosition(1, 1);
         
-        /*
-    	 * OLD STUFF
-    	 * 
-        texture = new Texture(Gdx.files.internal("data/bg.png"));
-        texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+        dataLoaded = true;
+	}
+	
+	public void androidLoad() {
 
-        
-        bg = new TextureRegion(texture, 0, 0, 1092, 1915);
-        bg.flip(false, true);
-        
-        texture = new Texture(Gdx.files.internal("data/mouse.png"));
-        texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-        
-        //TODO Right pictures with right dim!!
-        mouse = new TextureRegion(texture, 0, 0, 513, 545);
-        mouse.flip(false, true);
-        mouseS = new Sprite(mouse);
-        mouseS.setScale(30);
-        mouseCenter = new Vector2(mouseS.getWidth()/(2*mouseS.getScaleX()),mouseS.getHeight()/(2*mouseS.getScaleY()));
-        mouseNose = new Vector2(mouseS.getWidth()/(2*mouseS.getScaleX()),mouseS.getHeight()/(2*mouseS.getScaleY()));
-        
+    	//FreeTypeFontGenerator generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
+    	
+    	font = new BitmapFont(true);
+    	//font = new BitmapFont(Gdx.files.internal("data/font.fnt"),Gdx.files.internal("data/font.png"),true);
+    	//font.setScale(0.1f);
+    	font.setScale(0.5f);
+    	font.setColor(Color.WHITE);
+    	goals = new GoalSprites();
+    	
+    	for(int i = 1; i<=NBCHEESE;i++) {
+        	Sprite goal = new Sprite(new TextureRegion(atlasGame.findRegion("cheese_pile"+i)));
+            //goal.flip(false,true);
+        	goalCenter = new Vector2(goal.getWidth()/(2*goal.getScaleX()),goal.getHeight()/(2*goal.getScaleY()));
+        	goals.addSprite(i, goal);
+    	}
 
-        goal = new Sprite(new TextureRegion(atlas.findRegion("goal")));
-        goal.flip(false,true);
-        goalCenter = new Vector2(goal.getWidth()/(2*goal.getScaleX()),goal.getHeight()/(2*goal.getScaleY()));
-        
-        
-        trap = new Sprite(new TextureRegion(atlas.findRegion("trap")));
+        trap = new Sprite(new TextureRegion(atlasGame.findRegion("trap_open")));
         trap.flip(false,true);
         trapCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));
         
+        trapClosed = new Sprite(new TextureRegion(atlasGame.findRegion("trap_closed")));
+        trapClosedCenter = new Vector2(trap.getWidth()/(2*trap.getScaleX()),trap.getHeight()/(2*trap.getScaleY()));
+        trapClosed.flip(false, true);
+        
+        bg = new Sprite(new TextureRegion(atlasFloor.findRegion("floor")));
+    	
+        
+        mouse = new TextureRegion(atlasGame.findRegion("mouse"));
+        mouse.flip(false, true);
+        
+
+        
+
+        //mouse.setSize(10, 10);
+        //mouseCenter = new Vector2(mouse.getWidth()/(2*mouse.getScaleX()),mouse.getHeight()/(2*mouse.getScaleY()));
+        //mouseNose = new Vector2((mouse.getWidth()/2)*mouse.getScaleX(),mouse.getHeight()/(mouse.getScaleY()));
         
         
-        texture = new Texture(Gdx.files.internal("data/play.png"));
-        texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+        menuBg = new Sprite(new TextureRegion(atlasMenuLeeg.findRegion("menu_leeg")));
+        
+
+        float desiredWidth = width;
+        float scale = desiredWidth / menuBg.getWidth();
+        
+        menuBg.setSize(menuBg.getWidth() * scale, menuBg.getHeight() * scale);
+        //menuBg.setPosition((width / 2) - (menuBg.getWidth() / 2), (height / 2)- (menuBg.getHeight() / 2));
+        
+        next = new TextureRegion(atlasGame.findRegion("next"));
+        next.flip(false, true);
+
+        
+        //menuBg.setSize(675,1500);
+        //menuBg.setScale(1f);
+        
+        failed = new Sprite(new TextureRegion(atlasGame.findRegion("failed")));
+        failed.flip(false, true);
+
+        tutorial = new Sprite(new TextureRegion(atlasTutorial.findRegion("tutorial")));
+        tutorial.flip(false, true);
+        
+        tutorial2 = new Sprite(new TextureRegion(atlasTutorial.findRegion("tutorial2")));
+        tutorial2.flip(false, true);
+        
+        hand = new Sprite(new TextureRegion(atlasTutorial.findRegion("hand")));
+        hand.flip(false, true);
+        
+        dot = new Sprite(new TextureRegion(atlasTutorial.findRegion("dot")));
+        dot.flip(false, true);
+        
+        
+        completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
+        completed.flip(false, true);
+        
+        logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
+        
+        play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
+        
+        desiredWidth = width*0.9f;
+        scale = desiredWidth / menuBg.getWidth();
+        play.setSize(play.getWidth() * scale, play.getHeight() * scale);
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        play.setPosition((width/2)-(.5f*play.getWidth()),(height/1.75f)+20);
+        
+        version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
+        version.setSize(version.getWidth()*scale, version.getHeight()*scale );
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
+        
+        logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
+        //set position to the top middle 10 pixle from top
+        logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
+        
+        
+        scale = scale * 1f;
+        music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
+        music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
+        music_on.setPosition(play.getX(),(height/1.75f)-20-music_on.getHeight());
+        
+        music_off = new Sprite(new TextureRegion(atlasMenu.findRegion("music_off")));
+        music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
+        music_off.setPosition(play.getX(),(height/1.75f)-20-music_off.getHeight());
+        
+        
+        sound_on = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_on")));
+        sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
+        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/1.75f)-20-sound_on.getHeight());
+        sound_off = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_off")));
+        sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
+        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/1.75f)-20-sound_off.getHeight());
+    	
        
-        playButtonUp = new TextureRegion(texture, 0, 0, 803, 264);
-        playButtonDown = new TextureRegion(texture, 0, 0, 803, 264);
-        */
         
-        dataLoaded = true;
+        home = new Sprite(new TextureRegion(atlasGame.findRegion("home")));
+        home.setSize(13,10);
+        home.flip(false, true);
+        home.setPosition(1, 1);
+        
+        dataLoaded =true;
+	}
+	
+    public void load() {
+    	switch(Gdx.app.getType()) {
+    	   case Android:
+    	       androidLoad();
+    		   break;
+    	   case Desktop:
+    	       desktopLoad();
+    		   break;
+    	   case WebGL:
+    		   desktopLoad();
+    		   break;
+    	   case iOS:
+    		   androidLoad();
+    		   break;
+    	}
     }
     
     public static void soundSwitch() {
@@ -329,12 +433,13 @@ public class AssetLoader {
         return (manager.update() && AssetLoader.dataLoaded);
     }
 
-    public static void dispose() {
+    public void dispose() {
         // We must dispose of the texture when we are finished.
         atlasGame.dispose();
         atlasMenu.dispose();
         atlasFloor.dispose();
         atlasMenuLeeg.dispose();
+        manager.clear();
     }
     
     public static float getProcess() {

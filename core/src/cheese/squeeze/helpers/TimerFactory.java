@@ -49,4 +49,8 @@ public class TimerFactory {
 			t.resume();
 		}
 	}
+
+	public static void clear() {
+		timers = new ArrayList<Timer>();
+	}
 }

@@ -23,8 +23,9 @@ public class SplashScreen implements Screen{
 	private BitmapFont font;
 	private SpriteBatch batch;
 	private ReportStatus status = new ReportStatus(GameState.LOADING);
+	private AssetLoader loader;
 	
-	public SplashScreen(CSGame game) {
+	public SplashScreen(CSGame game, AssetLoader loader) {
 		TimerFactory.getNewTimer(status).start();
 		TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
 		splashImage = new Image(AssetLoader.logo);
@@ -35,6 +36,8 @@ public class SplashScreen implements Screen{
         stage = new Stage();
         font=new BitmapFont();
         batch=new SpriteBatch();
+        
+        this.loader = loader;
 
     }
 
@@ -52,7 +55,7 @@ public class SplashScreen implements Screen{
         
         batch.end();
         
-        AssetLoader.lastLoadingStep();
+        loader.lastLoadingStep();
         
         if(AssetLoader.update()){ // check if all files are loaded
             
@@ -88,7 +91,7 @@ public class SplashScreen implements Screen{
             }
         })));
         
-		AssetLoader.queueLoading();
+        loader.queueLoading();
 	
 		
 	}
@@ -101,6 +104,7 @@ public class SplashScreen implements Screen{
 
 	@Override
 	public void pause() {
+		//game.dispose();
 		TimerFactory.pauseAll();
 	}
 

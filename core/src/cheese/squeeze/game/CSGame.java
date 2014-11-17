@@ -30,7 +30,8 @@ public class CSGame extends Game {
 	public  final static String version = "1.4";
 	public static final String updateURL = "http://camambar.github.io/CheeseSqueeze/";
 	public static final String checkVersionURL = "http://camambar.github.io/CheeseSqueeze/version";
-	
+	private AssetLoader loader;
+
 	public CSGame(ActionResolver action) {
 		this.action = action;
 		//action.reportAnalytics("test", "cat", 3);
@@ -42,37 +43,48 @@ public class CSGame extends Game {
 
 	@Override
 	public void create() {
-		
+
 		//LOAD LEVEL
 		/*
+		laodLevel();
+		 */
+
+		Gdx.app.log("CSGame", "created");
+		MusicAccessor musicA = new MusicAccessor();
+
+		// set to setScreen(new GameScreen()); to start the game immediatly!
+		//setScreen(new GameScreen());
+
+		this.loader = new AssetLoader();
+		loader.loadSplashScreen();
+		setScreen(new SplashScreen(this,loader));
+	}
+
+	public ActionResolver getActionResolver() {
+		return this.action;
+	}
+
+	public void saveLevel() {
+		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
+		prefs.putString("level", currentLevel.toString());
+		prefs.flush();
+	}
+
+	public void loadLevel() {
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		if (prefs.contains("level")) {
 			String l = prefs.getString("level");
 			currentLevel = Level.valueOf(l);
 		}
-		*/
-		
-		Gdx.app.log("CSGame", "created");
-		MusicAccessor musicA = new MusicAccessor();
-		AssetLoader.loadSplashScreen();
-		// set to setScreen(new GameScreen()); to start the game immediatly!
-		//setScreen(new GameScreen());
+	}
 
-		
-		setScreen(new SplashScreen(this));
-	}
-	
-	public ActionResolver getActionResolver() {
-		return this.action;
-	}
-	
-    @Override
-    public void dispose() {
-        
-        TimerFactory.stopAll();
-        ArrayList<Timer> t = TimerFactory.getTimers();
-        HashMap<Level,HashMap<GameState,Integer>> m = Report.map;
-        System.out.println(t);
+	public void analytics() {
+		TimerFactory.stopAll();
+		ArrayList<Timer> t = TimerFactory.getTimers();
+		HashMap<Level,HashMap<GameState,Integer>> m = Report.map;
+		System.out.println(t);
+		System.out.println(m);
+
 		if(action!=null) {
 			for(Timer timer : t) {
 				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getSeconds());
@@ -83,16 +95,21 @@ public class CSGame extends Game {
 					action.reportAnalytics(e.getKey().toString(),e2.getKey().toString(),e2.getValue());
 				}
 			}
-			
-			
+
+
 		}
-        
-		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
-		prefs.putString("level", currentLevel.toString());
-		prefs.flush();
-        
-        AssetLoader.dispose();
-        super.dispose();
-    }
+
+		TimerFactory.clear();
+		Report.clear();
+		saveLevel();
+	}
+
+	@Override
+	public void dispose() {
+		analytics();
+		loader.dispose();
+		super.dispose();
+
+	}
 
 }

@@ -179,7 +179,9 @@ public class MenuScreen implements Screen{
 	@Override
 	public void pause() {
 		Gdx.app.log("Menu screen", "pause");
-		TimerFactory.pauseAll();
+		game.analytics();
+		//game.dispose();
+		//TimerFactory.pauseAll();
 		// TODO Auto-generated method stub
 		
 	}
@@ -187,7 +189,8 @@ public class MenuScreen implements Screen{
 	@Override
 	public void resume() {
 		Gdx.app.log("Menu screen", "resume");
-		TimerFactory.resumeAll();
+		TimerFactory.getNewTimer(status).start();
+		//TimerFactory.resumeAll();
 		// TODO Auto-generated method stub
 		
 	}
