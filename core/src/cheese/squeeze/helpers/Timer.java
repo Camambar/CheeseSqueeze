@@ -33,6 +33,7 @@ public class Timer {
 			totalTime = totalTime + (stopTime - startTime);
 			isPause = true;
 		}
+		System.out.println(toString() +" pauzed");
 		
 	}
 	

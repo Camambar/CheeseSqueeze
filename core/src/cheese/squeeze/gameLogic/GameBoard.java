@@ -51,6 +51,7 @@ public class GameBoard {
 	private Level level;
 	private float multip;
 	private int currentMouse;
+	private boolean presetLines;
 	
 	
 
@@ -97,6 +98,7 @@ public class GameBoard {
 
 
 	private void addHlines() {
+		presetLines = true;
 		if(level.getHlines().length > 0) {
 			for(Vector2 vec : level.getHlines()) {
 				int i =1;
@@ -111,7 +113,7 @@ public class GameBoard {
 				}
 			}
 		}
-		
+		presetLines = false;
 	}
 
 
@@ -210,7 +212,7 @@ public class GameBoard {
 	
 	public void addHLine(HorizontalLine line) {
 		Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.FIRSTLINE,level));
-		if( t != null ) {
+		if( t != null && !presetLines) {
 			t.stop();
 		}
 		int row = betweenLines(line.getX1());
@@ -503,7 +505,7 @@ public class GameBoard {
 	 * @param delta
 	 */
 	public void update(float delta) {
-		System.out.println("UPDATE BOARD");
+		//System.out.println("UPDATE BOARD");
 		int counter = 0;
 		Iterator<Mouse> itr = mice.iterator();
 		while(itr.hasNext()) {
@@ -533,7 +535,7 @@ public class GameBoard {
 			}
 			
 		}
-		Gdx.app.log("GameBoard", "update");
+		//Gdx.app.log("GameBoard", "update");
 	}
 	
 	public VerticalLine getNextMouseLine() {

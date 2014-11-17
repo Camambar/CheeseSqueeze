@@ -3,6 +3,7 @@ package cheese.squeeze.helpers;
 import java.util.ArrayList;
 
 import cheese.squeeze.game.GameState;
+import cheese.squeeze.game.Level;
 import cheese.squeeze.game.ReportStatus;
 
 public class TimerFactory {
@@ -52,5 +53,15 @@ public class TimerFactory {
 
 	public static void clear() {
 		timers = new ArrayList<Timer>();
+	}
+
+	public static void pauseAll(Level currentLevel) {
+		for(Timer t : timers) {
+			if(t.getState().getLevel().equals(currentLevel)) {
+				t.pause();
+			}
+			
+		}
+		
 	}
 }

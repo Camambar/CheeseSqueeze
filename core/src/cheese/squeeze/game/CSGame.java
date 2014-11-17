@@ -45,9 +45,9 @@ public class CSGame extends Game {
 	public void create() {
 
 		//LOAD LEVEL
-		/*
-		laodLevel();
-		 */
+		
+		loadLevel();
+		 
 
 		Gdx.app.log("CSGame", "created");
 		MusicAccessor musicA = new MusicAccessor();

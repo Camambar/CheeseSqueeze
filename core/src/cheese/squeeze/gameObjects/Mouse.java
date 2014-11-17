@@ -51,10 +51,10 @@ public class Mouse {
 	}
 
 	public void update(float delta) {
-		System.out.println("nextGoToPoint is (" + nextGoToPoint.x + ", " + nextGoToPoint.y + ").");
+		//System.out.println("nextGoToPoint is (" + nextGoToPoint.x + ", " + nextGoToPoint.y + ").");
 		if (nextGoToPoint != null) {
 			if(atIntersection()) {
-				System.out.println("intersection reached!");
+				//System.out.println("intersection reached!");
 				//the mouse stands now at the previous nextGoToPoint
 				setPosition(nextGoToPoint.x, nextGoToPoint.y);
 				//nextGoToPoint is yet to be determined
@@ -89,7 +89,7 @@ public class Mouse {
 			updateVelocityDirection();
 		//	setPosition(getX() + velocity.x * delta, getY() + velocity.y * delta);
 			setPosition(getX() + velocity.x * 1, getY() + velocity.y * 1);
-		System.out.println(this.rotation);
+		//System.out.println(this.rotation);
 		}		
 	}
 
@@ -117,7 +117,7 @@ public class Mouse {
 
 	private boolean atIntersection() {
 		float dynTolerance = speed / tolerance * Gdx.graphics.getDeltaTime();
-		System.out.println("dyn tol: " + dynTolerance);
+		//System.out.println("dyn tol: " + dynTolerance);
 		return Math.abs(nextGoToPoint.x - getX()) <= dynTolerance 
 				&& Math.abs(nextGoToPoint.y - getY()) <= dynTolerance;
 	}

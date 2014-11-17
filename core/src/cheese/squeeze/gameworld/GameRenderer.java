@@ -122,7 +122,7 @@ public class GameRenderer {
 		batcher.end();
 
 
-		Gdx.app.log("GameRenderer", "rendered");
+		//Gdx.app.log("GameRenderer", "rendered");
 	}
 
 
