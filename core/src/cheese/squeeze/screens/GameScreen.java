@@ -31,11 +31,11 @@ public class GameScreen implements Screen {
 	//private SimpleButton completedPopUp;
 	private SimpleButton gameOverPopUp;
 	private SimpleButton completedPopUp;
-	private Level currentLevel;
 	private SimpleButton gameTutorial;
 	private InputHelper input;
 	private CSGame game;
 	private ReportStatus status;
+	private Level currentLevel;
 	
 	public GameScreen(final CSGame game) {
 		currentLevel = CSGame.currentLevel;
@@ -44,12 +44,14 @@ public class GameScreen implements Screen {
 	}
 
 	public GameScreen(final CSGame game,Level l) {
-		currentLevel = l;
+		CSGame.currentLevel = l;
+		currentLevel = CSGame.currentLevel;
 		init(game);
 		this.game = game;
     }
 	
 	private void init(final CSGame game) {
+    	game.saveLevel();
         Gdx.app.log("GameScreen", "Attached");
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
@@ -91,6 +93,7 @@ public class GameScreen implements Screen {
 				if(currentLevel.getNextLevel()!=null) {
 					//CSGame.currentLevel = currentLevel.getNextLevel();
 					//status = new ReportStatus(GameState.WON,currentLevel);
+					
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
 					dispose();
 				}
@@ -117,7 +120,7 @@ public class GameScreen implements Screen {
     		    	status = new ReportStatus(GameState.PLAYING,currentLevel);
     	            TimerFactory.getNewTimer(status).start();
     				board.tutorialEnded();
-    	            input.virtualTouchDown((int)gameTutorial.getScreenX(), (int) gameTutorial.getScreenY());
+    	            input.virtualTouchDown(Gdx.input.getX(), Gdx.input.getY());
     			}
     		},board.getTutorialPositionX()-10,board.getTutorialPositionY()-10, (gameHeight/10),(gameHeight/10),AssetLoader.dot,AssetLoader.dot,GameState.TUTORIAL);
     		//,
@@ -175,6 +178,7 @@ public class GameScreen implements Screen {
 					game.analytics();
 					status = new ReportStatus(GameState.WONSCREEN,currentLevel);
 					TimerFactory.getNewTimer(status).start();
+					game.saveLevel(currentLevel.getNextLevel());
 				}
 				MusicAccessor.play(AssetLoader.victorySound);
 				renderer.render();

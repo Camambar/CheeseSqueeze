@@ -1,0 +1,3 @@
+Cheese Squeeze is a puzzler game. The goal is to lead a number of mice to the cheese.
+Feel free to visit our website: http://camambar.github.io/CheeseSqueeze
+You can follow our development progress on http://www.camambar.wordpress.com.

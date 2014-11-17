@@ -45,9 +45,9 @@ public class CSGame extends Game {
 	public void create() {
 
 		//LOAD LEVEL
-		
+		/*
 		loadLevel();
-		 
+		 */
 
 		Gdx.app.log("CSGame", "created");
 		MusicAccessor musicA = new MusicAccessor();
@@ -68,14 +68,23 @@ public class CSGame extends Game {
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		prefs.putString("level", currentLevel.toString());
 		prefs.flush();
+		System.out.println("level " + currentLevel.toString() + " saved");
 	}
 
+	public void saveLevel(Level l) {
+		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
+		prefs.putString("level", l.toString());
+		prefs.flush();
+		System.out.println("level " + l.toString() + " saved");
+	}
+	
 	public void loadLevel() {
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		if (prefs.contains("level")) {
 			String l = prefs.getString("level");
 			currentLevel = Level.valueOf(l);
 		}
+		System.out.println("level " + currentLevel.toString() + " loaded");
 	}
 
 	public void analytics() {
@@ -101,7 +110,6 @@ public class CSGame extends Game {
 
 		TimerFactory.clear();
 		Report.clear();
-		saveLevel();
 	}
 
 	@Override

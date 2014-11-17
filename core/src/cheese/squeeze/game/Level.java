@@ -26,55 +26,59 @@ public enum Level {
 	
 	NOTHING(),
 	
-	LEVEL13(0.2f,new Vector2[]{}
+	LEVEL14(0.2f,new Vector2[]{}
 	,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
 	,new int[]{1,3,6,7,6},4,false),
 	
-	LEVEL12(0.4f,new Vector2[]{}
+	LEVEL13(0.4f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,3,5,2,4},3,LEVEL13,false),
+		,new int[]{1,3,5,2,4},3,LEVEL14,false),
+		
+		
+	LEVEL12(0.5f,new Vector2[]{}
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
+		,new int[]{2,3,5,1,4},2,LEVEL13,false),
 		
 		
 	LEVEL11(0.5f,new Vector2[]{}
-		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{2,3,5,1,4},2,LEVEL12,false),
-		
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
+		,new int[]{1,5,2,4,3},2,LEVEL12,false),
 		
 	LEVEL10(0.5f,new Vector2[]{}
-		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,5,2,4,3},2,LEVEL11,false),
-		
-	LEVEL9(0.5f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5))}
-		,new int[]{3,1,2,5,2},2,LEVEL10,false),
+		,new int[]{3,1,2,5,2},2,LEVEL11,false),
 		
 		
-	LEVEL8(0.75f,new Vector2[]{}
+	LEVEL9(0.75f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{4,2,5,4,3},1,LEVEL9,false),
+		,new int[]{4,2,5,4,3},1,LEVEL10,false),
 		
 	
-	LEVEL7(0.75f,new Vector2[]{new Vector2(2,1),new Vector2(3,2),new Vector2(2,3)}
+	LEVEL8(0.75f,new Vector2[]{new Vector2(2,1),new Vector2(3,2),new Vector2(2,3)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5))}
-		,new int[]{1,4,3,4,2},1,LEVEL8,false),
+		,new int[]{1,4,3,4,2},1,LEVEL9,false),
 			
-	LEVEL6(0.75f,new Vector2[]{}
+	LEVEL7(0.75f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{4,2,3,2,1},1,LEVEL7,false),
+		,new int[]{4,2,3,2,1},1,LEVEL8,false),
 	
 	
-	LEVEL5(0.75f,new Vector2[]{}
+	LEVEL6(0.75f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap())}
-		,new int[]{1,2,3,4,1},1,LEVEL6,false),
+		,new int[]{1,2,3,4,1},1,LEVEL7,false),
 
+	LEVEL5(0.75f,new Vector2[]{}
+		,new VerticalLine[]{new VerticalLine(new Cheese(4)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
+		,new int[]{3,2,3,1},2,LEVEL6,false),
 			
 	LEVEL4(0.75f,new Vector2[]{new Vector2(1,1),new Vector2(2,2)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5))}
 		,new int[]{2,3,1,2,1},1,LEVEL5,false),
 	
-	LEVEL3(0.75f,new Vector2[]{new Vector2(1,8)}
+		
+	LEVEL3(0.6f,new Vector2[]{new Vector2(1,1)}
 		,new VerticalLine[]{new VerticalLine(new Cheese(3)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{3,2,3},2,LEVEL4,false),
+		,new int[]{3,2,1},2,LEVEL4,false),
 		
 	LEVEL2(0.8f,new Vector2[]{new Vector2(2,1)}
 		,new VerticalLine[]{new VerticalLine(new Cheese(4)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
