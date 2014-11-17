@@ -4,11 +4,11 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 DUE TO RELEASE:
 
-VH - analitycs fixen
+VH - analitycs fixen OK
 
-VH - knoppen groter voor mobile
+VH - knoppen groter voor mobile OK
 
-VH - twee muisknoppen tegelijk een lijn trekken = crash
+VH - twee muisknoppen tegelijk een lijn trekken = crash 
 
 VH - horizontale lijnen van levels onafhankelijk maken van resolutie scherm
 
@@ -30,7 +30,7 @@ M - laadscherm html versie (https://github.com/libgdx/libgdx/wiki/Starter-classe
 
 ------------------------------------------------------------
 
-M  - nieuwe versie pop-up --> serverside code (Bart)
+M  - nieuwe versie pop-up --> serverside code (Bart) OK
 
 
 Music & Visual:
