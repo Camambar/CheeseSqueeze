@@ -11,7 +11,7 @@ function getVersion() {
 }
 
 function getAndroidAPK() {
-	return "http://camambar.github.io/CheeseSqueeze/releases/android-debug-v" + getVersion()  + ".apk";
+	return "http://camambar.github.io/CheeseSqueeze/releases/CheeseSqueeze-" + getVersion()  + ".apk";
 }
 
 function getWeb() {
