@@ -85,6 +85,7 @@ public enum Level {
 		,new int[]{1,2,3},1,LEVEL2,true);
         
 	
+	
 	private int amountTraps;
 	private int amountGoals;
 	private Vector2[] hlines;
