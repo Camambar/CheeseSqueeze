@@ -1,4 +1,5 @@
 <!-- Hide from older browsers
+
 function getVersion() {
 	var xmlHttp = null;
 
