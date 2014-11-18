@@ -12,7 +12,7 @@ function getVersion() {
 }
 
 function getAndroidAPK() {
-	return "http://camambar.github.io/CheeseSqueeze/releases/CheeseSqueeze-v" + getVersion()  + ".apk";
+	return "https://play.google.com/store/apps/details?id=cheese.squeeze.game.android";
 }
 
 function getWeb() {
