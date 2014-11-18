@@ -115,7 +115,12 @@ a#ios .download-btn,
 a#ios .download-btn:hover,
 a#ios .download-btn:focus,
 a#ios .download-btn:active,
-a#ios .download-btn.active {
+a#ios .download-btn.active,
+a#web .download-btn,
+a#web .download-btn:hover,
+a#web .download-btn:focus,
+a#web .download-btn:active,
+a#web .download-btn.active {
 	opacity: 0.2;
 	background: #FFBB33;
 	color: #45423C;
