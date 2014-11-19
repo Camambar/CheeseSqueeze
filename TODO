@@ -4,21 +4,18 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 DUE TO RELEASE:
 
-VHHHH - TEST ALL THE LEVELS
-
-VH - analitycs fixen OK
-
-VH - knoppen groter voor mobile OK
-
-VH - twee muisknoppen tegelijk een lijn trekken = crash 
-
-VH - horizontale lijnen van levels onafhankelijk maken van resolutie scherm OK
 
 General:
+
+VH - fix menu issues
+
+VH - fix music issues
 
 H - knop quit game (rechts boven op gameboard zoals de home knop)
 
 H - beschrijving maken voor in de stores, screenshots.
+
+M - change launch icon to "C"
 
 M - loading fonts (https://github.com/libgdx/libgdx/wiki/Distance-field-fonts)
 
