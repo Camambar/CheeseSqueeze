@@ -2,34 +2,31 @@
 H = High Priority, M = Medium Priority, L = Low Priority
 *********************************************************
 
-DUE TO RELEASE:
+DUE TO NEXT RELEASE:
 
+VH - fix menu issues on some devices
 
-General:
+VH - fix music issues on some devices
 
-VH - fix menu issues
-
-VH - fix music issues
+VH - level rating system
 
 H - knop quit game (rechts boven op gameboard zoals de home knop)
 
-H - beschrijving maken voor in de stores, screenshots.
+H - display current level number
 
 M - change launch icon to "C"
+
+M - muizen 1 seconde laten wachten in het begin van nieuw level
+
+General:
 
 M - loading fonts (https://github.com/libgdx/libgdx/wiki/Distance-field-fonts)
 
 M - Level Selector
 
-M - rating system uitwerken -> server of analytics
-
 M - Leaderboards
 
 M - laadscherm html versie (https://github.com/libgdx/libgdx/wiki/Starter-classes-%26-configuration#html5gwt)
-
-------------------------------------------------------------
-
-M  - nieuwe versie pop-up --> serverside code (Bart) OK
 
 
 Music & Visual:
