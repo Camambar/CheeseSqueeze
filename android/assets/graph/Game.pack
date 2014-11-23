@@ -5,9 +5,16 @@ filter: Nearest,Nearest
 repeat: none
 completed
   rotate: false
-  xy: 1, 577
-  size: 626, 416
-  orig: 626, 416
+  xy: 1, 443
+  size: 626, 550
+  orig: 626, 550
+  offset: 0, 0
+  index: -1
+continue
+  rotate: false
+  xy: 1, 305
+  size: 622, 136
+  orig: 622, 136
   offset: 0, 0
   index: -1
 cheese_pile1
@@ -17,18 +24,32 @@ cheese_pile1
   orig: 223, 267
   offset: 0, 0
   index: -1
-smoke1
+cheese_pile2
   rotate: false
-  xy: 629, 574
-  size: 300, 150
-  orig: 300, 150
+  xy: 1, 36
+  size: 223, 267
+  orig: 223, 267
   offset: 0, 0
   index: -1
-failed
+cheese_pile3
   rotate: false
-  xy: 1, 159
-  size: 626, 416
-  orig: 626, 416
+  xy: 629, 457
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+cheese_pile4
+  rotate: false
+  xy: 226, 36
+  size: 223, 267
+  orig: 223, 267
+  offset: 0, 0
+  index: -1
+cheese_pile5
+  rotate: false
+  xy: 451, 36
+  size: 223, 267
+  orig: 223, 267
   offset: 0, 0
   index: -1
 trap_closed
@@ -38,51 +59,37 @@ trap_closed
   orig: 131, 260
   offset: 0, 0
   index: -1
+trap_open
+  rotate: false
+  xy: 854, 471
+  size: 131, 260
+  orig: 131, 260
+  offset: 0, 0
+  index: -1
+smoke1
+  rotate: false
+  xy: 629, 305
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
 smoke2
   rotate: false
-  xy: 629, 422
+  xy: 676, 153
   size: 300, 150
   orig: 300, 150
   offset: 0, 0
   index: -1
 smoke3
   rotate: false
-  xy: 629, 270
+  xy: 676, 1
   size: 300, 150
   orig: 300, 150
-  offset: 0, 0
-  index: -1
-cheese_pile2
-  rotate: false
-  xy: 629, 1
-  size: 223, 267
-  orig: 223, 267
-  offset: 0, 0
-  index: -1
-smoke4
-  rotate: false
-  xy: 1, 7
-  size: 300, 150
-  orig: 300, 150
-  offset: 0, 0
-  index: -1
-smoke5
-  rotate: false
-  xy: 303, 7
-  size: 300, 150
-  orig: 300, 150
-  offset: 0, 0
-  index: -1
-trap_open
-  rotate: false
-  xy: 854, 8
-  size: 131, 260
-  orig: 131, 260
   offset: 0, 0
   index: -1
 mouse
   rotate: false
-  xy: 931, 617
+  xy: 931, 355
   size: 79, 114
   orig: 79, 114
   offset: 0, 0
@@ -99,38 +106,59 @@ Game2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-cheese_pile3
+failed
   rotate: false
-  xy: 1, 153
-  size: 223, 267
-  orig: 223, 267
+  xy: 1, 405
+  size: 626, 550
+  orig: 626, 550
   offset: 0, 0
   index: -1
-cheese_pile4
+smoke4
   rotate: false
-  xy: 226, 153
-  size: 223, 267
-  orig: 223, 267
+  xy: 1, 253
+  size: 300, 150
+  orig: 300, 150
   offset: 0, 0
   index: -1
-cheese_pile5
+smoke5
   rotate: false
-  xy: 451, 153
-  size: 223, 267
-  orig: 223, 267
+  xy: 629, 805
+  size: 300, 150
+  orig: 300, 150
   offset: 0, 0
   index: -1
 smoke6
   rotate: false
-  xy: 1, 1
+  xy: 1, 101
   size: 300, 150
   orig: 300, 150
   offset: 0, 0
   index: -1
 home
   rotate: false
-  xy: 676, 283
+  xy: 303, 266
   size: 178, 137
   orig: 178, 137
+  offset: 0, 0
+  index: -1
+restart
+  rotate: false
+  xy: 629, 666
+  size: 178, 137
+  orig: 178, 137
+  offset: 0, 0
+  index: -1
+star_empty
+  rotate: false
+  xy: 1, 1
+  size: 103, 98
+  orig: 103, 98
+  offset: 0, 0
+  index: -1
+star_full
+  rotate: false
+  xy: 303, 166
+  size: 103, 98
+  orig: 103, 98
   offset: 0, 0
   index: -1
