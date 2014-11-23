@@ -8,13 +8,12 @@ VH - fix menu issues on some devices
 
 VH - fix music issues on some devices
 
-VH - level rating system
+VH - level rating system (ART: star_empty.png, star_full.png, completed & continue)
+     Zie facebook voor afbeelding met uitleg
 
-H - knop quit game (rechts boven op gameboard zoals de home knop)
+H - knop restart game (rechts boven op gameboard zoals de home knop) (ART: repeat.png)
 
-H - display current level number
-
-M - change launch icon to "C"
+H - display current level number (bovenaan in het midden)
 
 M - muizen 1 seconde laten wachten in het begin van nieuw level
 
