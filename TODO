@@ -11,9 +11,13 @@ VH - fix music issues on some devices
 VH - level rating system & bijhorende analytics (ART: star_empty.png, star_full.png, completed & continue)
      Zie facebook voor afbeelding met uitleg
 
+VH - Google analytics herzien
+
 H - knop restart game (rechts boven op gameboard zoals de home knop) (ART: repeat.png)
 
 H - display current level number (bovenaan in het midden)
+
+H - extra levels
 
 M - muizen 1 seconde laten wachten in het begin van nieuw level
 
