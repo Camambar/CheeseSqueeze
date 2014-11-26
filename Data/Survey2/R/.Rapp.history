@@ -1,0 +1,1329 @@
+users
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- t(c(usersday$Users))
+users
+colnames(users) <- c("USERS")
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+colnames(users) <- c("USERS")
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+#
+rownames(users) <- usersday$Day.Index
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+#rownames(users) <- usersday$Day.Index#
+#colnames(users) <- c("USERS")#
+barplot(usersday$Day.Index + usersday$Users )
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+#rownames(users) <- usersday$Day.Index#
+#colnames(users) <- c("USERS")#
+barplot(usersday$Day.Index ~ usersday$Users )
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+#rownames(users) <- usersday$Day.Index#
+#colnames(users) <- c("USERS")#
+hist(usersday)
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- c(usersday$Users)#
+#rownames(users) <- usersday$Day.Index#
+#colnames(users) <- c("USERS")#
+hist(usersday$Users)
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")
+users
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+hist(users)
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+barplot(t(users)
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+barplot(t(users))
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+barplot(t(users))
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+barplot(t(users),cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+barplot(t(users),main="USERS/DAY",ylab="amount of users",xlab="date",cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+barplot(t(users),main="USERS/DAY",ylab="amount of users",cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))#
+text(y= users +1, x= bplt2, labels=usersday$Users)
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+newvsret
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+newvsret
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pie(slices,labels = lbls, col=rainbow(length(lbls)),    main="Pie Chart of Countries")
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pie(slices,    main="Pie Chart of Countries")
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pie(slices,main="Pie Chart of Countries")
+newvsret$Users
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pie(slices,main="Pie Chart of Countries")
+newvsret
+newvsret$User.Type
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- cbind(newvsret$User.Type)#
+lbls <- paste(lbls,"%",sep="")#
+pie(slices,labels = lbls, col=rainbow(length(lbls)),main="Pie Chart of Countries")
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- c(as.character(newvsret$User.Type))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+pie(slices,labels = lbls, col=rainbow(length(lbls)),main="Pie Chart of Countries")
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="Pie Chart of Countries")
+winlose = read.csv("WIN_LOSE_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+#
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+dev.off()#
+#
+###########################################################
+            # Gebruikers / dag ###
+###########################################################
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+#
+pdf("graph/usersday.pdf")#
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))#
+text(y= users +1, x= bplt2, labels=usersday$Users)#
+dev.off()#
+#
+###########################################################
+            # new vs return ###
+###########################################################
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+slices <- cbind(newvsret$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- c(as.character(newvsret$User.Type))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+#
+pdf("graph/newvsreturn.pdf")#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="Pie Chart of Countries")#
+dev.off()
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+#
+pdf("graph/usersday.pdf")#
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",col=c("steelblue1"),cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))#
+text(y= users +1, x= bplt2, labels=usersday$Users)#
+dev.off()
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()
+scriptName <- "R"#
+author <- "Cheese Squeeze"#
+dataperiod <- "2014/11/19-2014/11/25"#
+#
+###########################################################
+            # Footnote script ###
+###########################################################
+#
+footnote <- paste(scriptName, dataperiod,#
+                  author, sep=" / ")#
+#
+makeFootnote <- function(footnoteText=#
+                         format(Sys.time(), "%d %b %Y"),#
+                         size= .7, color= grey(.5))#
+{#
+   require(grid)#
+   pushViewport(viewport())#
+   grid.text(label= footnoteText ,#
+             x = unit(1,"npc") - unit(2, "mm"),#
+             y= unit(2, "mm"),#
+             just=c("right", "bottom"),#
+             gp=gpar(cex= size, col=color))#
+   popViewport()#
+}#
+#
+makeFootnote(footnote)#
+###########################################################
+            # Win lose voor de levels vegelijken ###
+###########################################################
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()
+scriptName <- "Analytics"#
+author <- "Cheese Squeeze"#
+dataperiod <- "2014/11/19-2014/11/25"#
+#
+###########################################################
+            # Footnote script ###
+###########################################################
+#
+footnote <- paste(scriptName, dataperiod,#
+                  author, sep=" : ")#
+#
+makeFootnote <- function(footnoteText=#
+                         format(Sys.time(), "%d %b %Y"),#
+                         size= .7, color= grey(.5))#
+{#
+   require(grid)#
+   pushViewport(viewport())#
+   grid.text(label= footnoteText ,#
+             x = unit(1,"npc") - unit(2, "mm"),#
+             y= unit(2, "mm"),#
+             just=c("right", "bottom"),#
+             gp=gpar(cex= size, col=color))#
+   popViewport()#
+}#
+#
+makeFootnote(footnote)#
+###########################################################
+            # Win lose voor de levels vegelijken ###
+###########################################################
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()
+footnote <- paste(scriptName, dataperiod,#
+                  author, sep=" : ")#
+#
+makeFootnote <- function(footnoteText=#
+                         format(Sys.time(), "%d %b %Y"),#
+                         size= .4, color= grey(.4))#
+{#
+   require(grid)#
+   pushViewport(viewport())#
+   grid.text(label= footnoteText ,#
+             x = unit(1,"npc") - unit(2, "mm"),#
+             y= unit(2, "mm"),#
+             just=c("right", "bottom"),#
+             gp=gpar(cex= size, col=color))#
+   popViewport()#
+}#
+#
+makeFootnote(footnote)#
+###########################################################
+            # Win lose voor de levels vegelijken ###
+###########################################################
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()
+location = read.csv("Location_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+location
+slices <- cbind(location$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- c(as.character(newvsret$Country.Territory))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)
+slices <- cbind(location$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)
+slices <- cbind(location$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)
+slices <- cbind(location$Users)#
+pct <- round(sum(slices))#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+#lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)
+slices <- cbind(location$Users)#
+pct <- round(sum(slices))#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")
+slices <- cbind(location$Users)#
+pct <- round(slices)#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)
+slices <- cbind(location$Users)#
+pct <- round(slices)#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+#lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)
+pie <- ggplot(values, aes(x = "", y = val, fill = Type)) + #
+  geom_bar(width = 1) + #
+  geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")
+library(ggplot)
+library(ggplot2)
+library(ggplot2)
+###########################################################
+pie <- ggplot(slices, aes(x = "", y = val, fill = Type)) + #
+  geom_bar(width = 1) + #
+  geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")
+ggplot2
+help(ggplot2)
+pie <- ggplot(location$Users, aes(x = "", y = val, fill = Type)) + #
+  geom_bar(width = 1) + #
+  geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")
+pie <- ggplot(location$Users, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label = percent), size=10) pie + coord_polar(theta = "y")
+pie <- ggplot(location$Users, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10) pie + coord_polar(theta = "y")
+pie <- ggplot(location$Users, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10)
+val
+pie <- ggplot(location$Users, aes(x = "", y = 1)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10)
+val <- location$Users#
+pie <- ggplot(location$Users, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10)#
+pie + coord_polar(theta = "y")
+val <- location$Users#
+pie <- ggplot(location$Users, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10)
+pie <- ggplot(data = location$Users, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10)
+val <- c(location$Users)#
+pie <- ggplot(data = c(location$Users), aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]),label = percent), size=10)
+pie <- ggplot(data = c(location$Users), aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-
+length(val)]),label = percent), size=10)
+ggplot(c(location$Users))
+ggplot(cbind(location$Users))
+ggplot(location$Users)
+typeof(location$Users)
+ggplot(as.character(location$Users))
+ggplot(data = as.character(location$Users))
+ggplot(data = as.string(location$Users))
+ggplot(data = as.factor(location$Users))
+ggplot(data = as.numeric(location$Users))
+location$Users
+ggplot(data = location)
+ggplot(data = location,aes(x = Axis1, y = Axis2, shape = Plant, color = Type))
+ggplot(data = location,aes(x = Axis1, y = Axis2, shape = Plant, color = Type)+ geom_point(size = 5))
+ggplot(data = location,aes(x = "Axis1", y = "Axis2", shape = Plant, color = Type)+ geom_point(size = 5))
+ggplot(data = location,aes(x = "Axis1", y = "Axis2", shape = Plant, color = "red")+ geom_point(size = 5))
+ggplot(data = location,aes(x = "Axis1", y = "Axis2", color = "red")+ geom_point(size = 5))
+ggplot(data = location,aes(x = "", y = location$Users, color = "red")+ geom_point(size = 5))
+ggplot(data = location,aes(x = "", y = "", color = "red")+ geom_point(size = 5))
+location
+slices <- cbind(location$Users)#
+pct <- round(slices)#
+lbls <- c(as.character(location $Country.Territory))#
+lbls <- paste(lbls, pct)#
+#lbls <- paste(lbls,"%",sep="")#
+#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)#
+###########################################################
+            # location 2###
+###########################################################
+ggplot(data = slices,aes(x = "", y = "", color = "red")+ geom_point(size = 5))
+location
+ggplot(data = location,aes(x = "Users", y = "Country.Territory", color = "red")+ geom_point(size = 5))
+p <- ggplot(data = location,aes(x = "Users", y = "Country.Territory", color = "red")
+p <- ggplot(data = location,aes(x = "Users", y = "Country.Territory", color = "red"))
+p <- ggplot(data = location,aes(x = "Users", y = "Country.Territory", color = "red"))
+p=p + geom_bar(width = 1)
+p <- ggplot(data = location,aes(x = "Users", y = "Country.Territory", color = "red"))#
+p = p + geom_bar(width=1)
+p
+p <- ggplot(data = location,aes(x = "Users", y = "Country.Territory", color = "red"))#
+p = p + geom_bar(width=1)#
+p = p + coord_polar(theta="y")
+p
+location$Users
+location$Country.Territory
+p <- ggplot(data = location,aes(x = "Users", y = "Country.Territory"))#
+p = p + geom_bar(width=1)#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="Country.Territory", y = "Users"))#
+p = p + geom_bar(width=1)#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="Country.Territory", y = "Users"))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="Country.Territory", y = "Users",fill = "Users"))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="Country.Territory", y = "Users",fill = "Users"))#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="", y = Users,fill = Users))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta="y")#
+p
+pie <- ggplot(data = location, aes(x = "", y = "Country.Territory", fill = "Users")) + geom_bar(width = 1) + geom_text(aes(y = "Country.Territory"), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+p <- ggplot(data = location,aes(x ="Country.Territory", y = Users,fill = "Users"))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="", y = "Users",fill = "Users"))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta="y")#
+p
+p <- ggplot(data = location,aes(x ="", y = "Users",fill = "Users"))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta="fill")#
+p
+p <- ggplot(data = location,aes(x ="", y = "Users",fill = "Users"))#
+p = p + geom_bar(width=5)#
+p
+p <- ggplot(data = location,aes(x ="", y ="Users",fill = "Users",stat="identity"))#
+p = p + geom_bar(width=5)#
+p
+?geom_bar
+p <- ggplot(data = location,aes(x ="", y ="Country.Territory",fill = factor(Users)))#
+p = p + geom_bar(width=5)#
+p
+p <- ggplot(data = location,aes(x =factor(1), y ="Country.Territory",fill = factor(Users)))#
+p = p + geom_bar(width=5)#
+p
+p <- ggplot(data = location,aes(x =factor(1), y =Country.Territory,fill = factor(Users)))
+p <- ggplot(data = location,aes(x =factor(1), y =Country.Territory,fill = factor(Users)))#
+p = p + geom_bar(width=5)#
+p
+p <- ggplot(data = location,aes(x =factor(1), y =Country.Territory,fill = factor(Users)))#
+p = p + geom_bar(width=5)#
+p + coord_polar(theta = "y")#
+p
+p <- ggplot(data = location,aes(x =Country.Territory, y =factor(1),fill = factor(Users)))#
+p = p + geom_bar(width=5)#
+p + coord_polar(theta = "y")#
+p
+p <- ggplot(data = location,aes(x =Country.Territory, y =factor(1),fill = factor(Users)))#
+p = p + geom_bar(width=5)#
+p = p + coord_polar(theta = "y")#
+p
+pie <- ggplot(data = location, aes(x = "", y = Country.Territory,fill = factor(Users))) + geom_bar(width = 1) + geom_text(aes(y = "Country.Territory"), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = Country.Territory,fill = factor(Users))) + geom_bar(width = 1), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = Country.Territory,fill = factor(Users))) + geom_bar(width = 1), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = Country.Territory,fill = factor(Users))) + geom_bar(width = 1))#
+pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory)) + geom_bar(width = 1) + geom_text(aes(y = Users/2 + c(0, cumsum(Users)[-length(Users)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory,stat = "identity")) + geom_bar(width = 1) + geom_text(aes(y = Users/2 + c(0, cumsum(Users)[-length(Users)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+percent <- c(1,2)#
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory,stat = "identity")) + geom_bar(width = 1) + geom_text(aes(y = Users/2 + c(0, cumsum(Users)[-length(Users)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+percent <- c(1)#
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory,stat = "identity")) + geom_bar(width = 1) + geom_text(aes(y = Users/2 + c(0, cumsum(Users)[-length(Users)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+percent <- c(1)#
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory,stat = "identity")) + geom_bar(width = 1) + geom_text(aes(y = Users/2 + c(0, cumsum(Users)[-length(Users)]), label = percent), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory,stat = "identity")) + geom_bar(width = 1) + geom_text(aes(y = Users/2 + c(0, cumsum(Users)[-length(Users)]), label = percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+pie <- ggplot(data = location, aes(x = "", y = factor(Users), fill = Country.Territory,stat = "identity")) + geom_bar(width = 1)#
+#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = "", y = val, fill = Type)) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = "", y = val, fill = Type)) + geom_bar(width = 5) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+values
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = "", y = val, fill = Type,stat="identity")) + geom_bar(width = 5) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = val, y = "", fill = Type,stat="identity")) + geom_bar(width = 5) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = val, y = "", fill = Type,stat="identity")) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "x")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = val, y = "", fill = Type,stat="identity")) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "fill")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(values, aes(x = val, y = "", fill = Type,stat="identity")) + geom_bar(width = 1) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "x")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = val, fill = Type,stat="identity")) + geom_bar(width = 5) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = val, fill = Type,stat="bin")) + geom_bar(width = 5) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y ="", fill = Type,stat="bin")) + geom_bar(width = 5) + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 5,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/4 + c(0, cumsum(val)[-length(val)]), label= percent), size=10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/4 + c(0, cumsum(val)[-length(val)]), label= percent), size=2)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=2)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=2*percent)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=2*location$Users/100)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=2*location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(val = location$Users, Type = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y =val, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = val/2 + c(0, cumsum(val)[-length(val)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+makeFootnote(footnote)#
+pie
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+pie#
+makeFootnote(footnote)
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+print(pie)
+pdf("test.pdf")#
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+print(pie)#
+makeFootnote()#
+dev.off()
+pdf("test.pdf")#
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + xlab("Log Body Weight") + ylab("Fraction of Sleep that is REM") + ggtitle("Some Sleep Data")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+pdf("graph/location.pdf")#
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("Location")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(newvsret$Users / sum(newvsret$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = newvsret$Users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(newvsret$Users / sum(newvsret$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = newvsret$Users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newvsret
+newvsret$Users[1]
+newvsret$Users[2]
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(returnusers / newusers * 100,1), "%", sep="")#
+values <- data.frame(users = cbind(returnusers, newusers-returnusers), Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]
+newusers
+newusers - returnusers
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(returnusers / newusers * 100,1), "%", sep="")#
+values <- data.frame(users = c(returnusers, newusers-returnusers), Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(returnusers, newusers-returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+users
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+users
+values
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = factor(Type,labels=c("low","high"))) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type,) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- scale_fill_discrete(breaks=c("Returning","Non-Returning"))#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- scale_fill_discrete(breaks=c("Returning","Non-Returning"))#
+#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+#pie <- scale_fill_discrete(breaks=c("Returning","Non-Returning"))#
+#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie + scale_fill_discrete(breaks=c("Returning","Non-Returning"))#
+#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie +  scale_fill_discrete(name="Experimental\nCondition",#
+                         breaks=c(newvsret$User.Type[1],newvsret$User.Type[2]),#
+                         labels=c("Returning","Non-Returning"))#
+pie <- pie + scale_fill_discrete(breaks=c())#
+#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie + scale_fill_discrete(name="Type",#
+                         breaks=c(newvsret$User.Type[1],newvsret$User.Type[2]),#
+                         labels=c("Returning","Non-Returning"))#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newvsret$User.Type[2]
+newvsret$User.Type[2,]
+newvsret$User.Type[1,]
+newvsret$User.Type[,1]
+newvsret$User.Type
+newvsret$User.Type[1]
+newvsret$User.Type[2]
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie + scale_fill_discrete(name="Type",#
+                         breaks=c("New Visitor","Returning Visitor"),#
+                         labels=c("Returning","Non-Returning"))#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie + scale_fill_discrete(name="Type",#
+                         breaks=c("New Visitor","Returning Visitor"),#
+                         labels=c("Non-Returning","Returning"))#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie + scale_fill_discrete(name="Type",#
+                         breaks=c("New Visitor","Returning Visitor"),#
+                         labels=c("Non-Returning","Returning"))#
+pie <- pie + labs(x="",y="")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+pdf("graph/location.pdf")#
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("Location")#
+pie <- pie + labs(x="",y="")#
+#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+###########################################################
+            # Data inlezen ###
+###########################################################
+#
+setwd("/Users/maxdekoninck/Dropbox/Game/Data/Survey2/R")#
+library(ggplot2)#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+#
+winlose = read.csv("WIN_LOSE_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+usersday = read.csv("USERDAY20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+location = read.csv("Location_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+#
+#Footnote param#
+#
+scriptName <- "Analytics"#
+author <- "Cheese Squeeze"#
+dataperiod <- "2014/11/19-2014/11/25"#
+#
+###########################################################
+            # Footnote script ###
+###########################################################
+#
+footnote <- paste(scriptName, dataperiod,#
+                  author, sep=" : ")#
+#
+makeFootnote <- function(footnoteText=#
+                         format(Sys.time(), "%d %b %Y"),#
+                         size= .4, color= grey(.4))#
+{#
+   require(grid)#
+   pushViewport(viewport())#
+   grid.text(label= footnoteText ,#
+             x = unit(1,"npc") - unit(2, "mm"),#
+             y= unit(2, "mm"),#
+             just=c("right", "bottom"),#
+             gp=gpar(cex= size, col=color))#
+   popViewport()#
+}#
+#
+makeFootnote(footnote)#
+###########################################################
+            # Win lose voor de levels vegelijken ###
+###########################################################
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()#
+#
+###########################################################
+            # Gebruikers / dag ###
+###########################################################
+#
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+#
+pdf("graph/usersday.pdf")#
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",col=c("steelblue1"),cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))#
+text(y= users +1, x= bplt2, labels=usersday$Users)#
+makeFootnote(footnote)#
+dev.off()#
+#
+###########################################################
+            # new vs return ###
+###########################################################
+#
+slices <- cbind(newvsret$Users)#
+pct <- round(slices/sum(slices)*100)#
+lbls <- c(as.character(newvsret$User.Type))#
+lbls <- paste(lbls, pct)#
+lbls <- paste(lbls,"%",sep="")#
+#
+pdf("graph/newvsreturn.pdf")#
+pie(slices,labels = lbls, col=c("springgreen2","steelblue1"),main="New And Returning Users")#
+makeFootnote(footnote)#
+dev.off()#
+#
+newusers <- newvsret$Users[1]#
+returnusers <- newvsret$Users[2]#
+users <- c(newusers-returnusers,returnusers)#
+#
+pdf("graph/newvsreturn.pdf")#
+percent_str <- paste(round(users / sum(users) * 100,1), "%", sep="")#
+values <- data.frame(users = users, Type = newvsret$User.Type, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Type)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+newvsret$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("New And Returning Users")#
+pie <- pie + scale_fill_discrete(name="Type",#
+                         breaks=c("New Visitor","Returning Visitor"),#
+                         labels=c("Non-Returning","Returning"))#
+pie <- pie + labs(x="",y="")#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()#
+###########################################################
+            # location ###
+###########################################################
+pdf("graph/location.pdf")#
+percent_str <- paste(round(location$Users / sum(location$Users) * 100,1), "%", sep="")#
+values <- data.frame(users = location$Users, Country = location$Country.Territory, percent=percent_str )#
+pie <- ggplot(data =values, aes(x = "", y = users, fill = Country)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = users/2 + c(0, cumsum(users)[-length(users)]), label= percent), size=2+location$Users/10)#
+pie <- pie + coord_polar(theta = "y")#
+pie <- pie + ggtitle("Location")#
+pie <- pie + labs(x="",y="")#
+#
+print(pie)#
+makeFootnote(footnote)#
+dev.off()
+loading =read.csv("Average_LOADINGTIME_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+completionLevel1 =read.csv("CompletionTime_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+firstlineLevel1 = read.csv("FirstLine_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+laoding
+loading
+loading =read.csv("Average_LOADINGTIME_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+loading
+values <- data.frame(value = loading$Avg..Value)#
+ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + #
+    guides(fill=FALSE) + coord_flip()
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+pie <- pie + ggtitle("Laoding Time")#
+pie <- pie + labs(x="Time [sec]",y="")#
+box
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Laoding Time")#
+box <- box + labs(x="Time [sec]",y="")#
+box
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Loading Time")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)#
+makeFootnote(footnote)#
+dev.off()
+pdf("graph/loadingTime.pdf")#
+values <- data.frame(value = loading$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Loading Time")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)#
+makeFootnote(footnote)#
+dev.off()
+completionLevel1
+values <- data.frame(value = completionLevel1$Event.Value.WON)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Loading Time")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+values <- data.frame(value = completionLevel1$Event.Value.WON)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Completion Time Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+box
+pdf("graph/completionTimeLevel1.pdf")#
+values <- data.frame(value = completionLevel1$Event.Value.WON)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Completion Time Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)#
+makeFootnote(footnote)#
+dev.off()
+firstlineLevel1
+firstlineLevel1 = read.csv("FirstLine_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+firstlineLevel1
+values <- data.frame(value = firstlineLevel1$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("Completion Time Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+pdf("graph/firstLineLevel1.pdf")#
+values <- data.frame(value = firstlineLevel1$Avg..Value)#
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)#
+makeFootnote(footnote)#
+dev.off()
+avergcomptime = read.csv("Average_CompletionTime_ALL_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+avergcomptime
+avergcomptime = read.csv("Average_CompletionTime_ALL_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+avergcomptime
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime = read.csv("Average_CompletionTime_ALL_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime = read.csv("Average_CompletionTime_ALL_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime $Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime$Event.Action = as.character(avergcomptime $Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime $Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime
+avergcomptime$Event.Action
+avergcomptime$Event.Action[1]
+typeof(avergcomptime$Event.Action[1])
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]
+avergcomptime
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=TRUE) + coord_flip()#
+box <- box + ggtitle("FirstLine Level 1")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime <- avergcomptime[ order(avergcomptime$Event.Action), ]#
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + ggtitle("Completion Time")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+avergcomptime <- avergcomptime[ order(avergcomptime$Event.Action), ]#
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + ggtitle("Completion Time")#
+box <- box + labs(x="",y="Time [sec]")#
+print(box)
+winloseLevels
+winloseLevels $Event.Action
+typeof(winloseLevels $Event.Action)
+typeof(c(winloseLevels $Event.Action))
+avergcomptime <- avergcomptime[ order(avergcomptime$Event.Action), ]#
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + ggtitle("Completion Time")#
+box <- box + labs(x="",y="Time [sec]")#
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+box <- box + scale_x_discrete(limits=winloseLevels $Event.Action)#
+print(box)
+pdf("graph/compTime.pdf")#
+avergcomptime <- avergcomptime[ order(avergcomptime$Event.Action), ]#
+avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)#
+avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]#
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)#
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()#
+box <- box + ggtitle("Completion Time")#
+box <- box + labs(x="",y="Time [sec]")#
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+box <- box + scale_x_discrete(limits=winloseLevels $Event.Action)#
+print(box)#
+makeFootnote(footnote)#
+dev.off()

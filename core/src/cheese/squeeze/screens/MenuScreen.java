@@ -148,6 +148,16 @@ public class MenuScreen implements Screen{
 			b.draw(batcher);
 		}
 		//batcher.draw(AssetLoader.menuBg, 0, 0);
+		/*
+		 * TEST THE STAR BUTTON
+		 */
+		
+		
+		
+		
+		
+		
+		
 		batcher.end();
 		
 

@@ -52,6 +52,7 @@ public class GameBoard {
 	private float multip;
 	private int currentMouse;
 	private boolean presetLines;
+	private ArrayList<HorizontalLine> updateReqLines = new ArrayList<HorizontalLine>();
 	
 	
 
@@ -219,6 +220,7 @@ public class GameBoard {
 		if(!isOcupiedPosition(line.getY1(),row)) {
 			SoundAccessor.play(AssetLoader.chalk);
 			hlines.get(line.getY1()).addElement(line, row);
+			updateReqLines.add(line);
 			for (VerticalLine l : vlines) {
 				if (l.getX1() == line.getX1()) {
 					l.setNeighbour(line);
@@ -506,6 +508,17 @@ public class GameBoard {
 	 */
 	public void update(float delta) {
 		//System.out.println("UPDATE BOARD");
+		Iterator<HorizontalLine> itrH = updateReqLines.iterator();
+		while(itrH.hasNext()) {
+			HorizontalLine l = itrH.next();
+			if(l.updateNeeded) {
+				l.update();
+			}
+			else {
+				itrH.remove();
+			}
+			
+		}
 		int counter = 0;
 		Iterator<Mouse> itr = mice.iterator();
 		while(itr.hasNext()) {

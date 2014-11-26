@@ -8,6 +8,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public class HorizontalLine extends Line implements Cloneable{
 	
+	private float endXCoord = 0;
+	public boolean updateNeeded = true;
+	private final static float LINE_SPEED = 2;
+	
     public HorizontalLine(){
     	super();
     }
@@ -59,6 +63,20 @@ public class HorizontalLine extends Line implements Cloneable{
 		}
 	}
 	
+	public void update() {
+		if (endXCoord == 0) {
+			endXCoord = super.getX2();
+			this.setPoint2(new Vector2(this.getX1(),this.getY2()));
+		}
+		if (Math.abs(this.getX2() - endXCoord)!=LINE_SPEED) {
+			this.setPoint2(new Vector2(this.getX2()+LINE_SPEED,this.getY2()));
+		}
+		else {
+			this.setPoint2(new Vector2(endXCoord,this.getY2()));
+			updateNeeded  = false;
+		}
+		
+	}
 //	@Override
 //	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {
 //		if (from.equals(getPoint2()))

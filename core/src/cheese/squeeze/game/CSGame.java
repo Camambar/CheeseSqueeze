@@ -79,12 +79,14 @@ public class CSGame extends Game {
 	}
 	
 	public void loadLevel() {
+		/*
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		if (prefs.contains("level")) {
 			String l = prefs.getString("level");
 			currentLevel = Level.valueOf(l);
 		}
 		System.out.println("level " + currentLevel.toString() + " loaded");
+		*/
 	}
 
 	public void analytics() {

@@ -39,11 +39,16 @@ public class AssetLoader {
     
     private  TextureAtlas atlasFloor;
     
+    
     private  TextureAtlas atlasMenuLeeg;
+
+	private TextureAtlas atlasRating;
     
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
 
 	public static TextureRegion logo;
+	
+	private static Texture starEmpty,starFull,ratingboard;
 	
 	public static Texture texture;
 	
@@ -92,6 +97,7 @@ public class AssetLoader {
 	public void queueLoading(){
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
+		manager.load("graph/Rating.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
 		manager.load("graph/Tutorial.pack", TextureAtlas.class);
 		manager.load("graph/menu_leeg.pack", TextureAtlas.class);
@@ -119,6 +125,7 @@ public class AssetLoader {
 		atlasFloor = manager.get("graph/floor.pack",TextureAtlas.class);
 		atlasMenuLeeg = manager.get("graph/menu_leeg.pack",TextureAtlas.class);
 		atlasTutorial = manager.get("graph/Tutorial.pack",TextureAtlas.class);
+		atlasRating = manager.get("graph/Rating.pack",TextureAtlas.class);
 	}
 	
 	public void setSounds() {
