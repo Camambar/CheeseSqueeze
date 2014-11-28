@@ -1,6 +1,7 @@
 package cheese.squeeze.helpers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
@@ -61,6 +62,17 @@ public class TimerFactory {
 				t.pause();
 			}
 			
+		}
+		
+	}
+
+	public static void remove(ReportStatus state) {
+		//FIXME buggy
+		Iterator<Timer> itr = timers.iterator();
+		while(itr.hasNext()) {
+			if (itr.next().getState().equals(state)) {
+				itr.remove();
+			}
 		}
 		
 	}

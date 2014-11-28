@@ -9,6 +9,12 @@ import java.util.Map.Entry;
 public class Report {
 	
 	public static HashMap<Level,HashMap<GameState,Integer>> map = new HashMap<Level,HashMap<GameState,Integer>>();
+	public static HashMap<Level,Integer> score = new HashMap<Level,Integer>();
+	
+	
+	public static void reportScore(Level level, int sc) {
+			score.put(level,sc);
+	}
 	
 	public static void report(Level level, GameState state) {
 			if(!map.containsKey(level)) {
@@ -39,6 +45,7 @@ public class Report {
 	
 	public static void clear() {
 		map = new HashMap<Level,HashMap<GameState,Integer>>();
+		score = new HashMap<Level,Integer>();
 	}
 
 }

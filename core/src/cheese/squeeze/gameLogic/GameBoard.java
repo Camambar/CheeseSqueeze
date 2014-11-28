@@ -52,13 +52,16 @@ public class GameBoard {
 	private float multip;
 	private int currentMouse;
 	private boolean presetLines;
+	private boolean fl = false;
 	private ArrayList<HorizontalLine> updateReqLines = new ArrayList<HorizontalLine>();
+	private ReportStatus status;
 	
 	
 
 	public GameBoard(float width, float height,Level l) {
-		TimerFactory.getNewTimer(new ReportStatus(GameState.FIRSTLINE,l)).start();
+		
 		this.level = l;
+		status = new ReportStatus(GameState.FIRSTLINE,level);
 		this.width = width;
 		this.height = height;
 		cam = new OrthographicCamera();
@@ -81,17 +84,7 @@ public class GameBoard {
 		
 		multip = l.getMultip();
 		
-		//trap stuff goal stuff
-		//makeTrapsGoals(amountTraps,amountGoals);
-		if(!isTutorial()) {
-			//mouse stuff
-			makeMice();
-			
-		}
-		else {
-			mice = new ArrayList<Mouse>();
-		}
-		
+		mice = new ArrayList<Mouse>();
 		addHlines();
 		
 	}
@@ -212,8 +205,9 @@ public class GameBoard {
 	}
 	
 	public void addHLine(HorizontalLine line) {
-		Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.FIRSTLINE,level));
+		Timer t = TimerFactory.getRunningTimer(status);
 		if( t != null && !presetLines) {
+			fl =true;
 			t.stop();
 		}
 		int row = betweenLines(line.getX1());
@@ -600,6 +594,10 @@ public class GameBoard {
 	public void dispose() {
 		this.currentMouse = 0;
 		this.hlines = null;
+		if (!fl) {
+			TimerFactory.remove(status);
+		}
+		
 	}
 
 
@@ -631,6 +629,13 @@ public class GameBoard {
 			amount -= hl.getValue().getElements().size()*10;
 		}
 		return amount;
+	}
+
+
+
+	public void start() {
+		TimerFactory.getNewTimer(status).start();
+		makeMice();
 	}
 	
 }

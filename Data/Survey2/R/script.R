@@ -12,9 +12,12 @@ newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string
 location = read.csv("Location_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
 loading =read.csv("Average_LOADINGTIME_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
 completionLevel1 =read.csv("CompletionTime_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+completionLevel2 =read.csv("CompletionTime_LEVEL2_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
 firstlineLevel1 = read.csv("FirstLine_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
 avergcomptime = read.csv("Average_CompletionTime_ALL_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
 firstlineLevel2 = read.csv("FirstLine_LEVEL2_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)
+question = read.csv("GameQuestionnaire (Responses).csv",sep=",", na.string="#", header = TRUE)
+
 
 #Footnote param
 
@@ -80,7 +83,8 @@ rownames(users) <- usersday$Day.Index
 colnames(users) <- c("USERS")
 
 pdf("graph/usersday.pdf")
-bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",col=c("steelblue1"),cex.names=0.8, las=2, ylim=c(0,max(usersday$Users)+5))
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",col=c("steelblue1"),cex.names=0.8, las=2, y
+=c(0,max(usersday$Users)+5))
 text(y= users +1, x= bplt2, labels=usersday$Users)
 makeFootnote(footnote)
 dev.off()
@@ -167,6 +171,44 @@ print(box)
 makeFootnote(footnote)
 dev.off()
 
+
+##########################################################
+            # boxplot completionLevel2##
+##########################################################
+
+
+pdf("graph/completionTimeLevel2.pdf")
+values <- data.frame(value = completionLevel2$Event.Value.WON)
+box <- ggplot(values, aes(x="", y=value, fill="")) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)
+box <- box + ggtitle("Completion Time Level 2")
+box <- box + labs(x="",y="Time [sec]")
+print(box)
+makeFootnote(footnote)
+dev.off()
+
+
+
+##########################################################
+            # boxplot completionLevel 1 2##
+##########################################################
+
+
+pdf("graph/completionTime.pdf")
+counts1 <- cbind("LEVEL1",as.double(completionLevel1$Event.Value.WON))
+counts2 <- cbind("LEVEL2",as.double(completionLevel2$Event.Value.WON))
+counts <- rbind(counts1,counts2)
+colnames(counts) <- c("LEVEL", "Time")
+values <- data.frame(value = as.double(counts[,2]), Level = counts[,1])
+box <- ggplot(values, aes(x= Level, y=value, fill=Level)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+box <- box + stat_summary(fun.y=mean, geom="point", shape=5, size=4)
+box <- box + ggtitle("Completion Time")
+box <- box + labs(x="",y="Time [sec]")
+print(box)
+makeFootnote(footnote)
+dev.off()
+
+
 ##########################################################
             # boxplot firstline level 1##
 ##########################################################
@@ -181,6 +223,9 @@ box <- box + labs(x="",y="Time [sec]")
 print(box)
 makeFootnote(footnote)
 dev.off()
+
+
+
 
 ##########################################################
             # boxplot firstline level 2##
@@ -200,17 +245,18 @@ dev.off()
 ##########################################################
             # boxplot firstline level 1 en 2##
 ##########################################################
-
+pdf("graph/firstLine.pdf")
 counts1 <- cbind("LEVEL1",as.double(firstlineLevel1$Avg..Value))
 counts2 <- cbind("LEVEL2",as.double(firstlineLevel2$Avg..Value.LEVEL2))
 counts <- rbind(counts1,counts2)
 colnames(counts) <- c("LEVEL", "Time")
-
-values <- data.frame(value = as.double(counts[,2]), type = as.character(counts[,1]))
-box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+values <- data.frame(value = as.double(counts[,2]), Level = counts[,1])
+box <- ggplot(values, aes(x= Level, y=value, fill=Level)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
 box <- box + ggtitle("FirstLine")
 box <- box + labs(x="",y="Time [sec]")
 print(box)
+makeFootnote(footnote)
+dev.off()
 
 
 ##########################################################
@@ -221,10 +267,63 @@ pdf("graph/compTime.pdf")
 avergcomptime <- avergcomptime[ order(avergcomptime$Event.Action), ]
 avergcomptime$Event.Action = as.character(avergcomptime$Event.Action)
 avergcomptime <- avergcomptime[ order(nchar(avergcomptime$Event.Action)), ]
-values <- data.frame(value = avergcomptime$Avg..Value.WON, type = avergcomptime$Event.Action)
+values <- data.frame(value = avergcomptime$Avg..Value.WON, type = factor(avergcomptime$Event.Action, levels=unique(avergcomptime$Event.Action)))
 box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
 box <- box + ggtitle("Completion Time")
 box <- box + labs(x="",y="Time [sec]")
 print(box)
 makeFootnote(footnote)
 dev.off()
+
+##########################################################
+            # boxplot questionaire##
+##########################################################
+
+pdf("graph/gender.pdf")
+
+perc <- round(nrow(subset(question, Gender=="Male")) / length(question$Gender) * 100,1)
+percent_str <- c(paste(perc, "%", sep=""),paste(100-perc, "%", sep=""))
+
+values <- data.frame(Users = c("Male","Female"), amount = c(nrow(subset(question, Gender=="Male")),length(question$Gender)-nrow(subset(question, Gender=="Male"))) ,percent=percent_str )
+pie <- ggplot(data =values, aes(x = "", y = amount, fill = Users)) + geom_bar(width = 1,stat="identity") + geom_text(aes(y = amount/2 + c(0, cumsum(amount)[-length(amount)]), label= percent), size=8)
+pie <- pie + coord_polar(theta = "y")
+pie <- pie + ggtitle("User Gender")
+pie <- pie + scale_fill_discrete(name="Users")
+pie <- pie + labs(x="",y="")
+
+print(pie)
+makeFootnote(footnote)
+dev.off()
+
+##########################################################
+            # clean questionair##
+##########################################################
+
+
+question$Clarity <- lapply(strsplit(as.character(question$Clarity),"[.]"),"[", 1)
+question$Flow <- lapply(strsplit(as.character(question$Flow),"[.]"),"[", 1)
+question$Balance <- lapply(strsplit(as.character(question$Balance),"[.]"),"[", 1)
+question$Length <- lapply(strsplit(as.character(question$Length),"[.]"),"[", 1)
+question$Integration <- lapply(strsplit(as.character(question$Integration),"[.]"),"[", 1)
+question$Fun <- lapply(strsplit(as.character(question$Fun),"[.]"),"[", 1)
+
+
+data1 <- cbind("Clarity",as.double(question$Clarity))
+data2 <- cbind("Flow", as.double(question$Flow))
+data3 <- cbind("Balance", as.double(question$Balance))
+data4 <- cbind("Length", as.double(question$Length))
+data5 <- cbind("Integration", as.double(question$Integration))
+data6 <- cbind("Fun", as.double(question$Fun))
+data <- rbind(data1,data2,data3,data4,data5,data6)
+colnames(data) = c("Type","value")
+
+values <- data.frame(value = as.double(data[,2]),type = data[,1])
+pdf("graph/questionair.pdf")
+box <- ggplot(values, aes(x=type, y=value, fill=type)) + geom_boxplot() + guides(fill=FALSE) + coord_flip()
+box <- box + ggtitle("Questionair")
+box <- box + labs(x="",y="")
+box <- box + coord_cartesian(ylim = c(1, 7)) 
+print(box)
+makeFootnote(footnote)
+dev.off()
+

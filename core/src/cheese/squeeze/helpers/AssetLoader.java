@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Vector2;
 
 public class AssetLoader {
@@ -42,13 +44,19 @@ public class AssetLoader {
     
     private  TextureAtlas atlasMenuLeeg;
 
-	private TextureAtlas atlasRating;
+	public static BitmapFont font12;
+
+	public static Sprite restart;
+
+
+
+	
     
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
 
 	public static TextureRegion logo;
 	
-	private static Texture starEmpty,starFull,ratingboard;
+	public static TextureRegion starEmpty,starFull,ratingboard,cont;
 	
 	public static Texture texture;
 	
@@ -90,6 +98,7 @@ public class AssetLoader {
 
 	private final static int NBCHEESE = 5;
 
+
 	public AssetLoader() {
 		
 	}
@@ -97,7 +106,6 @@ public class AssetLoader {
 	public void queueLoading(){
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
-		manager.load("graph/Rating.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
 		manager.load("graph/Tutorial.pack", TextureAtlas.class);
 		manager.load("graph/menu_leeg.pack", TextureAtlas.class);
@@ -125,7 +133,6 @@ public class AssetLoader {
 		atlasFloor = manager.get("graph/floor.pack",TextureAtlas.class);
 		atlasMenuLeeg = manager.get("graph/menu_leeg.pack",TextureAtlas.class);
 		atlasTutorial = manager.get("graph/Tutorial.pack",TextureAtlas.class);
-		atlasRating = manager.get("graph/Rating.pack",TextureAtlas.class);
 	}
 	
 	public void setSounds() {
@@ -199,9 +206,10 @@ public class AssetLoader {
         
 
         float desiredWidth = width;
-        float scale = desiredWidth / menuBg.getWidth();
+        float scaleW = desiredWidth / menuBg.getWidth();
+        float scaleH = height / menuBg.getHeight();
         
-        menuBg.setSize(menuBg.getWidth() * scale, menuBg.getHeight() * scale);
+        menuBg.setSize(menuBg.getWidth() * scaleW, menuBg.getHeight() * scaleH);
         //menuBg.setPosition((width / 2) - (menuBg.getWidth() / 2), (height / 2)- (menuBg.getHeight() / 2));
         
         next = new TextureRegion(atlasGame.findRegion("next"));
@@ -227,15 +235,15 @@ public class AssetLoader {
         dot.flip(false, true);
         
         
-        completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
-        completed.flip(false, true);
+        //completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
+        //completed.flip(false, true);
         
         logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
         
         play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
         
         desiredWidth = width*0.5f;
-        scale = desiredWidth / menuBg.getWidth();
+        float scale = desiredWidth / menuBg.getWidth();
         play.setSize(play.getWidth() * scale, play.getHeight() * scale);
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
@@ -323,10 +331,10 @@ public class AssetLoader {
         
 
         float desiredWidth = width;
-        float scale = desiredWidth / menuBg.getWidth();
+        float scaleW = desiredWidth / menuBg.getWidth();
+        float scaleH = height / menuBg.getHeight();
         
-        menuBg.setSize(menuBg.getWidth() * scale, menuBg.getHeight() * scale);
-        //menuBg.setPosition((width / 2) - (menuBg.getWidth() / 2), (height / 2)- (menuBg.getHeight() / 2));
+        menuBg.setSize(menuBg.getWidth() * scaleW, menuBg.getHeight() * scaleH);
         
         next = new TextureRegion(atlasGame.findRegion("next"));
         next.flip(false, true);
@@ -351,15 +359,15 @@ public class AssetLoader {
         dot.flip(false, true);
         
         
-        completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
-        completed.flip(false, true);
+        //completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
+        //completed.flip(false, true);
         
         logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
         
         play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
         
         desiredWidth = width*0.9f;
-        scale = desiredWidth / menuBg.getWidth();
+        float scale = desiredWidth / menuBg.getWidth();
         play.setSize(play.getWidth() * scale, play.getHeight() * scale);
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
@@ -404,6 +412,7 @@ public class AssetLoader {
 	}
 	
     public void load() {
+    	generalLoad();
     	switch(Gdx.app.getType()) {
     	   case Android:
     	       androidLoad();
@@ -420,8 +429,39 @@ public class AssetLoader {
     	}
     }
     
-    public static void soundSwitch() {
+    private void generalLoad() {
     	
+    			
+    	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
+    	FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+    	generator.scaleForPixelHeight((int)Math.ceil(8));
+    	parameter.size = 8;
+    	parameter.flip = true;
+    	parameter.minFilter = Texture.TextureFilter.Nearest;
+    	parameter.magFilter = Texture.TextureFilter.MipMapLinearNearest;
+    	font12 = generator.generateFont(parameter); // font size 12 pixels
+    	//font12.setColor(Color.BLACK);
+    	generator.dispose();
+    	
+    	
+    	starEmpty = new TextureRegion(atlasGame.findRegion("star_empty"));
+    	starEmpty.flip(false, true);
+    	starFull = new TextureRegion(atlasGame.findRegion("star_full"));
+    	starFull.flip(false, true);
+    	ratingboard = new TextureRegion(atlasGame.findRegion("completed"));
+    	ratingboard.flip(false, true);
+    	cont = new TextureRegion(atlasGame.findRegion("continue"));
+    	cont.flip(false, true);
+		
+    	restart = new Sprite(new TextureRegion(atlasGame.findRegion("restart")));
+    	restart.setSize(13,10);
+    	restart.flip(false, true);
+
+    	restart.setPosition(30, 1);
+	}
+
+	public static void soundSwitch() {
+		
     }
     
     

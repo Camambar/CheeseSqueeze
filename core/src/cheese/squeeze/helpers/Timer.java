@@ -16,7 +16,7 @@ public class Timer {
 	private boolean isPause =false;
 	
 	
-	protected Timer(ReportStatus state) {
+	public Timer(ReportStatus state) {
 		this.state = state;
 		this.startTime = 0;
 		this.stopTime = 0;
@@ -42,7 +42,7 @@ public class Timer {
 			startTime = System.nanoTime();
 			stopTime = 0;
 		}
-		
+		System.out.println(toString() +" resumed");
 	}
 	
 	public void stop() {

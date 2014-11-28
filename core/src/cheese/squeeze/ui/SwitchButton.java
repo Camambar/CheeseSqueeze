@@ -18,6 +18,7 @@ public class SwitchButton extends SimpleButton{
 		this.name = string;
 	}
 	
+	
 	@Override
 	public void draw(SpriteBatch batcher) {
         if (val) {
@@ -43,5 +44,11 @@ public class SwitchButton extends SimpleButton{
 	
 	public boolean getVal() {
 		return val;
+	}
+	
+	@Override
+	public void setPressed(boolean isPressed) {
+		super.setPressed(isPressed);
+		val = isPressed;
 	}
 }

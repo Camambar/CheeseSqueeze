@@ -93,18 +93,22 @@ public class CSGame extends Game {
 		TimerFactory.stopAll();
 		ArrayList<Timer> t = TimerFactory.getTimers();
 		HashMap<Level,HashMap<GameState,Integer>> m = Report.map;
-		System.out.println(t);
-		System.out.println(m);
+		System.out.println("Timers: " + t);
+		System.out.println("Levels: " + m);
+		System.out.println("Score: " +Report.score.entrySet());
 
 		if(action!=null) {
 			for(Timer timer : t) {
 				action.reportAnalytics(timer.getState().getLevel().toString(), timer.getState().getGameState().toString(), timer.getSeconds());
-				System.out.println(timer.getSeconds());
+				//System.out.println(timer.getSeconds());
 			}
 			for(Entry<Level, HashMap<GameState, Integer>> e: Report.map.entrySet()) {
 				for (Entry<GameState, Integer> e2 : e.getValue().entrySet()) {
 					action.reportAnalytics(e.getKey().toString(),e2.getKey().toString(),e2.getValue());
 				}
+			}
+			for(Entry<Level, Integer> e : Report.score.entrySet()) {
+				action.reportAnalytics("SCORE",e.getKey().toString(),e.getValue());
 			}
 
 

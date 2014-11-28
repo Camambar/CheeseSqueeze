@@ -15,6 +15,7 @@ import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.ui.PopUpButton;
+import cheese.squeeze.ui.RatingButton;
 import cheese.squeeze.ui.SimpleButton;
 import cheese.squeeze.ui.SimpleButtonListener;
 
@@ -30,12 +31,13 @@ public class GameScreen implements Screen {
 	//private SimpleButton gameOverPopUp;
 	//private SimpleButton completedPopUp;
 	private SimpleButton gameOverPopUp;
-	private SimpleButton completedPopUp;
 	private SimpleButton gameTutorial;
+	private RatingButton rt;
 	private InputHelper input;
 	private CSGame game;
 	private ReportStatus status;
 	private Level currentLevel;
+	private long actionBeginTime;
 	
 	public GameScreen(final CSGame game) {
 		currentLevel = CSGame.currentLevel;
@@ -52,6 +54,7 @@ public class GameScreen implements Screen {
 	
 	private void init(final CSGame game) {
     	game.saveLevel();
+    	actionBeginTime = System.nanoTime();
         Gdx.app.log("GameScreen", "Attached");
         //Calculate the starting positions
         float screenWidth = Gdx.graphics.getWidth();
@@ -73,39 +76,60 @@ public class GameScreen implements Screen {
 			}
 		},AssetLoader.home.getX(),AssetLoader.home.getY(),AssetLoader.home.getWidth(),AssetLoader.home.getHeight(),AssetLoader.home,AssetLoader.home);
     	
+    	
+    	SimpleButton restartBtn = new SimpleButton(new SimpleButtonListener() {
+    		
+			@Override
+			public void pushButtonListener(SimpleButton btn) {
+				if(CSGame.currentState.equals(GameState.PLAYING)) {
+					Report.report(currentLevel, GameState.RESTART);
+					Timer t = TimerFactory.getRunningTimer(status);
+					t.getState().setState(GameState.RESTART);
+					t.stop();
+					board.dispose();
+					game.analytics();
+					game.setScreen(new GameScreen(game,currentLevel));
+					
+				}
+			}
+		},gameWidth-14,1,AssetLoader.restart.getWidth(),AssetLoader.restart.getHeight(),AssetLoader.restart,AssetLoader.restart);
+    	//XXX X position
+    	
     	gameOverPopUp = new PopUpButton(new SimpleButtonListener() {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				//TODO Current level select 
-				
-				
-				
+
 				game.setScreen(new GameScreen(game,currentLevel));
 				dispose();
 			}
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
     	
-    	completedPopUp = new PopUpButton(new SimpleButtonListener() {
+    	
+    	rt = new RatingButton(new SimpleButtonListener() {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
-				//TODO next level select
-				
+				//stuff
+				// change game state to wonscreen CSGame.currentState = GameState.PLAYING;
 				if(currentLevel.getNextLevel()!=null) {
 					//CSGame.currentLevel = currentLevel.getNextLevel();
 					//status = new ReportStatus(GameState.WON,currentLevel);
-					
+					Report.reportScore(currentLevel, rt.getPoints());
+					game.analytics();
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
+					
 					dispose();
 				}
-			
-			}
-		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.completed,AssetLoader.completed,GameState.WON);
-    	
+	    		
+			}		
+		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4, AssetLoader.starEmpty,
+				AssetLoader.starFull,5,AssetLoader.ratingboard,AssetLoader.cont,GameState.WON) ;
     	
     	
     	buttons.add(homeBtn);
+    	buttons.add(restartBtn);
     	buttons.add(gameOverPopUp);
-    	buttons.add(completedPopUp);
+    	buttons.add(rt);
     	if(currentLevel.isTutorial()) {
     		CSGame.currentState = GameState.TUTORIAL;
     		TimerFactory.getNewTimer(new ReportStatus(GameState.TUTORIAL,currentLevel)).start();
@@ -127,9 +151,12 @@ public class GameScreen implements Screen {
     		buttons.add(gameTutorial);
     	}
     	else {
+    		CSGame.currentState = GameState.COUNTDOWN;
+    		/*
     		CSGame.currentState = GameState.PLAYING;
     		status = new ReportStatus(CSGame.currentState,currentLevel);
     		TimerFactory.getNewTimer(status).start();
+    		*/
     	}
     	
     	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
@@ -146,6 +173,19 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
 		switch (CSGame.currentState) {
+			case COUNTDOWN:
+				board.pause();
+				renderer.render();
+		    	//renderer.renderScore(board.getScore());
+				float elapsedTime=(System.nanoTime()-actionBeginTime)/1000000000.0f;
+				renderer.renderCount(Math.round(elapsedTime));
+		        if(elapsedTime>3f){
+		        	CSGame.currentState = GameState.PLAYING;
+		    		status = new ReportStatus(CSGame.currentState,currentLevel);
+		    		TimerFactory.getNewTimer(status).start();
+		    		board.start();
+		        }
+				break;
 			case GAMEOVER:
 				if(status.getGameState().equals(GameState.PLAYING)) {
 					Report.report(currentLevel, GameState.GAMEOVER);
@@ -160,14 +200,14 @@ public class GameScreen implements Screen {
 				board.pause();
 				renderer.render();	
 				renderer.renderPopUp(gameOverPopUp);
-				//renderer.renderScoreFinalLOSE(board.getScore());
-				pause();
+				renderer.renderScoreFinalLOSE(board.getScore());
+				//pause();
 				break;
 			case PLAYING:
 				MusicAccessor.play(AssetLoader.gameSound);
 		    	board.update(delta);
 		    	renderer.render();
-		    	//renderer.renderScore(board.getScore());
+		    	renderer.renderScore(board.getScore());
 		    	break;
 			case WON:
 				if(status.getGameState().equals(GameState.PLAYING)) {
@@ -175,17 +215,17 @@ public class GameScreen implements Screen {
 					Timer t = TimerFactory.getRunningTimer(status);
 					t.getState().setState(CSGame.currentState);
 					t.stop();
-					game.analytics();
+					//game.analytics();
 					status = new ReportStatus(GameState.WONSCREEN,currentLevel);
 					TimerFactory.getNewTimer(status).start();
 					game.saveLevel(currentLevel.getNextLevel());
 				}
 				MusicAccessor.play(AssetLoader.victorySound);
 				renderer.render();
-				renderer.renderPopUp(completedPopUp);
+				renderer.renderPopUp(rt);
 				//renderer.renderScore(board.getScore());
-				//renderer.renderScoreFinalWIN(board.getScore());
-				pause();
+				renderer.renderScoreFinalWIN(board.getScore());
+				//pause();
 				break;
 			case TUTORIAL:
 				renderer.render();
@@ -193,7 +233,7 @@ public class GameScreen implements Screen {
 				//board.tutorial();
 				break;
 			case PAUSE:
-		
+				break;
 		}
     	
     	//Print the fps
@@ -213,16 +253,18 @@ public class GameScreen implements Screen {
 
     @Override
     public void hide() {
-       // Gdx.app.log("GameScreen", "hide called");    
-    	TimerFactory.pauseAll(currentLevel);
+        Gdx.app.log("GameScreen", "hide called");   
+    	//FIXME did remove this is important?
+        board.dispose();
+//    	TimerFactory.pauseAll(currentLevel);
     }
 
     @Override
     public void pause() {
     	//game.dispose();
+    	TimerFactory.pauseAll(currentLevel);
     	
-    	
-        //Gdx.app.log("GameScreen", "pause called");        
+        Gdx.app.log("GameScreen", "pause called");        
     }
 
     @Override
@@ -239,6 +281,7 @@ public class GameScreen implements Screen {
     	if(t!= null) {
         	t.stop();
     	}
+    	board.dispose();
     	//game.analytics();
     }
 

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
-public class SimpleButton {
+public class SimpleButton{
 
     private float x, y, width, height;
 
@@ -147,5 +147,6 @@ public class SimpleButton {
     public float getScreenY() {
     	return this.screenY;
     }
+
 
 }

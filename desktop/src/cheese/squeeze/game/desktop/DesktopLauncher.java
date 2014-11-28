@@ -15,7 +15,10 @@ public class DesktopLauncher implements ActionResolver{
 	    config.title = "Cheese Squeeze";
 	    config.width = 600;
 	    config.height = 800;
-		new LwjglApplication(new CSGame(), config);
+		//config.width =480;
+		//config.height =854;
+	    
+	    new LwjglApplication(new CSGame(), config);
 	}
 
 

@@ -24,6 +24,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
@@ -53,6 +55,7 @@ public class GameRenderer {
 	private BitmapFont font;
 	private StringBuffer str;
 	private int lengthstr;
+	private float move2 = 0;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
@@ -60,9 +63,10 @@ public class GameRenderer {
 		this.width = width;
 		this.board = board;
 		cam = board.getCamera();
+		
+		
 
-		//font = new BitmapFont(true);
-		font = AssetLoader.font;
+		font = AssetLoader.font12;
 		batcher = new SpriteBatch();
 		// Attach batcher to camera
 		batcher.setProjectionMatrix(cam.combined);
@@ -119,6 +123,9 @@ public class GameRenderer {
 		//draw back button
 		batcher.begin();
 		AssetLoader.home.draw(batcher);
+		//XXX Optimize
+		AssetLoader.restart.setPosition(width-14, 1);
+		AssetLoader.restart.draw(batcher);
 		batcher.end();
 
 
@@ -341,35 +348,61 @@ public class GameRenderer {
 
 
 	public void renderScore(int score) {
-		
+		font.setColor(Color.WHITE);
 		batcher.begin();
 		str.delete(lengthstr, str.length());
 		str.append(score);
-		font.drawMultiLine(batcher,str,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
+		str.append("\n " + CSGame.currentLevel.toString());
+		font.setScale(0.5f);
+		//font.drawMultiLine(batch, str, x, y, alignmentWidth, alignment)
+		font.drawMultiLine(batcher,str,width/4,2, width/2,BitmapFont.HAlignment.CENTER);
 		batcher.end();
 	}
 	
 	public void renderScoreFinalWIN(int score) {
-		font.setScale(font.getScaleX()+move*0.0000008f);
+		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
 		font.setColor(Color.YELLOW);
 		batcher.begin();
-		if(move != width/4-15) {
-			move += 1f;
-		}
 		str.delete(lengthstr, str.length());
 		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
 		batcher.end();
 	}
 
 	public void renderScoreFinalLOSE(int score) {
-		font.setScale(font.getScaleX()+ move*0.0000008f);
+		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
 		font.setColor(Color.RED);
 		batcher.begin();
-		if(move != width/4-15) {
-			move += 1f;
-		}
 		str.delete(lengthstr, str.length());
 		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
+		batcher.end();
+	}
+
+
+	public void renderCount(int round) {
+		font.setScale(.5f+(0.5f)*Math.abs(MathUtils.sinDeg(iterator)));
+		String c = "";
+		switch (round) {
+		case 0:
+			c = "3";
+			font.setColor(Color.RED);
+			break;
+		case 1:
+			c = "2";
+			font.setColor(Color.RED);
+			break;
+		case 2:
+			c = "1";
+			font.setColor(Color.RED);
+			break;
+		case 3:
+			c = "START";
+			font.setColor(Color.GREEN);
+			break;
+		}
+		batcher.begin();
+		font.drawMultiLine(batcher,c,width/4,2,width/2,BitmapFont.HAlignment.CENTER);
+
+		
 		batcher.end();
 	}
 }

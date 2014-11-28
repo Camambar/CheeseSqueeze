@@ -20,6 +20,7 @@ import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.tweenAccessors.SoundAccessor;
+import cheese.squeeze.ui.RatingButton;
 import cheese.squeeze.ui.SimpleButton;
 import cheese.squeeze.ui.SimpleButtonListener;
 import cheese.squeeze.ui.SwitchButton;
@@ -27,6 +28,7 @@ import cheese.squeeze.ui.SwitchButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 
 public class MenuScreen implements Screen{
@@ -40,8 +42,12 @@ public class MenuScreen implements Screen{
 	private CSGame game;
 	private ReportStatus status = new ReportStatus(GameState.MENU);
 
+	
+	
 	public MenuScreen(final CSGame game) {
 
+
+		
 		CSGame.currentState = GameState.MENU;
 		TimerFactory.getNewTimer(status).start();
 		
@@ -67,6 +73,14 @@ public class MenuScreen implements Screen{
 		batcher = new SpriteBatch();
 		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
 		MusicAccessor.play(AssetLoader.menuSound);
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	private void addButtons(final CSGame game) {
@@ -138,7 +152,7 @@ public class MenuScreen implements Screen{
 	public void render(float delta) {
 		batcher.begin();
 		AssetLoader.menuBg.draw(batcher);
-		//batcher.draw(AssetLoader.menuBg, 0, 0);
+		
 		batcher.end();
 		
 		batcher.begin();
@@ -147,11 +161,7 @@ public class MenuScreen implements Screen{
 		for(SimpleButton b:menuButtons) {
 			b.draw(batcher);
 		}
-		//batcher.draw(AssetLoader.menuBg, 0, 0);
-		/*
-		 * TEST THE STAR BUTTON
-		 */
-		
+
 		
 		
 		
@@ -211,7 +221,7 @@ public class MenuScreen implements Screen{
 		// TODO Auto-generated method stub
 		Timer t = TimerFactory.getRunningTimer(status);
 		t.stop();
-		System.out.println(t);
+		//System.out.println(t);
 	}
 
 }
