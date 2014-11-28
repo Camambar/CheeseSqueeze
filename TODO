@@ -18,7 +18,7 @@ VH - Google analytics herzien OK
 
 H - knop restart game (rechts boven op gameboard zoals de home knop) (ART: repeat.png) OK
 
-H - display current level number (bovenaan in het midden)
+H - display current level number (bovenaan in het midden) OK
 
 H - extra levels
 
@@ -26,7 +26,7 @@ H - tutorial text vergroten
 
 M - tutorial blijven tonen voor level 1, ook na een keer falen
 
-M - muizen 1 seconde laten wachten in het begin van nieuw level
+M - muizen 1 seconde laten wachten in het begin van nieuw level OK
 
 General:
 
