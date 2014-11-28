@@ -10,7 +10,7 @@ public class HorizontalLine extends Line implements Cloneable{
 	
 	private float endXCoord = 0;
 	public boolean updateNeeded = true;
-	private final static float LINE_SPEED = 2;
+	private float LINE_SPEED = 0.1f;
 	
     public HorizontalLine(){
     	super();
@@ -19,6 +19,7 @@ public class HorizontalLine extends Line implements Cloneable{
     
     public HorizontalLine(float y,float x1, float x2){
     	super(new Vector2(x1,y),new Vector2(x2,y));
+    	LINE_SPEED = LINE_SPEED*Math.abs(x2-x1);
     }
 	
 
@@ -68,7 +69,7 @@ public class HorizontalLine extends Line implements Cloneable{
 			endXCoord = super.getX2();
 			this.setPoint2(new Vector2(this.getX1(),this.getY2()));
 		}
-		if (Math.abs(this.getX2() - endXCoord)!=LINE_SPEED) {
+		if (Math.abs(this.getX2() - endXCoord)>LINE_SPEED) {
 			this.setPoint2(new Vector2(this.getX2()+LINE_SPEED,this.getY2()));
 		}
 		else {
@@ -77,6 +78,13 @@ public class HorizontalLine extends Line implements Cloneable{
 		}
 		
 	}
+
+
+	public void setUpdateRequired(boolean b) {
+		updateNeeded = false;
+		
+	}
+	
 //	@Override
 //	public Vector2 getNextIntersection(Vector2 from, Vector2 direction) {
 //		if (from.equals(getPoint2()))

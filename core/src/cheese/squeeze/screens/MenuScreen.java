@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.GameState;
+import cheese.squeeze.game.Level;
 import cheese.squeeze.game.ReportStatus;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
@@ -91,7 +92,7 @@ public class MenuScreen implements Screen{
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				dispose();
-				game.setScreen(new GameScreen(game));
+				game.setScreen(new GameScreen(game,Level.LEVEL2));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);

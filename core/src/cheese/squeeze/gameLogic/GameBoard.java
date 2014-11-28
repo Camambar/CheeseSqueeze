@@ -101,6 +101,7 @@ public class GameBoard {
 						float x = vlines.get(((int)vec.x)-1).getX1();
 						HorizontalLine line = new HorizontalLine(e.getKey(),x,x+0.01f);
 						this.fitHorizontalLineBetweenVertivalLines(line);
+						line.setUpdateRequired(false);
 						this.addHLine(line);
 					}
 					i++;
@@ -545,11 +546,21 @@ public class GameBoard {
 		//Gdx.app.log("GameBoard", "update");
 	}
 	
-	public VerticalLine getNextMouseLine() {
+	public ArrayList<VerticalLine> getNextMouseLine() {
+		ArrayList<VerticalLine> list = new ArrayList<VerticalLine>();
 		if(level.getMouseLine().length > currentMouse) {
-			return vlines.get(level.getMouseLine()[currentMouse]-1);
+			if (CSGame.currentState.equals(GameState.COUNTDOWN)) {
+				for(int i = 0 ; i<level.getNbMouse();i++) {
+					list.add(vlines.get(level.getMouseLine()[currentMouse+i]-1));
+				}
+			}
+			else {
+				list.add(vlines.get(level.getMouseLine()[currentMouse]-1));
+			}
+			
+			
 		}
-		return null;
+		return list;
 	}
 	
 	private Line getRandomLine(){

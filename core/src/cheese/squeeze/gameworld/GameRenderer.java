@@ -10,6 +10,7 @@ import cheese.squeeze.gameObjects.HorizontalLine;
 import cheese.squeeze.gameObjects.Line;
 import cheese.squeeze.gameObjects.Mouse;
 import cheese.squeeze.gameObjects.Trap;
+import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.GoalSprites;
 import cheese.squeeze.ui.SimpleButton;
@@ -171,11 +172,14 @@ public class GameRenderer {
 			// End SpriteBatch
 			batcher.end();
 		}
-		if (board.getNextMouseLine() !=null) {
+		if (board.getNextMouseLine().size() >0) {
 			float offset2 = MathUtils.sinDeg( (float) (iterator*(0.1f )))*(0.4f);
 			batcher.begin();
+			for (VerticalLine l : board.getNextMouseLine()) {
+				batcher.draw(nextMouse, l.getX1()-3.7f,l.getY1()-2+offset2,5,0,10,10,0.3f,0.25f,90,true);
+			}
 			//batcher.draw(region, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
-			batcher.draw(nextMouse, board.getNextMouseLine().getX1()-3.7f,board.getNextMouseLine().getY1()-2+offset2,5,0,10,10,0.3f,0.25f,90,true);
+			
 	        //next.setSize(5, 5);
 	       // next.setOrigin(next.getRegionWidth()/2,0);
 			batcher.end();
