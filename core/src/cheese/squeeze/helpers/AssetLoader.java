@@ -472,8 +472,8 @@ public class AssetLoader {
     	
     	effect = new ParticleEffect();
     	effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
+    	effect.scaleEffect(0.5f);
     	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
-    	
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
     

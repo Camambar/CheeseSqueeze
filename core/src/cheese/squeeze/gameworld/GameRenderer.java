@@ -63,6 +63,7 @@ public class GameRenderer {
 	private float move2 = 0;
 	private Array<PooledEffect> effects;
 	private InputHelper input;
+	private boolean scaled = false;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width, InputHelper input) {
@@ -73,6 +74,9 @@ public class GameRenderer {
 		this.input = input;
 		effects = new Array();
 
+
+		
+		
 		font = AssetLoader.font12;
 		batcher = new SpriteBatch();
 		// Attach batcher to camera
@@ -146,11 +150,15 @@ public class GameRenderer {
 	private void addLineEffect() {
 		HorizontalLine l= board.getEffectLine();
 		if(l!= null) {
-			PooledEffect effectp = AssetLoader.smokeEffectPool.obtain();
-	    	effectp.setPosition(100,100);
-	    	effectp.scaleEffect(1f);
-	    	effectp.allowCompletion();
-			effects.add(effectp);
+			PooledEffect effectsmoke = AssetLoader.smokeEffectPool.obtain();
+			//if(!scaled) {
+			//	effectsmoke.scaleEffect(0.5f);
+			//	scaled=true;
+			//}
+			
+	    	effectsmoke.setPosition(l.getX1(),l.getY1());
+	    	//effectp.allowCompletion();
+			effects.add(effectsmoke);
 		}
 		
 		
