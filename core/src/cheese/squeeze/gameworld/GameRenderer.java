@@ -13,6 +13,7 @@ import cheese.squeeze.gameObjects.Trap;
 import cheese.squeeze.gameObjects.VerticalLine;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.GoalSprites;
+import cheese.squeeze.helpers.InputHelper;
 import cheese.squeeze.ui.SimpleButton;
 
 import com.badlogic.gdx.Gdx;
@@ -25,12 +26,15 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteCache;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 import cheese.squeeze.game.GameState;
 
@@ -57,15 +61,17 @@ public class GameRenderer {
 	private StringBuffer str;
 	private int lengthstr;
 	private float move2 = 0;
+	private Array<PooledEffect> effects;
+	private InputHelper input;
 
 
-	public GameRenderer(GameBoard board,int midPointY,int height, int width) {
+	public GameRenderer(GameBoard board,int midPointY,int height, int width, InputHelper input) {
 		this.height = height;
 		this.width = width;
 		this.board = board;
 		cam = board.getCamera();
-		
-		
+		this.input = input;
+		effects = new Array();
 
 		font = AssetLoader.font12;
 		batcher = new SpriteBatch();
@@ -129,10 +135,57 @@ public class GameRenderer {
 		AssetLoader.restart.draw(batcher);
 		batcher.end();
 
-
+		addLineEffect();
+		//addToucheffects();
 		//Gdx.app.log("GameRenderer", "rendered");
+		effects();
 	}
 
+
+
+	private void addLineEffect() {
+		HorizontalLine l= board.getEffectLine();
+		if(l!= null) {
+			PooledEffect effectp = AssetLoader.smokeEffectPool.obtain();
+	    	effectp.setPosition(100,100);
+	    	effectp.scaleEffect(1f);
+	    	effectp.allowCompletion();
+			effects.add(effectp);
+		}
+		
+		
+	}
+
+
+	private void effects() {
+		batcher.begin();
+		for (int i = effects.size - 1; i >= 0; i--) {
+		    
+			PooledEffect effect = effects.get(i);
+		    //effect.update(delta);
+
+		    effect.draw(batcher,Gdx.graphics.getDeltaTime());
+
+		    if (effect.isComplete()) {
+		        effect.free();
+		        effects.removeIndex(i);
+		    }
+		}
+		batcher.end();
+	}
+
+
+	private void addToucheffects() {
+    	Vector3 v = input.getTouchCoord();
+    	if(v != null) {
+			PooledEffect effectp = AssetLoader.sparkEffectPool.obtain();
+			board.getCamera().unproject(v);
+	    	effectp.setPosition(v.x,v.y);
+	    	effectp.scaleEffect(0.4f);
+	    	effectp.setDuration(1);
+			effects.add(effectp);
+    	}
+	}
 
 
 	private void drawRedDot() {

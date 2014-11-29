@@ -28,9 +28,12 @@ import cheese.squeeze.ui.SwitchButton;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 
 public class MenuScreen implements Screen{
@@ -43,11 +46,16 @@ public class MenuScreen implements Screen{
 	private String latestVersion;
 	private CSGame game;
 	private ReportStatus status = new ReportStatus(GameState.MENU);
+	private Array<PooledEffect> effects= new Array();
+	private OrthographicCamera cam;
 
 	
 	
 	public MenuScreen(final CSGame game) {
-
+    	PooledEffect effectp = AssetLoader.snowEffectPool.obtain();
+		   
+    	effectp.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight());
+		effects.add(effectp);
 
 		
 		CSGame.currentState = GameState.MENU;
@@ -73,7 +81,9 @@ public class MenuScreen implements Screen{
 		
 		addButtons(game);
 		batcher = new SpriteBatch();
-		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons));
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		Gdx.input.setInputProcessor(new InputHelperMenu(menuButtons,cam));
 		MusicAccessor.play(AssetLoader.menuSound);
 		
 		
@@ -152,16 +162,37 @@ public class MenuScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
+		
+		
 		batcher.begin();
 		AssetLoader.menuBg.draw(batcher);
-		for (int i = AssetLoader.effects.size - 1; i >= 0; i--) {
-		    PooledEffect effect = AssetLoader.effects.get(i);
-		    effect.draw(batcher,delta/5);
+		for (int i = effects.size - 1; i >= 0; i--) {
+		    
+			PooledEffect effect = effects.get(i);
+		    //effect.update(delta);
+
+		    effect.draw(batcher,delta);
+
 		    if (effect.isComplete()) {
 		        effect.free();
-		        AssetLoader.effects.removeIndex(i);
+		        effects.removeIndex(i);
 		    }
 		}
+		
+		
+		if(Gdx.input.isTouched()) {
+			
+			PooledEffect effectp = AssetLoader.sparkEffectPool.obtain();
+			Vector3 v = new Vector3(Gdx.input.getX(), Gdx.input.getY(),0);
+			cam.unproject(v);
+	    	effectp.setPosition(v.x,v.y);
+	    	effectp.setDuration(1);
+			effects.add(effectp);
+
+		}
+		
+	
+		
 		batcher.end();
 		
 		batcher.begin();

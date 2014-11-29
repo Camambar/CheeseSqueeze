@@ -30,10 +30,10 @@ public class InputHelperMenu implements InputProcessor {
 	
 	
 	
-	public InputHelperMenu(ArrayList<SimpleButton> menuButtons) {
+	public InputHelperMenu(ArrayList<SimpleButton> menuButtons,OrthographicCamera cam) {
 		this.menuButtons = menuButtons;
-		cam = new OrthographicCamera();
-		cam.setToOrtho(false,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		this.cam = cam;
+
 		
 	}
 

@@ -36,6 +36,8 @@ public class AssetLoader {
 
     public static Sprite trap,home,trapClosed;
 
+    public  static ParticleEffectPool smokeEffectPool, sparkEffectPool;
+    
 	public static TextureRegion mouse;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
@@ -48,13 +50,12 @@ public class AssetLoader {
     
     private  TextureAtlas atlasMenuLeeg;
 
+	public static ParticleEffectPool snowEffectPool;
+
 	public static BitmapFont font12;
 
 	public static Sprite restart;
 
-
-	public static Array<PooledEffect> effects = new Array();
-	
     
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
 
@@ -453,17 +454,30 @@ public class AssetLoader {
     	
     	
     	//TODO particles
-    	ParticleEffectPool smokeEffectPool;
 
+    	//SNOW
+    	ParticleEffect effect = new ParticleEffect();
+    	effect.load(Gdx.files.internal("particle/snowflakes"), Gdx.files.internal("particle"));
+    	snowEffectPool = new ParticleEffectPool(effect, 1, 2);
     	
-    	ParticleEffect smokeEffect = new ParticleEffect();
-    	smokeEffect.load(Gdx.files.internal("particle/snowflakes"), Gdx.files.internal("particle"));
-    	smokeEffectPool = new ParticleEffectPool(smokeEffect, 1, 2);
+    	//PooledEffect effectp = smokeEffectPool.obtain();
+   
+    	//effectp.setPosition(width/2, height);
     	
-    	PooledEffect effect = smokeEffectPool.obtain();
-    	effect.setPosition(0, height);
-    	effects.add(effect);
-	}
+    	//spark
+    	effect = new ParticleEffect();
+    	effect.load(Gdx.files.internal("particle/clickspark"), Gdx.files.internal("particle"));
+    	sparkEffectPool = new ParticleEffectPool(effect, 1, 2);
+    	//effectp = sparkEffectPool.obtain();
+    	
+    	effect = new ParticleEffect();
+    	effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
+    	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
+    	
+    	//effectsSpark= new Array();
+    	//effectsSpark.add(effectp);
+    
+    }
 
 	public static void soundSwitch() {
 		

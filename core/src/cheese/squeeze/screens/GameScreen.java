@@ -21,7 +21,11 @@ import cheese.squeeze.ui.SimpleButtonListener;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 public class GameScreen implements Screen {
 	
@@ -159,13 +163,14 @@ public class GameScreen implements Screen {
     		*/
     	}
     	
-    	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth);
+    	input = new InputHelper(board,buttons);
+    	Gdx.input.setInputProcessor(input);
+    	renderer = new GameRenderer(board,midPointY,(int) gameHeight,(int) gameWidth,input);
     	
     	//TODO make a class to handle the audio.
     	MusicAccessor.play(AssetLoader.gameSound);
     	
-    	input = new InputHelper(board,buttons);
-    	Gdx.input.setInputProcessor(input);
+    	
 		
 	}
 

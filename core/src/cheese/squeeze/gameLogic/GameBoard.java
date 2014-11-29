@@ -49,6 +49,7 @@ public class GameBoard {
 	private float start;
 	private float end;
 	private Level level;
+	private HorizontalLine effectLine;
 	private float multip;
 	private int currentMouse;
 	private boolean presetLines;
@@ -216,6 +217,7 @@ public class GameBoard {
 			SoundAccessor.play(AssetLoader.chalk);
 			hlines.get(line.getY1()).addElement(line, row);
 			updateReqLines.add(line);
+			effectLine = line;
 			for (VerticalLine l : vlines) {
 				if (l.getX1() == line.getX1()) {
 					l.setNeighbour(line);
@@ -647,6 +649,15 @@ public class GameBoard {
 	public void start() {
 		TimerFactory.getNewTimer(status).start();
 		makeMice();
+	}
+	
+	public HorizontalLine getEffectLine() {
+		if(effectLine!=null) {
+			HorizontalLine l = effectLine.clone();
+			effectLine = null;
+			return l;
+		}
+		return null;
 	}
 	
 }
