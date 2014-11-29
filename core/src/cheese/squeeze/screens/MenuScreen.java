@@ -28,6 +28,7 @@ import cheese.squeeze.ui.SwitchButton;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -92,7 +93,7 @@ public class MenuScreen implements Screen{
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				dispose();
-				game.setScreen(new GameScreen(game,Level.LEVEL2));
+				game.setScreen(new GameScreen(game,Level.LEVEL1));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
@@ -153,7 +154,14 @@ public class MenuScreen implements Screen{
 	public void render(float delta) {
 		batcher.begin();
 		AssetLoader.menuBg.draw(batcher);
-		
+		for (int i = AssetLoader.effects.size - 1; i >= 0; i--) {
+		    PooledEffect effect = AssetLoader.effects.get(i);
+		    effect.draw(batcher,delta/5);
+		    if (effect.isComplete()) {
+		        effect.free();
+		        AssetLoader.effects.removeIndex(i);
+		    }
+		}
 		batcher.end();
 		
 		batcher.begin();

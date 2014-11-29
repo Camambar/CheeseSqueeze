@@ -10,12 +10,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class AssetLoader {
 	
@@ -49,7 +53,7 @@ public class AssetLoader {
 	public static Sprite restart;
 
 
-
+	public static Array<PooledEffect> effects = new Array();
 	
     
     //private static TextureAtlas atlas = new TextureAtlas("data/onderdelenpack.pack");
@@ -83,8 +87,6 @@ public class AssetLoader {
 	public static Music defeatSound;
 
 	public static Music victorySound;
-	
-	public static BitmapFont font;
 
 	public static Vector2 trapClosedCenter;
 
@@ -164,13 +166,6 @@ public class AssetLoader {
 	
 	public void desktopLoad() {
 
-    	//FreeTypeFontGenerator generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
-    	
-    	font = new BitmapFont(true);
-    	//font = new BitmapFont(Gdx.files.internal("data/font.fnt"),Gdx.files.internal("data/font.png"),true);
-    	//font.setScale(0.1f);
-    	font.setScale(0.5f);
-    	font.setColor(Color.WHITE);
     	goals = new GoalSprites();
     	
     	for(int i = 1; i<=NBCHEESE;i++) {
@@ -209,8 +204,11 @@ public class AssetLoader {
         float scaleW = desiredWidth / menuBg.getWidth();
         float scaleH = height / menuBg.getHeight();
         
-        menuBg.setSize(menuBg.getWidth() * scaleW, menuBg.getHeight() * scaleH);
+        //menuBg.setSize(menuBg.getWidth() * scaleW, menuBg.getHeight() * scaleH);
         //menuBg.setPosition((width / 2) - (menuBg.getWidth() / 2), (height / 2)- (menuBg.getHeight() / 2));
+        
+        menuBg.setSize(width, height);
+        
         
         next = new TextureRegion(atlasGame.findRegion("next"));
         next.flip(false, true);
@@ -235,10 +233,6 @@ public class AssetLoader {
         dot.flip(false, true);
         
         
-        //completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
-        //completed.flip(false, true);
-        
-        logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
         
         play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
         
@@ -254,11 +248,11 @@ public class AssetLoader {
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
         version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
-        
+        /*
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
         //set position to the top middle 10 pixle from top
         logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
-        
+        */
         
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
@@ -289,13 +283,6 @@ public class AssetLoader {
 	
 	public void androidLoad() {
 
-    	//FreeTypeFontGenerator generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/myfont.ttf"));
-    	
-    	font = new BitmapFont(true);
-    	//font = new BitmapFont(Gdx.files.internal("data/font.fnt"),Gdx.files.internal("data/font.png"),true);
-    	//font.setScale(0.1f);
-    	font.setScale(0.5f);
-    	font.setColor(Color.WHITE);
     	goals = new GoalSprites();
     	
     	for(int i = 1; i<=NBCHEESE;i++) {
@@ -334,7 +321,8 @@ public class AssetLoader {
         float scaleW = desiredWidth / menuBg.getWidth();
         float scaleH = height / menuBg.getHeight();
         
-        menuBg.setSize(menuBg.getWidth() * scaleW, menuBg.getHeight() * scaleH);
+        //menuBg.setSize(menuBg.getWidth() * scaleW, menuBg.getHeight() * scaleH);
+        menuBg.setSize(width, height);
         
         next = new TextureRegion(atlasGame.findRegion("next"));
         next.flip(false, true);
@@ -362,7 +350,7 @@ public class AssetLoader {
         //completed = new Sprite(new TextureRegion(atlasGame.findRegion("completed")));
         //completed.flip(false, true);
         
-        logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
+
         
         play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
         
@@ -379,10 +367,11 @@ public class AssetLoader {
         //width-(1.5f*logo_shadow.getWidth())
         version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
         
+        /*
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
         //set position to the top middle 10 pixle from top
         logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
-        
+        */
         
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
@@ -431,6 +420,9 @@ public class AssetLoader {
     
     private void generalLoad() {
     	
+        logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
+        logo_shadow.setSize(width-40, (height/5)-5);
+        logo_shadow.setPosition(20,height-(height/5)-5);
     			
     	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
     	FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -458,6 +450,19 @@ public class AssetLoader {
     	restart.flip(false, true);
 
     	restart.setPosition(30, 1);
+    	
+    	
+    	//TODO particles
+    	ParticleEffectPool smokeEffectPool;
+
+    	
+    	ParticleEffect smokeEffect = new ParticleEffect();
+    	smokeEffect.load(Gdx.files.internal("particle/snowflakes"), Gdx.files.internal("particle"));
+    	smokeEffectPool = new ParticleEffectPool(smokeEffect, 1, 2);
+    	
+    	PooledEffect effect = smokeEffectPool.obtain();
+    	effect.setPosition(0, height);
+    	effects.add(effect);
 	}
 
 	public static void soundSwitch() {

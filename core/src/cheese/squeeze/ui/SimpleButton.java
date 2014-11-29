@@ -5,6 +5,7 @@ import cheese.squeeze.tweenAccessors.SoundAccessor;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 
 public class SimpleButton{
@@ -25,6 +26,11 @@ public class SimpleButton{
 	private SimpleButtonListener listen;
 
 	private boolean special;
+	
+	private float iterator = 300;
+
+	private float shakeUp,shakeDown;
+
 
 	/*
     public SimpleButton(float x, float y, float width, float height,
@@ -55,6 +61,22 @@ public class SimpleButton{
 
     }
     
+    public SimpleButton(SimpleButtonListener listen, float x, float y, float width, float height,
+            TextureRegion buttonUp,float shakeUp ,TextureRegion buttonDown,float shakeDown) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.buttonUp = buttonUp;
+        this.buttonDown = buttonDown;
+        this.listen = listen;
+        this.special = false;
+        bounds = new Rectangle(x, y, width, height);
+        this.shakeUp = shakeUp;
+        this.shakeDown = shakeDown;
+
+    }
+    
     public void scale(float sc) {
     	this.width = width+sc;
     	this.height = height+sc;
@@ -66,12 +88,23 @@ public class SimpleButton{
 
     public void draw(SpriteBatch batcher) {
         if (isPressed) {
-            batcher.draw(buttonDown, x, y, width, height);
+             batcher.draw(buttonDown, x, y, width, height);
         } else {
             batcher.draw(buttonUp, x, y, width, height);
         }
     }
 
+    public void draw(SpriteBatch batcher,float shakeAmount) {
+        if (isPressed) {
+            batcher.draw(buttonDown, x, y, width, height);
+        } else {
+        	 MathUtils.sinDeg(iterator);
+        	 batcher.draw(buttonUp, x, y, width/2, height/2, width, height, 1, 1,shakeAmount*MathUtils.sinDeg(iterator));
+        	//batcher.draw(buttonUp, x, y, width, height);
+        	 iterator = iterator +10;
+        }
+    }
+    
     public boolean isTouchDown(int screenX, int screenY) {
         if (contains(screenX, screenY)) {
         	if(!isSpecial()){
