@@ -14,6 +14,9 @@ public class Mouse {
 
 	private Vector2 position;
 	private Vector2 velocity;
+	private final float FLIKERING =100;
+	private float EYEOPEN;
+	private boolean open = true;
 	
 	private float speed;
 	private float tolerance = 0.02f;
@@ -30,6 +33,7 @@ public class Mouse {
 	private boolean ended = false;
 	
 	public Mouse(float speed, Line line){
+		EYEOPEN = (float) (FLIKERING*Math.random());
 		float x = line.getX1();
 		float y = line.getY1();
 		//float y = 0;
@@ -51,7 +55,8 @@ public class Mouse {
 	}
 
 	public void update(float delta) {
-		//System.out.println("nextGoToPoint is (" + nextGoToPoint.x + ", " + nextGoToPoint.y + ").");
+		EYEOPEN--;
+		
 		if (nextGoToPoint != null) {
 			if(atIntersection()) {
 				//System.out.println("intersection reached!");
@@ -168,5 +173,17 @@ public class Mouse {
 	//public void changeNextWayPoints(ArrayList<Vector2> newWaypoints) {
 	//	this.setPath(nPath);
 	//}
+	
+	public boolean eyesOpen() {
+		if(EYEOPEN < 0 && !open) {
+			EYEOPEN = (float) ((FLIKERING*2)*Math.random());
+			open = !open;
+		}
+		if(EYEOPEN < 0 && open) {
+			EYEOPEN = (float) ((FLIKERING/5)*Math.random());
+			open = !open;
+		}
+		return open;
+	}
 
 }

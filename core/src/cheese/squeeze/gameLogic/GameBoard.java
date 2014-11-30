@@ -660,4 +660,8 @@ public class GameBoard {
 		return null;
 	}
 	
+	public float getDistBetweenVlines() {
+		return vlines.get(1).getX1()-vlines.get(0).getX1();
+	}
+	
 }

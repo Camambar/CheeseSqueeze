@@ -64,6 +64,8 @@ public class GameRenderer {
 	private Array<PooledEffect> effects;
 	private InputHelper input;
 	private boolean scaled = false;
+	private TextureRegion mouseClosed;
+	private float smokeScaling;
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width, InputHelper input) {
@@ -75,7 +77,7 @@ public class GameRenderer {
 		effects = new Array();
 
 
-		
+		smokeScaling = board.getDistBetweenVlines()/100;
 		
 		font = AssetLoader.font12;
 		batcher = new SpriteBatch();
@@ -150,11 +152,10 @@ public class GameRenderer {
 	private void addLineEffect() {
 		HorizontalLine l= board.getEffectLine();
 		if(l!= null) {
+			
 			PooledEffect effectsmoke = AssetLoader.smokeEffectPool.obtain();
-			//if(!scaled) {
-			//	effectsmoke.scaleEffect(0.5f);
-			//	scaled=true;
-			//}
+
+			//effectsmoke.scaleEffect(effectsmoke);
 			
 	    	effectsmoke.setPosition(l.getX1(),l.getY1());
 	    	//effectp.allowCompletion();
@@ -222,10 +223,20 @@ public class GameRenderer {
 			
 	        float offset = MathUtils.sinDeg( (float) (iterator*(0.1f*m.getSpeed() )))*(0.3f*m.getSpeed());
 	        if(m.getRotation() == 90) {
-	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	if(m.eyesOpen()) {
+	        		batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
+	        	else {
+	        		batcher.draw(mouseClosed, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
 	        }
 	        else {
-	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2),m.getY()-(mouseSize.y/2)+offset,mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+ MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	if(m.eyesOpen()) {
+	        		batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
+	        	else {
+	        		batcher.draw(mouseClosed, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
 	        }
 			
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
@@ -359,6 +370,7 @@ public class GameRenderer {
 		goals = AssetLoader.goals;
 		trap = AssetLoader.trap;
 		mouse = AssetLoader.mouse;
+		mouseClosed = AssetLoader.mouseclosed;
 		nextMouse = AssetLoader.next;
 		trapClosed = AssetLoader.trapClosed;
 	}

@@ -38,7 +38,7 @@ public class AssetLoader {
 
     public  static ParticleEffectPool smokeEffectPool, sparkEffectPool;
     
-	public static TextureRegion mouse;
+	public static TextureRegion mouse,mouseclosed;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
     private  TextureAtlas atlasMenu;
@@ -420,6 +420,8 @@ public class AssetLoader {
     }
     
     private void generalLoad() {
+    	mouseclosed =  new TextureRegion(atlasGame.findRegion("mouseclosed"));
+    	mouseclosed.flip(false, true);
     	
         logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
         logo_shadow.setSize(width-40, (height/5)-5);

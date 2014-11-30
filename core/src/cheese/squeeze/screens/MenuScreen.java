@@ -103,7 +103,7 @@ public class MenuScreen implements Screen{
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				dispose();
-				game.setScreen(new GameScreen(game,Level.LEVEL13));
+				game.setScreen(new GameScreen(game,Level.LEVEL1));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
