@@ -147,7 +147,7 @@ public class GameRenderer {
 		HorizontalLine l= board.getEffectLine();
 		if(l!= null) {
 			PooledEffect effectp = AssetLoader.smokeEffectPool.obtain();
-	    	effectp.setPosition(100,100);
+	    	effectp.setPosition(l.getX1(),l.getY1());
 	    	effectp.scaleEffect(1f);
 	    	effectp.allowCompletion();
 			effects.add(effectp);
