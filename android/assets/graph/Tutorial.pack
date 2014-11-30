@@ -5,28 +5,28 @@ filter: Nearest,Nearest
 repeat: none
 tutorial
   rotate: false
-  xy: 1, 284
-  size: 484, 140
-  orig: 484, 140
+  xy: 1, 247
+  size: 613, 177
+  orig: 613, 177
   offset: 0, 0
   index: -1
 tutorial2
   rotate: false
-  xy: 1, 142
-  size: 484, 140
-  orig: 484, 140
+  xy: 1, 68
+  size: 613, 177
+  orig: 613, 177
   offset: 0, 0
   index: -1
 hand
   rotate: false
-  xy: 487, 1
+  xy: 616, 1
   size: 192, 423
   orig: 192, 423
   offset: 0, 0
   index: -1
 dot
   rotate: false
-  xy: 681, 352
+  xy: 810, 352
   size: 72, 72
   orig: 72, 72
   offset: 0, 0

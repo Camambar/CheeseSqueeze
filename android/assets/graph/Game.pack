@@ -5,98 +5,119 @@ filter: Nearest,Nearest
 repeat: none
 completed
   rotate: false
-  xy: 1, 443
+  xy: 1, 468
   size: 626, 550
   orig: 626, 550
   offset: 0, 0
   index: -1
 continue
   rotate: false
-  xy: 1, 305
+  xy: 1, 330
   size: 622, 136
   orig: 622, 136
   offset: 0, 0
   index: -1
 cheese_pile1
   rotate: false
-  xy: 629, 726
+  xy: 629, 751
   size: 223, 267
   orig: 223, 267
   offset: 0, 0
   index: -1
 cheese_pile2
   rotate: false
-  xy: 1, 36
+  xy: 1, 61
   size: 223, 267
   orig: 223, 267
   offset: 0, 0
   index: -1
 cheese_pile3
   rotate: false
-  xy: 629, 457
+  xy: 629, 482
   size: 223, 267
   orig: 223, 267
   offset: 0, 0
   index: -1
 cheese_pile4
   rotate: false
-  xy: 226, 36
+  xy: 226, 61
   size: 223, 267
   orig: 223, 267
   offset: 0, 0
   index: -1
 cheese_pile5
   rotate: false
-  xy: 451, 36
+  xy: 451, 61
   size: 223, 267
   orig: 223, 267
   offset: 0, 0
   index: -1
 trap_closed
   rotate: false
-  xy: 854, 733
+  xy: 854, 758
   size: 131, 260
   orig: 131, 260
   offset: 0, 0
   index: -1
 trap_open
   rotate: false
-  xy: 854, 471
+  xy: 854, 496
   size: 131, 260
   orig: 131, 260
   offset: 0, 0
   index: -1
-smoke1
+home
   rotate: false
-  xy: 629, 305
-  size: 300, 150
-  orig: 300, 150
+  xy: 629, 343
+  size: 178, 137
+  orig: 178, 137
   offset: 0, 0
   index: -1
-smoke2
+restart
   rotate: false
-  xy: 676, 153
-  size: 300, 150
-  orig: 300, 150
+  xy: 676, 204
+  size: 178, 137
+  orig: 178, 137
   offset: 0, 0
   index: -1
-smoke3
+star_empty
   rotate: false
-  xy: 676, 1
-  size: 300, 150
-  orig: 300, 150
+  xy: 676, 104
+  size: 103, 98
+  orig: 103, 98
   offset: 0, 0
   index: -1
 mouse
   rotate: false
-  xy: 931, 355
+  xy: 781, 88
   size: 79, 114
   orig: 79, 114
   offset: 0, 0
   index: -1
+star_full
+  rotate: false
+  xy: 676, 4
+  size: 103, 98
+  orig: 103, 98
+  offset: 0, 0
+  index: -1
+mouseclosed
+  rotate: false
+  xy: 809, 366
+  size: 79, 114
+  orig: 79, 114
+  offset: 0, 0
+  index: -1
+footsteps
+  rotate: false
+  xy: 781, 1
+  size: 41, 85
+  orig: 41, 85
+  offset: 0, 0
+  index: -1
 next
   rotate: false
-  xy: 987, 927
+  xy: 987, 952
   size: 32, 66
   orig: 32, 66
   offset: 0, 0
@@ -108,57 +129,8 @@ filter: Nearest,Nearest
 repeat: none
 failed
   rotate: false
-  xy: 1, 405
+  xy: 1, 1
   size: 626, 550
   orig: 626, 550
-  offset: 0, 0
-  index: -1
-smoke4
-  rotate: false
-  xy: 1, 253
-  size: 300, 150
-  orig: 300, 150
-  offset: 0, 0
-  index: -1
-smoke5
-  rotate: false
-  xy: 629, 805
-  size: 300, 150
-  orig: 300, 150
-  offset: 0, 0
-  index: -1
-smoke6
-  rotate: false
-  xy: 1, 101
-  size: 300, 150
-  orig: 300, 150
-  offset: 0, 0
-  index: -1
-home
-  rotate: false
-  xy: 303, 266
-  size: 178, 137
-  orig: 178, 137
-  offset: 0, 0
-  index: -1
-restart
-  rotate: false
-  xy: 629, 666
-  size: 178, 137
-  orig: 178, 137
-  offset: 0, 0
-  index: -1
-star_empty
-  rotate: false
-  xy: 1, 1
-  size: 103, 98
-  orig: 103, 98
-  offset: 0, 0
-  index: -1
-star_full
-  rotate: false
-  xy: 303, 166
-  size: 103, 98
-  orig: 103, 98
   offset: 0, 0
   index: -1

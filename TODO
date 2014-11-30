@@ -4,25 +4,19 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 DUE TO NEXT RELEASE:
 
-H  - change particle effect packing
-
 H - verify button scaling on different (iOS) devices 
-
-H - change iOS icons
 
 H - Viralise
 
 H - Leaderboards implementation
 
-H - juicy: voetstapjes, grote ogen, knipperen, bloed, knop leaderboard menu, piepgeluid
+H - implement: voetstapjes, knipperen, bloed, knop leaderboard menu
 
 VH - fix menu issues on some devices DENK IN ORDE NIE ZKR
 
 VH - fix music issues on some devices
 
 H - extra levels
-
-H - tutorial text vergroten
 
 M - tutorial blijven tonen voor level 1, ook na een keer falen
 
