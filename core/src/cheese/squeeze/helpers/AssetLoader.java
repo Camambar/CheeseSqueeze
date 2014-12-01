@@ -57,7 +57,7 @@ public class AssetLoader {
 
 	private FreeTypeFontGenerator fontGenerator;
 
-	private static ParticleEffect originalSmoke,originalSpark,originalSnow;
+	private static ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood;
 
 	public static Sprite leader;
 
@@ -136,9 +136,10 @@ public class AssetLoader {
 		manager.load("particle/smoke", ParticleEffect.class);
 		manager.load("particle/snowflakes", ParticleEffect.class);
 		manager.load("particle/clickspark",ParticleEffect.class);
-		manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
-		manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
-		manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
+		manager.load("particle/blood",ParticleEffect.class);
+		//manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
+		//manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
+		//manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
 		
 	}
 	
@@ -170,6 +171,7 @@ public class AssetLoader {
 		originalSmoke = manager.get("particle/smoke", ParticleEffect.class);
 		originalSnow = manager.get("particle/snowflakes", ParticleEffect.class);
 		originalSpark = manager.get("particle/clickspark",ParticleEffect.class);
+		originalBlood = manager.get("particle/blood",ParticleEffect.class);
 		//font12 = manager.get("fonts/amiga4ever",BitmapFont.class);
 		
 	}
@@ -479,11 +481,16 @@ public class AssetLoader {
         logo_shadow.setSize(width-200, (height/5)-5);
         logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-40);
     			
-    	//FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
-    	
-    	//font12 = fontGenerator.generateFont(parameter); // font size 12 pixels
+    	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amigaever.ttf"));
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		generator.scaleForPixelHeight((int)Math.ceil(8));
+    	parameter.size = 8;
+    	parameter.flip = true;
+    	parameter.minFilter = Texture.TextureFilter.Nearest;
+    	parameter.magFilter = Texture.TextureFilter.MipMapLinearNearest;
+    	font12 = generator.generateFont(parameter); // font size 12 pixels
     	//font12.setColor(Color.BLACK);
-    	//fontGenerator.dispose();
+    	generator.dispose();
     	
     	
     	starEmpty = new TextureRegion(atlasGame.findRegion("star_empty"));
@@ -520,9 +527,8 @@ public class AssetLoader {
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
     	
-    	effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/blood"), Gdx.files.internal("particle"));
-    	bloodEffectPool = new ParticleEffectPool(effect, 1, 2);
+
+    	bloodEffectPool = new ParticleEffectPool(originalBlood, 1, 2);
     
     
     }
