@@ -173,7 +173,7 @@ public class GameRenderer {
 		
 		
 	}
-
+	
 
 	private void effects() {
 		batcher.begin();
@@ -324,12 +324,23 @@ public class GameRenderer {
 		}
 	}
 	
+	private void addBloodEffect(Trap t) {
+		if(t!= null) {
+			PooledEffect effectblood = AssetLoader.bloodEffectPool.obtain();		
+	    	effectblood.setPosition(t.getPosition().x,t.getPosition().y);
+	    	effects.add(effectblood);
+		}
+		
+		
+	}
+	
 	private void drawTraps() {
 		for(Trap t: board.getTraps()) {
 			batcher.begin();
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
 			if(t.isSnapped()) {
+				addBloodEffect(t);
 				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/9);
 			}else {
 				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/9);

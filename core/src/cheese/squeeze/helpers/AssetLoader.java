@@ -41,7 +41,7 @@ public class AssetLoader {
 
     public static Sprite trap,home,trapClosed;
 
-    public static ParticleEffectPool smokeEffectPool, sparkEffectPool;
+    public static ParticleEffectPool smokeEffectPool, sparkEffectPool, bloodEffectPool;
     
 	public static TextureRegion mouse,mouseclosed;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
@@ -474,8 +474,10 @@ public class AssetLoader {
     	mouseclosed.flip(false, true);
     	
         logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
-        logo_shadow.setSize(width-40, (height/5)-5);
-        logo_shadow.setPosition(20,height-(height/5)-5);
+        //logo_shadow.setSize(width-40, (height/5)-5);
+        //logo_shadow.setPosition(20,height-(height/5)-5);
+        logo_shadow.setSize(width-200, (height/5)-5);
+        logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-40);
     			
     	//FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
     	
@@ -517,6 +519,11 @@ public class AssetLoader {
     	smokeEffectPool = new ParticleEffectPool(originalSmoke, 1, 2);
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
+    	
+    	effect = new ParticleEffect();
+    	effect.load(Gdx.files.internal("particle/blood"), Gdx.files.internal("particle"));
+    	bloodEffectPool = new ParticleEffectPool(effect, 1, 2);
+    
     
     }
 
