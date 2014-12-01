@@ -2,6 +2,8 @@ package cheese.squeeze.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.ParticleEffectLoader;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
@@ -18,14 +20,17 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class AssetLoader {
 	
 	public static AssetManager manager = new AssetManager();
-    
-    public static Sprite bg,menuBg;
+	
+	public static Sprite bg,menuBg;
     
     public static Vector2 mouseCenter,goalCenter,trapCenter;
     public static Vector2 mouseNose;
@@ -49,6 +54,10 @@ public class AssetLoader {
     
     
     private  TextureAtlas atlasMenuLeeg;
+
+	private FreeTypeFontGenerator fontGenerator;
+
+	private static ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood;
 
 	public static Sprite leader;
 
@@ -109,6 +118,7 @@ public class AssetLoader {
 	}
 
 	public void queueLoading(){
+		InternalFileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
@@ -122,6 +132,26 @@ public class AssetLoader {
 		manager.load("data/chalk.mp3",Sound.class);
 		manager.load("data/death.mp3",Sound.class);
 		manager.load("data/pop.mp3",Sound.class);
+		manager.setLoader(ParticleEffect.class, new ParticleEffectLoader(new InternalFileHandleResolver()));
+		manager.load("particle/smoke", ParticleEffect.class);
+		manager.load("particle/snowflakes", ParticleEffect.class);
+		manager.load("particle/clickspark",ParticleEffect.class);
+		manager.load("particle/blood",ParticleEffect.class);
+		//manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
+		//manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
+		//manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
+		
+	}
+	
+	private FreeTypeFontLoaderParameter getFontParams() {
+		FreeTypeFontLoaderParameter parameter = new FreeTypeFontLoaderParameter();
+    	//fontGenerator.scaleForPixelHeight((int)Math.ceil(8));
+		parameter.fontFileName = "fonts/amigaever.ttf";
+    	parameter.fontParameters.size = 8;
+    	parameter.fontParameters.flip = true;
+    	parameter.fontParameters.minFilter = Texture.TextureFilter.Nearest;
+    	parameter.fontParameters.magFilter = Texture.TextureFilter.MipMapLinearNearest;
+    	return parameter;
 	}
 	
 	public void lastLoadingStep() {
@@ -138,6 +168,12 @@ public class AssetLoader {
 		atlasFloor = manager.get("graph/floor.pack",TextureAtlas.class);
 		atlasMenuLeeg = manager.get("graph/menu_leeg.pack",TextureAtlas.class);
 		atlasTutorial = manager.get("graph/Tutorial.pack",TextureAtlas.class);
+		originalSmoke = manager.get("particle/smoke", ParticleEffect.class);
+		originalSnow = manager.get("particle/snowflakes", ParticleEffect.class);
+		originalSpark = manager.get("particle/clickspark",ParticleEffect.class);
+		originalBlood = manager.get("particle/blood",ParticleEffect.class);
+		//font12 = manager.get("fonts/amiga4ever",BitmapFont.class);
+		
 	}
 	
 	public void setSounds() {
@@ -445,9 +481,9 @@ public class AssetLoader {
         logo_shadow.setSize(width-200, (height/5)-5);
         logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-40);
     			
-    	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
-    	FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-    	generator.scaleForPixelHeight((int)Math.ceil(8));
+    	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amigaever.ttf"));
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		generator.scaleForPixelHeight((int)Math.ceil(8));
     	parameter.size = 8;
     	parameter.flip = true;
     	parameter.minFilter = Texture.TextureFilter.Nearest;
@@ -476,30 +512,23 @@ public class AssetLoader {
     	//TODO particles
 
     	//SNOW
-    	ParticleEffect effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/snowflakes"), Gdx.files.internal("particle"));
-    	snowEffectPool = new ParticleEffectPool(effect, 1, 2);
+    	snowEffectPool = new ParticleEffectPool(originalSnow, 1, 2);
     	
     	//PooledEffect effectp = smokeEffectPool.obtain();
    
     	//effectp.setPosition(width/2, height);
     	
     	//spark
-    	effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/clickspark"), Gdx.files.internal("particle"));
-    	sparkEffectPool = new ParticleEffectPool(effect, 1, 2);
+    	sparkEffectPool = new ParticleEffectPool(originalSpark, 1, 2);
     	//effectp = sparkEffectPool.obtain();
     	
-    	effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
-    	//effect.scaleEffect(0.5f);
-    	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
+     	//effect.scaleEffect(0.5f);
+    	smokeEffectPool = new ParticleEffectPool(originalSmoke, 1, 2);
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
     	
-    	effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/blood"), Gdx.files.internal("particle"));
-    	bloodEffectPool = new ParticleEffectPool(effect, 1, 2);
+
+    	bloodEffectPool = new ParticleEffectPool(originalBlood, 1, 2);
     
     
     }
