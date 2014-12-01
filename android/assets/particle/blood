@@ -6,24 +6,22 @@ lowMin: 3000.0
 lowMax: 3000.0
 - Count - 
 min: 0
-max: 300
+max: 5000
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
 highMin: 250.0
 highMax: 250.0
 relative: false
-scalingCount: 2
+scalingCount: 1
 scaling0: 1.0
-scaling1: 0.24489796
-timelineCount: 2
+timelineCount: 1
 timeline0: 0.0
-timeline1: 1.0
 - Life - 
 lowMin: 0.0
 lowMax: 0.0
 highMin: 500.0
-highMax: 2000.0
+highMax: 800.0
 relative: false
 scalingCount: 3
 scaling0: 1.0
@@ -79,8 +77,8 @@ timelineCount: 2
 timeline0: 0.0
 timeline1: 0.4041096
 - Scale - 
-lowMin: 7.0
-lowMax: 7.0
+lowMin: 0.0
+lowMax: 0.0
 highMin: 10.0
 highMax: 10.0
 relative: false
@@ -101,7 +99,7 @@ active: true
 lowMin: 0.0
 lowMax: 0.0
 highMin: 30.0
-highMax: 40.0
+highMax: 300.0
 relative: false
 scalingCount: 1
 scaling0: 0.50980395
@@ -114,12 +112,14 @@ lowMax: 360.0
 highMin: 0.0
 highMax: 360.0
 relative: false
-scalingCount: 2
+scalingCount: 3
 scaling0: 0.5686275
 scaling1: 0.5686275
-timelineCount: 2
+scaling2: 0.5686275
+timelineCount: 3
 timeline0: 0.0
-timeline1: 1.0
+timeline1: 0.63013697
+timeline2: 1.0
 - Rotation - 
 active: false
 - Wind - 
@@ -129,16 +129,14 @@ active: true
 lowMin: 0.0
 lowMax: 0.0
 highMin: 0.0
-highMax: -200.0
+highMax: 10.0
 relative: false
-scalingCount: 3
-scaling0: 0.0
-scaling1: 0.3265306
-scaling2: 1.0
-timelineCount: 3
+scalingCount: 2
+scaling0: 0.27450982
+scaling1: 0.7058824
+timelineCount: 2
 timeline0: 0.0
-timeline1: 0.49315068
-timeline2: 1.0
+timeline1: 1.0
 - Tint - 
 colorsCount: 3
 colors0: 0.5411765
@@ -164,10 +162,10 @@ timeline2: 0.70306516
 timeline3: 1.0
 - Options - 
 attached: false
-continuous: true
+continuous: false
 aligned: false
 additive: false
 behind: false
 premultipliedAlpha: false
 - Image Path -
-/Users/maxdekoninck/Dropbox/Game/android/assets/particle/blood.png
+blood.png

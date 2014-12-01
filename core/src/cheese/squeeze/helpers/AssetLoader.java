@@ -2,7 +2,6 @@ package cheese.squeeze.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.ParticleEffectLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
@@ -119,9 +118,7 @@ public class AssetLoader {
 	}
 
 	public void queueLoading(){
-		FileHandleResolver resolver = new InternalFileHandleResolver();
-		manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
-		manager.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
+		InternalFileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
@@ -140,9 +137,9 @@ public class AssetLoader {
 		manager.load("particle/snowflakes", ParticleEffect.class);
 		manager.load("particle/clickspark",ParticleEffect.class);
 		manager.load("particle/blood",ParticleEffect.class);
-		
-
-		//manager.load("size8.tff", BitmapFont.class,getFontParams());
+		//manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
+		//manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
+		//manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
 		
 	}
 	
@@ -151,9 +148,9 @@ public class AssetLoader {
     	//fontGenerator.scaleForPixelHeight((int)Math.ceil(8));
 		parameter.fontFileName = "fonts/amigaever.ttf";
     	parameter.fontParameters.size = 8;
-    	//parameter.fontParameters.flip = true;
-    	//parameter.fontParameters.minFilter = Texture.TextureFilter.Nearest;
-    	//parameter.fontParameters.magFilter = Texture.TextureFilter.MipMapLinearNearest;
+    	parameter.fontParameters.flip = true;
+    	parameter.fontParameters.minFilter = Texture.TextureFilter.Nearest;
+    	parameter.fontParameters.magFilter = Texture.TextureFilter.MipMapLinearNearest;
     	return parameter;
 	}
 	
@@ -530,7 +527,7 @@ public class AssetLoader {
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
     	
-    	originalBlood.scaleEffect(0.8f);
+
     	bloodEffectPool = new ParticleEffectPool(originalBlood, 1, 2);
     
     
@@ -586,3 +583,4 @@ public class AssetLoader {
 		//TODO to remove memory
 	}
 }
+
