@@ -41,7 +41,7 @@ public class AssetLoader {
 
     public static Sprite trap,home,trapClosed;
 
-    public static ParticleEffectPool smokeEffectPool, sparkEffectPool, bloodEffectPool;
+    public static ParticleEffectPool smokeEffectPool, sparkEffectPool, bloodEffectPool,sparkGEffectPool,cheeseEffectPool;
     
 	public static TextureRegion mouse,mouseclosed;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
@@ -57,7 +57,12 @@ public class AssetLoader {
 
 	private FreeTypeFontGenerator fontGenerator;
 
-	private static ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood;
+
+	public static ParticleEffectPool bloodspEffectPool;
+
+	public static ParticleEffectPool bloodsp2EffectPool;
+
+	private static ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood,originalBloodsp2,originalBloodsp,originalSparkG,originalCheese;
 
 	public static Sprite leader;
 
@@ -137,6 +142,10 @@ public class AssetLoader {
 		manager.load("particle/snowflakes", ParticleEffect.class);
 		manager.load("particle/clickspark",ParticleEffect.class);
 		manager.load("particle/blood",ParticleEffect.class);
+		manager.load("particle/bloodspatter",ParticleEffect.class);
+		manager.load("particle/bloodspatter2",ParticleEffect.class);
+		manager.load("particle/spark",ParticleEffect.class);
+		manager.load("particle/cheeseflakes",ParticleEffect.class);
 		//manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
 		//manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
 		//manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
@@ -172,6 +181,10 @@ public class AssetLoader {
 		originalSnow = manager.get("particle/snowflakes", ParticleEffect.class);
 		originalSpark = manager.get("particle/clickspark",ParticleEffect.class);
 		originalBlood = manager.get("particle/blood",ParticleEffect.class);
+		originalBloodsp = manager.get("particle/bloodspatter",ParticleEffect.class);
+		originalBloodsp2 = manager.get("particle/bloodspatter2",ParticleEffect.class);
+		originalSparkG = manager.get("particle/spark",ParticleEffect.class);
+		originalCheese = manager.get("particle/cheeseflakes",ParticleEffect.class);
 		//font12 = manager.get("fonts/amiga4ever",BitmapFont.class);
 		
 	}
@@ -514,6 +527,7 @@ public class AssetLoader {
     	//SNOW
     	snowEffectPool = new ParticleEffectPool(originalSnow, 1, 2);
     	
+    	cheeseEffectPool = new ParticleEffectPool(originalCheese, 1, 2);
     	//PooledEffect effectp = smokeEffectPool.obtain();
    
     	//effectp.setPosition(width/2, height);
@@ -527,8 +541,13 @@ public class AssetLoader {
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
     	
-
     	bloodEffectPool = new ParticleEffectPool(originalBlood, 1, 2);
+    	
+    	bloodspEffectPool = new ParticleEffectPool(originalBloodsp, 1, 2);
+    	
+    	bloodsp2EffectPool = new ParticleEffectPool(originalBloodsp2, 1, 2);
+    	
+    	sparkGEffectPool = new ParticleEffectPool(originalSparkG, 1, 2);
     
     
     }

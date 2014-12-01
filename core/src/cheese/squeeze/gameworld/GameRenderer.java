@@ -67,6 +67,7 @@ public class GameRenderer {
 	private InputHelper input;
 	private boolean scaled = false;
 	private TextureRegion mouseClosed;
+	private boolean blood = false;
 
 
 
@@ -319,17 +320,48 @@ public class GameRenderer {
 	 			//TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
 				Sprite kaas = goals.getGoal(g.getTickets());
 				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/12);
+				if(g.isReduced()) {
+					addGoalEffect(g.getPosition().x,g.getPosition().y+height/24);
+				}
 				batcher.end();
 			}
 		}
 	}
 	
+	private void addGoalEffect(float x,float y) {
+		PooledEffect effectcheese = AssetLoader.sparkGEffectPool.obtain();	
+		//effectcheese.scaleEffect(0.2f);
+		//effectcheese.allowCompletion();
+		effectcheese.setPosition(x,y);
+    	effects.add(effectcheese);
+    	effectcheese.free();
+	}
+
+
 	private void addBloodEffect(Trap t) {
-		if(t!= null) {
-			PooledEffect effectblood = AssetLoader.bloodEffectPool.obtain();		
+		if(t!=null ) {
+			PooledEffect effectblood = AssetLoader.bloodEffectPool.obtain();	
+			effectblood.scaleEffect(0.2f);
 	    	effectblood.setPosition(t.getPosition().x,t.getPosition().y);
 	    	effects.add(effectblood);
+	    	if(!blood) {
+
+		    	effectblood = AssetLoader.bloodspEffectPool.obtain();
+		    	effectblood.setPosition(width/2,height/2);
+		    	//effectblood.scaleEffect(0.2f);
+		    	effectblood.allowCompletion();
+		    	effectblood.flipY();
+		    	effects.add(effectblood);
+		    	effectblood = AssetLoader.bloodsp2EffectPool.obtain();
+		    	effectblood.setPosition(width/2,height/2);
+		    	effectblood.flipY();
+		    	//effectblood.scaleEffect(0.2f);
+		    	effectblood.allowCompletion();
+		    	effects.add(effectblood);
+		    	blood = true;
+			}
 		}
+		
 		
 		
 	}
@@ -457,6 +489,19 @@ public class GameRenderer {
 	}
 	
 	public void renderScoreFinalWIN(int score) {
+		if(!blood) {
+			PooledEffect effectp = AssetLoader.cheeseEffectPool.obtain();
+			effectp.scaleEffect(0.5f);
+	    	effectp.setPosition(width,height);
+			effects.add(effectp);
+			for(Cheese g : board.getGoals()) {
+				addGoalEffect(g.getPosition().x, g.getPosition().y+height/24);
+			}
+			blood = true;
+		}
+		
+		
+		
 		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
 		font.setColor(Color.DARK_GRAY);
 		batcher.begin();
