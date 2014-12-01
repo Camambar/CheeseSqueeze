@@ -6,35 +6,46 @@ lowMin: 3000.0
 lowMax: 3000.0
 - Count - 
 min: 0
-max: 5000
+max: 300
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
 highMin: 250.0
 highMax: 250.0
 relative: false
-scalingCount: 1
+scalingCount: 2
 scaling0: 1.0
-timelineCount: 1
+scaling1: 0.24489796
+timelineCount: 2
 timeline0: 0.0
+timeline1: 1.0
 - Life - 
 lowMin: 0.0
 lowMax: 0.0
 highMin: 500.0
-highMax: 1000.0
+highMax: 2000.0
 relative: false
 scalingCount: 3
 scaling0: 1.0
-scaling1: 1.0
-scaling2: 0.3
+scaling1: 0.7058824
+scaling2: 0.4509804
 timelineCount: 3
 timeline0: 0.0
-timeline1: 0.66
+timeline1: 0.44520548
 timeline2: 1.0
 - Life Offset - 
 active: false
 - X Offset - 
-active: false
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
 - Y Offset - 
 active: false
 - Spawn Shape - 
@@ -48,7 +59,7 @@ highMin: 0.0
 highMax: 0.0
 relative: false
 scalingCount: 3
-scaling0: 0.7058824
+scaling0: 0.6862745
 scaling1: 0.7058824
 scaling2: 0.7058824
 timelineCount: 3
@@ -68,26 +79,32 @@ timelineCount: 2
 timeline0: 0.0
 timeline1: 0.4041096
 - Scale - 
-lowMin: 0.0
-lowMax: 0.0
-highMin: 32.0
-highMax: 32.0
+lowMin: 7.0
+lowMax: 7.0
+highMin: 10.0
+highMax: 10.0
 relative: false
-scalingCount: 2
-scaling0: 0.0
+scalingCount: 5
+scaling0: 0.039215688
 scaling1: 0.039215688
-timelineCount: 2
+scaling2: 0.039215688
+scaling3: 0.039215688
+scaling4: 0.039215688
+timelineCount: 5
 timeline0: 0.0
-timeline1: 0.17123288
+timeline1: 0.20547946
+timeline2: 0.5
+timeline3: 0.74657536
+timeline4: 1.0
 - Velocity - 
 active: true
 lowMin: 0.0
 lowMax: 0.0
 highMin: 30.0
-highMax: 300.0
+highMax: 40.0
 relative: false
 scalingCount: 1
-scaling0: 1.0
+scaling0: 0.50980395
 timelineCount: 1
 timeline0: 0.0
 - Angle - 
@@ -97,20 +114,31 @@ lowMax: 360.0
 highMin: 0.0
 highMax: 360.0
 relative: false
-scalingCount: 3
-scaling0: 1.0
-scaling1: 1.0
-scaling2: 1.0
-timelineCount: 3
+scalingCount: 2
+scaling0: 0.5686275
+scaling1: 0.5686275
+timelineCount: 2
 timeline0: 0.0
-timeline1: 0.89041096
-timeline2: 1.0
+timeline1: 1.0
 - Rotation - 
 active: false
 - Wind - 
 active: false
 - Gravity - 
-active: false
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: -200.0
+relative: false
+scalingCount: 3
+scaling0: 0.0
+scaling1: 0.3265306
+scaling2: 1.0
+timelineCount: 3
+timeline0: 0.0
+timeline1: 0.49315068
+timeline2: 1.0
 - Tint - 
 colorsCount: 3
 colors0: 0.5411765
@@ -136,10 +164,10 @@ timeline2: 0.70306516
 timeline3: 1.0
 - Options - 
 attached: false
-continuous: false
+continuous: true
 aligned: false
 additive: false
 behind: false
 premultipliedAlpha: false
 - Image Path -
-blood.png
+/Users/maxdekoninck/Dropbox/Game/android/assets/particle/blood.png
