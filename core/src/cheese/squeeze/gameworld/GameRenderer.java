@@ -458,7 +458,7 @@ public class GameRenderer {
 	
 	public void renderScoreFinalWIN(int score) {
 		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
-		font.setColor(Color.YELLOW);
+		font.setColor(Color.DARK_GRAY);
 		batcher.begin();
 		str.delete(lengthstr, str.length());
 		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
@@ -466,8 +466,8 @@ public class GameRenderer {
 	}
 
 	public void renderScoreFinalLOSE(int score) {
-		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
-		font.setColor(Color.RED);
+		//font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
+		font.setColor(Color.MAROON);
 		batcher.begin();
 		str.delete(lengthstr, str.length());
 		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
@@ -481,19 +481,19 @@ public class GameRenderer {
 		switch (round) {
 		case 0:
 			c = "3";
-			font.setColor(Color.RED);
+			font.setColor(Color.WHITE);
 			break;
 		case 1:
 			c = "2";
-			font.setColor(Color.RED);
+			font.setColor(Color.WHITE);
 			break;
 		case 2:
 			c = "1";
-			font.setColor(Color.RED);
+			font.setColor(Color.WHITE);
 			break;
 		case 3:
 			c = "START";
-			font.setColor(Color.GREEN);
+			font.setColor(Color.WHITE);
 			break;
 		}
 		batcher.begin();
