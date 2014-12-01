@@ -36,7 +36,7 @@ public class AssetLoader {
 
     public static Sprite trap,home,trapClosed;
 
-    public  static ParticleEffectPool smokeEffectPool, sparkEffectPool;
+    public static ParticleEffectPool smokeEffectPool, sparkEffectPool;
     
 	public static TextureRegion mouse,mouseclosed;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
@@ -49,6 +49,8 @@ public class AssetLoader {
     
     
     private  TextureAtlas atlasMenuLeeg;
+
+	public static Sprite leader;
 
 	public static ParticleEffectPool snowEffectPool;
 
@@ -239,10 +241,15 @@ public class AssetLoader {
         
         desiredWidth = width*0.5f;
         float scale = desiredWidth / menuBg.getWidth();
+        
+        leader = new Sprite(new TextureRegion(atlasMenu.findRegion("leader")));
+        leader.setSize(leader.getWidth() * scale, leader.getHeight() * scale);
+        leader.setPosition((width/2)-(.5f*leader.getWidth()),(height/2));
+        
         play.setSize(play.getWidth() * scale, play.getHeight() * scale);
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
-        play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+20);
+        play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+leader.getHeight()+10);
         
         version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
         version.setSize(version.getWidth()*scale, version.getHeight()*scale );
@@ -255,22 +262,24 @@ public class AssetLoader {
         logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
         */
         
+
+        
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
         music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
-        music_on.setPosition(play.getX(),(height/2)-20-music_on.getHeight());
+        music_on.setPosition(play.getX(),(height/2)-10-music_on.getHeight());
         
         music_off = new Sprite(new TextureRegion(atlasMenu.findRegion("music_off")));
         music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
-        music_off.setPosition(play.getX(),(height/2)-20-music_off.getHeight());
+        music_off.setPosition(play.getX(),(height/2)-10-music_off.getHeight());
         
         
         sound_on = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_on")));
         sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
-        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/2)-20-sound_on.getHeight());
+        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/2)-10-sound_on.getHeight());
         sound_off = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_off")));
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
-        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-20-sound_off.getHeight());
+        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-10-sound_off.getHeight());
     	
        
         
@@ -353,14 +362,20 @@ public class AssetLoader {
         
 
         
-        play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
+        //XXX smaller ios
         
-        desiredWidth = width*0.9f;
+        desiredWidth = width*0.75f;
         float scale = desiredWidth / menuBg.getWidth();
+        
+        leader = new Sprite(new TextureRegion(atlasMenu.findRegion("leader")));
+        leader.setSize(leader.getWidth() * scale, leader.getHeight() * scale);
+        leader.setPosition((width/2)-(.5f*leader.getWidth()),(height/1.75f));
+        
+        play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
         play.setSize(play.getWidth() * scale, play.getHeight() * scale);
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
-        play.setPosition((width/2)-(.5f*play.getWidth()),(height/1.75f)+20);
+        play.setPosition((width/2)-(.5f*play.getWidth()),(height/1.75f)+10+play.getHeight());
         
         version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
         version.setSize(version.getWidth()*scale, version.getHeight()*scale );
@@ -374,22 +389,23 @@ public class AssetLoader {
         logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
         */
         
+
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
         music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
-        music_on.setPosition(play.getX(),(height/1.75f)-20-music_on.getHeight());
+        music_on.setPosition(play.getX(),(height/1.75f)-10-music_on.getHeight());
         
         music_off = new Sprite(new TextureRegion(atlasMenu.findRegion("music_off")));
         music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
-        music_off.setPosition(play.getX(),(height/1.75f)-20-music_off.getHeight());
+        music_off.setPosition(play.getX(),(height/1.75f)-10-music_off.getHeight());
         
         
         sound_on = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_on")));
         sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
-        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/1.75f)-20-sound_on.getHeight());
+        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/1.75f)-10-sound_on.getHeight());
         sound_off = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_off")));
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
-        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/1.75f)-20-sound_off.getHeight());
+        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/1.75f)-10-sound_off.getHeight());
     	
        
         
@@ -474,7 +490,7 @@ public class AssetLoader {
     	
     	effect = new ParticleEffect();
     	effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
-    	effect.scaleEffect(0.5f);
+    	//effect.scaleEffect(0.5f);
     	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
@@ -519,5 +535,15 @@ public class AssetLoader {
 	public static void disposeSplash() {
 		texture.dispose();
 	}
+	
+	public static void setEffectScale(float scale) {
+		ParticleEffect effect = new ParticleEffect();
+		effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
+		effect.scaleEffect(scale);
+    	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
+	}
 
+	public void disposeEffects() {
+		//TODO to remove memory
+	}
 }

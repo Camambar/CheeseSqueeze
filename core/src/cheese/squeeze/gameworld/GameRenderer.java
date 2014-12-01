@@ -22,6 +22,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteCache;
@@ -65,7 +67,8 @@ public class GameRenderer {
 	private InputHelper input;
 	private boolean scaled = false;
 	private TextureRegion mouseClosed;
-	private float smokeScaling;
+
+
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width, InputHelper input) {
@@ -77,7 +80,13 @@ public class GameRenderer {
 		effects = new Array();
 
 
-		smokeScaling = board.getDistBetweenVlines()/100;
+		float smokeScaling = board.getDistBetweenVlines()/100;
+		
+		
+		//effect.reset();
+		AssetLoader.setEffectScale(smokeScaling);
+		
+		
 		
 		font = AssetLoader.font12;
 		batcher = new SpriteBatch();
