@@ -424,8 +424,8 @@ public class AssetLoader {
     	mouseclosed.flip(false, true);
     	
         logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
-        logo_shadow.setSize(width-40, (height/5)-5);
-        logo_shadow.setPosition(20,height-(height/5)-5);
+        logo_shadow.setSize(width-80, (height/5)-5);
+        logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-40);
     			
     	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
     	FreeTypeFontParameter parameter = new FreeTypeFontParameter();
