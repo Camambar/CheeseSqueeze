@@ -187,6 +187,7 @@ public class GameRenderer {
 
 		    if (effect.isComplete()) {
 		        effect.free();
+		        effect.dispose();
 		        effects.removeIndex(i);
 		    }
 		}

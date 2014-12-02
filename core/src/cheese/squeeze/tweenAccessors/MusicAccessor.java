@@ -34,7 +34,7 @@ public class MusicAccessor extends Accessor{
 	public static void play(Music music) {
 		// check if the music is enabled
 		if (!enabled){
-			return;
+			
 		}
 
 		else if(musicBeingPlayed == null || !musicBeingPlayed.equals(music) || !musicBeingPlayed.isPlaying()) {		
@@ -56,7 +56,7 @@ public class MusicAccessor extends Accessor{
 	public static void stop() {
 		if (musicBeingPlayed != null) {
 			musicBeingPlayed.stop();
-			musicBeingPlayed.dispose();
+			//musicBeingPlayed.dispose();
 		}
 	}
 

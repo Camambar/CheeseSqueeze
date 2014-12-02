@@ -62,7 +62,7 @@ public class AssetLoader {
 
 	public static ParticleEffectPool bloodsp2EffectPool;
 
-	private static ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood,originalBloodsp2,originalBloodsp,originalSparkG,originalCheese;
+	private  ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood,originalBloodsp2,originalBloodsp,originalSparkG,originalCheese;
 
 	public static Sprite leader;
 
@@ -549,6 +549,7 @@ public class AssetLoader {
     	
     	sparkGEffectPool = new ParticleEffectPool(originalSparkG, 1, 2);
     
+    	
     
     }
 
@@ -578,6 +579,14 @@ public class AssetLoader {
         atlasMenu.dispose();
         atlasFloor.dispose();
         atlasMenuLeeg.dispose();
+        originalSnow.dispose();
+    	originalCheese.dispose();
+    	originalBlood.dispose();
+    	originalBloodsp.dispose();
+    	originalBloodsp2.dispose();
+    	originalSmoke.dispose();
+    	originalSpark.dispose();
+    	originalSparkG.dispose();
         manager.clear();
     }
     
