@@ -12,8 +12,7 @@
 	*	git fetch
 	*	git checkout -t -f origin/master
 	*	git pull
-	*	
-	*
+	
 	*       If GIT fucks up:
 	*	git remote rm origin
 	*	rm -rf .git
