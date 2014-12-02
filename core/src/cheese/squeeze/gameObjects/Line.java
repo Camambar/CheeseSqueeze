@@ -20,8 +20,15 @@ public abstract class Line {
     }
     
     public Line(Vector2 p1,Vector2 p2) {
-    	this.point1 = p1;
-    	this.point2 = p2;
+    	if(p1.x >p2.x) {
+    		this.point1 = p2;
+        	this.point2 = p1;
+    	}
+    	else {
+    		this.point1 = p1;
+        	this.point2 = p2;
+    	}
+    	
     	drawable = true;
     }
     

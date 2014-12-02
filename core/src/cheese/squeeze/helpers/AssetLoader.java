@@ -64,6 +64,8 @@ public class AssetLoader {
 
 	private  ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood,originalBloodsp2,originalBloodsp,originalSparkG,originalCheese;
 
+	public static BitmapFont font;
+
 	public static Sprite leader;
 
 	public static ParticleEffectPool snowEffectPool;
@@ -146,6 +148,9 @@ public class AssetLoader {
 		manager.load("particle/bloodspatter2",ParticleEffect.class);
 		manager.load("particle/spark",ParticleEffect.class);
 		manager.load("particle/cheeseflakes",ParticleEffect.class);
+		//manager.load("font/arial-15.png",Texture.class);
+		
+		//manager.load(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
 		//manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
 		//manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
 		//manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
@@ -186,7 +191,6 @@ public class AssetLoader {
 		originalSparkG = manager.get("particle/spark",ParticleEffect.class);
 		originalCheese = manager.get("particle/cheeseflakes",ParticleEffect.class);
 		//font12 = manager.get("fonts/amiga4ever",BitmapFont.class);
-		
 	}
 	
 	public void setSounds() {
@@ -210,6 +214,8 @@ public class AssetLoader {
         fullT=new Texture(Gdx.files.internal("data/full.png"));
         empty=new NinePatch(new TextureRegion(AssetLoader.emptyT,24,24),8,8,8,8);
         full=new NinePatch(new TextureRegion(AssetLoader.fullT,24,24),8,8,8,8);
+        font = new BitmapFont(Gdx.files.internal("fonts/arial-15.fnt"));
+	
 	}
 	
 	public void loadMenu() {
@@ -415,22 +421,12 @@ public class AssetLoader {
         
         desiredWidth = width*0.75f;
         float scale = desiredWidth / menuBg.getWidth();
-        
-        leader = new Sprite(new TextureRegion(atlasMenu.findRegion("leader")));
-        leader.setSize(leader.getWidth() * scale, leader.getHeight() * scale);
-        leader.setPosition((width/2)-(.5f*leader.getWidth()),(height/1.75f));
-        
+        //float scaleH = height/3;
         play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
-        play.setSize(play.getWidth() * scale, play.getHeight() * scale);
-        // (height/2)+10 +play.getWidth()
-        //width-(1.5f*logo_shadow.getWidth())
-        play.setPosition((width/2)-(.5f*play.getWidth()),(height/1.75f)+10+play.getHeight());
+        float playWidth = play.getWidth() * scale;
+        float playPos = (width/2)-(.5f*playWidth);
         
-        version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
-        version.setSize(version.getWidth()*scale, version.getHeight()*scale );
-        // (height/2)+10 +play.getWidth()
-        //width-(1.5f*logo_shadow.getWidth())
-        version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
+      
         
         /*
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
@@ -442,21 +438,39 @@ public class AssetLoader {
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
         music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
-        music_on.setPosition(play.getX(),(height/1.75f)-10-music_on.getHeight());
+        music_on.setPosition(playPos,(height/2)-music_on.getHeight()/2);
         
         music_off = new Sprite(new TextureRegion(atlasMenu.findRegion("music_off")));
         music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
-        music_off.setPosition(play.getX(),(height/1.75f)-10-music_off.getHeight());
+        music_off.setPosition(playPos,(height/2)-music_on.getHeight()/2);
         
         
         sound_on = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_on")));
         sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
-        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/1.75f)-10-sound_on.getHeight());
+        sound_on.setPosition((width/2)+(.5f*playWidth)-sound_on.getWidth(),(height/2)-music_on.getHeight()/2);
         sound_off = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_off")));
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
-        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/1.75f)-10-sound_off.getHeight());
+        sound_off.setPosition((width/2)+(.5f*playWidth)-sound_off.getWidth(),(height/2)-music_on.getHeight()/2);
     	
        
+        desiredWidth = width*0.75f;
+        scale = desiredWidth / menuBg.getWidth();
+
+        leader = new Sprite(new TextureRegion(atlasMenu.findRegion("leader")));
+        leader.setSize(leader.getWidth() * scale, leader.getHeight() * scale);
+        leader.setPosition((width/2)-(.5f*leader.getWidth()),music_on.getY()+music_on.getHeight()+10);
+        
+       
+        play.setSize(playWidth, play.getHeight() * scale);
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        play.setPosition(playPos,leader.getY()+leader.getHeight()+10);
+        
+        version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
+        version.setSize(version.getWidth()*scale, version.getHeight()*scale );
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
         
         home = new Sprite(new TextureRegion(atlasGame.findRegion("home")));
         home.setSize(13,10);
@@ -473,7 +487,7 @@ public class AssetLoader {
     	       androidLoad();
     		   break;
     	   case Desktop:
-    	       desktopLoad();
+    		   desktopLoad();
     		   break;
     	   case WebGL:
     		   desktopLoad();
@@ -492,7 +506,7 @@ public class AssetLoader {
         //logo_shadow.setSize(width-40, (height/5)-5);
         //logo_shadow.setPosition(20,height-(height/5)-5);
         logo_shadow.setSize(width-200, (height/5)-5);
-        logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-40);
+        logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-20);
     			
     	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amigaever.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -598,6 +612,7 @@ public class AssetLoader {
 
 	public static void disposeSplash() {
 		texture.dispose();
+		font.dispose();
 	}
 	
 	public static void setEffectScale(float scale) {

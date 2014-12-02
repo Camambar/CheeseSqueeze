@@ -417,7 +417,6 @@ public class GameBoard {
 			if(x < vl.getX1()) {
 				return i;
 			}
-			
 			i++;
 		}
 		return 0;
@@ -438,6 +437,7 @@ public class GameBoard {
 			}
 	    }
 	
+
 	private boolean isOcupiedPosition(float y,int betweenlines) {
 		LinkedList<HorizontalLine> ll = hlines.get(y);
 		if(ll != null && !ll.isValidPosition(betweenlines)) {

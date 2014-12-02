@@ -34,7 +34,7 @@ public class SplashScreen implements Screen{
 		
         this.game = game;
         stage = new Stage();
-        font=new BitmapFont();
+        font= AssetLoader.font;
         batch=new SpriteBatch();
         
         this.loader = loader;
@@ -118,6 +118,7 @@ public class SplashScreen implements Screen{
 	@Override
 	public void dispose() {
 		AssetLoader.disposeSplash();
+		font.dispose();
 		Timer t = TimerFactory.getRunningTimer(status);
 		t.stop();
 		System.out.println(t);
