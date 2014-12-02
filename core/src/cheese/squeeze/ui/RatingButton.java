@@ -35,12 +35,12 @@ public class RatingButton extends SimpleButton{
 		this.btns = new ArrayList<SwitchButton>();
 		this.state = state;
 		this.background = background;
-        this.x = x;
+        this.x = x-1;
         this.y = y-height/4;
 		this.width = width;
 		this.height = height;
 		float unitWidth = (width/amount) - (1.5f*BORDER_OFFSET);
-		float unitHeight = (height/3) - 2 * BORDER_OFFSET;
+		float unitHeight = (height/14) * BORDER_OFFSET;
 		for(int i= 1; i < amount+1;i++) {
 			//TODO x and y positions
 			//TODO test this button shizzle
