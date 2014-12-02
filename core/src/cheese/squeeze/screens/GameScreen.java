@@ -141,7 +141,7 @@ public class GameScreen implements Screen {
     			@Override
     			public void pushButtonListener(SimpleButton btn) {
     				//TODO Current level select 
-    				currentLevel.setTutorial(false);
+    				//currentLevel.setTutorial(false);
     		    	Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.TUTORIAL,currentLevel));
     		    	t.stop();
     		    	CSGame.currentState = GameState.PLAYING;
