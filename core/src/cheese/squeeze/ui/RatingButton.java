@@ -40,7 +40,7 @@ public class RatingButton extends SimpleButton{
 		this.width = width;
 		this.height = height;
 		float unitWidth = (width/amount) - (1.5f*BORDER_OFFSET);
-		float unitHeight = (height/3) - 2 * BORDER_OFFSET;
+		float unitHeight = (height/3.2f) - 2 * BORDER_OFFSET;
 		for(int i= 1; i < amount+1;i++) {
 			//TODO x and y positions
 			//TODO test this button shizzle
