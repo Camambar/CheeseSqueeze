@@ -37,6 +37,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 import cheese.squeeze.game.GameState;
 
@@ -320,7 +321,8 @@ public class GameRenderer {
 				
 	 			//TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
 				Sprite kaas = goals.getGoal(g.getTickets());
-				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/12);
+				float offset = MathUtils.sinDeg(iterator*0.03f)*10;
+				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,(width+offset)/10,(height+offset)/12);
 				if(g.isReduced()) {
 					addGoalEffect(g.getPosition().x,g.getPosition().y+height/24);
 				}
@@ -331,7 +333,8 @@ public class GameRenderer {
 	
 	private void addGoalEffect(float x,float y) {
 		PooledEffect effectcheese = AssetLoader.sparkGEffectPool.obtain();	
-		//effectcheese.scaleEffect(0.2f);
+		//effectcheese.scaleEffect(5f);
+		//effectcheese.setDuration(5);
 		//effectcheese.allowCompletion();
 		effectcheese.setPosition(x,y);
     	effects.add(effectcheese);
