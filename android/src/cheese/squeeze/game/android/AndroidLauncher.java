@@ -27,7 +27,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	private static Tracker t;
 	
 	private GameHelper gameHelper;
-	private final String LEADERBOARD_ID = "";	//TODO fill in leaderboard id
+	private final String LEADERBOARD_ID = "CgkItIOKwawYEAIQBg";
 	
 
 	private static final String PROPERTY_ID = "UA-56519107-1";
