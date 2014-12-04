@@ -54,7 +54,7 @@ public class GameRenderer {
 	private GoalSprites goals;
 	private Vector2 mouseSize= new Vector2(9,8);
 	private float iterator = 0;
-	private float move = 0;
+	private float move = 2;
 	private TextureRegion nextMouse;
 	private float lineWidth = (Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10;
 	private Color gestureColor = new Color(255.0f, 255.0f, 255.0f, 0.4f);
@@ -321,11 +321,13 @@ public class GameRenderer {
 				
 	 			//TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
 				Sprite kaas = goals.getGoal(g.getTickets());
-				float offset = MathUtils.sinDeg(iterator*0.03f)*10;
-				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,(width+offset)/10,(height+offset)/12);
+				float offset = MathUtils.sinDeg(iterator*0.05f)*0.2f+0.8f;
+				batcher.setColor(1f, 1f, 1f, 1f*offset);
+				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,(width)/10,(height)/12);
 				if(g.isReduced()) {
 					addGoalEffect(g.getPosition().x,g.getPosition().y+height/24);
 				}
+				batcher.setColor(1f,1f,1f,1f);
 				batcher.end();
 			}
 		}
@@ -503,7 +505,6 @@ public class GameRenderer {
 			}
 			blood = true;
 		}
-		
 		
 		
 		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
