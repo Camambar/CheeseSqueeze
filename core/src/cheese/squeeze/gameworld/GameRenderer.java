@@ -109,6 +109,7 @@ public class GameRenderer {
 
 
 	public void render() {
+		//System.out.println(Gdx.input.getPitch());
 		iterator += 200;
 
 		Gdx.gl.glLineWidth(lineWidth);
@@ -482,7 +483,7 @@ public class GameRenderer {
 		batcher.begin();
 		str.delete(lengthstr, str.length());
 		str.append(score);
-		str.append("\n " + CSGame.currentLevel.toString());
+		str.append("\n " +CSGame.currentLevel.toString());
 		font.setScale(0.5f);
 		//font.drawMultiLine(batch, str, x, y, alignmentWidth, alignment)
 		font.drawMultiLine(batcher,str,width/4,2, width/2,BitmapFont.HAlignment.CENTER);

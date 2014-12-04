@@ -57,6 +57,7 @@ public class InputHelper implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		touchCoord = new Vector3(screenX, screenY,0);
+		
 		if(!touchButton(screenX, screenY)){	
 			switch (CSGame.currentState) {
 			case GAMEOVER:
