@@ -77,6 +77,10 @@ public class MenuScreen implements Screen{
 			e.printStackTrace();
 		}
 		
+		if (! game.getActionResolver().getSignedInGPGS()) {
+			game.getActionResolver().loginGPGS();
+		}
+		
 		
 		
 		addButtons(game);
@@ -103,7 +107,7 @@ public class MenuScreen implements Screen{
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				dispose();
-				game.setScreen(new GameScreen(game,Level.LEVEL4));
+				game.setScreen(new GameScreen(game,Level.LEVEL1));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
@@ -113,7 +117,11 @@ public class MenuScreen implements Screen{
 			
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
-				//TODO LEADER STUFF
+				if (game.getActionResolver().getSignedInGPGS()) {
+					game.getActionResolver().getLeaderboardGPGS();
+				} else {
+					game.getActionResolver().loginGPGS();
+				}
 			}
 		},AssetLoader.leader.getX(),AssetLoader.leader.getY(),
         		AssetLoader.leader.getWidth()*AssetLoader.leader.getScaleX(),AssetLoader.leader.getHeight()*AssetLoader.leader.getScaleY(),AssetLoader.leader,AssetLoader.leader);

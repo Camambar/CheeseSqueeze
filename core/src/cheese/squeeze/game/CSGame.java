@@ -79,14 +79,14 @@ public class CSGame extends Game {
 	}
 	
 	public void loadLevel() {
-		/*
+		
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		if (prefs.contains("level")) {
 			String l = prefs.getString("level");
 			currentLevel = Level.valueOf(l);
 		}
 		System.out.println("level " + currentLevel.toString() + " loaded");
-		*/
+		
 	}
 
 	public void analytics() {
@@ -116,6 +116,16 @@ public class CSGame extends Game {
 
 		TimerFactory.clear();
 		Report.clear();
+	}
+	
+	public void leaderboards() {
+		if (! (action.getSignedInGPGS()))
+			return;
+		int score = 0;
+		for(Entry<Level, Integer> e : Report.gameScore.entrySet()) {
+			score += e.getValue();
+		}
+		action.submitScoreGPGS(score);
 	}
 
 	@Override

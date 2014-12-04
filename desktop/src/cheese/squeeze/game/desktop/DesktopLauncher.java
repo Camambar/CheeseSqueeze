@@ -18,13 +18,48 @@ public class DesktopLauncher implements ActionResolver{
 		//config.width =480;
 		//config.height =854;
 	    
-	    new LwjglApplication(new CSGame(), config);
+	    new LwjglApplication(new CSGame(new DesktopLauncher()), config);
 	}
 
 
 	@Override
 	public void reportAnalytics(String action, String cat, long value) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("reporting action: " + action + " cat: " + cat + " val: " + value);	
+	}
+	
+	boolean signedInStateGPGS = false;
+
+	@Override
+	public boolean getSignedInGPGS() {
+		System.out.println("logged in state: " + signedInStateGPGS);
+		return signedInStateGPGS;
+	}
+
+	@Override
+	public void loginGPGS() {
+		System.out.println("loginGPGS");
+		signedInStateGPGS = true;
+	}
+
+	@Override
+	public void submitScoreGPGS(int score) {
+		System.out.println("submitScoreGPGS " + score);
+	}
+
+	@Override
+	public void getLeaderboardGPGS() {
+		System.out.println("getLeaderboardGPGS");
+	}
+
+
+	@Override
+	public void unlockAchievementGPGS(String achievementId) {
+		System.out.println("Unlocked achievement: " + achievementId);
+	}
+
+
+	@Override
+	public void getAchievementsGPGS() {
+		System.out.println("getAchievementGPGS");
 	}
 }

@@ -2,6 +2,7 @@ package cheese.squeeze.game.android;
 
 import java.util.HashMap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 
@@ -12,16 +13,21 @@ import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.Logger.LogLevel;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
+import com.google.android.gms.games.Games;
+import com.google.example.games.basegameutils.GameHelper;
+import com.google.example.games.basegameutils.GameHelper.GameHelperListener;
 
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.tweenAccessors.ActionResolver;
 
-public class AndroidLauncher extends AndroidApplication implements ActionResolver	 {
+public class AndroidLauncher extends AndroidApplication implements ActionResolver, GameHelperListener	 {
 
 	private Tracker tracker;
 	private Tracker globalTracker;
 	private static Tracker t;
-	 
+	
+	private GameHelper gameHelper;
+	private final String LEADERBOARD_ID = "CgkItIOKwawYEAIQBg";
 	
 
 	private static final String PROPERTY_ID = "UA-56519107-1";
@@ -66,6 +72,11 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		//globalTracker = this.getTracker(TrackerName.GLOBAL_TRACKER);
 		GoogleAnalytics.getInstance(this).getLogger().setLogLevel(LogLevel.VERBOSE);
 		initialize(new CSGame(this), config);
+		if (gameHelper == null) {
+			gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
+			gameHelper.enableDebugLog(true);
+		}
+		gameHelper.setup(this);
 	}
 
 	@Override
@@ -124,6 +135,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	    super.onStart();
 	    // The rest of your onStart() code.
 	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+	    gameHelper.onStart(this);
 	  }
 
 	  @Override
@@ -131,6 +143,75 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	    super.onStop();
 	    // The rest of your onStop() code.
 	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+	    gameHelper.onStop();
 	  }
+	  
+	@Override
+	public void onActivityResult(int request, int response, Intent data) {
+		super.onActivityResult(request, response, data);
+		gameHelper.onActivityResult(request, response, data);
+	}
+
+	@Override
+	public void submitScoreGPGS(int score) {
+		Games.Leaderboards.submitScore(gameHelper.getApiClient(), LEADERBOARD_ID, score);
+	}
+
+	@Override
+	public void getLeaderboardGPGS() {
+		if (gameHelper.isSignedIn()) {
+			startActivityForResult(
+					Games.Leaderboards.getLeaderboardIntent(
+							gameHelper.getApiClient(), LEADERBOARD_ID),
+					100);
+		} else if (!gameHelper.isConnecting()) {
+			loginGPGS();
+		}
+	}
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean getSignedInGPGS() {
+		return gameHelper.isSignedIn();
+	}
+
+	@Override
+	public void loginGPGS() {
+		try {
+			runOnUiThread(new Runnable(){
+				public void run() {
+					gameHelper.beginUserInitiatedSignIn();
+				}
+			});
+		} catch (final Exception ex) {
+		}
+	}
+
+	@Override
+	public void unlockAchievementGPGS(String achievementId) {
+		Games.Achievements.unlock(gameHelper.getApiClient(), achievementId);
+	}
+
+	@Override
+	public void getAchievementsGPGS() {
+		if (gameHelper.isSignedIn()) {
+			startActivityForResult(
+					Games.Achievements.getAchievementsIntent(gameHelper
+							.getApiClient()), 101);
+		} else if (!gameHelper.isConnecting()) {
+			loginGPGS();
+		}
+	}
 
 }

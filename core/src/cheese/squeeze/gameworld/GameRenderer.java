@@ -37,6 +37,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
 import cheese.squeeze.game.GameState;
 
@@ -53,7 +54,7 @@ public class GameRenderer {
 	private GoalSprites goals;
 	private Vector2 mouseSize= new Vector2(9,8);
 	private float iterator = 0;
-	private float move = 0;
+	private float move = 2;
 	private TextureRegion nextMouse;
 	private float lineWidth = (Gdx.graphics.getHeight()/Gdx.graphics.getWidth())*10;
 	private Color gestureColor = new Color(255.0f, 255.0f, 255.0f, 0.4f);
@@ -321,10 +322,13 @@ public class GameRenderer {
 				
 	 			//TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
 				Sprite kaas = goals.getGoal(g.getTickets());
-				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/12);
+				float offset = MathUtils.sinDeg(iterator*0.05f)*0.2f+0.8f;
+				batcher.setColor(1f, 1f, 1f, 1f*offset);
+				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,(width)/10,(height)/12);
 				if(g.isReduced()) {
 					addGoalEffect(g.getPosition().x,g.getPosition().y+height/24);
 				}
+				batcher.setColor(1f,1f,1f,1f);
 				batcher.end();
 			}
 		}
@@ -332,7 +336,8 @@ public class GameRenderer {
 	
 	private void addGoalEffect(float x,float y) {
 		PooledEffect effectcheese = AssetLoader.sparkGEffectPool.obtain();	
-		//effectcheese.scaleEffect(0.2f);
+		//effectcheese.scaleEffect(5f);
+		//effectcheese.setDuration(5);
 		//effectcheese.allowCompletion();
 		effectcheese.setPosition(x,y);
     	effects.add(effectcheese);
@@ -501,7 +506,6 @@ public class GameRenderer {
 			}
 			blood = true;
 		}
-		
 		
 		
 		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));

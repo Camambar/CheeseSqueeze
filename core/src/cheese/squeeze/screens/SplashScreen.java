@@ -29,8 +29,8 @@ public class SplashScreen implements Screen{
 		TimerFactory.getNewTimer(status).start();
 		//TimerFactory.getNewTimer(new ReportStatus(GameState.GAMESTART)).start();
 		splashImage = new Image(AssetLoader.logo);
-		splashImage.setSize((Gdx.graphics.getWidth()/1.5f), (Gdx.graphics.getHeight()/1.5f));
-		splashImage.setPosition((Gdx.graphics.getWidth()/2)-splashImage.getWidth()/2, (Gdx.graphics.getHeight()/3));
+		splashImage.setSize((Gdx.graphics.getWidth()/1.23f), (Gdx.graphics.getHeight()/1.77f));
+		splashImage.setPosition((Gdx.graphics.getWidth()/2)-splashImage.getWidth()/2, (Gdx.graphics.getHeight()/2.2f));
 		
         this.game = game;
         stage = new Stage();
