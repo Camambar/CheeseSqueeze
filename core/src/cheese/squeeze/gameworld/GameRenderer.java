@@ -22,6 +22,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteCache;
@@ -64,6 +66,10 @@ public class GameRenderer {
 	private Array<PooledEffect> effects;
 	private InputHelper input;
 	private boolean scaled = false;
+	private TextureRegion mouseClosed;
+	private boolean blood = false;
+
+
 
 
 	public GameRenderer(GameBoard board,int midPointY,int height, int width, InputHelper input) {
@@ -75,6 +81,12 @@ public class GameRenderer {
 		effects = new Array();
 
 
+		float smokeScaling = board.getDistBetweenVlines()/100;
+		
+		
+		//effect.reset();
+		AssetLoader.setEffectScale(smokeScaling);
+		
 		
 		
 		font = AssetLoader.font12;
@@ -150,11 +162,10 @@ public class GameRenderer {
 	private void addLineEffect() {
 		HorizontalLine l= board.getEffectLine();
 		if(l!= null) {
+			
 			PooledEffect effectsmoke = AssetLoader.smokeEffectPool.obtain();
-			//if(!scaled) {
-			//	effectsmoke.scaleEffect(0.5f);
-			//	scaled=true;
-			//}
+
+			//effectsmoke.scaleEffect(effectsmoke);
 			
 	    	effectsmoke.setPosition(l.getX1(),l.getY1());
 	    	//effectp.allowCompletion();
@@ -163,7 +174,7 @@ public class GameRenderer {
 		
 		
 	}
-
+	
 
 	private void effects() {
 		batcher.begin();
@@ -176,6 +187,7 @@ public class GameRenderer {
 
 		    if (effect.isComplete()) {
 		        effect.free();
+		        effect.dispose();
 		        effects.removeIndex(i);
 		    }
 		}
@@ -222,10 +234,20 @@ public class GameRenderer {
 			
 	        float offset = MathUtils.sinDeg( (float) (iterator*(0.1f*m.getSpeed() )))*(0.3f*m.getSpeed());
 	        if(m.getRotation() == 90) {
-	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	if(m.eyesOpen()) {
+	        		batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
+	        	else {
+	        		batcher.draw(mouseClosed, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
 	        }
 	        else {
-	        	batcher.draw(mouse, m.getX()-(mouseSize.x/2),m.getY()-(mouseSize.y/2)+offset,mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+ MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	if(m.eyesOpen()) {
+	        		batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
+	        	else {
+	        		batcher.draw(mouseClosed, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        	}
 	        }
 			
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
@@ -299,9 +321,50 @@ public class GameRenderer {
 	 			//TextureRegion kaas = (TextureRegion) goals.getGoal(g.getTickets());
 				Sprite kaas = goals.getGoal(g.getTickets());
 				batcher.draw(kaas,(g.getPosition().x)-(AssetLoader.goalCenter.x/(2*10)), g.getPosition().y+2,width/10,height/12);
+				if(g.isReduced()) {
+					addGoalEffect(g.getPosition().x,g.getPosition().y+height/24);
+				}
 				batcher.end();
 			}
 		}
+	}
+	
+	private void addGoalEffect(float x,float y) {
+		PooledEffect effectcheese = AssetLoader.sparkGEffectPool.obtain();	
+		//effectcheese.scaleEffect(0.2f);
+		//effectcheese.allowCompletion();
+		effectcheese.setPosition(x,y);
+    	effects.add(effectcheese);
+    	effectcheese.free();
+	}
+
+
+	private void addBloodEffect(Trap t) {
+		if(t!=null ) {
+			PooledEffect effectblood = AssetLoader.bloodEffectPool.obtain();	
+			effectblood.scaleEffect(0.2f);
+	    	effectblood.setPosition(t.getPosition().x,t.getPosition().y);
+	    	effects.add(effectblood);
+	    	if(!blood) {
+
+		    	effectblood = AssetLoader.bloodspEffectPool.obtain();
+		    	effectblood.setPosition(width/2,height/2);
+		    	//effectblood.scaleEffect(0.2f);
+		    	effectblood.allowCompletion();
+		    	effectblood.flipY();
+		    	effects.add(effectblood);
+		    	effectblood = AssetLoader.bloodsp2EffectPool.obtain();
+		    	effectblood.setPosition(width/2,height/2);
+		    	effectblood.flipY();
+		    	//effectblood.scaleEffect(0.2f);
+		    	effectblood.allowCompletion();
+		    	effects.add(effectblood);
+		    	blood = true;
+			}
+		}
+		
+		
+		
 	}
 	
 	private void drawTraps() {
@@ -310,6 +373,7 @@ public class GameRenderer {
 			batcher.enableBlending();
 			// 2* 10 rekening houdend met die schaal : width/10
 			if(t.isSnapped()) {
+				addBloodEffect(t);
 				batcher.draw(trapClosed,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/9);
 			}else {
 				batcher.draw(trap,(t.getPosition().x)-(AssetLoader.goalCenter.x/(2*10))-0.6f, t.getPosition().y-4f,width/11,height/9);
@@ -359,6 +423,7 @@ public class GameRenderer {
 		goals = AssetLoader.goals;
 		trap = AssetLoader.trap;
 		mouse = AssetLoader.mouse;
+		mouseClosed = AssetLoader.mouseclosed;
 		nextMouse = AssetLoader.next;
 		trapClosed = AssetLoader.trapClosed;
 	}
@@ -376,10 +441,10 @@ public class GameRenderer {
     	Sprite tutorial = AssetLoader.tutorial;
     	Sprite tutorial2 = AssetLoader.tutorial2;
     	Sprite hand = AssetLoader.hand;
-    	tutorial.setSize( width/3+10, (height/8));
-    	tutorial.setPosition((width/2)+1, (height/2)-40);
-    	tutorial2.setSize( width/3+10, (height/8));
-    	tutorial2.setPosition((width/2)-tutorial2.getWidth(), -2);
+    	tutorial.setSize( width-20, (height/5));
+    	tutorial.setPosition(10, (height/2)+20);
+    	tutorial2.setSize( width-20, (height/5));
+    	tutorial2.setPosition(5, -5);
     	
     	//hand.setOrigin(hand.getHeight()*hand.getScaleX(), hand.getScaleY()*hand.getWidth()/5);
     	hand.setSize(width/4, height/3);
@@ -425,8 +490,21 @@ public class GameRenderer {
 	}
 	
 	public void renderScoreFinalWIN(int score) {
+		if(!blood) {
+			PooledEffect effectp = AssetLoader.cheeseEffectPool.obtain();
+			effectp.scaleEffect(0.5f);
+	    	effectp.setPosition(width,height);
+			effects.add(effectp);
+			for(Cheese g : board.getGoals()) {
+				addGoalEffect(g.getPosition().x, g.getPosition().y+height/24);
+			}
+			blood = true;
+		}
+		
+		
+		
 		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
-		font.setColor(Color.YELLOW);
+		font.setColor(Color.DARK_GRAY);
 		batcher.begin();
 		str.delete(lengthstr, str.length());
 		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
@@ -434,8 +512,8 @@ public class GameRenderer {
 	}
 
 	public void renderScoreFinalLOSE(int score) {
-		font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
-		font.setColor(Color.RED);
+		//font.setScale(.5f+0.3f*Math.abs(MathUtils.sinDeg(iterator*0.04f)));
+		font.setColor(Color.MAROON);
 		batcher.begin();
 		str.delete(lengthstr, str.length());
 		font.drawMultiLine(batcher, str.append(score),width/4,2+move,width/2,BitmapFont.HAlignment.CENTER);
@@ -449,19 +527,19 @@ public class GameRenderer {
 		switch (round) {
 		case 0:
 			c = "3";
-			font.setColor(Color.RED);
+			font.setColor(Color.WHITE);
 			break;
 		case 1:
 			c = "2";
-			font.setColor(Color.RED);
+			font.setColor(Color.WHITE);
 			break;
 		case 2:
 			c = "1";
-			font.setColor(Color.RED);
+			font.setColor(Color.WHITE);
 			break;
 		case 3:
 			c = "START";
-			font.setColor(Color.GREEN);
+			font.setColor(Color.WHITE);
 			break;
 		}
 		batcher.begin();
@@ -471,3 +549,4 @@ public class GameRenderer {
 		batcher.end();
 	}
 }
+

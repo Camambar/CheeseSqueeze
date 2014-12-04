@@ -119,6 +119,7 @@ public class GameScreen implements Screen {
 					//CSGame.currentLevel = currentLevel.getNextLevel();
 					//status = new ReportStatus(GameState.WON,currentLevel);
 					Report.reportScore(currentLevel, rt.getPoints());
+					game.leaderboards();
 					game.analytics();
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
 					
@@ -141,7 +142,7 @@ public class GameScreen implements Screen {
     			@Override
     			public void pushButtonListener(SimpleButton btn) {
     				//TODO Current level select 
-    				currentLevel.setTutorial(false);
+    				//currentLevel.setTutorial(false);
     		    	Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.TUTORIAL,currentLevel));
     		    	t.stop();
     		    	CSGame.currentState = GameState.PLAYING;
@@ -217,6 +218,7 @@ public class GameScreen implements Screen {
 			case WON:
 				if(status.getGameState().equals(GameState.PLAYING)) {
 					Report.report(currentLevel, GameState.WON);
+					Report.reportGameScore(currentLevel, board.getScore());
 					Timer t = TimerFactory.getRunningTimer(status);
 					t.getState().setState(CSGame.currentState);
 					t.stop();

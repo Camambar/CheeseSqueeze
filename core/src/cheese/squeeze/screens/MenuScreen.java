@@ -77,6 +77,10 @@ public class MenuScreen implements Screen{
 			e.printStackTrace();
 		}
 		
+		if (! game.getActionResolver().getSignedInGPGS()) {
+			game.getActionResolver().loginGPGS();
+		}
+		
 		
 		
 		addButtons(game);
@@ -107,6 +111,21 @@ public class MenuScreen implements Screen{
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
+		
+		
+		SimpleButton leaderButton = new SimpleButton(new SimpleButtonListener() {
+			
+			@Override
+			public void pushButtonListener(SimpleButton btn) {
+				if (game.getActionResolver().getSignedInGPGS()) {
+					game.getActionResolver().getLeaderboardGPGS();
+				} else {
+					game.getActionResolver().loginGPGS();
+				}
+			}
+		},AssetLoader.leader.getX(),AssetLoader.leader.getY(),
+        		AssetLoader.leader.getWidth()*AssetLoader.leader.getScaleX(),AssetLoader.leader.getHeight()*AssetLoader.leader.getScaleY(),AssetLoader.leader,AssetLoader.leader);
+		
 		
 		SwitchButton soundButton = new SwitchButton(new SimpleButtonListener(){
     		
@@ -158,6 +177,7 @@ public class MenuScreen implements Screen{
 		menuButtons.add(playButton);
         menuButtons.add(soundButton);
         menuButtons.add(musicButton);
+        menuButtons.add(leaderButton);
 	}
 
 	@Override

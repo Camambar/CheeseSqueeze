@@ -2,6 +2,8 @@ package cheese.squeeze.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.ParticleEffectLoader;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
@@ -18,14 +20,17 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader.FreeTypeFontLoaderParameter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class AssetLoader {
 	
 	public static AssetManager manager = new AssetManager();
-    
-    public static Sprite bg,menuBg;
+	
+	public static Sprite bg,menuBg;
     
     public static Vector2 mouseCenter,goalCenter,trapCenter;
     public static Vector2 mouseNose;
@@ -36,9 +41,9 @@ public class AssetLoader {
 
     public static Sprite trap,home,trapClosed;
 
-    public  static ParticleEffectPool smokeEffectPool, sparkEffectPool;
+    public static ParticleEffectPool smokeEffectPool, sparkEffectPool, bloodEffectPool,sparkGEffectPool,cheeseEffectPool;
     
-	public static TextureRegion mouse;
+	public static TextureRegion mouse,mouseclosed;
     public static Sprite play,sound_on,sound_off,music_on,music_off,logo_shadow;
     
     private  TextureAtlas atlasMenu;
@@ -49,6 +54,19 @@ public class AssetLoader {
     
     
     private  TextureAtlas atlasMenuLeeg;
+
+	private FreeTypeFontGenerator fontGenerator;
+
+
+	public static ParticleEffectPool bloodspEffectPool;
+
+	public static ParticleEffectPool bloodsp2EffectPool;
+
+	private  ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood,originalBloodsp2,originalBloodsp,originalSparkG,originalCheese;
+
+	public static BitmapFont font;
+
+	public static Sprite leader;
 
 	public static ParticleEffectPool snowEffectPool;
 
@@ -107,6 +125,7 @@ public class AssetLoader {
 	}
 
 	public void queueLoading(){
+		InternalFileHandleResolver resolver = new InternalFileHandleResolver();
 		manager.load("graph/Menu.pack", TextureAtlas.class);
 		manager.load("graph/Game.pack", TextureAtlas.class);
 		manager.load("graph/floor.pack", TextureAtlas.class);
@@ -120,6 +139,33 @@ public class AssetLoader {
 		manager.load("data/chalk.mp3",Sound.class);
 		manager.load("data/death.mp3",Sound.class);
 		manager.load("data/pop.mp3",Sound.class);
+		manager.setLoader(ParticleEffect.class, new ParticleEffectLoader(new InternalFileHandleResolver()));
+		manager.load("particle/smoke", ParticleEffect.class);
+		manager.load("particle/snowflakes", ParticleEffect.class);
+		manager.load("particle/clickspark",ParticleEffect.class);
+		manager.load("particle/blood",ParticleEffect.class);
+		manager.load("particle/bloodspatter",ParticleEffect.class);
+		manager.load("particle/bloodspatter2",ParticleEffect.class);
+		manager.load("particle/spark",ParticleEffect.class);
+		manager.load("particle/cheeseflakes",ParticleEffect.class);
+		//manager.load("font/arial-15.png",Texture.class);
+		
+		//manager.load(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
+		//manager.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
+		//manager.setLoader(BitmapFont.class, "fonts/.ttf", new FreetypeFontLoader(new InternalFileHandleResolver()));
+		//manager.load("fonts/amigaever.tff", BitmapFont.class,getFontParams());
+		
+	}
+	
+	private FreeTypeFontLoaderParameter getFontParams() {
+		FreeTypeFontLoaderParameter parameter = new FreeTypeFontLoaderParameter();
+    	//fontGenerator.scaleForPixelHeight((int)Math.ceil(8));
+		parameter.fontFileName = "fonts/amigaever.ttf";
+    	parameter.fontParameters.size = 8;
+    	parameter.fontParameters.flip = true;
+    	parameter.fontParameters.minFilter = Texture.TextureFilter.Nearest;
+    	parameter.fontParameters.magFilter = Texture.TextureFilter.MipMapLinearNearest;
+    	return parameter;
 	}
 	
 	public void lastLoadingStep() {
@@ -136,6 +182,15 @@ public class AssetLoader {
 		atlasFloor = manager.get("graph/floor.pack",TextureAtlas.class);
 		atlasMenuLeeg = manager.get("graph/menu_leeg.pack",TextureAtlas.class);
 		atlasTutorial = manager.get("graph/Tutorial.pack",TextureAtlas.class);
+		originalSmoke = manager.get("particle/smoke", ParticleEffect.class);
+		originalSnow = manager.get("particle/snowflakes", ParticleEffect.class);
+		originalSpark = manager.get("particle/clickspark",ParticleEffect.class);
+		originalBlood = manager.get("particle/blood",ParticleEffect.class);
+		originalBloodsp = manager.get("particle/bloodspatter",ParticleEffect.class);
+		originalBloodsp2 = manager.get("particle/bloodspatter2",ParticleEffect.class);
+		originalSparkG = manager.get("particle/spark",ParticleEffect.class);
+		originalCheese = manager.get("particle/cheeseflakes",ParticleEffect.class);
+		//font12 = manager.get("fonts/amiga4ever",BitmapFont.class);
 	}
 	
 	public void setSounds() {
@@ -159,6 +214,8 @@ public class AssetLoader {
         fullT=new Texture(Gdx.files.internal("data/full.png"));
         empty=new NinePatch(new TextureRegion(AssetLoader.emptyT,24,24),8,8,8,8);
         full=new NinePatch(new TextureRegion(AssetLoader.fullT,24,24),8,8,8,8);
+        font = new BitmapFont(Gdx.files.internal("fonts/arial-15.fnt"));
+	
 	}
 	
 	public void loadMenu() {
@@ -239,10 +296,15 @@ public class AssetLoader {
         
         desiredWidth = width*0.5f;
         float scale = desiredWidth / menuBg.getWidth();
+        
+        leader = new Sprite(new TextureRegion(atlasMenu.findRegion("leader")));
+        leader.setSize(leader.getWidth() * scale, leader.getHeight() * scale);
+        leader.setPosition((width/2)-(.5f*leader.getWidth()),(height/2));
+        
         play.setSize(play.getWidth() * scale, play.getHeight() * scale);
         // (height/2)+10 +play.getWidth()
         //width-(1.5f*logo_shadow.getWidth())
-        play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+20);
+        play.setPosition((width/2)-(.5f*play.getWidth()),(height/2)+leader.getHeight()+10);
         
         version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
         version.setSize(version.getWidth()*scale, version.getHeight()*scale );
@@ -255,22 +317,24 @@ public class AssetLoader {
         logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
         */
         
+
+        
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
         music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
-        music_on.setPosition(play.getX(),(height/2)-20-music_on.getHeight());
+        music_on.setPosition(play.getX(),(height/2)-10-music_on.getHeight());
         
         music_off = new Sprite(new TextureRegion(atlasMenu.findRegion("music_off")));
         music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
-        music_off.setPosition(play.getX(),(height/2)-20-music_off.getHeight());
+        music_off.setPosition(play.getX(),(height/2)-10-music_off.getHeight());
         
         
         sound_on = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_on")));
         sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
-        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/2)-20-sound_on.getHeight());
+        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/2)-10-sound_on.getHeight());
         sound_off = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_off")));
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
-        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-20-sound_off.getHeight());
+        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/2)-10-sound_off.getHeight());
     	
        
         
@@ -353,20 +417,16 @@ public class AssetLoader {
         
 
         
-        play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
+        //XXX smaller ios
         
-        desiredWidth = width*0.9f;
+        desiredWidth = width*0.75f;
         float scale = desiredWidth / menuBg.getWidth();
-        play.setSize(play.getWidth() * scale, play.getHeight() * scale);
-        // (height/2)+10 +play.getWidth()
-        //width-(1.5f*logo_shadow.getWidth())
-        play.setPosition((width/2)-(.5f*play.getWidth()),(height/1.75f)+20);
+        //float scaleH = height/3;
+        play =new Sprite(new TextureRegion(atlasMenu.findRegion("play")));
+        float playWidth = play.getWidth() * scale;
+        float playPos = (width/2)-(.5f*playWidth);
         
-        version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
-        version.setSize(version.getWidth()*scale, version.getHeight()*scale );
-        // (height/2)+10 +play.getWidth()
-        //width-(1.5f*logo_shadow.getWidth())
-        version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
+      
         
         /*
         logo_shadow.setSize(logo_shadow.getWidth() * scale, logo_shadow.getHeight() * scale);
@@ -374,24 +434,43 @@ public class AssetLoader {
         logo_shadow.setPosition((width/2)-(.5f*logo_shadow.getWidth()), height-50f-logo_shadow.getHeight());
         */
         
+
         scale = scale * 1f;
         music_on = new Sprite(new TextureRegion(atlasMenu.findRegion("music_on")));
         music_on.setSize(music_on.getWidth() * scale, music_on.getHeight() * scale); 
-        music_on.setPosition(play.getX(),(height/1.75f)-20-music_on.getHeight());
+        music_on.setPosition(playPos,(height/2)-music_on.getHeight()/2);
         
         music_off = new Sprite(new TextureRegion(atlasMenu.findRegion("music_off")));
         music_off.setSize(music_off.getWidth() * scale, music_off.getHeight() * scale);
-        music_off.setPosition(play.getX(),(height/1.75f)-20-music_off.getHeight());
+        music_off.setPosition(playPos,(height/2)-music_on.getHeight()/2);
         
         
         sound_on = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_on")));
         sound_on.setSize(sound_on.getWidth() * scale, sound_on.getHeight() * scale);
-        sound_on.setPosition((width/2)+(.5f*play.getWidth())-sound_on.getWidth(),(height/1.75f)-20-sound_on.getHeight());
+        sound_on.setPosition((width/2)+(.5f*playWidth)-sound_on.getWidth(),(height/2)-music_on.getHeight()/2);
         sound_off = new Sprite(new TextureRegion(atlasMenu.findRegion("sound_off")));
         sound_off.setSize(sound_off.getWidth() * scale, sound_off.getHeight() * scale);
-        sound_off.setPosition((width/2)+(.5f*play.getWidth())-sound_off.getWidth(),(height/1.75f)-20-sound_off.getHeight());
+        sound_off.setPosition((width/2)+(.5f*playWidth)-sound_off.getWidth(),(height/2)-music_on.getHeight()/2);
     	
        
+        desiredWidth = width*0.75f;
+        scale = desiredWidth / menuBg.getWidth();
+
+        leader = new Sprite(new TextureRegion(atlasMenu.findRegion("leader")));
+        leader.setSize(leader.getWidth() * scale, leader.getHeight() * scale);
+        leader.setPosition((width/2)-(.5f*leader.getWidth()),music_on.getY()+music_on.getHeight()+10);
+        
+       
+        play.setSize(playWidth, play.getHeight() * scale);
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        play.setPosition(playPos,leader.getY()+leader.getHeight()+10);
+        
+        version = new Sprite(new TextureRegion(atlasMenu.findRegion("download")));
+        version.setSize(version.getWidth()*scale, version.getHeight()*scale );
+        // (height/2)+10 +play.getWidth()
+        //width-(1.5f*logo_shadow.getWidth())
+        version.setPosition((width/2)-(.25f*play.getWidth()),(height/5)+20);
         
         home = new Sprite(new TextureRegion(atlasGame.findRegion("home")));
         home.setSize(13,10);
@@ -408,7 +487,7 @@ public class AssetLoader {
     	       androidLoad();
     		   break;
     	   case Desktop:
-    	       desktopLoad();
+    		   desktopLoad();
     		   break;
     	   case WebGL:
     		   desktopLoad();
@@ -420,14 +499,18 @@ public class AssetLoader {
     }
     
     private void generalLoad() {
+    	mouseclosed =  new TextureRegion(atlasGame.findRegion("mouseclosed"));
+    	mouseclosed.flip(false, true);
     	
         logo_shadow = new Sprite(new TextureRegion(atlasMenu.findRegion("logo")));
-        logo_shadow.setSize(width-40, (height/5)-5);
-        logo_shadow.setPosition(20,height-(height/5)-5);
+        //logo_shadow.setSize(width-40, (height/5)-5);
+        //logo_shadow.setPosition(20,height-(height/5)-5);
+        logo_shadow.setSize(width-200, (height/5)-5);
+        logo_shadow.setPosition(width/2-logo_shadow.getWidth()/2,height-(logo_shadow.getHeight())-20);
     			
-    	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amiga4ever.ttf"));
-    	FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-    	generator.scaleForPixelHeight((int)Math.ceil(8));
+    	FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/amigaever.ttf"));
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		generator.scaleForPixelHeight((int)Math.ceil(8));
     	parameter.size = 8;
     	parameter.flip = true;
     	parameter.minFilter = Texture.TextureFilter.Nearest;
@@ -456,26 +539,31 @@ public class AssetLoader {
     	//TODO particles
 
     	//SNOW
-    	ParticleEffect effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/snowflakes"), Gdx.files.internal("particle"));
-    	snowEffectPool = new ParticleEffectPool(effect, 1, 2);
+    	snowEffectPool = new ParticleEffectPool(originalSnow, 1, 2);
     	
+    	cheeseEffectPool = new ParticleEffectPool(originalCheese, 1, 2);
     	//PooledEffect effectp = smokeEffectPool.obtain();
    
     	//effectp.setPosition(width/2, height);
     	
     	//spark
-    	effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/clickspark"), Gdx.files.internal("particle"));
-    	sparkEffectPool = new ParticleEffectPool(effect, 1, 2);
+    	sparkEffectPool = new ParticleEffectPool(originalSpark, 1, 2);
     	//effectp = sparkEffectPool.obtain();
     	
-    	effect = new ParticleEffect();
-    	effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
-    	effect.scaleEffect(0.5f);
-    	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
+     	//effect.scaleEffect(0.5f);
+    	smokeEffectPool = new ParticleEffectPool(originalSmoke, 1, 2);
     	//effectsSpark= new Array();
     	//effectsSpark.add(effectp);
+    	
+    	bloodEffectPool = new ParticleEffectPool(originalBlood, 1, 2);
+    	
+    	bloodspEffectPool = new ParticleEffectPool(originalBloodsp, 1, 2);
+    	
+    	bloodsp2EffectPool = new ParticleEffectPool(originalBloodsp2, 1, 2);
+    	
+    	sparkGEffectPool = new ParticleEffectPool(originalSparkG, 1, 2);
+    
+    	
     
     }
 
@@ -505,6 +593,14 @@ public class AssetLoader {
         atlasMenu.dispose();
         atlasFloor.dispose();
         atlasMenuLeeg.dispose();
+        originalSnow.dispose();
+    	originalCheese.dispose();
+    	originalBlood.dispose();
+    	originalBloodsp.dispose();
+    	originalBloodsp2.dispose();
+    	originalSmoke.dispose();
+    	originalSpark.dispose();
+    	originalSparkG.dispose();
         manager.clear();
     }
     
@@ -516,6 +612,18 @@ public class AssetLoader {
 
 	public static void disposeSplash() {
 		texture.dispose();
+		font.dispose();
+	}
+	
+	public static void setEffectScale(float scale) {
+		ParticleEffect effect = new ParticleEffect();
+		effect.load(Gdx.files.internal("particle/smoke"), Gdx.files.internal("particle"));
+		effect.scaleEffect(scale);
+    	smokeEffectPool = new ParticleEffectPool(effect, 1, 2);
 	}
 
+	public void disposeEffects() {
+		//TODO to remove memory
+	}
 }
+

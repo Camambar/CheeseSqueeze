@@ -4,36 +4,26 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 DUE TO NEXT RELEASE:
 
-H  - change particle effect packing
-
-H - verify button scaling on different (iOS) devices 
-
-H - change iOS icons
+H - verify button scaling on different (iOS) devices OK
 
 H - Viralise
 
 H - Leaderboards implementation
 
-H - juicy: voetstapjes, grote ogen, knipperen, bloed, knop leaderboard menu, piepgeluid
+H - implement: raining cheese on victory screen, voetstapjes
 
 VH - fix menu issues on some devices DENK IN ORDE NIE ZKR
 
-VH - fix music issues on some devices
+VH - fix music issues on some devices OK
 
 H - extra levels
-
-H - tutorial text vergroten
 
 M - tutorial blijven tonen voor level 1, ook na een keer falen
 
 
 General:
 
-M - loading fonts (https://github.com/libgdx/libgdx/wiki/Distance-field-fonts)
-
 M - Level Selector
-
-M - Leaderboards
 
 M - laadscherm html versie (https://github.com/libgdx/libgdx/wiki/Starter-classes-%26-configuration#html5gwt)
 
@@ -41,9 +31,6 @@ M - laadscherm html versie (https://github.com/libgdx/libgdx/wiki/Starter-classe
 Music & Visual:
 
 M  - art juist doen scalen voor mobile (width en height gebruiken)
-
-M  - gore images 
-
 
 Mouse & Path Bugs:
 

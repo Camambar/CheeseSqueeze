@@ -13,6 +13,7 @@ public class Cheese implements Goal{
 	private Vector2 position;
 	private int tickets;
 	private Line l;
+	public boolean isReduced = false;
 	
 	/**
 	 * 
@@ -43,6 +44,7 @@ public class Cheese implements Goal{
 	@Override
 	public void activate() {
 		SoundAccessor.play(AssetLoader.pop);
+		isReduced = true;
 		if(tickets>1) {
 			tickets--;
 		}
@@ -50,6 +52,7 @@ public class Cheese implements Goal{
 			tickets = 0;
 			CSGame.currentState=GameState.WON;
 		}
+
 	}
 
 	public Line getLine() {
@@ -63,6 +66,14 @@ public class Cheese implements Goal{
 	
 	public Cheese clone() {
 		return new Cheese(this.l,this.tickets);
+	}
+
+	public boolean isReduced() {
+		if(isReduced) {
+			isReduced = false;
+			return true;
+		}
+		return false;
 	}
 
 

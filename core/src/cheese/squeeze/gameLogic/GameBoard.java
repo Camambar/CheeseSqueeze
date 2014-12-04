@@ -208,16 +208,21 @@ public class GameBoard {
 	
 	public void addHLine(HorizontalLine line) {
 		Timer t = TimerFactory.getRunningTimer(status);
-		if( t != null && !presetLines) {
-			fl =true;
-			t.stop();
-		}
+		
 		int row = betweenLines(line.getX1());
 		if(!isOcupiedPosition(line.getY1(),row)) {
-			SoundAccessor.play(AssetLoader.chalk);
+			if(!presetLines) {
+				if(t!=null) {
+					fl =true;
+					t.stop();
+				}
+				SoundAccessor.play(AssetLoader.chalk);
+				
+				effectLine = line;
+			}
+			
 			hlines.get(line.getY1()).addElement(line, row);
 			updateReqLines.add(line);
-			effectLine = line;
 			for (VerticalLine l : vlines) {
 				if (l.getX1() == line.getX1()) {
 					l.setNeighbour(line);
@@ -412,7 +417,6 @@ public class GameBoard {
 			if(x < vl.getX1()) {
 				return i;
 			}
-			
 			i++;
 		}
 		return 0;
@@ -433,6 +437,7 @@ public class GameBoard {
 			}
 	    }
 	
+
 	private boolean isOcupiedPosition(float y,int betweenlines) {
 		LinkedList<HorizontalLine> ll = hlines.get(y);
 		if(ll != null && !ll.isValidPosition(betweenlines)) {
@@ -658,6 +663,10 @@ public class GameBoard {
 			return l;
 		}
 		return null;
+	}
+	
+	public float getDistBetweenVlines() {
+		return vlines.get(1).getX1()-vlines.get(0).getX1();
 	}
 	
 }
