@@ -27,9 +27,10 @@ public class CSGame extends Game {
 	public static GameState currentState;
 	public static Level currentLevel = Level.LEVEL1;
 	private ActionResolver action;
-	public  final static String version = "1.5";
+	public  final static String version = "1.5.1";
 	public static final String updateURL = "http://camambar.github.io/CheeseSqueeze/";
 	public static final String checkVersionURL = "http://camambar.github.io/CheeseSqueeze/version";
+	public static final String surveyURL = "http://goo.gl/YIBHrZ";
 	private AssetLoader loader;
 
 	public CSGame(ActionResolver action) {
@@ -45,8 +46,12 @@ public class CSGame extends Game {
 	public void create() {
 
 		//LOAD LEVEL
-		
+		//try {
 		loadLevel();
+		
+			
+		
+		
 		
 
 		Gdx.app.log("CSGame", "created");
@@ -65,27 +70,46 @@ public class CSGame extends Game {
 	}
 
 	public void saveLevel() {
-		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
-		prefs.putString("level", currentLevel.toString());
-		prefs.flush();
-		System.out.println("level " + currentLevel.toString() + " saved");
+		saveLevel(currentLevel);
 	}
 
 	public void saveLevel(Level l) {
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
-		prefs.putString("level", l.toString());
-		prefs.flush();
-		System.out.println("level " + l.toString() + " saved");
+		if(l!=null) {
+			prefs.putString("level_1.5", l.toString());
+			prefs.flush();
+			System.out.println("level " + l.toString() + " saved");
+			
+			if(l.equals(Level.LEVEL1)) {
+				action.unlockAchievementGPGS(Achievement.FIRST_LEVEL_COMPLETE.getId());
+			}
+			else if (l.equals(Level.LEVEL10)) {
+				action.unlockAchievementGPGS(Achievement.TEN_LEVELS_COMPLETE.getId());
+			}
+			else if (l.isLastLevel()) {
+				action.unlockAchievementGPGS(Achievement.ALL_LEVELS_COMPLETE.getId());
+			}
+		}
+		
+		
+		
 	}
 	
 	public void loadLevel() {
 		
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
-		if (prefs.contains("level")) {
-			String l = prefs.getString("level");
-			currentLevel = Level.valueOf(l);
+		if(prefs.contains("level")) {
+			prefs.remove("level");
+			currentLevel = Level.LEVEL1;
 		}
-		System.out.println("level " + currentLevel.toString() + " loaded");
+		else if (prefs.contains("level_1.5")) {
+			String l = prefs.getString("level_1.5");
+			currentLevel = Level.valueOf(l);
+			
+		}
+		else {
+			currentLevel = Level.LEVEL1;
+		}
 		
 	}
 
@@ -108,10 +132,8 @@ public class CSGame extends Game {
 				}
 			}
 			for(Entry<Level, Integer> e : Report.score.entrySet()) {
-				action.reportAnalytics("SCORE",e.getKey().toString(),e.getValue());
+				action.reportAnalytics(e.getKey().toString(),"SCORE",e.getValue());
 			}
-
-
 		}
 
 		TimerFactory.clear();
@@ -125,6 +147,7 @@ public class CSGame extends Game {
 		for(Entry<Level, Integer> e : Report.gameScore.entrySet()) {
 			score += e.getValue();
 		}
+		System.out.println("SUBMIT SCORE" + score);
 		action.submitScoreGPGS(score);
 	}
 

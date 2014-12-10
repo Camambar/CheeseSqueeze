@@ -9,6 +9,7 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
@@ -509,6 +510,8 @@ public class GameBoard {
 	 * @param delta
 	 */
 	public void update(float delta) {
+		//float angle = MathUtils.sinDeg(Math.abs(Gdx.input.getPitch()));
+		//System.out.println(angle);
 		//System.out.println("UPDATE BOARD");
 		Iterator<HorizontalLine> itrH = updateReqLines.iterator();
 		while(itrH.hasNext()) {
@@ -526,6 +529,7 @@ public class GameBoard {
 		while(itr.hasNext()) {
 			Mouse m = itr.next();
 			if(!m.isEnded()) {
+				//m.setSpeed(angle);
 				m.update(delta);
 			}
 			else {

@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import cheese.squeeze.game.CSGame;
@@ -19,6 +20,7 @@ import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelperMenu;
 import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
+import cheese.squeeze.tweenAccessors.ActionResolver;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.tweenAccessors.SoundAccessor;
 import cheese.squeeze.ui.RatingButton;
@@ -32,6 +34,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
@@ -71,15 +74,16 @@ public class MenuScreen implements Screen{
 			latestVersion = s.nextLine();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+		} catch (NoSuchElementException e) {
+			// TODO Auto-generated catch block
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		if (! game.getActionResolver().getSignedInGPGS()) {
-			game.getActionResolver().loginGPGS();
-		}
+		
 		
 		
 		
@@ -107,12 +111,12 @@ public class MenuScreen implements Screen{
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
 				dispose();
-				game.setScreen(new GameScreen(game,Level.LEVEL1));
+				game.setScreen(new GameScreen(game));
 			}
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
 		
-		
+		/*XXX
 		SimpleButton leaderButton = new SimpleButton(new SimpleButtonListener() {
 			
 			@Override
@@ -125,7 +129,7 @@ public class MenuScreen implements Screen{
 			}
 		},AssetLoader.leader.getX(),AssetLoader.leader.getY(),
         		AssetLoader.leader.getWidth()*AssetLoader.leader.getScaleX(),AssetLoader.leader.getHeight()*AssetLoader.leader.getScaleY(),AssetLoader.leader,AssetLoader.leader);
-		
+		*/
 		
 		SwitchButton soundButton = new SwitchButton(new SimpleButtonListener(){
     		
@@ -156,7 +160,7 @@ public class MenuScreen implements Screen{
 				
 				@Override
 				public void pushButtonListener(SimpleButton btn) {
-					//try {
+					try {
 					
 						Gdx.net.openURI(game.updateURL);
 						
@@ -164,10 +168,10 @@ public class MenuScreen implements Screen{
 					//} catch (IOException e) {
 						// TODO Auto-generated catch block
 						//e.printStackTrace();
-					//} catch (URISyntaxException e) {
+					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						//e.printStackTrace();
-					//.}
+					}
 				}
 			},AssetLoader.version.getX(),AssetLoader.version.getY(),
 	        		AssetLoader.version.getWidth()*AssetLoader.version.getScaleX(),AssetLoader.version.getHeight()*AssetLoader.version.getScaleY(),AssetLoader.version,AssetLoader.version);
@@ -177,7 +181,9 @@ public class MenuScreen implements Screen{
 		menuButtons.add(playButton);
         menuButtons.add(soundButton);
         menuButtons.add(musicButton);
+        /*XXX
         menuButtons.add(leaderButton);
+        */
 	}
 
 	@Override
@@ -190,8 +196,9 @@ public class MenuScreen implements Screen{
 		    
 			PooledEffect effect = effects.get(i);
 		    //effect.update(delta);
-
-		    effect.draw(batcher,delta);
+			
+				
+		    effect.draw(batcher,Math.abs(delta*Gdx.input.getPitch()/20)+delta);
 
 		    if (effect.isComplete()) {
 		        effect.free();

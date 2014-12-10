@@ -11,4 +11,5 @@ public interface ActionResolver {
 	public void unlockAchievementGPGS(String achievementId);
 	public void getAchievementsGPGS();
 
+
 }

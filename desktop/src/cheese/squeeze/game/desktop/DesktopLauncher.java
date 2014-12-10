@@ -62,4 +62,5 @@ public class DesktopLauncher implements ActionResolver{
 	public void getAchievementsGPGS() {
 		System.out.println("getAchievementGPGS");
 	}
+
 }

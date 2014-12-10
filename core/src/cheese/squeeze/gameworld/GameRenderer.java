@@ -234,22 +234,34 @@ public class GameRenderer {
 			// enable transparency
 			batcher.enableBlending();
 			
-	        float offset = MathUtils.sinDeg( (float) (iterator*(0.1f*m.getSpeed() )))*(0.3f*m.getSpeed());
+	        float offset = MathUtils.sinDeg( (float) (iterator*(0.03f*m.getSpeed() )))*(0.3f*m.getSpeed());
 	        if(m.getRotation() == 90) {
+	        	//shapeRenderer.begin(ShapeType.Filled);
+	        	//shapeRenderer.rectLine(m.getX()-(mouseSize.x/2), m.getY()-(mouseSize.y/2), m.getX()-(mouseSize.x/2), m.getY()-(mouseSize.y/2)+m.getSpeedLine(), 1);
+	        	//shapeRenderer.end();
 	        	if(m.eyesOpen()) {
 	        		batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
+	        		
 	        	}
 	        	else {
 	        		batcher.draw(mouseClosed, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
 	        	}
+	        	//ShapeRenderer shapeRenderer = new ShapeRenderer();
+	        	
 	        }
 	        else {
+	        	//shapeRenderer.begin(ShapeType.Filled);
+	        	//shapeRenderer.rectLine(m.getX()-(mouseSize.x/2), m.getY()-(mouseSize.y/2), m.getX()-(mouseSize.x/2)+m.getSpeedLine(), m.getY()-(mouseSize.y/2), 1);
+	        	//shapeRenderer.end();
 	        	if(m.eyesOpen()) {
 	        		batcher.draw(mouse, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
 	        	}
 	        	else {
 	        		batcher.draw(mouseClosed, m.getX()-(mouseSize.x/2)+offset,m.getY()-(mouseSize.y/2),mouseSize.x/2,mouseSize.y/2 , mouseSize.x, mouseSize.y, 1, 1, m.getRotation()+MathUtils.radiansToDegrees*offset*0.5f, true);
 	        	}
+	        	
+	        	//ShapeRenderer shapeRenderer = new ShapeRenderer();
+	        	
 	        }
 			
 			//batcher.draw(mouse,m.getX(),m.getY(),width/7,height/10);
@@ -553,5 +565,6 @@ public class GameRenderer {
 		
 		batcher.end();
 	}
+
 }
 

@@ -18,6 +18,7 @@ public class Mouse {
 	private float EYEOPEN;
 	private boolean open = true;
 	
+	private float orignSpeed;
 	private float speed;
 	private float tolerance = 0.02f;
 	
@@ -40,6 +41,7 @@ public class Mouse {
 		position = new Vector2(x,y);
 		this.currentLine = line;
 		this.speed = speed;
+		this.orignSpeed = speed;
 		//position = new Vector2(x-(mouseNose.x), y- (mouseNose.y));
 		
 		velocity = new Vector2(0, 0);
@@ -184,6 +186,14 @@ public class Mouse {
 			open = !open;
 		}
 		return open;
+	}
+
+	public void setSpeed(float angle) {
+		this.speed = this.orignSpeed + this.orignSpeed*angle;
+	}
+	
+	public float getSpeedLine() {
+		return this.speed - this.orignSpeed;
 	}
 
 }

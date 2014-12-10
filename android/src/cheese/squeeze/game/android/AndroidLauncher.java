@@ -72,12 +72,21 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		//globalTracker = this.getTracker(TrackerName.GLOBAL_TRACKER);
 		GoogleAnalytics.getInstance(this).getLogger().setLogLevel(LogLevel.VERBOSE);
 		initialize(new CSGame(this), config);
+		
+		/*
+		 * XXX Enable services
+		 * Services
+		 */
+		/*
 		if (gameHelper == null) {
 			gameHelper = new GameHelper(this, GameHelper.CLIENT_GAMES);
 			gameHelper.enableDebugLog(true);
 		}
 		gameHelper.setup(this);
+		*/
+	
 	}
+	
 
 	@Override
 	public void reportAnalytics(String action,String cat,long value) {
@@ -135,7 +144,7 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	    super.onStart();
 	    // The rest of your onStart() code.
 	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
-	    gameHelper.onStart(this);
+	    //gameHelper.onStart(this);
 	  }
 
 	  @Override
@@ -143,8 +152,65 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 	    super.onStop();
 	    // The rest of your onStop() code.
 	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
-	    gameHelper.onStop();
+	    //gameHelper.onStop();
 	  }
+
+	@Override
+	public void onSignInFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean getSignedInGPGS() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void loginGPGS() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void submitScoreGPGS(int score) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getLeaderboardGPGS() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unlockAchievementGPGS(String achievementId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getAchievementsGPGS() {
+		// TODO Auto-generated method stub
+		
+	}
+	 
+	/*
+	 * XXX Enable services
+	 * leaderboard
+	 * (non-Javadoc)
+	 * 
+	 */
+	  
+	  /*
 	  
 	@Override
 	public void onActivityResult(int request, int response, Intent data) {
@@ -214,4 +280,5 @@ public class AndroidLauncher extends AndroidApplication implements ActionResolve
 		}
 	}
 
+	*/
 }

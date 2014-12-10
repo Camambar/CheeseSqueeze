@@ -46,8 +46,10 @@ public class HorizontalLine extends Line implements Cloneable{
 	}
 	
 	public HorizontalLine clone() {
-		
-		return new HorizontalLine(getY1(),getX1(),getX2());
+
+			return new HorizontalLine(getY1(),getX1(),getX2());
+
+
 	}
 	
 	@Override

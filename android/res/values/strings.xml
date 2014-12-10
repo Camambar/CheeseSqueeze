@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CheeseSqueeze</string>
-    <string name="app_id">836581360052</string> 
+    <string name="app_name" translatable="false">CheeseSqueeze</string>
+    <string name="app_id" translatable="false">836581360052</string> 
+    <integer name="services_version">6171000</integer>
 
 </resources>

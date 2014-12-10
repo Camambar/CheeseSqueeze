@@ -2,6 +2,7 @@ package cheese.squeeze.screens;
 
 import java.util.ArrayList;
 
+import cheese.squeeze.game.Achievement;
 import cheese.squeeze.game.CSGame;
 import cheese.squeeze.game.GameState;
 import cheese.squeeze.game.Level;
@@ -13,6 +14,7 @@ import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.InputHelper;
 import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
+import cheese.squeeze.tweenAccessors.ActionResolver;
 import cheese.squeeze.tweenAccessors.MusicAccessor;
 import cheese.squeeze.ui.PopUpButton;
 import cheese.squeeze.ui.RatingButton;
@@ -42,6 +44,7 @@ public class GameScreen implements Screen {
 	private ReportStatus status;
 	private Level currentLevel;
 	private long actionBeginTime;
+	private PopUpButton surveyButton; 
 	
 	public GameScreen(final CSGame game) {
 		currentLevel = CSGame.currentLevel;
@@ -49,7 +52,7 @@ public class GameScreen implements Screen {
 		this.game = game;
 	}
 
-	public GameScreen(final CSGame game,Level l) {
+	public GameScreen(final CSGame game, Level l) {
 		CSGame.currentLevel = l;
 		currentLevel = CSGame.currentLevel;
 		init(game);
@@ -110,9 +113,34 @@ public class GameScreen implements Screen {
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4,AssetLoader.failed,AssetLoader.failed,GameState.GAMEOVER);
     	
     	
+    	surveyButton = new PopUpButton(new SimpleButtonListener() {
+			@Override
+			public void pushButtonListener(SimpleButton btn) {
+				System.out.println("pressed");
+				try {
+					
+					Gdx.net.openURI(game.surveyURL);
+					
+					//Desktop.getDesktop().browse(new URI(game.updateURL));
+				//} catch (IOException e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					//e.printStackTrace();
+				}
+			}
+		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/4), gameWidth/2,(gameHeight/2)+4,AssetLoader.survey,AssetLoader.survey,GameState.ALLCOMPLETED);
+    	
+    	
     	rt = new RatingButton(new SimpleButtonListener() {
 			@Override
 			public void pushButtonListener(SimpleButton btn) {
+				
+				if (board.getScore() == 0) {
+					game.getActionResolver().unlockAchievementGPGS(Achievement.FULL_LINES.getId());
+				}
+				
 				//stuff
 				// change game state to wonscreen CSGame.currentState = GameState.PLAYING;
 				if(currentLevel.getNextLevel()!=null) {
@@ -125,6 +153,10 @@ public class GameScreen implements Screen {
 					
 					dispose();
 				}
+				else if (currentLevel.isLastLevel()) {
+					CSGame.currentState = GameState.ALLCOMPLETED;
+				}
+					
 	    		
 			}		
 		},(gameWidth/2)-((gameWidth/2)/2),midPointY-(gameHeight/8), gameWidth/2,(gameHeight/4)+4, AssetLoader.starEmpty,
@@ -135,12 +167,16 @@ public class GameScreen implements Screen {
     	buttons.add(restartBtn);
     	buttons.add(gameOverPopUp);
     	buttons.add(rt);
+    	buttons.add(surveyButton);
     	if(currentLevel.isTutorial()) {
     		CSGame.currentState = GameState.TUTORIAL;
     		TimerFactory.getNewTimer(new ReportStatus(GameState.TUTORIAL,currentLevel)).start();
     		gameTutorial = new PopUpButton(new SimpleButtonListener() {
     			@Override
     			public void pushButtonListener(SimpleButton btn) {
+    				
+    				game.getActionResolver().unlockAchievementGPGS(Achievement.DREW_FIRST_LINE.getId());
+    				
     				//TODO Current level select 
     				//currentLevel.setTutorial(false);
     		    	Timer t = TimerFactory.getRunningTimer(new ReportStatus(GameState.TUTORIAL,currentLevel));
@@ -156,7 +192,13 @@ public class GameScreen implements Screen {
     		buttons.add(gameTutorial);
     	}
     	else {
-    		CSGame.currentState = GameState.COUNTDOWN;
+    		if(CSGame.currentLevel.isLastLevel()) {
+    			CSGame.currentState = GameState.ALLCOMPLETED;
+    		}
+    		else {
+    			CSGame.currentState = GameState.COUNTDOWN;
+    		}
+    		
     		/*
     		CSGame.currentState = GameState.PLAYING;
     		status = new ReportStatus(CSGame.currentState,currentLevel);
@@ -216,6 +258,7 @@ public class GameScreen implements Screen {
 		    	renderer.renderScore(board.getScore());
 		    	break;
 			case WON:
+				
 				if(status.getGameState().equals(GameState.PLAYING)) {
 					Report.report(currentLevel, GameState.WON);
 					Report.reportGameScore(currentLevel, board.getScore());
@@ -238,6 +281,10 @@ public class GameScreen implements Screen {
 				renderer.render();
 				renderer.renderTutorial(gameTutorial);
 				//board.tutorial();
+				break;
+			case ALLCOMPLETED:
+				renderer.render();
+				renderer.renderPopUp(surveyButton);
 				break;
 			case PAUSE:
 				break;

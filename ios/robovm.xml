@@ -15,6 +15,7 @@
     </resource>
     <resource>
       <directory>resources</directory>
+      <skipPngCrush>true</skipPngCrush>
     </resource>
   </resources>
   <forceLinkClasses>

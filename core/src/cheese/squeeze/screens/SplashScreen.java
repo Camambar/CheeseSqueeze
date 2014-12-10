@@ -4,6 +4,7 @@ import cheese.squeeze.game.*;
 import cheese.squeeze.helpers.AssetLoader;
 import cheese.squeeze.helpers.Timer;
 import cheese.squeeze.helpers.TimerFactory;
+import cheese.squeeze.tweenAccessors.ActionResolver;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -24,6 +25,8 @@ public class SplashScreen implements Screen{
 	private SpriteBatch batch;
 	private ReportStatus status = new ReportStatus(GameState.LOADING);
 	private AssetLoader loader;
+	private boolean started= false;
+
 	
 	public SplashScreen(CSGame game, AssetLoader loader) {
 		TimerFactory.getNewTimer(status).start();
@@ -59,9 +62,14 @@ public class SplashScreen implements Screen{
         
         if(AssetLoader.update()){ // check if all files are loaded
             
+        	if (!game.getActionResolver().getSignedInGPGS() && !started) {
+    			game.getActionResolver().loginGPGS();
+    			started = true;
+    		}
+        	
             if(animationDone){ // when the animation is finished, go to MainMenu()
                 //AssetLoader.setAtlas(); // uses files to create menuSkin
-                
+            	
                 //AssetLoader.load();
             	this.dispose();
                 game.setScreen(new MenuScreen(game));

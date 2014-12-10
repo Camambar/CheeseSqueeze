@@ -64,6 +64,8 @@ public class AssetLoader {
 
 	private  ParticleEffect originalSmoke,originalSpark,originalSnow,originalBlood,originalBloodsp2,originalBloodsp,originalSparkG,originalCheese;
 
+	public static TextureRegion survey;
+
 	public static BitmapFont font;
 
 	public static Sprite leader;
@@ -499,6 +501,10 @@ public class AssetLoader {
     }
     
     private void generalLoad() {
+    	
+    	survey = new TextureRegion(atlasGame.findRegion("survey"));
+    	survey.flip(false, true);
+    	
     	mouseclosed =  new TextureRegion(atlasGame.findRegion("mouseclosed"));
     	mouseclosed.flip(false, true);
     	

@@ -1,0 +1,124 @@
+winlose = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ WIN_LOSE\ TO\ R\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)#
+usersday = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ USER_DAY\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)
+setwd("/Users/maxdekoninck/Dropbox/Game/Data/Survey3/R")#
+library(ggplot2)#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+winlose = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ WIN_LOSE\ TO\ R\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)#
+usersday = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ USER_DAY\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)
+setwd("/Users/maxdekoninck/Dropbox/Game/Data/Survey3/R")#
+library(ggplot2)#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+winlose = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ WIN_LOSE\ TO\ R\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)#
+usersday = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ USER_DAY\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+pdf("graph/usersday.pdf")#
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",col=c("steelblue1"),cex.names=0.8, las=2, y#
+=c(0,max(usersday$Users)+5))#
+text(y= users +1, x= bplt2, labels=usersday$Users)#
+makeFootnote(footnote)#
+dev.off()
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()
+setwd("/Users/maxdekoninck/Dropbox/Game/Data/Survey3/R")#
+library(ggplot2)#
+#In deze stap wordt de tabel ingeladen, tussen de waarden staat er niets, en er is een header die de kolom namen bevat.#
+winlose = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ WIN_LOSE\ TO\ R\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)#
+usersday = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ USER_DAY\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)#
+newvsret = read.csv("New_vs._Returning 20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+location = read.csv("Location_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+loading =read.csv("Average_LOADINGTIME_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+completionLevel1 =read.csv("CompletionTime_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+completionLevel2 =read.csv("CompletionTime_LEVEL2_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+firstlineLevel1 = read.csv("FirstLine_LEVEL1_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+avergcomptime = read.csv("Average_CompletionTime_ALL_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+firstlineLevel2 = read.csv("FirstLine_LEVEL2_20141119-20141125.csv",sep=",", na.string="#", header = TRUE)#
+question = read.csv("GameQuestionnaire (Responses).csv",sep=",", na.string="#", header = TRUE)#
+rating = read.csv("Analytics\ Alle\ gegevens\ voor\ mobiele\ app\ RATING\ 20141206-20141209.csv",sep=",", na.string="#", header = TRUE)#
+#Footnote param#
+scriptName <- "Analytics"#
+author <- "Cheese Squeeze"#
+dataperiod <- "2014/11/19-2014/11/25"#
+###########################################################
+            # Footnote script ###
+###########################################################
+footnote <- paste(scriptName, dataperiod,#
+                  author, sep=" : ")#
+makeFootnote <- function(footnoteText=#
+                         format(Sys.time(), "%d %b %Y"),#
+                         size= .4, color= grey(.4))#
+{#
+   require(grid)#
+   pushViewport(viewport())#
+   grid.text(label= footnoteText ,#
+             x = unit(1,"npc") - unit(2, "mm"),#
+             y= unit(2, "mm"),#
+             just=c("right", "bottom"),#
+             gp=gpar(cex= size, col=color))#
+   popViewport()#
+}#
+makeFootnote(footnote)#
+###########################################################
+            # Win lose voor de levels vegelijken ###
+###########################################################
+winloseLevels <- aggregate(cbind(Unique.Events.GAMEOVER,Unique.Events.WON) ~ Event.Action, data=winlose, FUN=sum)#
+winloseLevels $Event.Action = as.character(winloseLevels $Event.Action)#
+winloseLevels <- winloseLevels[ order(nchar(winloseLevels$Event.Action)), ]#
+ratio <- (winloseLevels$Unique.Events.WON / winloseLevels$Unique.Events.GAMEOVER)#
+winloseLevels  <- cbind(winloseLevels, ratio)#
+winloseLevels$ratio = as.numeric(winloseLevels $ratio)#
+winloseLevels$ratio = round(winloseLevels$ratio, digits = 2)#
+counts <- cbind(winloseLevels$Unique.Events.GAMEOVER, winloseLevels$Unique.Events.WON)#
+colnames(counts) <- c("LOSE", "WIN")#
+rownames(counts) <- winloseLevels$Event.Action#
+pdf("graph/winloseratio.pdf")#
+bplt1 <- barplot(t(counts), main="WIN/LOSE -Ratio/Level",beside=T,ylab="amount of unique games", col=c("indianred1","steelblue1"),legend = colnames(counts),cex.names=0.8, las=2, ylim=c(0,max(winloseLevels$Unique.Events.GAMEOVER,winloseLevels$Unique.Events.WON)+10))#
+ypos <- apply(counts, 1, max)#
+text(y= ypos+1, x= colMeans(bplt1), labels=winloseLevels$ratio)#
+makeFootnote(footnote)#
+dev.off()#
+###########################################################
+            # Gebruikers / dag ###
+###########################################################
+usersday$Day.Index = as.character(usersday$Day.Index)#
+users <- cbind(usersday$Users)#
+rownames(users) <- usersday$Day.Index#
+colnames(users) <- c("USERS")#
+pdf("graph/usersday.pdf")#
+bplt2 <- barplot(t(users),main="USERS/DAY",ylab="amount of users",col=c("steelblue1"),cex.names=0.8, las=2, y#
+=c(0,max(usersday$Users)+5))#
+text(y= users +1, x= bplt2, labels=usersday$Users)#
+makeFootnote(footnote)#
+dev.off()

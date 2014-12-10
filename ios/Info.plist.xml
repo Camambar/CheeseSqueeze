@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.5">
 <dict>
+	<key>GPGApplicationID</key>
+	<string>be.kuleuven.cs.hci.thesis.cheesesqueeze</string>
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleDisplayName</key>
@@ -9,7 +11,7 @@
     <key>CFBundleExecutable</key>
     <string>${app.executable}</string>
     <key>CFBundleIdentifier</key>
-    <string>${app.id}</string>
+    <string>be.kuleuven.cs.hci.thesis.cheesesqueeze</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
@@ -19,7 +21,7 @@
     <key>CFBundleShortVersionString</key>
     <string>${app.version}</string>
     <key>CFBundleSignature</key>
-    <string>????</string>
+    <string>cheese.squeeze.game</string>
     <key>CFBundleVersion</key>
     <string>${app.build}</string>
     <key>LSRequiresIPhoneOS</key>

@@ -33,10 +33,16 @@ public enum Level {
 	
 	LEVEL13(0.2f,new Vector2[]{}
 =======*/
+	
+	LEVEL21(0.3f,new Vector2[]{}
+	//>>>>>>> c510f975dffc625bbfa42a9a93544a0331557f72
+			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
+			,new int[]{1,3,6,7,6},4,false),
+	
 	LEVEL20(0.3f,new Vector2[]{}
 //>>>>>>> c510f975dffc625bbfa42a9a93544a0331557f72
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,3,6,7,6},4,false),
+		,new int[]{1,3,6,7,6},4,LEVEL21,false),
 	
 /*<<<<<<< HEAD
 	LEVEL12(0.5f,new Vector2[]{}
@@ -139,7 +145,7 @@ public enum Level {
 	private Vector2[] hlines;
 	private int amountVlines;
 	private float speed;
-	private Level nextLevel;
+	private Level nextLevel = null;
 	private int nbMouse;
 	private boolean randomLines = true;
 	private VerticalLine[] vlines;
@@ -253,6 +259,10 @@ public enum Level {
 	
 	public void setTutorial(boolean t) {
 		this.tutorial = t;
+	}
+	
+	public boolean isLastLevel() {
+		return this.nextLevel == null ? true : false;
 	}
 	
 }

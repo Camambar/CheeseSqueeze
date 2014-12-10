@@ -70,6 +70,9 @@ public class InputHelper implements InputProcessor {
 			case PAUSE:
 	
 				break;
+			case COUNTDOWN:
+				
+				break;
 	
 			}
 		}
@@ -110,7 +113,10 @@ public class InputHelper implements InputProcessor {
 			case PAUSE:
 	
 				break;
-	
+				
+			case COUNTDOWN:
+				
+				break;
 			}
 		}
 		return true;
@@ -119,7 +125,8 @@ public class InputHelper implements InputProcessor {
 	public boolean touchUpPlaying(int screenX, int screenY, int pointer,
 			int button) {
 		if (pointer == 0) {
-			if (!board.isClearable(screenX, screenY)) {
+			//System.out.println(gl);
+			if (!board.isClearable(screenX, screenY) && gl.getPoint1() != null) {
 				board.addHLine(gl.clone());
 				// l.clear();
 			}
