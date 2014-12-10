@@ -1,5 +1,5 @@
 CURRENT VERSION
-V1.4
+V1.5.1
 ______________________________________
 V1_3
 - more forgiving input
@@ -13,3 +13,8 @@ V1_4
 - analytics
 - support tegra3 (downsampled the graphics)
 - preset Hlines in some levels
+v1_5
+-scoring system
+-added more animations
+-fintuned existing levels
+-added some extra levels
