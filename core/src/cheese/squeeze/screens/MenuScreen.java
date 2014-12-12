@@ -116,7 +116,7 @@ public class MenuScreen implements Screen{
 		},AssetLoader.play.getX(),AssetLoader.play.getY(),
         		AssetLoader.play.getWidth()*AssetLoader.play.getScaleX(),AssetLoader.play.getHeight()*AssetLoader.play.getScaleY(),AssetLoader.play,AssetLoader.play);
 		
-		/*XXX
+		
 		SimpleButton leaderButton = new SimpleButton(new SimpleButtonListener() {
 			
 			@Override
@@ -129,7 +129,7 @@ public class MenuScreen implements Screen{
 			}
 		},AssetLoader.leader.getX(),AssetLoader.leader.getY(),
         		AssetLoader.leader.getWidth()*AssetLoader.leader.getScaleX(),AssetLoader.leader.getHeight()*AssetLoader.leader.getScaleY(),AssetLoader.leader,AssetLoader.leader);
-		*/
+		
 		
 		SwitchButton soundButton = new SwitchButton(new SimpleButtonListener(){
     		
@@ -181,9 +181,9 @@ public class MenuScreen implements Screen{
 		menuButtons.add(playButton);
         menuButtons.add(soundButton);
         menuButtons.add(musicButton);
-        /*XXX
+        
         menuButtons.add(leaderButton);
-        */
+        
 	}
 
 	@Override

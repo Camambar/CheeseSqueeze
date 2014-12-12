@@ -80,10 +80,10 @@ public class CSGame extends Game {
 			prefs.flush();
 			System.out.println("level " + l.toString() + " saved");
 			
-			if(l.equals(Level.LEVEL1)) {
+			if(l.equals(Level.LEVEL2)) {
 				action.unlockAchievementGPGS(Achievement.FIRST_LEVEL_COMPLETE.getId());
 			}
-			else if (l.equals(Level.LEVEL10)) {
+			else if (l.equals(Level.LEVEL11)) {
 				action.unlockAchievementGPGS(Achievement.TEN_LEVELS_COMPLETE.getId());
 			}
 			else if (l.isLastLevel()) {
@@ -100,10 +100,14 @@ public class CSGame extends Game {
 		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
 		if(prefs.contains("level")) {
 			prefs.remove("level");
-			currentLevel = Level.LEVEL1;
+			currentLevel = Level.LEVEL2;
 		}
-		else if (prefs.contains("level_1.5")) {
-			String l = prefs.getString("level_1.5");
+		else if (prefs.contains("level")) {
+			prefs.remove("level");
+			currentLevel = Level.LEVEL2;
+		}
+		else if (prefs.contains("level_1.6")) {
+			String l = prefs.getString("level_1.6");
 			currentLevel = Level.valueOf(l);
 			
 		}
@@ -140,15 +144,23 @@ public class CSGame extends Game {
 		Report.clear();
 	}
 	
-	public void leaderboards() {
+	public void leaderboards(int score) {
+		Preferences prefs = Gdx.app.getPreferences("CurrentLevel");
+		
 		if (! (action.getSignedInGPGS()))
 			return;
-		int score = 0;
-		for(Entry<Level, Integer> e : Report.gameScore.entrySet()) {
-			score += e.getValue();
+		if(prefs.contains("Score")) {
+			int sc = prefs.getInteger("Score");
+			sc +=score;
+			action.submitScoreGPGS(sc);
+			prefs.putInteger("Score", sc);
+			System.out.println("SUBMIT SCORE" + sc);
 		}
-		System.out.println("SUBMIT SCORE" + score);
-		action.submitScoreGPGS(score);
+		else {
+			prefs.putInteger("Score", score);
+			action.submitScoreGPGS(score);
+			System.out.println("SUBMIT SCORE" + score);
+		}
 	}
 
 	@Override

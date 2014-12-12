@@ -60,7 +60,7 @@ public class GameScreen implements Screen {
     }
 	
 	private void init(final CSGame game) {
-    	game.saveLevel();
+    	//game.saveLevel();
     	actionBeginTime = System.nanoTime();
         Gdx.app.log("GameScreen", "Attached");
         //Calculate the starting positions
@@ -147,7 +147,7 @@ public class GameScreen implements Screen {
 					//CSGame.currentLevel = currentLevel.getNextLevel();
 					//status = new ReportStatus(GameState.WON,currentLevel);
 					Report.reportScore(currentLevel, rt.getPoints());
-					game.leaderboards();
+					//game.leaderboards();
 					game.analytics();
 					game.setScreen(new GameScreen(game,currentLevel.getNextLevel()));
 					
@@ -269,6 +269,7 @@ public class GameScreen implements Screen {
 					status = new ReportStatus(GameState.WONSCREEN,currentLevel);
 					TimerFactory.getNewTimer(status).start();
 					game.saveLevel(currentLevel.getNextLevel());
+					game.leaderboards(board.getScore());
 				}
 				MusicAccessor.play(AssetLoader.victorySound);
 				renderer.render();
