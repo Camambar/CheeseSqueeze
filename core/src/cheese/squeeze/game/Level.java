@@ -104,7 +104,7 @@ public enum Level {
 	
 	LEVEL3(0.6f,new Vector2[]{new Vector2(1,1),new Vector2(2,2)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5))}
-		,new int[]{2,3,1,2,1},1,LEVEL4,false),
+		,new int[]{2,3,1,2},1,LEVEL4,false),
 
 	LEVEL2(0.8f,new Vector2[]{new Vector2(2,1)}
 		,new VerticalLine[]{new VerticalLine(new Cheese(4)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
