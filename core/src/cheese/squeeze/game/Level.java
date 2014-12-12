@@ -30,24 +30,24 @@ public enum Level {
 			,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
 			,new int[]{1,3,6,7,6},4,false),
 	
-	LEVEL20(0.3f,new Vector2[]{}
+	LEVEL20(0.35f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
 		,new int[]{1,3,6,7,6},4,LEVEL21,false),
 
-	LEVEL19(0.4f,new Vector2[]{new Vector2(1,1),new Vector2(1,3),new Vector2(1,7),new Vector2(1,5),new Vector2(3,1),new Vector2(3,3),new Vector2(3,5),new Vector2(5,1),new Vector2(5,3)}
+	LEVEL19(0.5f,new Vector2[]{new Vector2(2,1),new Vector2(4,1),new Vector2(1,5),new Vector2(3,7),new Vector2(5,5)}
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
+		,new int[]{6,2,5,1,3},3,LEVEL20,false),	
+
+	LEVEL18(0.4f,new Vector2[]{new Vector2(1,1),new Vector2(1,3),new Vector2(1,7),new Vector2(1,5),new Vector2(3,1),new Vector2(3,3),new Vector2(3,5),new Vector2(5,1),new Vector2(5,3)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,3,5,2,6},4,LEVEL20,false),	
+		,new int[]{1,3,5,2,6},4,LEVEL19,false),	
 		
-	LEVEL18(0.5f,new Vector2[]{new Vector2(2,1),new Vector2(4,1),new Vector2(1,5),new Vector2(3,7),new Vector2(5,5)}
-		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{6,2,5,1,3},3,LEVEL19,false),	
-		
-	LEVEL17(0.5f,new Vector2[]{new Vector2(1,2),new Vector2(2,3),new Vector2(3,2),new Vector2(4,3),new Vector2(5,2)}
-		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,3,5,6,4},3,LEVEL18,false),	
-		
-	LEVEL16(0.5f,new Vector2[]{new Vector2(1,1),new Vector2(5,1),new Vector2(3,3)}
+	LEVEL17(0.5f,new Vector2[]{new Vector2(1,1),new Vector2(5,1),new Vector2(3,3)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap())}
+		,new int[]{1,3,5,6,4},3,LEVEL18,false),	
+
+	LEVEL16(0.5f,new Vector2[]{new Vector2(1,2),new Vector2(2,3),new Vector2(3,2),new Vector2(4,3),new Vector2(5,2)}
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
 		,new int[]{1,3,5,6,4},3,LEVEL17,false),	
 		
 	LEVEL15(0.5f,new Vector2[]{new Vector2(1,1),new Vector2(4,1)}
@@ -58,17 +58,17 @@ public enum Level {
 	,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),}
 	,new int[]{1,3,5,4,2},3,LEVEL15,false),	
 		
-	LEVEL13(0.5f,new Vector2[]{}
+	LEVEL13(0.35f,new Vector2[]{new Vector2(4,1),new Vector2(4,2)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,3,5,2,4},3,LEVEL14,false),
+		,new int[]{1,3,4,2,5},3,LEVEL14,false),
 	
 	LEVEL12(0.5f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5))}
 		,new int[]{3,1,2,5,2},2,LEVEL13,false),	
 		
 	LEVEL11(0.5f,new Vector2[]{}
-		,new VerticalLine[]{new VerticalLine(new Cheese(4)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{4,5,2,1},2,LEVEL12,false),
+		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Cheese(4)),new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
+		,new int[]{4,5,2,1,3},2,LEVEL12,false),
 		
 		
 	LEVEL10(0.5f,new Vector2[]{}
@@ -90,17 +90,17 @@ public enum Level {
 		,new int[]{4,2,3,2,1},1,LEVEL8,false),
 	
 	
-	LEVEL6(0.75f,new Vector2[]{}
+	LEVEL6(0.85f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5)),new VerticalLine(new Trap())}
-		,new int[]{1,2,3,4,1},1,LEVEL7,false),
+		,new int[]{1,4,2,1,3},1,LEVEL7,false),
 
-	LEVEL5(0.5f,new Vector2[]{}
+	LEVEL5(0.4f,new Vector2[]{}
 		,new VerticalLine[]{new VerticalLine(new Cheese(4)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{3,2,3,1},2,LEVEL6,false),
+		,new int[]{1,2,3,1},2,LEVEL6,false),
 			
 	LEVEL4(0.4f,new Vector2[]{new Vector2(1,1)}
 		,new VerticalLine[]{new VerticalLine(new Cheese(3)),new VerticalLine(new Trap()),new VerticalLine(new Trap())}
-		,new int[]{1,3,2},2,LEVEL5,false),		
+		,new int[]{1,3,2,1},2,LEVEL5,false),		
 	
 	LEVEL3(0.6f,new Vector2[]{new Vector2(1,1),new Vector2(2,2)}
 		,new VerticalLine[]{new VerticalLine(new Trap()),new VerticalLine(new Trap()),new VerticalLine(new Cheese(5))}
