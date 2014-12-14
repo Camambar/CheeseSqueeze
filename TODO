@@ -4,22 +4,9 @@ H = High Priority, M = Medium Priority, L = Low Priority
 
 DUE TO NEXT RELEASE:
 
-H - verify button scaling on different (iOS) devices OK
-
 H - Viralise
 
 H - Leaderboards implementation
-
-H - implement: raining cheese on victory screen, voetstapjes
-
-VH - fix menu issues on some devices DENK IN ORDE NIE ZKR
-
-VH - fix music issues on some devices OK
-
-H - extra levels
-
-M - tutorial blijven tonen voor level 1, ook na een keer falen
-
 
 General:
 
@@ -27,10 +14,7 @@ M - Level Selector
 
 M - laadscherm html versie (https://github.com/libgdx/libgdx/wiki/Starter-classes-%26-configuration#html5gwt)
 
-
 Music & Visual:
-
-M  - art juist doen scalen voor mobile (width en height gebruiken)
 
 Mouse & Path Bugs:
 
